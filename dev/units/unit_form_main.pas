@@ -33,6 +33,7 @@ type
     TabSheet1: TTabSheet;
     ToolBarMain: TToolBar;
     ToolButton1: TToolButton;
+    ToolButton2: TToolButton;
     procedure MenuItemFileExitClick(Sender: TObject);
     procedure MenuItemFileOpenClick(Sender: TObject);
     procedure MenuItemFileSaveAsClick(Sender: TObject);
