@@ -28,6 +28,8 @@ type
     StatusBarMain: TStatusBar;
     SynEditMain: TSynEdit;
     SynPasSynMain: TSynPasSyn;
+    ToolBar1: TToolBar;
+    ToolButton1: TToolButton;
     procedure MenuItemFileExitClick(Sender: TObject);
     procedure MenuItemFileOpenClick(Sender: TObject);
     procedure MenuItemFileSaveAsClick(Sender: TObject);
