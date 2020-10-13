@@ -522,15 +522,25 @@ object FormMain: TFormMain
       Caption = '&File'
       object MenuItemFileOpen: TMenuItem
         Caption = '&Open ...'
+        ShortCut = 16463
+        OnClick = MenuItemFileOpenClick
       end
-      object MenuItem2: TMenuItem
+      object MenuItemFileSaveAs: TMenuItem
+        Caption = 'Save As ...'
+        OnClick = MenuItemFileSaveAsClick
+      end
+      object MenuItemFileExit: TMenuItem
         Caption = 'E&xit'
-        OnClick = MenuItem2Click
+        OnClick = MenuItemFileExitClick
       end
     end
   end
   object OpenDialogMain: TOpenDialog
     left = 389
     top = 156
+  end
+  object SaveDialogMain: TSaveDialog
+    left = 389
+    top = 256
   end
 end
