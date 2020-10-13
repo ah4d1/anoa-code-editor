@@ -20,8 +20,8 @@ object FormMain: TFormMain
   end
   inline SynEditMain: TSynEdit
     Left = 0
-    Height = 516
-    Top = 0
+    Height = 477
+    Top = 39
     Width = 890
     Align = alClient
     Font.Height = -18
@@ -513,6 +513,19 @@ object FormMain: TFormMain
         MouseActionsExpanded = <>
         MouseActionsCollapsed = <>
       end
+    end
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 39
+    Top = 0
+    Width = 890
+    Caption = 'ToolBar1'
+    TabOrder = 2
+    object ToolButton1: TToolButton
+      Left = 1
+      Top = 2
+      Caption = 'ToolButton1'
     end
   end
   object MainMenuMain: TMainMenu
