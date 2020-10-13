@@ -1,10 +1,8 @@
 v.1.0.0.1 : (In Progress)
-Added : Main Menu : Open File.
-Added : Main Menu : Save As.
-Added : Main Menu : Save.
-Added : Main Menu : Settings | Language | Pascal.
+Added : Main Menu : Open File, Save As, Save, Settings | Language | Pascal.
 Added : Highlighter : Pascal.
 Added : Line Highlight Color.
+Added : Toolbar : Open, Save
 Update : Main Form created at Screen Center.
 
 v.1.0.0.0 : (Released 13th Oct 2020)
