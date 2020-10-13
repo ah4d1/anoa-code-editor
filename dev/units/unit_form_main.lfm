@@ -529,6 +529,11 @@ object FormMain: TFormMain
         Caption = 'Save As ...'
         OnClick = MenuItemFileSaveAsClick
       end
+      object MenuItemFileSave: TMenuItem
+        Caption = '&Save'
+        ShortCut = 16467
+        OnClick = MenuItemFileSaveClick
+      end
       object MenuItem2: TMenuItem
         Caption = '-'
       end
