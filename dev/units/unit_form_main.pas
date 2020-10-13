@@ -15,6 +15,7 @@ type
   TFormMain = class(TForm)
     MainMenuMain: TMainMenu;
     MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
     MenuItemFileExit: TMenuItem;
     MenuItemFileSaveAs: TMenuItem;
     MenuItemFileOpen: TMenuItem;
