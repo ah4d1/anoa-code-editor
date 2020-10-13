@@ -16,6 +16,7 @@ type
     MainMenuMain: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    MenuItemFileSave: TMenuItem;
     MenuItemFileExit: TMenuItem;
     MenuItemFileSaveAs: TMenuItem;
     MenuItemFileOpen: TMenuItem;
@@ -26,6 +27,7 @@ type
     procedure MenuItemFileExitClick(Sender: TObject);
     procedure MenuItemFileOpenClick(Sender: TObject);
     procedure MenuItemFileSaveAsClick(Sender: TObject);
+    procedure MenuItemFileSaveClick(Sender: TObject);
   private
 
   public
@@ -63,6 +65,17 @@ begin
   if Self.OpenDialogMain.Execute then
   begin
     Self.SynEditMain.Lines.SaveToFile(Self.OpenDialogMain.FileName);
+  end;
+end;
+
+procedure TFormMain.MenuItemFileSaveClick(Sender: TObject);
+var
+  LFileName : TFileName;
+begin
+  LFileName := Self.StatusBarMain.SimpleText;
+  if FileExists(LFileName) then
+  begin
+    Self.SynEditMain.Lines.SaveToFile(LFileName);
   end;
 end;
 
