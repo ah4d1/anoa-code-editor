@@ -1,0 +1,10 @@
+v.1.0.0.1 : (In Progress)
+Added : Open File.
+Minor updates.
+
+v.1.0.0.0 : (Released 13th Oct 2020)
+Release new application.
+Added : Menu File | Exit.
+Added : Editor.
+Added : Status Bar.
+
