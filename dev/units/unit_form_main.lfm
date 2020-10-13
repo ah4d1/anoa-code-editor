@@ -542,6 +542,16 @@ object FormMain: TFormMain
         OnClick = MenuItemFileExitClick
       end
     end
+    object MenuItemSettings: TMenuItem
+      Caption = '&Settings'
+      object MenuItemSettingsLang: TMenuItem
+        Caption = '&Language'
+        object MenuItemSettingsLangPascal: TMenuItem
+          Caption = 'Pascal'
+          OnClick = MenuItemSettingsLangPascalClick
+        end
+      end
+    end
   end
   object OpenDialogMain: TOpenDialog
     left = 389
@@ -550,5 +560,12 @@ object FormMain: TFormMain
   object SaveDialogMain: TSaveDialog
     left = 389
     top = 256
+  end
+  object SynPasSynMain: TSynPasSyn
+    Enabled = False
+    CompilerMode = pcmDelphi
+    NestedComments = False
+    left = 584
+    top = 56
   end
 end
