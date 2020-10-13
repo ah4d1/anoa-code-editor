@@ -8,6 +8,7 @@ object FormMain: TFormMain
   ClientWidth = 890
   DesignTimePPI = 144
   Menu = MainMenuMain
+  Position = poScreenCenter
   LCLVersion = '2.0.0.4'
   object StatusBarMain: TStatusBar
     Left = 0
