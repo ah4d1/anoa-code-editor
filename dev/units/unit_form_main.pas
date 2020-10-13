@@ -24,10 +24,12 @@ type
     MenuItemFileSaveAs: TMenuItem;
     MenuItemFileOpen: TMenuItem;
     OpenDialogMain: TOpenDialog;
+    PageControlMain: TPageControl;
     SaveDialogMain: TSaveDialog;
     StatusBarMain: TStatusBar;
     SynEditMain: TSynEdit;
     SynPasSynMain: TSynPasSyn;
+    TabSheet1: TTabSheet;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     procedure MenuItemFileExitClick(Sender: TObject);
