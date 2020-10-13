@@ -17,6 +17,8 @@ type
     MainMenuMain: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
     MenuItemSettingsLangPascal: TMenuItem;
     MenuItemSettingsLang: TMenuItem;
     MenuItemSettings: TMenuItem;
@@ -34,6 +36,7 @@ type
     ToolBarMain: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
+    procedure MenuItem4Click(Sender: TObject);
     procedure MenuItemFileExitClick(Sender: TObject);
     procedure MenuItemFileOpenClick(Sender: TObject);
     procedure MenuItemFileSaveAsClick(Sender: TObject);
@@ -57,6 +60,11 @@ implementation
 procedure TFormMain.MenuItemFileExitClick(Sender: TObject);
 begin
   Application.Terminate;
+end;
+
+procedure TFormMain.MenuItem4Click(Sender: TObject);
+begin
+  MessageDlg('About','Anoa-Syntax-Editor',mtInformation,[mbOK],0);
 end;
 
 procedure TFormMain.MenuItemFileOpenClick(Sender: TObject);
