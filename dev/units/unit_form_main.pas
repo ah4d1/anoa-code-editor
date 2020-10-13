@@ -13,6 +13,7 @@ type
   { TFormMain }
 
   TFormMain = class(TForm)
+    ImageListMain: TImageList;
     MainMenuMain: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -30,7 +31,7 @@ type
     SynEditMain: TSynEdit;
     SynPasSynMain: TSynPasSyn;
     TabSheet1: TTabSheet;
-    ToolBar1: TToolBar;
+    ToolBarMain: TToolBar;
     ToolButton1: TToolButton;
     procedure MenuItemFileExitClick(Sender: TObject);
     procedure MenuItemFileOpenClick(Sender: TObject);
