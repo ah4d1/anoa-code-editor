@@ -47,10 +47,14 @@ begin
 end;
 
 procedure TFormMain.MenuItemFileOpenClick(Sender: TObject);
+var
+  LFileName : TFileName;
 begin
   if Self.OpenDialogMain.Execute then
   begin
-    Self.SynEditMain.Lines.LoadFromFile(Self.OpenDialogMain.FileName);
+    LFileName := Self.OpenDialogMain.FileName;
+    Self.SynEditMain.Lines.LoadFromFile(LFileName);
+    Self.StatusBarMain.SimpleText := LFileName;
   end;
 end;
 
