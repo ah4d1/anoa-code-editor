@@ -1,5 +1,6 @@
 v.1.0.0.1 : (In Progress)
 Added : Open File.
+Added : Save As File.
 Minor updates.
 
 v.1.0.0.0 : (Released 13th Oct 2020)
