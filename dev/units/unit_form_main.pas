@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  SynEdit;
+  SynEdit, SynHighlighterPas;
 
 type
 
@@ -16,6 +16,9 @@ type
     MainMenuMain: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    MenuItemSettingsLangPascal: TMenuItem;
+    MenuItemSettingsLang: TMenuItem;
+    MenuItemSettings: TMenuItem;
     MenuItemFileSave: TMenuItem;
     MenuItemFileExit: TMenuItem;
     MenuItemFileSaveAs: TMenuItem;
@@ -24,10 +27,12 @@ type
     SaveDialogMain: TSaveDialog;
     StatusBarMain: TStatusBar;
     SynEditMain: TSynEdit;
+    SynPasSynMain: TSynPasSyn;
     procedure MenuItemFileExitClick(Sender: TObject);
     procedure MenuItemFileOpenClick(Sender: TObject);
     procedure MenuItemFileSaveAsClick(Sender: TObject);
     procedure MenuItemFileSaveClick(Sender: TObject);
+    procedure MenuItemSettingsLangPascalClick(Sender: TObject);
   private
 
   public
@@ -77,6 +82,11 @@ begin
   begin
     Self.SynEditMain.Lines.SaveToFile(LFileName);
   end;
+end;
+
+procedure TFormMain.MenuItemSettingsLangPascalClick(Sender: TObject);
+begin
+  Self.SynEditMain.Highlighter := Self.SynPasSynMain;
 end;
 
 end.
