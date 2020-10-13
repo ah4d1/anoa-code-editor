@@ -529,6 +529,9 @@ object FormMain: TFormMain
         Caption = 'Save As ...'
         OnClick = MenuItemFileSaveAsClick
       end
+      object MenuItem2: TMenuItem
+        Caption = '-'
+      end
       object MenuItemFileExit: TMenuItem
         Caption = 'E&xit'
         OnClick = MenuItemFileExitClick
