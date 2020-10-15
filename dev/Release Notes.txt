@@ -1,6 +1,6 @@
 v.1.0.0.2 : (Work in progress)
-Added : Highlighter : Java.
-Added : Main Menu : Settings | Language | Java
+Added : Highlighter : Java, HTML
+Added : Main Menu : Settings | Language | HTML, Settings | Language | Java
 
 v.1.0.0.1 : (Released 13th Oct 2020)
 Added : Main Menu : Open File, Save As, Save, Settings | Language | Pascal, Help | About.
