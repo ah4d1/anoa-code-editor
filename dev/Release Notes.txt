@@ -1,4 +1,8 @@
-v.1.0.0.1 : (In Progress)
+v.1.0.0.2 : (Work in progress)
+Added : Highlighter : Java.
+Added : Main Menu : Settings | Language | Java
+
+v.1.0.0.1 : (Released 13th Oct 2020)
 Added : Main Menu : Open File, Save As, Save, Settings | Language | Pascal, Help | About.
 Added : Highlighter : Pascal.
 Added : Line Highlight Color.
