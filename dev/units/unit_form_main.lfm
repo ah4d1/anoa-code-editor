@@ -589,6 +589,10 @@ object FormMain: TFormMain
       Caption = '&Settings'
       object MenuItemSettingsLang: TMenuItem
         Caption = '&Language'
+        object MenuItemSettingsLangHTML: TMenuItem
+          Caption = 'HTML'
+          OnClick = MenuItemSettingsLangHTMLClick
+        end
         object MenuItemSettingsLangJava: TMenuItem
           Caption = 'Java'
           OnClick = MenuItemSettingsLangJavaClick
@@ -775,5 +779,11 @@ object FormMain: TFormMain
     Enabled = False
     left = 583
     top = 133
+  end
+  object SynHTMLSynMain: TSynHTMLSyn
+    DefaultFilter = 'HTML Document (*.htm,*.html)|*.htm;*.html'
+    Enabled = False
+    left = 584
+    top = 210
   end
 end
