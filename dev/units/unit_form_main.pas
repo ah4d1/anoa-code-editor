@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  SynEdit, SynHighlighterPas, SynHighlighterJava;
+  SynEdit, SynHighlighterPas, SynHighlighterJava, SynHighlighterHTML;
 
 type
 
@@ -19,6 +19,7 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemSettingsLangHTML: TMenuItem;
     MenuItemSettingsLangJava: TMenuItem;
     MenuItemSettingsLangPascal: TMenuItem;
     MenuItemSettingsLang: TMenuItem;
@@ -32,6 +33,7 @@ type
     SaveDialogMain: TSaveDialog;
     StatusBarMain: TStatusBar;
     SynEditMain: TSynEdit;
+    SynHTMLSynMain: TSynHTMLSyn;
     SynJavaSynMain: TSynJavaSyn;
     SynPasSynMain: TSynPasSyn;
     TabSheet1: TTabSheet;
@@ -43,6 +45,7 @@ type
     procedure MenuItemFileOpenClick(Sender: TObject);
     procedure MenuItemFileSaveAsClick(Sender: TObject);
     procedure MenuItemFileSaveClick(Sender: TObject);
+    procedure MenuItemSettingsLangHTMLClick(Sender: TObject);
     procedure MenuItemSettingsLangJavaClick(Sender: TObject);
     procedure MenuItemSettingsLangPascalClick(Sender: TObject);
   private
@@ -99,6 +102,11 @@ begin
   begin
     Self.SynEditMain.Lines.SaveToFile(LFileName);
   end;
+end;
+
+procedure TFormMain.MenuItemSettingsLangHTMLClick(Sender: TObject);
+begin
+  Self.SynEditMain.Highlighter := Self.SynHTMLSynMain;
 end;
 
 procedure TFormMain.MenuItemSettingsLangJavaClick(Sender: TObject);
