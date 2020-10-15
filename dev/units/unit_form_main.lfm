@@ -589,6 +589,10 @@ object FormMain: TFormMain
       Caption = '&Settings'
       object MenuItemSettingsLang: TMenuItem
         Caption = '&Language'
+        object MenuItemSettingsLangJava: TMenuItem
+          Caption = 'Java'
+          OnClick = MenuItemSettingsLangJavaClick
+        end
         object MenuItemSettingsLangPascal: TMenuItem
           Caption = 'Pascal'
           OnClick = MenuItemSettingsLangPascalClick
@@ -765,5 +769,11 @@ object FormMain: TFormMain
       851D3BB6CDE89B737F33677D66C3B7F6F962C84F4A622BA8783EF6F549F42693
       0D3BBFECEF0FFF0209C9ED94
     }
+  end
+  object SynJavaSynMain: TSynJavaSyn
+    DefaultFilter = 'Java Files (*.java)|*.java'
+    Enabled = False
+    left = 583
+    top = 133
   end
 end
