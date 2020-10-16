@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="2">
+    <Units Count="3">
       <Unit0>
         <Filename Value="AnoaSyntaxEditor.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="28"/>
       </Unit0>
       <Unit1>
         <Filename Value="units\unit_form_main.pas"/>
@@ -21,14 +21,22 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="65"/>
-        <CursorPos X="67" Y="67"/>
-        <UsageCount Value="26"/>
+        <TopLine Value="93"/>
+        <CursorPos X="74" Y="103"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
+      <Unit2>
+        <Filename Value="C:\lazarus\lcl\comctrls.pp"/>
+        <UnitName Value="ComCtrls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="595"/>
+        <CursorPos X="14" Y="605"/>
+        <UsageCount Value="10"/>
+      </Unit2>
     </Units>
-    <JumpHistory Count="20" HistoryIndex="19">
+    <JumpHistory Count="26" HistoryIndex="25">
       <Position1>
         <Filename Value="units\unit_form_main.pas"/>
       </Position1>
@@ -108,6 +116,30 @@
         <Filename Value="units\unit_form_main.pas"/>
         <Caret Line="103" Column="53" TopLine="85"/>
       </Position20>
+      <Position21>
+        <Filename Value="units\unit_form_main.pas"/>
+        <Caret Line="67" Column="67" TopLine="65"/>
+      </Position21>
+      <Position22>
+        <Filename Value="units\unit_form_main.pas"/>
+        <Caret Line="69" Column="67" TopLine="67"/>
+      </Position22>
+      <Position23>
+        <Filename Value="units\unit_form_main.pas"/>
+        <Caret Line="70" Column="67" TopLine="68"/>
+      </Position23>
+      <Position24>
+        <Filename Value="units\unit_form_main.pas"/>
+        <Caret Line="124" TopLine="105"/>
+      </Position24>
+      <Position25>
+        <Filename Value="units\unit_form_main.pas"/>
+        <Caret Line="134" Column="46" TopLine="116"/>
+      </Position25>
+      <Position26>
+        <Filename Value="units\unit_form_main.pas"/>
+        <Caret Line="103" Column="74" TopLine="93"/>
+      </Position26>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
