@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  SynEdit, SynHighlighterPas;
+  StdCtrls, Spin, SynEdit, SynHighlighterPas, SynHighlighterJava,
+  SynHighlighterHTML, SynHighlighterPHP;
 
 type
 
@@ -14,11 +15,15 @@ type
 
   TFormMain = class(TForm)
     ImageListMain: TImageList;
+    LabelFontSize: TLabel;
     MainMenuMain: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemSettingsLangPHP: TMenuItem;
+    MenuItemSettingsLangHTML: TMenuItem;
+    MenuItemSettingsLangJava: TMenuItem;
     MenuItemSettingsLangPascal: TMenuItem;
     MenuItemSettingsLang: TMenuItem;
     MenuItemSettings: TMenuItem;
@@ -29,19 +34,28 @@ type
     OpenDialogMain: TOpenDialog;
     PageControlMain: TPageControl;
     SaveDialogMain: TSaveDialog;
+    SpinEditFontSize: TSpinEdit;
     StatusBarMain: TStatusBar;
     SynEditMain: TSynEdit;
+    SynHTMLSynMain: TSynHTMLSyn;
+    SynJavaSynMain: TSynJavaSyn;
     SynPasSynMain: TSynPasSyn;
+    SynPHPSynMain: TSynPHPSyn;
     TabSheet1: TTabSheet;
     ToolBarMain: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
+    procedure FormCreate(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
     procedure MenuItemFileExitClick(Sender: TObject);
     procedure MenuItemFileOpenClick(Sender: TObject);
     procedure MenuItemFileSaveAsClick(Sender: TObject);
     procedure MenuItemFileSaveClick(Sender: TObject);
+    procedure MenuItemSettingsLangHTMLClick(Sender: TObject);
+    procedure MenuItemSettingsLangJavaClick(Sender: TObject);
     procedure MenuItemSettingsLangPascalClick(Sender: TObject);
+    procedure MenuItemSettingsLangPHPClick(Sender: TObject);
+    procedure SpinEditFontSizeChange(Sender: TObject);
   private
 
   public
@@ -67,6 +81,20 @@ begin
   MessageDlg('About','Anoa-Syntax-Editor',mtInformation,[mbOK],0);
 end;
 
+procedure TFormMain.FormCreate(Sender: TObject);
+var
+  LDefaultFilter : WideString;
+begin
+  LDefaultFilter := ''
+    + 'All Files (*.*)|*.*'
+    + '|' + Self.SynHTMLSynMain.DefaultFilter
+    + '|' + Self.SynJavaSynMain.DefaultFilter
+    + '|' + Self.SynPasSynMain.DefaultFilter
+    + '|' + Self.SynPHPSynMain.DefaultFilter
+  ;
+  Self.OpenDialogMain.Filter := LDefaultFilter;
+end;
+
 procedure TFormMain.MenuItemFileOpenClick(Sender: TObject);
 var
   LFileName : TFileName;
@@ -75,6 +103,7 @@ begin
   begin
     LFileName := Self.OpenDialogMain.FileName;
     Self.SynEditMain.Lines.LoadFromFile(LFileName);
+    Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
     Self.StatusBarMain.SimpleText := LFileName;
   end;
 end;
@@ -98,9 +127,29 @@ begin
   end;
 end;
 
+procedure TFormMain.MenuItemSettingsLangHTMLClick(Sender: TObject);
+begin
+  Self.SynEditMain.Highlighter := Self.SynHTMLSynMain;
+end;
+
+procedure TFormMain.MenuItemSettingsLangJavaClick(Sender: TObject);
+begin
+  Self.SynEditMain.Highlighter := Self.SynJavaSynMain;
+end;
+
 procedure TFormMain.MenuItemSettingsLangPascalClick(Sender: TObject);
 begin
   Self.SynEditMain.Highlighter := Self.SynPasSynMain;
+end;
+
+procedure TFormMain.MenuItemSettingsLangPHPClick(Sender: TObject);
+begin
+  Self.SynEditMain.Highlighter := Self.SynPHPSynMain;
+end;
+
+procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
+begin
+  Self.SynEditMain.Font.Size := Self.SpinEditFontSize.Value;
 end;
 
 end.
