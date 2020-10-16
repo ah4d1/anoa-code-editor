@@ -638,6 +638,10 @@ object FormMain: TFormMain
           OnClick = MenuItemSettingsLangPHPClick
         end
       end
+      object MenuItemSettingsAddToSysMenu: TMenuItem
+        Caption = 'Add to SysMenu'
+        OnClick = MenuItemSettingsAddToSysMenuClick
+      end
     end
     object MenuItem3: TMenuItem
       Caption = '&Help'
