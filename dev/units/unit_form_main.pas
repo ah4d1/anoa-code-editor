@@ -21,6 +21,7 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemFileNew: TMenuItem;
     MenuItemSettingsLangPHP: TMenuItem;
     MenuItemSettingsLangHTML: TMenuItem;
     MenuItemSettingsLangJava: TMenuItem;
@@ -48,6 +49,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
     procedure MenuItemFileExitClick(Sender: TObject);
+    procedure MenuItemFileNewClick(Sender: TObject);
     procedure MenuItemFileOpenClick(Sender: TObject);
     procedure MenuItemFileSaveAsClick(Sender: TObject);
     procedure MenuItemFileSaveClick(Sender: TObject);
@@ -56,6 +58,7 @@ type
     procedure MenuItemSettingsLangPascalClick(Sender: TObject);
     procedure MenuItemSettingsLangPHPClick(Sender: TObject);
     procedure SpinEditFontSizeChange(Sender: TObject);
+    procedure SynEditMainChange(Sender: TObject);
   private
 
   public
@@ -74,6 +77,14 @@ implementation
 procedure TFormMain.MenuItemFileExitClick(Sender: TObject);
 begin
   Application.Terminate;
+end;
+
+procedure TFormMain.MenuItemFileNewClick(Sender: TObject);
+begin
+  Self.PageControlMain.ActivePage.ImageIndex := 3;
+  Self.PageControlMain.ActivePage.Caption := 'New';
+  Self.SynEditMain.Lines.Clear;
+  Self.StatusBarMain.SimpleText := 'Ready';
 end;
 
 procedure TFormMain.MenuItem4Click(Sender: TObject);
@@ -131,6 +142,7 @@ begin
   if FileExists(LFileName) then
   begin
     Self.SynEditMain.Lines.SaveToFile(LFileName);
+    Self.PageControlMain.ActivePage.ImageIndex := 3;
   end;
 end;
 
@@ -157,6 +169,11 @@ end;
 procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
 begin
   Self.SynEditMain.Font.Size := Self.SpinEditFontSize.Value;
+end;
+
+procedure TFormMain.SynEditMainChange(Sender: TObject);
+begin
+  Self.PageControlMain.ActivePage.ImageIndex := 4;
 end;
 
 end.
