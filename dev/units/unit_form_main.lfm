@@ -3,6 +3,7 @@ object FormMain: TFormMain
   Height = 582
   Top = 206
   Width = 890
+  ActiveControl = SynEditMain
   Caption = 'Anoa-Syntax-Editor'
   ClientHeight = 552
   ClientWidth = 890
@@ -41,6 +42,28 @@ object FormMain: TFormMain
       Caption = '&Save'
       ImageIndex = 1
       MenuItem = MenuItemFileSave
+    end
+    object LabelFontSize: TLabel
+      Left = 73
+      Height = 25
+      Top = 6
+      Width = 82
+      Align = alLeft
+      Caption = ' Font Size '
+      ParentColor = False
+    end
+    object SpinEditFontSize: TSpinEdit
+      Left = 160
+      Height = 33
+      Top = 2
+      Width = 57
+      Align = alLeft
+      Alignment = taRightJustify
+      MaxValue = 28
+      MinValue = 6
+      OnChange = SpinEditFontSizeChange
+      TabOrder = 0
+      Value = 9
     end
   end
   object PageControlMain: TPageControl
