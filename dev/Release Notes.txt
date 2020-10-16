@@ -4,6 +4,7 @@ Added : Language : Java (Main Menu : Settings | Language | Java)
 Added : Language : HTML (Main Menu : Settings | Language | HTML)
 Added : Language : PHP (Main Menu : Settings | Language | PHP)
 Added : Default Filter for Open Dialog
+Added : Font Size Options
 Update : Active Page Caption set to File Name
 
 v.1.0.0.1 : (Released 13th Oct 2020)
