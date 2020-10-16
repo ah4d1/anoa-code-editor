@@ -3,11 +3,13 @@ object FormMain: TFormMain
   Height = 582
   Top = 206
   Width = 890
+  ActiveControl = SynEditMain
   Caption = 'Anoa-Syntax-Editor'
   ClientHeight = 552
   ClientWidth = 890
   DesignTimePPI = 144
   Menu = MainMenuMain
+  OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
   object StatusBarMain: TStatusBar
@@ -40,6 +42,28 @@ object FormMain: TFormMain
       Caption = '&Save'
       ImageIndex = 1
       MenuItem = MenuItemFileSave
+    end
+    object LabelFontSize: TLabel
+      Left = 73
+      Height = 25
+      Top = 6
+      Width = 82
+      Align = alLeft
+      Caption = ' Font Size '
+      ParentColor = False
+    end
+    object SpinEditFontSize: TSpinEdit
+      Left = 160
+      Height = 33
+      Top = 2
+      Width = 57
+      Align = alLeft
+      Alignment = taRightJustify
+      MaxValue = 28
+      MinValue = 6
+      OnChange = SpinEditFontSizeChange
+      TabOrder = 0
+      Value = 9
     end
   end
   object PageControlMain: TPageControl
@@ -589,9 +613,21 @@ object FormMain: TFormMain
       Caption = '&Settings'
       object MenuItemSettingsLang: TMenuItem
         Caption = '&Language'
+        object MenuItemSettingsLangHTML: TMenuItem
+          Caption = 'HTML'
+          OnClick = MenuItemSettingsLangHTMLClick
+        end
+        object MenuItemSettingsLangJava: TMenuItem
+          Caption = 'Java'
+          OnClick = MenuItemSettingsLangJavaClick
+        end
         object MenuItemSettingsLangPascal: TMenuItem
           Caption = 'Pascal'
           OnClick = MenuItemSettingsLangPascalClick
+        end
+        object MenuItemSettingsLangPHP: TMenuItem
+          Caption = 'PHP'
+          OnClick = MenuItemSettingsLangPHPClick
         end
       end
     end
@@ -765,5 +801,23 @@ object FormMain: TFormMain
       851D3BB6CDE89B737F33677D66C3B7F6F962C84F4A622BA8783EF6F549F42693
       0D3BBFECEF0FFF0209C9ED94
     }
+  end
+  object SynJavaSynMain: TSynJavaSyn
+    DefaultFilter = 'Java Files (*.java)|*.java'
+    Enabled = False
+    left = 583
+    top = 133
+  end
+  object SynHTMLSynMain: TSynHTMLSyn
+    DefaultFilter = 'HTML Document (*.htm,*.html)|*.htm;*.html'
+    Enabled = False
+    left = 584
+    top = 210
+  end
+  object SynPHPSynMain: TSynPHPSyn
+    DefaultFilter = 'PHP Files (*.php,*.php3,*.phtml,*.inc)|*.php;*.php3;*.phtml;*.inc'
+    Enabled = False
+    left = 584
+    top = 286
   end
 end
