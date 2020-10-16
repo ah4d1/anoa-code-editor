@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  SynEdit, SynHighlighterPas, SynHighlighterJava, SynHighlighterHTML;
+  SynEdit, SynHighlighterPas, SynHighlighterJava, SynHighlighterHTML,
+  SynHighlighterPHP;
 
 type
 
@@ -19,6 +20,7 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemSettingsLangPHP: TMenuItem;
     MenuItemSettingsLangHTML: TMenuItem;
     MenuItemSettingsLangJava: TMenuItem;
     MenuItemSettingsLangPascal: TMenuItem;
@@ -36,6 +38,7 @@ type
     SynHTMLSynMain: TSynHTMLSyn;
     SynJavaSynMain: TSynJavaSyn;
     SynPasSynMain: TSynPasSyn;
+    SynPHPSynMain: TSynPHPSyn;
     TabSheet1: TTabSheet;
     ToolBarMain: TToolBar;
     ToolButton1: TToolButton;
@@ -48,6 +51,7 @@ type
     procedure MenuItemSettingsLangHTMLClick(Sender: TObject);
     procedure MenuItemSettingsLangJavaClick(Sender: TObject);
     procedure MenuItemSettingsLangPascalClick(Sender: TObject);
+    procedure MenuItemSettingsLangPHPClick(Sender: TObject);
   private
 
   public
@@ -117,6 +121,11 @@ end;
 procedure TFormMain.MenuItemSettingsLangPascalClick(Sender: TObject);
 begin
   Self.SynEditMain.Highlighter := Self.SynPasSynMain;
+end;
+
+procedure TFormMain.MenuItemSettingsLangPHPClick(Sender: TObject);
+begin
+  Self.SynEditMain.Highlighter := Self.SynPHPSynMain;
 end;
 
 end.
