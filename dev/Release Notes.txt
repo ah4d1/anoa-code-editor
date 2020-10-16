@@ -3,6 +3,8 @@ v.1.0.0.3 : (Work in Progress)
 Added : Language Auto-detection
 Added : Set Icon for TabSheet (Normal & Modified Status)
 Added : New (Main Menu : File | New)
+Added : Add to Sys-Menu (Main Menu : Settings | Add to Sys-Menu)
+Added : Call File on Start
 Update : Set Font Quality of the Editor 
 
 v.1.0.0.2 : (Released 16th Oct 2020)
