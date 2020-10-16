@@ -21,6 +21,7 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemSettingsAddToSysMenu: TMenuItem;
     MenuItemFileNew: TMenuItem;
     MenuItemSettingsLangPHP: TMenuItem;
     MenuItemSettingsLangHTML: TMenuItem;
@@ -53,6 +54,7 @@ type
     procedure MenuItemFileOpenClick(Sender: TObject);
     procedure MenuItemFileSaveAsClick(Sender: TObject);
     procedure MenuItemFileSaveClick(Sender: TObject);
+    procedure MenuItemSettingsAddToSysMenuClick(Sender: TObject);
     procedure MenuItemSettingsLangHTMLClick(Sender: TObject);
     procedure MenuItemSettingsLangJavaClick(Sender: TObject);
     procedure MenuItemSettingsLangPascalClick(Sender: TObject);
@@ -60,7 +62,7 @@ type
     procedure SpinEditFontSizeChange(Sender: TObject);
     procedure SynEditMainChange(Sender: TObject);
   private
-
+    procedure OpenFile (AFileName : TFileName);
   public
 
   end;
@@ -73,6 +75,9 @@ implementation
 {$R *.lfm}
 
 { TFormMain }
+
+uses
+  unit_tools;
 
 procedure TFormMain.MenuItemFileExitClick(Sender: TObject);
 begin
@@ -95,6 +100,7 @@ end;
 procedure TFormMain.FormCreate(Sender: TObject);
 var
   LDefaultFilter : WideString;
+  LFileNameOnStart : TFileName;
 begin
   LDefaultFilter := ''
     + 'All Files (*.*)|*.*'
@@ -104,26 +110,37 @@ begin
     + '|' + Self.SynPHPSynMain.DefaultFilter
   ;
   Self.OpenDialogMain.Filter := LDefaultFilter;
+
+  LFileNameOnStart := VUTools.FcParamsInSingleText;
+  if Trim(LFileNameOnStart) <> '' then
+  begin
+    Self.OpenFile(LFileNameOnStart);
+  end;
 end;
 
 procedure TFormMain.MenuItemFileOpenClick(Sender: TObject);
+begin
+  if Self.OpenDialogMain.Execute then
+  begin
+    Self.OpenFile(Self.OpenDialogMain.FileName);
+  end;
+end;
+
+procedure TFormMain.OpenFile (AFileName : TFileName);
 var
   LFileName : TFileName;
   LFileExt : string;
 begin
-  if Self.OpenDialogMain.Execute then
-  begin
-    LFileName := Self.OpenDialogMain.FileName;
-    Self.SynEditMain.Lines.LoadFromFile(LFileName);
-    Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
-    Self.StatusBarMain.SimpleText := LFileName;
-    LFileExt := ExtractFileExt(LFileName);
-    if Pos(LFileExt,Self.SynHTMLSynMain.DefaultFilter) >= 1 then Self.SynEditMain.Highlighter := Self.SynHTMLSynMain
-      else if Pos(LFileExt,Self.SynJavaSynMain.DefaultFilter) >= 1 then Self.SynEditMain.Highlighter := Self.SynJavaSynMain
-      else if Pos(LFileExt,Self.SynPasSynMain.DefaultFilter) >= 1 then Self.SynEditMain.Highlighter := Self.SynPasSynMain
-      else if Pos(LFileExt,Self.SynPHPSynMain.DefaultFilter) >= 1 then Self.SynEditMain.Highlighter := Self.SynPHPSynMain
-    ;
-  end;
+  LFileName := AFileName;
+  Self.SynEditMain.Lines.LoadFromFile(LFileName);
+  Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
+  Self.StatusBarMain.SimpleText := LFileName;
+  LFileExt := ExtractFileExt(LFileName);
+  if Pos(LFileExt,Self.SynHTMLSynMain.DefaultFilter) >= 1 then Self.SynEditMain.Highlighter := Self.SynHTMLSynMain
+    else if Pos(LFileExt,Self.SynJavaSynMain.DefaultFilter) >= 1 then Self.SynEditMain.Highlighter := Self.SynJavaSynMain
+    else if Pos(LFileExt,Self.SynPasSynMain.DefaultFilter) >= 1 then Self.SynEditMain.Highlighter := Self.SynPasSynMain
+    else if Pos(LFileExt,Self.SynPHPSynMain.DefaultFilter) >= 1 then Self.SynEditMain.Highlighter := Self.SynPHPSynMain
+  ;
 end;
 
 procedure TFormMain.MenuItemFileSaveAsClick(Sender: TObject);
@@ -144,6 +161,12 @@ begin
     Self.SynEditMain.Lines.SaveToFile(LFileName);
     Self.PageControlMain.ActivePage.ImageIndex := 3;
   end;
+end;
+
+procedure TFormMain.MenuItemSettingsAddToSysMenuClick(Sender: TObject);
+begin
+  VUTools.FcAddAppToWinExplorerContextMenu('Open with Anoa-Syntax-Editor',Application.ExeName);
+  MessageDlg('Please check at Windows Explorer Context Menu',mtInformation,[mbOK],0);
 end;
 
 procedure TFormMain.MenuItemSettingsLangHTMLClick(Sender: TObject);
