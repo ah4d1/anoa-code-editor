@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
   StdCtrls, Spin, SynEdit, SynHighlighterPas, SynHighlighterJava,
-  SynHighlighterHTML, SynHighlighterPHP;
+  SynHighlighterHTML, SynHighlighterPHP, SynCompletion;
 
 type
 
@@ -38,6 +38,10 @@ type
     SaveDialogMain: TSaveDialog;
     SpinEditFontSize: TSpinEdit;
     StatusBarMain: TStatusBar;
+    SynCompletionHTML: TSynCompletion;
+    SynCompletionPHP: TSynCompletion;
+    SynCompletionPas: TSynCompletion;
+    SynCompletionJava: TSynCompletion;
     SynEditMain: TSynEdit;
     SynHTMLSynMain: TSynHTMLSyn;
     SynJavaSynMain: TSynJavaSyn;
@@ -172,21 +176,37 @@ end;
 procedure TFormMain.MenuItemSettingsLangHTMLClick(Sender: TObject);
 begin
   Self.SynEditMain.Highlighter := Self.SynHTMLSynMain;
+  Self.SynCompletionHTML.Editor := Self.SynEditMain;
+  Self.SynCompletionJava.Editor := nil;
+  Self.SynCompletionPas.Editor := nil;
+  Self.SynCompletionPHP.Editor := nil;
 end;
 
 procedure TFormMain.MenuItemSettingsLangJavaClick(Sender: TObject);
 begin
   Self.SynEditMain.Highlighter := Self.SynJavaSynMain;
+  Self.SynCompletionHTML.Editor := nil;
+  Self.SynCompletionJava.Editor := Self.SynEditMain;
+  Self.SynCompletionPas.Editor := nil;
+  Self.SynCompletionPHP.Editor := nil;
 end;
 
 procedure TFormMain.MenuItemSettingsLangPascalClick(Sender: TObject);
 begin
   Self.SynEditMain.Highlighter := Self.SynPasSynMain;
+  Self.SynCompletionHTML.Editor := nil;
+  Self.SynCompletionJava.Editor := nil;
+  Self.SynCompletionPas.Editor := Self.SynEditMain;
+  Self.SynCompletionPHP.Editor := nil;
 end;
 
 procedure TFormMain.MenuItemSettingsLangPHPClick(Sender: TObject);
 begin
   Self.SynEditMain.Highlighter := Self.SynPHPSynMain;
+  Self.SynCompletionHTML.Editor := nil;
+  Self.SynCompletionJava.Editor := nil;
+  Self.SynCompletionPas.Editor := nil;
+  Self.SynCompletionPHP.Editor := Self.SynEditMain;
 end;
 
 procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
