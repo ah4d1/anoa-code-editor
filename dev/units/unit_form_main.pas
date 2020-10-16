@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  SynEdit, SynHighlighterPas, SynHighlighterJava, SynHighlighterHTML,
-  SynHighlighterPHP;
+  StdCtrls, Spin, SynEdit, SynHighlighterPas, SynHighlighterJava,
+  SynHighlighterHTML, SynHighlighterPHP;
 
 type
 
@@ -15,6 +15,7 @@ type
 
   TFormMain = class(TForm)
     ImageListMain: TImageList;
+    LabelFontSize: TLabel;
     MainMenuMain: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -33,6 +34,7 @@ type
     OpenDialogMain: TOpenDialog;
     PageControlMain: TPageControl;
     SaveDialogMain: TSaveDialog;
+    SpinEditFontSize: TSpinEdit;
     StatusBarMain: TStatusBar;
     SynEditMain: TSynEdit;
     SynHTMLSynMain: TSynHTMLSyn;
@@ -53,6 +55,7 @@ type
     procedure MenuItemSettingsLangJavaClick(Sender: TObject);
     procedure MenuItemSettingsLangPascalClick(Sender: TObject);
     procedure MenuItemSettingsLangPHPClick(Sender: TObject);
+    procedure SpinEditFontSizeChange(Sender: TObject);
   private
 
   public
@@ -142,6 +145,11 @@ end;
 procedure TFormMain.MenuItemSettingsLangPHPClick(Sender: TObject);
 begin
   Self.SynEditMain.Highlighter := Self.SynPHPSynMain;
+end;
+
+procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
+begin
+  Self.SynEditMain.Font.Size := Self.SpinEditFontSize.Value;
 end;
 
 end.
