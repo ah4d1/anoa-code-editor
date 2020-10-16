@@ -601,6 +601,10 @@ object FormMain: TFormMain
           Caption = 'Pascal'
           OnClick = MenuItemSettingsLangPascalClick
         end
+        object MenuItemSettingsLangPHP: TMenuItem
+          Caption = 'PHP'
+          OnClick = MenuItemSettingsLangPHPClick
+        end
       end
     end
     object MenuItem3: TMenuItem
@@ -785,5 +789,11 @@ object FormMain: TFormMain
     Enabled = False
     left = 584
     top = 210
+  end
+  object SynPHPSynMain: TSynPHPSyn
+    DefaultFilter = 'PHP Files (*.php,*.php3,*.phtml,*.inc)|*.php;*.php3;*.phtml;*.inc'
+    Enabled = False
+    left = 584
+    top = 286
   end
 end
