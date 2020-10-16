@@ -1,17 +1,25 @@
 v.1.0.0.2 : (Work in progress)
-Added : Highlighter : Java, HTML
-Added : Main Menu : Settings | Language | HTML, Settings | Language | Java
+----------------------------------------------------------
+Added : Language : Java (Main Menu : Settings | Language | Java)
+Added : Language : HTML (Main Menu : Settings | Language | HTML)
+Added : Language : PHP (Main Menu : Settings | Language | PHP)
 
 v.1.0.0.1 : (Released 13th Oct 2020)
-Added : Main Menu : Open File, Save As, Save, Settings | Language | Pascal, Help | About.
-Added : Highlighter : Pascal.
+----------------------------------------------------------
+Added : Open File (Main Menu : File | Open File)
+Added : Save As (Main Menu : File | Save As)
+Added : Save (Main Menu : File | Save)
+Added : Language : Pascal (Main Menu : Settings | Language | Pascal)
+Added : About Info (Main Menu : Help | About).
 Added : Line Highlight Color.
-Added : Toolbar : Open, Save
+Added : Toolbar : Open (Main Menu : File | Open File)
+Added : Toolbar : Save(Main Menu : File | Save)
 Update : Main Form created at Screen Center.
 
 v.1.0.0.0 : (Released 13th Oct 2020)
-Release new application.
-Added : Menu File | Exit.
+----------------------------------------------------------
+RELEASE NEW APPLICATION.
+Added : Exit App (Main Menu File | Exit).
 Added : Editor.
 Added : Status Bar.
 
