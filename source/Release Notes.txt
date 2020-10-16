@@ -1,4 +1,4 @@
-v.1.0.0.2 : (Work in progress)
+v.1.0.0.2 : (Released 16th Oct 2020)
 ----------------------------------------------------------
 Added : Language : Java (Main Menu : Settings | Language | Java)
 Added : Language : HTML (Main Menu : Settings | Language | HTML)
