@@ -43,6 +43,7 @@ type
     ToolBarMain: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
+    procedure FormCreate(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
     procedure MenuItemFileExitClick(Sender: TObject);
     procedure MenuItemFileOpenClick(Sender: TObject);
@@ -77,6 +78,20 @@ begin
   MessageDlg('About','Anoa-Syntax-Editor',mtInformation,[mbOK],0);
 end;
 
+procedure TFormMain.FormCreate(Sender: TObject);
+var
+  LDefaultFilter : WideString;
+begin
+  LDefaultFilter := ''
+    + 'All Files (*.*)|*.*'
+    + '|' + Self.SynHTMLSynMain.DefaultFilter
+    + '|' + Self.SynJavaSynMain.DefaultFilter
+    + '|' + Self.SynPasSynMain.DefaultFilter
+    + '|' + Self.SynPHPSynMain.DefaultFilter
+  ;
+  Self.OpenDialogMain.Filter := LDefaultFilter;
+end;
+
 procedure TFormMain.MenuItemFileOpenClick(Sender: TObject);
 var
   LFileName : TFileName;
@@ -85,6 +100,7 @@ begin
   begin
     LFileName := Self.OpenDialogMain.FileName;
     Self.SynEditMain.Lines.LoadFromFile(LFileName);
+    Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
     Self.StatusBarMain.SimpleText := LFileName;
   end;
 end;
