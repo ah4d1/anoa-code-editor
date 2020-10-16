@@ -1,5 +1,6 @@
 v.1.0.0.3 : (Work in Progress)
 ----------------------------------------------------------
+Added : Language Auto-detection
 Update : Set Font Quality of the Editor 
 
 v.1.0.0.2 : (Released 16th Oct 2020)
