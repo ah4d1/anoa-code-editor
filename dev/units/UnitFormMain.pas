@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
   StdCtrls, Spin, SynEdit, SynHighlighterPas, SynHighlighterJava,
-  SynHighlighterHTML, SynHighlighterPHP, SynCompletion, SynHighlighterPython;
+  SynHighlighterHTML, SynHighlighterPHP, SynCompletion, SynHighlighterPython,
+  UnitVar;
 
 type
 
@@ -67,6 +68,7 @@ type
     procedure SynEditMainChange(Sender: TObject);
   private
     procedure OpenFile (AFileName : TFileName);
+    procedure SetLang (ALang : TASETypeLang);
   public
 
   end;
@@ -81,7 +83,7 @@ implementation
 { TFormMain }
 
 uses
-  UnitVar, UnitSave, UnitLang, UnitTools;
+  UnitSave, UnitLang, UnitTools;
 
 procedure TFormMain.MenuItemFileExitClick(Sender: TObject);
 begin
@@ -167,31 +169,27 @@ end;
 
 procedure TFormMain.MenuItemSettingsLangHTMLClick(Sender: TObject);
 begin
-  VULang.SetLang(aseLangHTML,Self.SynEditMain,
-    Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynPasSynMain,Self.SynPHPSynMain,
-    Self.SynCompletionHTML,Self.SynCompletionJava,Self.SynCompletionPas,Self.SynCompletionPHP
-  );
+  Self.SetLang(aseLangHTML);
 end;
 
 procedure TFormMain.MenuItemSettingsLangJavaClick(Sender: TObject);
 begin
-  VULang.SetLang(aseLangJava,Self.SynEditMain,
-    Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynPasSynMain,Self.SynPHPSynMain,
-    Self.SynCompletionHTML,Self.SynCompletionJava,Self.SynCompletionPas,Self.SynCompletionPHP
-  );
+  Self.SetLang(aseLangJava);
 end;
 
 procedure TFormMain.MenuItemSettingsLangPascalClick(Sender: TObject);
 begin
-  VULang.SetLang(aseLangPas,Self.SynEditMain,
-    Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynPasSynMain,Self.SynPHPSynMain,
-    Self.SynCompletionHTML,Self.SynCompletionJava,Self.SynCompletionPas,Self.SynCompletionPHP
-  );
+  Self.SetLang(aseLangPas);
 end;
 
 procedure TFormMain.MenuItemSettingsLangPHPClick(Sender: TObject);
 begin
-  VULang.SetLang(aseLangPHP,Self.SynEditMain,
+  Self.SetLang(aseLangPHP);
+end;
+
+procedure TFormMain.SetLang (ALang : TASETypeLang);
+begin
+  VULang.SetLang(ALang,Self.SynEditMain,
     Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynPasSynMain,Self.SynPHPSynMain,
     Self.SynCompletionHTML,Self.SynCompletionJava,Self.SynCompletionPas,Self.SynCompletionPHP
   );
