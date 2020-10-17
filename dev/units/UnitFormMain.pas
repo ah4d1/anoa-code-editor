@@ -22,6 +22,7 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemSettingsLangPython: TMenuItem;
     MenuItemSettingsAddToSysMenu: TMenuItem;
     MenuItemFileNew: TMenuItem;
     MenuItemSettingsLangPHP: TMenuItem;
@@ -39,6 +40,7 @@ type
     SaveDialogMain: TSaveDialog;
     SpinEditFontSize: TSpinEdit;
     StatusBarMain: TStatusBar;
+    SynCompletionPython: TSynCompletion;
     SynCompletionHTML: TSynCompletion;
     SynCompletionPHP: TSynCompletion;
     SynCompletionPas: TSynCompletion;
@@ -48,6 +50,7 @@ type
     SynJavaSynMain: TSynJavaSyn;
     SynPasSynMain: TSynPasSyn;
     SynPHPSynMain: TSynPHPSyn;
+    SynPythonSynMain: TSynPythonSyn;
     TabSheet1: TTabSheet;
     ToolBarMain: TToolBar;
     ToolButton1: TToolButton;
@@ -64,6 +67,7 @@ type
     procedure MenuItemSettingsLangJavaClick(Sender: TObject);
     procedure MenuItemSettingsLangPascalClick(Sender: TObject);
     procedure MenuItemSettingsLangPHPClick(Sender: TObject);
+    procedure MenuItemSettingsLangPythonClick(Sender: TObject);
     procedure SpinEditFontSizeChange(Sender: TObject);
     procedure SynEditMainChange(Sender: TObject);
   private
@@ -137,15 +141,17 @@ end;
 procedure TFormMain.OpenFile (AFileName : TFileName);
 var
   LFileName : TFileName;
+  LLangTxt : string;
 begin
   LFileName := AFileName;
   VUVar.vCurrentFileName := LFileName;
   Self.SynEditMain.Lines.LoadFromFile(LFileName);
   Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
-  Self.StatusBarMain.Panels[1].Text := LFileName;
-  VULang.SetHightlighter(LFileName,Self.SynEditMain,
-    Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynPasSynMain,Self.SynPHPSynMain
+  LLangTxt := VULang.SetHightlighter(LFileName,Self.SynEditMain,
+    Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynPasSynMain,Self.SynPHPSynMain,Self.SynPythonSynMain
   );
+  Self.StatusBarMain.Panels[0].Text := LLangTxt;
+  Self.StatusBarMain.Panels[1].Text := LFileName;
 end;
 
 procedure TFormMain.MenuItemFileSaveAsClick(Sender: TObject);
@@ -187,12 +193,22 @@ begin
   Self.SetLang(aseLangPHP);
 end;
 
-procedure TFormMain.SetLang (ALang : TASETypeLang);
+procedure TFormMain.MenuItemSettingsLangPythonClick(Sender: TObject);
 begin
-  VULang.SetLang(ALang,Self.SynEditMain,
+  Self.SetLang(aseLangPython);
+end;
+
+procedure TFormMain.SetLang (ALang : TASETypeLang);
+var
+  LLangText : string;
+begin
+  LLangText := VULang.SetLang(ALang,Self.SynEditMain,
     Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynPasSynMain,Self.SynPHPSynMain,
-    Self.SynCompletionHTML,Self.SynCompletionJava,Self.SynCompletionPas,Self.SynCompletionPHP
+      Self.SynPythonSynMain,
+    Self.SynCompletionHTML,Self.SynCompletionJava,Self.SynCompletionPas,Self.SynCompletionPHP,
+      Self.SynCompletionPython
   );
+  Self.StatusBarMain.Panels[0].Text := LLangText;
 end;
 
 procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
