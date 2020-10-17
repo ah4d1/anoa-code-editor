@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="51"/>
       </Unit0>
       <Unit1>
         <Filename Value="units\UnitFormMain.pas"/>
@@ -21,43 +21,48 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="141"/>
-        <CursorPos X="97" Y="151"/>
-        <UsageCount Value="50"/>
+        <TopLine Value="145"/>
+        <CursorPos X="100" Y="160"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
-        <Filename Value="units\unittools.pas"/>
+        <Filename Value="units\unitpastools.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitTools"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="14" Y="12"/>
-        <UsageCount Value="35"/>
+        <UnitName Value="UnitPasTools"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="14" Y="15"/>
+        <UsageCount Value="36"/>
+        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="units\UnitLang.pas"/>
+        <Filename Value="units\unitpaslang.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="117"/>
-        <CursorPos X="34" Y="133"/>
-        <UsageCount Value="31"/>
+        <UnitName Value="UnitPasLang"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="106"/>
+        <CursorPos X="45" Y="140"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="units\UnitVar.pas"/>
+        <Filename Value="units\unitpasvar.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
-        <CursorPos X="78" Y="11"/>
-        <UsageCount Value="30"/>
+        <UnitName Value="UnitPasVar"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="13"/>
+        <CursorPos X="81" Y="33"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
-        <Filename Value="units\UnitSave.pas"/>
+        <Filename Value="units\unitpassave.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitPasSave"/>
         <EditorIndex Value="4"/>
         <CursorPos X="40" Y="26"/>
-        <UsageCount Value="30"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
@@ -111,134 +116,77 @@
       <Unit12>
         <Filename Value="C:\lazarus\components\synedit\synhighlighterpython.pas"/>
         <UnitName Value="SynHighlighterPython"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="62"/>
         <CursorPos X="3" Y="73"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit12>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="16" HistoryIndex="15">
       <Position1>
         <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="194" Column="97" TopLine="132"/>
+        <Caret Line="151" Column="97" TopLine="141"/>
       </Position1>
       <Position2>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="26" TopLine="26"/>
+        <Filename Value="units\UnitFormMain.pas"/>
+        <Caret Line="152" Column="97" TopLine="142"/>
       </Position2>
       <Position3>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="98" TopLine="88"/>
+        <Filename Value="units\UnitFormMain.pas"/>
+        <Caret Line="153" Column="97" TopLine="143"/>
       </Position3>
       <Position4>
         <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="149" Column="48" TopLine="135"/>
+        <Caret Line="187" TopLine="184"/>
       </Position4>
       <Position5>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="55" Column="22" TopLine="44"/>
+        <Filename Value="units\UnitFormMain.pas"/>
+        <Caret Line="191" Column="27" TopLine="184"/>
       </Position5>
       <Position6>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="30" TopLine="12"/>
+        <Filename Value="units\UnitFormMain.pas"/>
+        <Caret Line="77" Column="22" TopLine="68"/>
       </Position6>
       <Position7>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="14" Column="93"/>
+        <Filename Value="units\UnitFormMain.pas"/>
+        <Caret Line="78" Column="22" TopLine="68"/>
       </Position7>
       <Position8>
         <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="118" Column="11" TopLine="108"/>
+        <Caret Line="181" Column="15" TopLine="162"/>
       </Position8>
       <Position9>
         <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="123" Column="47" TopLine="109"/>
+        <Caret Line="186" Column="15" TopLine="167"/>
       </Position9>
       <Position10>
         <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="122" Column="47" TopLine="109"/>
+        <Caret Line="191" Column="15" TopLine="172"/>
       </Position10>
       <Position11>
         <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="120" Column="78" TopLine="109"/>
+        <Caret Line="196" Column="15" TopLine="177"/>
       </Position11>
       <Position12>
         <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="121" Column="78" TopLine="110"/>
+        <Caret Line="201" Column="15" TopLine="182"/>
       </Position12>
       <Position13>
         <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="122" Column="78" TopLine="111"/>
+        <Caret Line="206" Column="15" TopLine="187"/>
       </Position13>
       <Position14>
         <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="193" TopLine="189"/>
+        <Caret Line="216" Column="33" TopLine="198"/>
       </Position14>
       <Position15>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="58" Column="42" TopLine="42"/>
+        <Filename Value="units\UnitFormMain.pas"/>
+        <Caret Line="218" Column="29" TopLine="212"/>
       </Position15>
       <Position16>
-        <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="197" Column="16" TopLine="189"/>
+        <Filename Value="units\unitpaslang.pas"/>
+        <Caret Line="149" Column="4" TopLine="129"/>
       </Position16>
-      <Position17>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="66" TopLine="66"/>
-      </Position17>
-      <Position18>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="131" Column="55" TopLine="114"/>
-      </Position18>
-      <Position19>
-        <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="208" Column="25" TopLine="186"/>
-      </Position19>
-      <Position20>
-        <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="43" Column="5" TopLine="36"/>
-      </Position20>
-      <Position21>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="17" Column="103" TopLine="3"/>
-      </Position21>
-      <Position22>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="29" Column="90" TopLine="18"/>
-      </Position22>
-      <Position23>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="113" Column="39" TopLine="104"/>
-      </Position23>
-      <Position24>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="58" Column="46" TopLine="45"/>
-      </Position24>
-      <Position25>
-        <Filename Value="units\UnitVar.pas"/>
-        <Caret Line="11" Column="78"/>
-      </Position25>
-      <Position26>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="113" Column="41" TopLine="99"/>
-      </Position26>
-      <Position27>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="65" Column="33" TopLine="61"/>
-      </Position27>
-      <Position28>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="66" TopLine="52"/>
-      </Position28>
-      <Position29>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="17" Column="3"/>
-      </Position29>
-      <Position30>
-        <Filename Value="units\UnitLang.pas"/>
-        <Caret Line="133" Column="34" TopLine="117"/>
-      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
