@@ -2,6 +2,7 @@ v.1.0.0.4 : (Work in Progress)
 ----------------------------------------------------------
 Added : Language information at Status Bar
 Added : Language : Python (Main Menu : Settings | Language | Python)
+Added : Language : JSON (Main Menu : Settings | Language | JSON)
 Added : Syntax completion (use Ctrl+Space) : Python
 Update : Code refactoring & other minor updates
 
