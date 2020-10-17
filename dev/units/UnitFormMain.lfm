@@ -638,6 +638,10 @@ object FormMain: TFormMain
           Caption = 'Java'
           OnClick = MenuItemSettingsLangJavaClick
         end
+        object MenuItemSettingsLangJSON: TMenuItem
+          Caption = 'JSON'
+          OnClick = MenuItemSettingsLangJSONClick
+        end
         object MenuItemSettingsLangPascal: TMenuItem
           Caption = 'Pascal'
           OnClick = MenuItemSettingsLangPascalClick
@@ -1296,7 +1300,7 @@ object FormMain: TFormMain
   object SynPythonSynMain: TSynPythonSyn
     DefaultFilter = 'Python Files (*.py)|*.py'
     Enabled = False
-    left = 593
+    left = 584
     top = 360
   end
   object SynCompletionPython: TSynCompletion
@@ -1347,5 +1351,60 @@ object FormMain: TFormMain
     ToggleReplaceWhole = False
     left = 744
     top = 360
+  end
+  object SynJSONSynMain: TSynJSONSyn
+    DefaultFilter = 'JSON Files (*.json)|*.json'
+    Enabled = False
+    left = 584
+    top = 440
+  end
+  object SynCompletionJSON: TSynCompletion
+    ItemList.Strings = (
+      'and'
+      'as'
+      'assert'
+      'break'
+      'class'
+      'continue'
+      'def'
+      'del'
+      'elif'
+      'else'
+      'except'
+      'FALSE'
+      'finally'
+      'for'
+      'from'
+      'global'
+      'if'
+      'import'
+      'in'
+      'is'
+      'lambda'
+      'None'
+      'nonlocal'
+      'not'
+      'or'
+      'pass'
+      'raise'
+      'return'
+      'TRUE'
+      'try'
+      'while'
+      'with'
+      'yield'
+    )
+    Position = 0
+    LinesInWindow = 6
+    SelectedColor = clHighlight
+    CaseSensitive = False
+    Width = 262
+    AutoUseSingleIdent = True
+    ShortCut = 16416
+    EndOfTokenChr = '()[].'
+    ExecCommandID = ecSynCompletionExecute
+    ToggleReplaceWhole = False
+    left = 744
+    top = 440
   end
 end
