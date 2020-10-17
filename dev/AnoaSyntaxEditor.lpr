@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, UnitFormMain, UnitTools, UnitLang, UnitVar, UnitSave
+  Forms, UnitFormMain, UnitPasTools, UnitPasLang, UnitPasVar, UnitPasSave
   { you can add units after this };
 
 {$R *.res}
