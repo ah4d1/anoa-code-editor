@@ -8,6 +8,7 @@ uses
   Classes, SysUtils;
 
 type
+  TASETypeLang = (aseLangHTML,aseLangJava,aseLangPas,aseLangPHP);
   TUVar = object
     vCurrentFileName : TFileName;
     vImageIndexNormalFile : Byte;
