@@ -6,9 +6,9 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  StdCtrls, Spin, SynEdit, SynHighlighterPas, SynHighlighterJava,
-  SynHighlighterHTML, SynHighlighterPHP, SynCompletion, SynHighlighterPython,
-  UnitVar;
+  StdCtrls, Spin, SynHighlighterJSON, SynEdit, SynHighlighterPas,
+  SynHighlighterJava, SynHighlighterHTML, SynHighlighterPHP, SynCompletion,
+  SynHighlighterPython, UnitPasVar;
 
 type
 
@@ -22,6 +22,7 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemSettingsLangJSON: TMenuItem;
     MenuItemSettingsLangPython: TMenuItem;
     MenuItemSettingsAddToSysMenu: TMenuItem;
     MenuItemFileNew: TMenuItem;
@@ -45,9 +46,11 @@ type
     SynCompletionPHP: TSynCompletion;
     SynCompletionPas: TSynCompletion;
     SynCompletionJava: TSynCompletion;
+    SynCompletionJSON: TSynCompletion;
     SynEditMain: TSynEdit;
     SynHTMLSynMain: TSynHTMLSyn;
     SynJavaSynMain: TSynJavaSyn;
+    SynJSONSynMain: TSynJSONSyn;
     SynPasSynMain: TSynPasSyn;
     SynPHPSynMain: TSynPHPSyn;
     SynPythonSynMain: TSynPythonSyn;
@@ -65,6 +68,7 @@ type
     procedure MenuItemSettingsAddToSysMenuClick(Sender: TObject);
     procedure MenuItemSettingsLangHTMLClick(Sender: TObject);
     procedure MenuItemSettingsLangJavaClick(Sender: TObject);
+    procedure MenuItemSettingsLangJSONClick(Sender: TObject);
     procedure MenuItemSettingsLangPascalClick(Sender: TObject);
     procedure MenuItemSettingsLangPHPClick(Sender: TObject);
     procedure MenuItemSettingsLangPythonClick(Sender: TObject);
@@ -87,7 +91,7 @@ implementation
 { TFormMain }
 
 uses
-  UnitSave, UnitLang, UnitTools;
+  UnitPasSave, UnitPasLang, UnitPasTools;
 
 procedure TFormMain.MenuItemFileExitClick(Sender: TObject);
 begin
@@ -148,7 +152,8 @@ begin
   Self.SynEditMain.Lines.LoadFromFile(LFileName);
   Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
   LLangTxt := VULang.SetHightlighter(LFileName,Self.SynEditMain,
-    Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynPasSynMain,Self.SynPHPSynMain,Self.SynPythonSynMain
+    Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynJSONSynMain,Self.SynPasSynMain,
+    Self.SynPHPSynMain,Self.SynPythonSynMain
   );
   Self.StatusBarMain.Panels[0].Text := LLangTxt;
   Self.StatusBarMain.Panels[1].Text := LFileName;
@@ -183,6 +188,11 @@ begin
   Self.SetLang(aseLangJava);
 end;
 
+procedure TFormMain.MenuItemSettingsLangJSONClick(Sender: TObject);
+begin
+  Self.SetLang(aseLangJSON);
+end;
+
 procedure TFormMain.MenuItemSettingsLangPascalClick(Sender: TObject);
 begin
   Self.SetLang(aseLangPas);
@@ -203,10 +213,10 @@ var
   LLangText : string;
 begin
   LLangText := VULang.SetLang(ALang,Self.SynEditMain,
-    Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynPasSynMain,Self.SynPHPSynMain,
-      Self.SynPythonSynMain,
-    Self.SynCompletionHTML,Self.SynCompletionJava,Self.SynCompletionPas,Self.SynCompletionPHP,
-      Self.SynCompletionPython
+    Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynJSONSynMain,Self.SynPasSynMain,
+      Self.SynPHPSynMain,Self.SynPythonSynMain,
+    Self.SynCompletionHTML,Self.SynCompletionJava,Self.SynCompletionJSON,Self.SynCompletionPas,
+      Self.SynCompletionPHP,Self.SynCompletionPython
   );
   Self.StatusBarMain.Panels[0].Text := LLangText;
 end;
