@@ -1,3 +1,7 @@
+v.1.0.0.4 : (Work in Progress)
+----------------------------------------------------------
+Update : Code refactoring & other minor updates
+
 v.1.0.0.3 : (Released 17th Oct 2020)
 ----------------------------------------------------------
 Added : Language Auto-detection
