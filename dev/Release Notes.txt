@@ -5,10 +5,10 @@ Added : Set Icon for TabSheet (Normal & Modified Status)
 Added : New (Main Menu : File | New)
 Added : Add to Sys-Menu (Main Menu : Settings | Add to Sys-Menu) : Windows Explorer Context Menu "Open with Anoa-Syntax-Editor"
 Added : Open File on Start (Right click a file on Windows Explorer and select "Open with Anoa-Syntax-Editor")
-Added : Syntax completion (use Ctrl+Shift) : HTML
-Added : Syntax completion (use Ctrl+Shift) : Java
-Added : Syntax completion (use Ctrl+Shift) : Pascal
-Added : Syntax completion (use Ctrl+Shift) : PHP
+Added : Syntax completion (use Ctrl+Space) : HTML
+Added : Syntax completion (use Ctrl+Space) : Java
+Added : Syntax completion (use Ctrl+Space) : Pascal
+Added : Syntax completion (use Ctrl+Space) : PHP
 Update : Set Font Quality of the Editor 
 Update : Add Alt F | A to Main Menu File | Save As
 Update : Code refactoring & other minor updates
