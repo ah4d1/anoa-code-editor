@@ -40,12 +40,11 @@
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="units\unitformmain.pas"/>
+        <Filename Value="units\UnitFormMain.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="UnitFormMain"/>
       </Unit1>
       <Unit2>
         <Filename Value="units\unittools.pas"/>
@@ -53,19 +52,16 @@
         <UnitName Value="UnitTools"/>
       </Unit2>
       <Unit3>
-        <Filename Value="units\unitlang.pas"/>
+        <Filename Value="units\UnitLang.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitLang"/>
       </Unit3>
       <Unit4>
-        <Filename Value="units\unitvar.pas"/>
+        <Filename Value="units\UnitVar.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitVar"/>
       </Unit4>
       <Unit5>
-        <Filename Value="units\unitsave.pas"/>
+        <Filename Value="units\UnitSave.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitSave"/>
       </Unit5>
     </Units>
   </ProjectOptions>
