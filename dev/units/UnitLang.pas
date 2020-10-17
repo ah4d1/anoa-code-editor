@@ -6,10 +6,9 @@ interface
 
 uses
   Classes, SysUtils, SynEdit, SynHighlighterHTML, SynHighlighterJava, SynHighlighterPas,
-  SynHighlighterPHP, SynCompletion;
+  SynHighlighterPHP, SynCompletion, UnitVar;
 
 type
-  TASETypeLang = (aseLangHTML,aseLangJava,aseLangPas,aseLangPHP);
   TULang = object
     procedure SetHightlighter (AFileName : TFileName; ASynEdit : TSynEdit; ASynHTMLSyn : TSynHTMLSyn;
       ASynJavaSyn : TSynJavaSyn; ASynPasSyn : TSynPasSyn; ASynPHPSyn : TSynPHPSyn);
