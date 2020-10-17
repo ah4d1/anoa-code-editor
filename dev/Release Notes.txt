@@ -1,5 +1,8 @@
 v.1.0.0.4 : (Work in Progress)
 ----------------------------------------------------------
+Added : Language information at Status Bar
+Added : Language : Python (Main Menu : Settings | Language | Python)
+Added : Syntax completion (use Ctrl+Space) : Python
 Update : Code refactoring & other minor updates
 
 v.1.0.0.3 : (Released 17th Oct 2020)
