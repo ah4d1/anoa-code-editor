@@ -31,3 +31,9 @@ Icon "edit-2.png" (original filename is "edit.png") made by "itim2101" (www.flat
 Icon "editor.png" made by "Freepik" (www.freepik.com) from "Flaticon" (www.flaticon.com)
 Icon "folder.png" made by "Freepik" (www.flaticon.com/authors/freepik) from "Flaticon" (www.flaticon.com)
 Icon "save.png" made by "Smashicons" (smashicons.com) from "Flaticon" (www.flaticon.com)
+
+
+DISCLAIMER :
+-------------------------------------
+The name "Anoa" came from the name of species endemic to the island of Sulawesi in Indonesia.
+See https://en.wikipedia.org/wiki/Anoa
