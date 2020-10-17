@@ -81,7 +81,7 @@ implementation
 { TFormMain }
 
 uses
-  unit_tools;
+  unit_lang, unit_tools;
 
 procedure TFormMain.MenuItemFileExitClick(Sender: TObject);
 begin
@@ -133,18 +133,14 @@ end;
 procedure TFormMain.OpenFile (AFileName : TFileName);
 var
   LFileName : TFileName;
-  LFileExt : string;
 begin
   LFileName := AFileName;
   Self.SynEditMain.Lines.LoadFromFile(LFileName);
   Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
   Self.StatusBarMain.SimpleText := LFileName;
-  LFileExt := ExtractFileExt(LFileName);
-  if Pos(LFileExt,Self.SynHTMLSynMain.DefaultFilter) >= 1 then Self.SynEditMain.Highlighter := Self.SynHTMLSynMain
-    else if Pos(LFileExt,Self.SynJavaSynMain.DefaultFilter) >= 1 then Self.SynEditMain.Highlighter := Self.SynJavaSynMain
-    else if Pos(LFileExt,Self.SynPasSynMain.DefaultFilter) >= 1 then Self.SynEditMain.Highlighter := Self.SynPasSynMain
-    else if Pos(LFileExt,Self.SynPHPSynMain.DefaultFilter) >= 1 then Self.SynEditMain.Highlighter := Self.SynPHPSynMain
-  ;
+  VULang.SetHightlighter(LFileName,Self.SynEditMain,
+    Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynPasSynMain,Self.SynPHPSynMain
+  );
 end;
 
 procedure TFormMain.MenuItemFileSaveAsClick(Sender: TObject);
