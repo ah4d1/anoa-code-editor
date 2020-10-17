@@ -81,7 +81,7 @@ implementation
 { TFormMain }
 
 uses
-  unit_lang, unit_tools;
+  unit_var, unit_save, unit_lang, unit_tools;
 
 procedure TFormMain.MenuItemFileExitClick(Sender: TObject);
 begin
@@ -106,6 +106,8 @@ var
   LDefaultFilter : WideString;
   LFileNameOnStart : TFileName;
 begin
+  VUVar.fcInit;
+
   LDefaultFilter := ''
     + 'All Files (*.*)|*.*'
     + '|' + Self.SynHTMLSynMain.DefaultFilter
@@ -135,6 +137,7 @@ var
   LFileName : TFileName;
 begin
   LFileName := AFileName;
+  VUVar.vCurrentFileName := LFileName;
   Self.SynEditMain.Lines.LoadFromFile(LFileName);
   Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
   Self.StatusBarMain.SimpleText := LFileName;
@@ -155,12 +158,15 @@ procedure TFormMain.MenuItemFileSaveClick(Sender: TObject);
 var
   LFileName : TFileName;
 begin
-  LFileName := Self.StatusBarMain.SimpleText;
+  VUSave.Save(VUVar.vCurrentFileName,Self.SynEditMain,Self.PageControlMain,VUVar.vImageIndexNormalFile);
+  {
+  LFileName := VUVar.CurrentFileName;
   if FileExists(LFileName) then
   begin
     Self.SynEditMain.Lines.SaveToFile(LFileName);
     Self.PageControlMain.ActivePage.ImageIndex := 3;
   end;
+  }
 end;
 
 procedure TFormMain.MenuItemSettingsAddToSysMenuClick(Sender: TObject);
