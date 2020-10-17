@@ -35,5 +35,5 @@ Icon "save.png" made by "Smashicons" (smashicons.com) from "Flaticon" (www.flati
 
 DISCLAIMER :
 -------------------------------------
-The name "Anoa" came from the name of species endemic to the island of Sulawesi in Indonesia.
+The name "Anoa" came from the name of the species endemic to the island of Sulawesi in Indonesia.
 See https://en.wikipedia.org/wiki/Anoa
