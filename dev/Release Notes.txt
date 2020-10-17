@@ -11,7 +11,7 @@ Added : Syntax completion (use Ctrl+Shift) : Pascal
 Added : Syntax completion (use Ctrl+Shift) : PHP
 Update : Set Font Quality of the Editor 
 Update : Add Alt F | A to Main Menu File | Save As
-Update : Other minor updates & code refactoring
+Update : Code refactoring & other minor updates
 
 v.1.0.0.2 : (Released 16th Oct 2020)
 ----------------------------------------------------------
