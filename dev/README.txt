@@ -16,6 +16,7 @@ THANKS TO :
 -------------------------------------
 Lazarus IDE : https://www.lazarus-ide.org/
 Free Pascal : https://www.freepascal.org/
+ExtraSyn    : https://github.com/mriscoc/extrasyn
 
 
 LOGO, THANKS TO :
