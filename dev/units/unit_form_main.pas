@@ -155,18 +155,8 @@ begin
 end;
 
 procedure TFormMain.MenuItemFileSaveClick(Sender: TObject);
-var
-  LFileName : TFileName;
 begin
   VUSave.Save(VUVar.vCurrentFileName,Self.SynEditMain,Self.PageControlMain,VUVar.vImageIndexNormalFile);
-  {
-  LFileName := VUVar.CurrentFileName;
-  if FileExists(LFileName) then
-  begin
-    Self.SynEditMain.Lines.SaveToFile(LFileName);
-    Self.PageControlMain.ActivePage.ImageIndex := 3;
-  end;
-  }
 end;
 
 procedure TFormMain.MenuItemSettingsAddToSysMenuClick(Sender: TObject);
@@ -218,7 +208,7 @@ end;
 
 procedure TFormMain.SynEditMainChange(Sender: TObject);
 begin
-  Self.PageControlMain.ActivePage.ImageIndex := 4;
+  Self.PageControlMain.ActivePage.ImageIndex := VUVar.vImageIndexModifiedFile;
 end;
 
 end.
