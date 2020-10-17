@@ -30,7 +30,7 @@ Icon "edit.png" made by "itim2101" (www.flaticon.com/free-icon/edit_1218493?term
 Icon "edit-2.png" (original filename is "edit.png") made by "itim2101" (www.flaticon.com/free-icon/edit_1218456) from "Flaticon" (www.flaticon.com)
 Icon "editor.png" made by "Freepik" (www.freepik.com) from "Flaticon" (www.flaticon.com)
 Icon "folder.png" made by "Freepik" (www.flaticon.com/authors/freepik) from "Flaticon" (www.flaticon.com)
-Icon "save.png" made by "Smashicons" (smashicons.com) from "Flaticon" (www.flaticon.com)
+Icon "save.png" made by "Smashicons" (www.smashicons.com) from "Flaticon" (www.flaticon.com)
 
 
 DISCLAIMER :
