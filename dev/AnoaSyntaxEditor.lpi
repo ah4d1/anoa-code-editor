@@ -26,13 +26,16 @@
       <FormatVersion Value="2"/>
       <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages Count="2">
+    <RequiredPackages Count="3">
       <Item1>
-        <PackageName Value="SynEdit"/>
+        <PackageName Value="ExtraHighlighters"/>
       </Item1>
       <Item2>
-        <PackageName Value="LCL"/>
+        <PackageName Value="SynEdit"/>
       </Item2>
+      <Item3>
+        <PackageName Value="LCL"/>
+      </Item3>
     </RequiredPackages>
     <Units Count="6">
       <Unit0>
@@ -47,21 +50,24 @@
         <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
-        <Filename Value="units\unittools.pas"/>
+        <Filename Value="units\unitpastools.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitTools"/>
+        <UnitName Value="UnitPasTools"/>
       </Unit2>
       <Unit3>
-        <Filename Value="units\UnitLang.pas"/>
+        <Filename Value="units\unitpaslang.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitPasLang"/>
       </Unit3>
       <Unit4>
-        <Filename Value="units\UnitVar.pas"/>
+        <Filename Value="units\unitpasvar.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitPasVar"/>
       </Unit4>
       <Unit5>
-        <Filename Value="units\UnitSave.pas"/>
+        <Filename Value="units\unitpassave.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitPasSave"/>
       </Unit5>
     </Units>
   </ProjectOptions>
