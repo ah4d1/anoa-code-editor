@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
   StdCtrls, Spin, SynEdit, SynHighlighterPas, SynHighlighterJava,
-  SynHighlighterHTML, SynHighlighterPHP;
+  SynHighlighterHTML, SynHighlighterPHP, SynCompletion;
 
 type
 
@@ -21,6 +21,8 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemSettingsAddToSysMenu: TMenuItem;
+    MenuItemFileNew: TMenuItem;
     MenuItemSettingsLangPHP: TMenuItem;
     MenuItemSettingsLangHTML: TMenuItem;
     MenuItemSettingsLangJava: TMenuItem;
@@ -36,6 +38,10 @@ type
     SaveDialogMain: TSaveDialog;
     SpinEditFontSize: TSpinEdit;
     StatusBarMain: TStatusBar;
+    SynCompletionHTML: TSynCompletion;
+    SynCompletionPHP: TSynCompletion;
+    SynCompletionPas: TSynCompletion;
+    SynCompletionJava: TSynCompletion;
     SynEditMain: TSynEdit;
     SynHTMLSynMain: TSynHTMLSyn;
     SynJavaSynMain: TSynJavaSyn;
@@ -48,16 +54,19 @@ type
     procedure FormCreate(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
     procedure MenuItemFileExitClick(Sender: TObject);
+    procedure MenuItemFileNewClick(Sender: TObject);
     procedure MenuItemFileOpenClick(Sender: TObject);
     procedure MenuItemFileSaveAsClick(Sender: TObject);
     procedure MenuItemFileSaveClick(Sender: TObject);
+    procedure MenuItemSettingsAddToSysMenuClick(Sender: TObject);
     procedure MenuItemSettingsLangHTMLClick(Sender: TObject);
     procedure MenuItemSettingsLangJavaClick(Sender: TObject);
     procedure MenuItemSettingsLangPascalClick(Sender: TObject);
     procedure MenuItemSettingsLangPHPClick(Sender: TObject);
     procedure SpinEditFontSizeChange(Sender: TObject);
+    procedure SynEditMainChange(Sender: TObject);
   private
-
+    procedure OpenFile (AFileName : TFileName);
   public
 
   end;
@@ -71,9 +80,20 @@ implementation
 
 { TFormMain }
 
+uses
+  unit_lang, unit_tools;
+
 procedure TFormMain.MenuItemFileExitClick(Sender: TObject);
 begin
   Application.Terminate;
+end;
+
+procedure TFormMain.MenuItemFileNewClick(Sender: TObject);
+begin
+  Self.PageControlMain.ActivePage.ImageIndex := 3;
+  Self.PageControlMain.ActivePage.Caption := 'New';
+  Self.SynEditMain.Lines.Clear;
+  Self.StatusBarMain.SimpleText := 'Ready';
 end;
 
 procedure TFormMain.MenuItem4Click(Sender: TObject);
@@ -84,6 +104,7 @@ end;
 procedure TFormMain.FormCreate(Sender: TObject);
 var
   LDefaultFilter : WideString;
+  LFileNameOnStart : TFileName;
 begin
   LDefaultFilter := ''
     + 'All Files (*.*)|*.*'
@@ -93,19 +114,33 @@ begin
     + '|' + Self.SynPHPSynMain.DefaultFilter
   ;
   Self.OpenDialogMain.Filter := LDefaultFilter;
+
+  LFileNameOnStart := VUTools.FcParamsInSingleText;
+  if Trim(LFileNameOnStart) <> '' then
+  begin
+    Self.OpenFile(LFileNameOnStart);
+  end;
 end;
 
 procedure TFormMain.MenuItemFileOpenClick(Sender: TObject);
-var
-  LFileName : TFileName;
 begin
   if Self.OpenDialogMain.Execute then
   begin
-    LFileName := Self.OpenDialogMain.FileName;
-    Self.SynEditMain.Lines.LoadFromFile(LFileName);
-    Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
-    Self.StatusBarMain.SimpleText := LFileName;
+    Self.OpenFile(Self.OpenDialogMain.FileName);
   end;
+end;
+
+procedure TFormMain.OpenFile (AFileName : TFileName);
+var
+  LFileName : TFileName;
+begin
+  LFileName := AFileName;
+  Self.SynEditMain.Lines.LoadFromFile(LFileName);
+  Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
+  Self.StatusBarMain.SimpleText := LFileName;
+  VULang.SetHightlighter(LFileName,Self.SynEditMain,
+    Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynPasSynMain,Self.SynPHPSynMain
+  );
 end;
 
 procedure TFormMain.MenuItemFileSaveAsClick(Sender: TObject);
@@ -124,32 +159,60 @@ begin
   if FileExists(LFileName) then
   begin
     Self.SynEditMain.Lines.SaveToFile(LFileName);
+    Self.PageControlMain.ActivePage.ImageIndex := 3;
   end;
+end;
+
+procedure TFormMain.MenuItemSettingsAddToSysMenuClick(Sender: TObject);
+begin
+  VUTools.FcAddAppToWinExplorerContextMenu('Open with Anoa-Syntax-Editor',Application.ExeName);
+  MessageDlg('Please check at Windows Explorer Context Menu',mtInformation,[mbOK],0);
 end;
 
 procedure TFormMain.MenuItemSettingsLangHTMLClick(Sender: TObject);
 begin
   Self.SynEditMain.Highlighter := Self.SynHTMLSynMain;
+  Self.SynCompletionHTML.Editor := Self.SynEditMain;
+  Self.SynCompletionJava.Editor := nil;
+  Self.SynCompletionPas.Editor := nil;
+  Self.SynCompletionPHP.Editor := nil;
 end;
 
 procedure TFormMain.MenuItemSettingsLangJavaClick(Sender: TObject);
 begin
   Self.SynEditMain.Highlighter := Self.SynJavaSynMain;
+  Self.SynCompletionHTML.Editor := nil;
+  Self.SynCompletionJava.Editor := Self.SynEditMain;
+  Self.SynCompletionPas.Editor := nil;
+  Self.SynCompletionPHP.Editor := nil;
 end;
 
 procedure TFormMain.MenuItemSettingsLangPascalClick(Sender: TObject);
 begin
   Self.SynEditMain.Highlighter := Self.SynPasSynMain;
+  Self.SynCompletionHTML.Editor := nil;
+  Self.SynCompletionJava.Editor := nil;
+  Self.SynCompletionPas.Editor := Self.SynEditMain;
+  Self.SynCompletionPHP.Editor := nil;
 end;
 
 procedure TFormMain.MenuItemSettingsLangPHPClick(Sender: TObject);
 begin
   Self.SynEditMain.Highlighter := Self.SynPHPSynMain;
+  Self.SynCompletionHTML.Editor := nil;
+  Self.SynCompletionJava.Editor := nil;
+  Self.SynCompletionPas.Editor := nil;
+  Self.SynCompletionPHP.Editor := Self.SynEditMain;
 end;
 
 procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
 begin
   Self.SynEditMain.Font.Size := Self.SpinEditFontSize.Value;
+end;
+
+procedure TFormMain.SynEditMainChange(Sender: TObject);
+begin
+  Self.PageControlMain.ActivePage.ImageIndex := 4;
 end;
 
 end.
