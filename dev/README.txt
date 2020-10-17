@@ -27,5 +27,6 @@ ICONS, THANKS TO :
 
 Icon "edit.png" made by "itim2101" (www.flaticon.com/free-icon/edit_1218493?term=edit%20file&page=2&position=55) from "Flaticon" (www.flaticon.com)
 
-Icon "edit-2.png" (original filename : edit.png) made by "itim2101" (www.flaticon.com/free-icon/edit_1218456) from "Flaticon" (www.flaticon.com)
+Icon "edit-2.png" (original filename : "edit.png") made by "itim2101" (www.flaticon.com/free-icon/edit_1218456) from "Flaticon" (www.flaticon.com)
 
+Icon "editor.png" made by "Freepik" (www.freepik.com) from "Flaticon" (www.flaticon.com)
