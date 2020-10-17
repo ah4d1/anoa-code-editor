@@ -20,7 +20,8 @@
         <ComponentName Value="FormMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <CursorPos X="101" Y="179"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="10" Y="11"/>
         <UsageCount Value="48"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -36,25 +37,24 @@
       <Unit3>
         <Filename Value="units\UnitLang.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="5"/>
-        <CursorPos X="33" Y="16"/>
+        <TopLine Value="6"/>
+        <CursorPos Y="12"/>
         <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="units\unitvar.pas"/>
+        <Filename Value="units\UnitVar.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitVar"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos Y="11"/>
+        <EditorIndex Value="2"/>
+        <CursorPos Y="12"/>
         <UsageCount Value="28"/>
+        <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="units\UnitSave.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <CursorPos X="40" Y="26"/>
         <UsageCount Value="28"/>
         <Loaded Value="True"/>
@@ -108,11 +108,27 @@
         <UsageCount Value="14"/>
       </Unit11>
     </Units>
-    <JumpHistory Count="1">
+    <JumpHistory Count="5" HistoryIndex="4">
       <Position1>
         <Filename Value="units\UnitFormMain.pas"/>
         <Caret Line="179" Column="101"/>
       </Position1>
+      <Position2>
+        <Filename Value="units\UnitFormMain.pas"/>
+        <Caret Line="201" TopLine="185"/>
+      </Position2>
+      <Position3>
+        <Filename Value="units\UnitFormMain.pas"/>
+        <Caret Line="70" Column="15" TopLine="67"/>
+      </Position3>
+      <Position4>
+        <Filename Value="units\UnitFormMain.pas"/>
+        <Caret Line="187" TopLine="173"/>
+      </Position4>
+      <Position5>
+        <Filename Value="units\UnitLang.pas"/>
+        <Caret Line="9" Column="44" TopLine="6"/>
+      </Position5>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
