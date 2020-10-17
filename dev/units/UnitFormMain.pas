@@ -92,10 +92,10 @@ end;
 
 procedure TFormMain.MenuItemFileNewClick(Sender: TObject);
 begin
-  Self.PageControlMain.ActivePage.ImageIndex := 3;
+  Self.PageControlMain.ActivePage.ImageIndex := VUVar.vImageIndexNormalFile;
   Self.PageControlMain.ActivePage.Caption := 'New';
   Self.SynEditMain.Lines.Clear;
-  Self.StatusBarMain.SimpleText := 'Ready';
+  Self.StatusBarMain.Panels[1].Text := '';
 end;
 
 procedure TFormMain.MenuItem4Click(Sender: TObject);
@@ -142,7 +142,7 @@ begin
   VUVar.vCurrentFileName := LFileName;
   Self.SynEditMain.Lines.LoadFromFile(LFileName);
   Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
-  Self.StatusBarMain.SimpleText := LFileName;
+  Self.StatusBarMain.Panels[1].Text := LFileName;
   VULang.SetHightlighter(LFileName,Self.SynEditMain,
     Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynPasSynMain,Self.SynPHPSynMain
   );
