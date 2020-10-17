@@ -17,8 +17,15 @@ object FormMain: TFormMain
     Height = 36
     Top = 516
     Width = 890
-    Panels = <>
+    Panels = <    
+      item
+        Width = 100
+      end    
+      item
+        Width = 50
+      end>
     SimpleText = 'Ready'
+    SimplePanel = False
   end
   object ToolBarMain: TToolBar
     Left = 0
