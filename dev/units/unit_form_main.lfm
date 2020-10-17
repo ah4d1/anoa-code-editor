@@ -591,6 +591,7 @@ object FormMain: TFormMain
       Caption = '&File'
       object MenuItemFileNew: TMenuItem
         Caption = '&New'
+        ImageIndex = 3
         OnClick = MenuItemFileNewClick
       end
       object MenuItemFileOpen: TMenuItem
@@ -600,7 +601,7 @@ object FormMain: TFormMain
         OnClick = MenuItemFileOpenClick
       end
       object MenuItemFileSaveAs: TMenuItem
-        Caption = 'Save As ...'
+        Caption = 'Save &As ...'
         OnClick = MenuItemFileSaveAsClick
       end
       object MenuItemFileSave: TMenuItem
