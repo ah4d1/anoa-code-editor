@@ -19,6 +19,7 @@ object FormMain: TFormMain
     Width = 890
     Panels = <    
       item
+        Alignment = taCenter
         Width = 100
       end    
       item
@@ -644,6 +645,10 @@ object FormMain: TFormMain
         object MenuItemSettingsLangPHP: TMenuItem
           Caption = 'PHP'
           OnClick = MenuItemSettingsLangPHPClick
+        end
+        object MenuItemSettingsLangPython: TMenuItem
+          Caption = 'Python'
+          OnClick = MenuItemSettingsLangPythonClick
         end
       end
       object MenuItemSettingsAddToSysMenu: TMenuItem
@@ -1287,5 +1292,60 @@ object FormMain: TFormMain
     ToggleReplaceWhole = False
     left = 744
     top = 286
+  end
+  object SynPythonSynMain: TSynPythonSyn
+    DefaultFilter = 'Python Files (*.py)|*.py'
+    Enabled = False
+    left = 593
+    top = 360
+  end
+  object SynCompletionPython: TSynCompletion
+    ItemList.Strings = (
+      'and'
+      'as'
+      'assert'
+      'break'
+      'class'
+      'continue'
+      'def'
+      'del'
+      'elif'
+      'else'
+      'except'
+      'FALSE'
+      'finally'
+      'for'
+      'from'
+      'global'
+      'if'
+      'import'
+      'in'
+      'is'
+      'lambda'
+      'None'
+      'nonlocal'
+      'not'
+      'or'
+      'pass'
+      'raise'
+      'return'
+      'TRUE'
+      'try'
+      'while'
+      'with'
+      'yield'
+    )
+    Position = 0
+    LinesInWindow = 6
+    SelectedColor = clHighlight
+    CaseSensitive = False
+    Width = 262
+    AutoUseSingleIdent = True
+    ShortCut = 16416
+    EndOfTokenChr = '()[].'
+    ExecCommandID = ecSynCompletionExecute
+    ToggleReplaceWhole = False
+    left = 744
+    top = 360
   end
 end
