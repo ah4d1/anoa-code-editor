@@ -630,6 +630,10 @@ object FormMain: TFormMain
       Caption = '&Settings'
       object MenuItemSettingsLang: TMenuItem
         Caption = '&Language'
+        object MenuItemSettingsLangCSharp: TMenuItem
+          Caption = 'C#'
+          OnClick = MenuItemSettingsLangCSharpClick
+        end
         object MenuItemSettingsLangHTML: TMenuItem
           Caption = 'HTML'
           OnClick = MenuItemSettingsLangHTMLClick
@@ -957,5 +961,10 @@ object FormMain: TFormMain
     ToggleReplaceWhole = False
     left = 384
     top = 448
+  end
+  object SynCSSynMain: TSynCSSyn
+    Enabled = False
+    left = 720
+    top = 56
   end
 end
