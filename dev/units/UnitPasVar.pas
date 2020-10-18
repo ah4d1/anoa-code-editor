@@ -8,13 +8,15 @@ uses
   Classes, SysUtils;
 
 type
-  TASETypeLang = (aseLangHTML,aseLangJava,aseLangJSON,aseLangPas,aseLangPHP,aseLangPython);
+  TASETypeLang = (aseLangCSharp,aseLangHTML,aseLangJava,aseLangJSON,aseLangPas,aseLangPHP,aseLangPython);
+  {After add TASETypeLang, see also vASETypeLang & vReservedWords}
+
   TUVar = object
     vCurrentFileName : TFileName;
     vImageIndexNormalFile : Byte;
     vImageIndexModifiedFile : Byte;
     vASETypeLang : TStringList;
-    vReservedWords : array[0..5] of WideString; // to determine size of the array, see TASETypeLang
+    vReservedWords : array[0..6] of WideString; // to determine size of the array, see TASETypeLang
     procedure fcInit;
   end;
 
@@ -27,13 +29,28 @@ uses
   UnitPasTools;
 
 procedure TUVar.fcInit;
+var
+  LRsrvWrd : Integer;
 begin
   Self.vCurrentFileName := '';
   Self.vImageIndexNormalFile := 3;
   Self.vImageIndexModifiedFile := 4;
-  vASETypeLang := VUTools.FcStringExplode('HTML|Java|JSON|Pascal|PHP|Python','|');
+  vASETypeLang := VUTools.FcStringExplode('C#|HTML|Java|JSON|Pascal|PHP|Python','|');
+  {Reserve Words}
+  LRsrvWrd := -1;
+  {CSharp}
+  LRsrvWrd := LRsrvWrd + 1;
+  vReservedWords[LRsrvWrd] := 'abstract|break|char|continue|do|event|finally|foreach'
+    + '|in|is|new|out|protected|return|sizeof|struct|TRUE|ulong|using|while|as|byte'
+    + '|checked|decimal|double|explicit|fixed|goto|int|lock|null|override|public|sbyte'
+    + '|stackalloc|switch|try|unchecked|virtual|base|case|class|default|else|extern|float'
+    + '|if|interface|long|object|params|readonly|sealed|static|this|typeof|unsafe|void'
+    + '|bool|catch|const|delegate|enum|FALSE|for|implicit|internal|namespace|operator'
+    + '|private|ref|short|string|throw|uint|ushort|volatile'
+  ;
   {HTML}
-  vReservedWords[0] := '<!DOCTYPE>|<a>|<abbr>|<acronym>|<address>|<applet>|<area>'
+  LRsrvWrd := LRsrvWrd + 1;
+  vReservedWords[LRsrvWrd] := '<!DOCTYPE>|<a>|<abbr>|<acronym>|<address>|<applet>|<area>'
     + '|<article>|<aside>|<audio>|<b>|<base>|<basefont>|<bdi>|<bdo>|<big>|<blockquote>'
     + '|<body>|<br>|<button>|<canvas>|<caption>|<center>|<cite>|<code>|<col>|<colgroup>'
     + '|<data>|<datalist>|<dd>|<del>|<details>|<dfn>|<dialog>|<dir>|<div>|<dl>|<dt>|<em>'
@@ -46,26 +63,27 @@ begin
     + '|<template>|<textarea>|<tfoot>|<th>|<thead>|<time>|<title>|<tr>|<track>|<tt>|<u>|<ul>|<var>|<video>|<wbr>'
   ;
   {Java}
-  vReservedWords[1] := 'abstract|assert|boolean|break|byte|case|catch|char|class|continue'
+  LRsrvWrd := LRsrvWrd + 1;
+  vReservedWords[LRsrvWrd] := 'abstract|assert|boolean|break|byte|case|catch|char|class|continue'
     + '|const|default|do|double|else|enum|exports|extends|final|finally|float|for|goto|if'
     + '|implements|import|i|stanceof|int|interface|long|module|native|new|package|private'
     + '|protected|public|requires|return|short|static|strictfp|super|switch|synchronized|this'
     + '|throw|throws|transi|nt|try|var|void|volatile|while'
   ;
   {JSON}
-  vReservedWords[2] := 'and|as|assert|break|class|continue|def|del|elif|else|except|FALSE'
-    + '|finally|for|from|global|if|import|in|is|lambda|None|nonlocal|not|or|pass|raise'
-    + '|return|TRUE|try|while|with|yield'
-  ;
+  LRsrvWrd := LRsrvWrd + 1;
+  vReservedWords[LRsrvWrd] := '';
   {Pascal}
-  vReservedWords[3] := 'and|array|asm|begin|break|case|const|constructor|continue'
+  LRsrvWrd := LRsrvWrd + 1;
+  vReservedWords[LRsrvWrd] := 'and|array|asm|begin|break|case|const|constructor|continue'
     + '|destructor|div|do|downto|else|end|FALSE|file|for|function|goto|if'
     + '|implementation|in|inline|interface|label|mod|nil|not|object|of|on|operator'
     + '|or|packed|procedure|program|record|repeat|set|shl|shr|string|then|to|TRUE'
     + '|type|unit|until|uses|var|while|with|xor'
   ;
   {PHP}
-  vReservedWords[4] := '__halt_compiler()|abstract|and|array()|as|break|callable|case|catch'
+  LRsrvWrd := LRsrvWrd + 1;
+  vReservedWords[LRsrvWrd] := '__halt_compiler()|abstract|and|array()|as|break|callable|case|catch'
     + '|class|clone|const|continue|declare|default|die()|do|echo|else|elseif|empty()|enddeclare'
     + '|endfor|e|dforeach|endif|endswitch|endwhile|eval()|exit()|extends|final|finally|fn'
     + '|for|foreach|function|global|goto|if|implements|include|include_once|instanceof|insteadof'
@@ -73,7 +91,8 @@ begin
     + '|return|static|switch|throw|trait|try|unset()|use|var|while|xor|yield'
   ;
   {Python}
-  vReservedWords[5] := 'and|as|assert|break|class|continue|def|del|elif|else|except|FALSE'
+  LRsrvWrd := LRsrvWrd + 1;
+  vReservedWords[LRsrvWrd] := 'and|as|assert|break|class|continue|def|del|elif|else|except|FALSE'
   + '|finally|for|from|global|if|import|in|is|lambda|None|nonlocal|not|or|pass|raise'
   + '|return|TRUE|try|while|with|yield'
 ;
