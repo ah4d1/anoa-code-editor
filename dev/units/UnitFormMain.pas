@@ -6,9 +6,9 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  StdCtrls, Spin, SynHighlighterJSON, SynEdit, SynHighlighterPas,
-  SynHighlighterJava, SynHighlighterHTML, SynHighlighterPHP, SynCompletion,
-  SynHighlighterPython, UnitPasVar;
+  StdCtrls, Spin, SynHighlighterJSON, SynHighlighterCS, SynEdit,
+  SynHighlighterPas, SynHighlighterJava, SynHighlighterHTML, SynHighlighterPHP,
+  SynCompletion, SynHighlighterPython, UnitPasVar;
 
 type
 
@@ -22,6 +22,7 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemSettingsLangCSharp: TMenuItem;
     MenuItemSettingsLangJSON: TMenuItem;
     MenuItemSettingsLangPython: TMenuItem;
     MenuItemSettingsAddToSysMenu: TMenuItem;
@@ -42,6 +43,7 @@ type
     SpinEditFontSize: TSpinEdit;
     StatusBarMain: TStatusBar;
     SynCompletionMain: TSynCompletion;
+    SynCSSynMain: TSynCSSyn;
     SynEditMain: TSynEdit;
     SynHTMLSynMain: TSynHTMLSyn;
     SynJavaSynMain: TSynJavaSyn;
@@ -61,6 +63,7 @@ type
     procedure MenuItemFileSaveAsClick(Sender: TObject);
     procedure MenuItemFileSaveClick(Sender: TObject);
     procedure MenuItemSettingsAddToSysMenuClick(Sender: TObject);
+    procedure MenuItemSettingsLangCSharpClick(Sender: TObject);
     procedure MenuItemSettingsLangHTMLClick(Sender: TObject);
     procedure MenuItemSettingsLangJavaClick(Sender: TObject);
     procedure MenuItemSettingsLangJSONClick(Sender: TObject);
@@ -147,8 +150,8 @@ begin
   Self.SynEditMain.Lines.LoadFromFile(LFileName);
   Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
   LLangTxt := VULang.SetLang(LFileName,Self.SynEditMain,
-    Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynJSONSynMain,Self.SynPasSynMain,
-      Self.SynPHPSynMain,Self.SynPythonSynMain,
+    Self.SynCSSynMain,Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynJSONSynMain,
+      Self.SynPasSynMain,Self.SynPHPSynMain,Self.SynPythonSynMain,
     Self.SynCompletionMain
   );
   Self.StatusBarMain.Panels[0].Text := LLangTxt;
@@ -172,6 +175,11 @@ procedure TFormMain.MenuItemSettingsAddToSysMenuClick(Sender: TObject);
 begin
   VUTools.FcAddAppToWinExplorerContextMenu('Open with Anoa-Syntax-Editor',Application.ExeName);
   MessageDlg('Please check at Windows Explorer Context Menu',mtInformation,[mbOK],0);
+end;
+
+procedure TFormMain.MenuItemSettingsLangCSharpClick(Sender: TObject);
+begin
+  Self.SetLang(aseLangCSharp);
 end;
 
 procedure TFormMain.MenuItemSettingsLangHTMLClick(Sender: TObject);
@@ -209,8 +217,8 @@ var
   LLangText : string;
 begin
   LLangText := VULang.SetLang(ALang,Self.SynEditMain,
-    Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynJSONSynMain,Self.SynPasSynMain,
-      Self.SynPHPSynMain,Self.SynPythonSynMain,
+    Self.SynCSSynMain,Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynJSONSynMain,
+      Self.SynPasSynMain,Self.SynPHPSynMain,Self.SynPythonSynMain,
     Self.SynCompletionMain
   );
   Self.StatusBarMain.Panels[0].Text := LLangText;
