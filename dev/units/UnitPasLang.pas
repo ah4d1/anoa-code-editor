@@ -5,19 +5,19 @@ unit UnitPasLang;
 interface
 
 uses
-  Classes, SysUtils, SynEdit, SynHighlighterHTML, SynHighlighterJava, SynHighlighterJSON, SynHighlighterPas,
-  SynHighlighterPHP, SynHighlighterPython, SynCompletion, UnitPasVar;
+  Classes, SysUtils, SynEdit, SynHighlighterCS, SynHighlighterHTML, SynHighlighterJava, SynHighlighterJSON,
+  SynHighlighterPas, SynHighlighterPHP, SynHighlighterPython, SynCompletion, UnitPasVar;
 
 type
   TULang = object
     function SetLang (AFileName : TFileName; ASynEdit : TSynEdit;
-      ASynHTMLSyn :TSynHTMLSyn; ASynJavaSyn : TSynJavaSyn; ASynJSONSyn : TSynJSONSyn;
+      ASynCSSyn : TSynCSSyn; ASynHTMLSyn : TSynHTMLSyn; ASynJavaSyn : TSynJavaSyn; ASynJSONSyn : TSynJSONSyn;
         ASynPasSyn : TSynPasSyn; ASynPHPSyn : TSynPHPSyn; ASynPythonSyn : TSynPythonSyn;
       ASynCompletion : TSynCompletion) : string; overload;
     function SetLang (ALang : TASETypeLang; ASynEdit : TSynEdit;
-        ASynHTMLSyn :TSynHTMLSyn; ASynJavaSyn : TSynJavaSyn; ASynJSONSyn : TSynJSONSyn; ASynPasSyn : TSynPasSyn;
-          ASynPHPSyn : TSynPHPSyn; ASynPythonSyn : TSynPythonSyn;
-        ASynCompletion : TSynCompletion
+      ASynCSSyn : TSynCSSyn; ASynHTMLSyn : TSynHTMLSyn; ASynJavaSyn : TSynJavaSyn; ASynJSONSyn : TSynJSONSyn;
+        ASynPasSyn : TSynPasSyn; ASynPHPSyn : TSynPHPSyn; ASynPythonSyn : TSynPythonSyn;
+      ASynCompletion : TSynCompletion
       ) : string;  overload;
   end;
 
@@ -30,7 +30,7 @@ uses
   UnitPasTools;
 
 function TULang.SetLang (AFileName : TFileName; ASynEdit : TSynEdit;
-  ASynHTMLSyn :TSynHTMLSyn; ASynJavaSyn : TSynJavaSyn; ASynJSONSyn : TSynJSONSyn;
+  ASynCSSyn :TSynCSSyn; ASynHTMLSyn :TSynHTMLSyn; ASynJavaSyn : TSynJavaSyn; ASynJSONSyn : TSynJSONSyn;
     ASynPasSyn : TSynPasSyn; ASynPHPSyn : TSynPHPSyn; ASynPythonSyn : TSynPythonSyn;
   ASynCompletion : TSynCompletion) : string;
 var
@@ -39,7 +39,8 @@ var
   LLangTxt : string;
 begin
   LFileExt := ExtractFileExt(AFileName);
-  if Pos(LFileExt,ASynHTMLSyn.DefaultFilter) >= 1 then LLang := aseLangHTML
+  if Pos(LFileExt,ASynCSSyn.DefaultFilter) >= 1 then LLang := aseLangCSharp
+    else if Pos(LFileExt,ASynHTMLSyn.DefaultFilter) >= 1 then LLang := aseLangHTML
     else if Pos(LFileExt,ASynJavaSyn.DefaultFilter) >= 1 then LLang := aseLangJava
     else if Pos(LFileExt,ASynJSONSyn.DefaultFilter) >= 1 then LLang := aseLangJSON
     else if Pos(LFileExt,ASynPasSyn.DefaultFilter) >= 1 then LLang := aseLangPas
@@ -47,15 +48,15 @@ begin
     else if Pos(LFileExt,ASynPythonSyn.DefaultFilter) >= 1 then LLang := aseLangPython
   ;
   LLangTxt := Self.SetLang(LLang,ASynEdit,
-    ASynHTMLSyn,ASynJavaSyn,ASynJSONSyn,ASynPasSyn,ASynPHPSyn,ASynPythonSyn,
+    ASynCSSyn,ASynHTMLSyn,ASynJavaSyn,ASynJSONSyn,ASynPasSyn,ASynPHPSyn,ASynPythonSyn,
     ASynCompletion
   );
   Result := LLangTxt;
 end;
 
 function TULang.SetLang (ALang : TASETypeLang; ASynEdit : TSynEdit;
-    ASynHTMLSyn :TSynHTMLSyn; ASynJavaSyn : TSynJavaSyn; ASynJSONSyn : TSynJSONSyn; ASynPasSyn : TSynPasSyn;
-      ASynPHPSyn : TSynPHPSyn; ASynPythonSyn : TSynPythonSyn;
+    ASynCSSyn : TSynCSSyn; ASynHTMLSyn : TSynHTMLSyn; ASynJavaSyn : TSynJavaSyn; ASynJSONSyn : TSynJSONSyn;
+      ASynPasSyn : TSynPasSyn; ASynPHPSyn : TSynPHPSyn; ASynPythonSyn : TSynPythonSyn;
     ASynCompletion : TSynCompletion
   ) : string;
 var
@@ -65,11 +66,12 @@ begin
   ASynCompletion.ItemList := VUTools.FcStringExplode(VUVar.vReservedWords[Ord(ALang)],'|');
   LLangTxt := VUVar.vASETypeLang[Ord(ALang)];
   case ALang of
-    aseLangHTML : ASynEdit.Highlighter := ASynHTMLSyn;
-    aseLangJava : ASynEdit.Highlighter := ASynJavaSyn;
-    aseLangJSON : ASynEdit.Highlighter := ASynJSONSyn;
-    aseLangPas : ASynEdit.Highlighter := ASynPasSyn;
-    aseLangPHP : ASynEdit.Highlighter := ASynPHPSyn;
+    aseLangCSharp : ASynEdit.Highlighter := ASynCSSyn;
+    aseLangHTML   : ASynEdit.Highlighter := ASynHTMLSyn;
+    aseLangJava   : ASynEdit.Highlighter := ASynJavaSyn;
+    aseLangJSON   : ASynEdit.Highlighter := ASynJSONSyn;
+    aseLangPas    : ASynEdit.Highlighter := ASynPasSyn;
+    aseLangPHP    : ASynEdit.Highlighter := ASynPHPSyn;
     aseLangPython : ASynEdit.Highlighter := ASynPythonSyn;
   end;
   Result := LLangTxt;
