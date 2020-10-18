@@ -8,7 +8,7 @@ Update : Code refactoring & other minor updates
 
 v.1.0.0.3 : (Released 17th Oct 2020)
 ----------------------------------------------------------
-Added : Language Auto-detection
+Added : Language Auto-detection while opening file
 Added : Set Icon for TabSheet (Normal & Modified Status)
 Added : New (Main Menu : File | New)
 Added : Add to Sys-Menu (Main Menu : Settings | Add to Sys-Menu) : Windows Explorer Context Menu "Open with Anoa-Syntax-Editor"
