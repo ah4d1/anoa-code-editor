@@ -41,12 +41,7 @@ type
     SaveDialogMain: TSaveDialog;
     SpinEditFontSize: TSpinEdit;
     StatusBarMain: TStatusBar;
-    SynCompletionPython: TSynCompletion;
-    SynCompletionHTML: TSynCompletion;
-    SynCompletionPHP: TSynCompletion;
-    SynCompletionPas: TSynCompletion;
-    SynCompletionJava: TSynCompletion;
-    SynCompletionJSON: TSynCompletion;
+    SynCompletionMain: TSynCompletion;
     SynEditMain: TSynEdit;
     SynHTMLSynMain: TSynHTMLSyn;
     SynJavaSynMain: TSynJavaSyn;
@@ -125,9 +120,9 @@ begin
     + '|' + Self.SynPasSynMain.DefaultFilter
     + '|' + Self.SynPHPSynMain.DefaultFilter
   ;
-  Self.OpenDialogMain.Filter := LDefaultFilter;
+  Self.OpenDialogMain.Filter := string(LDefaultFilter);
 
-  LFileNameOnStart := VUTools.FcParamsInSingleText;
+  LFileNameOnStart := string(VUTools.FcParamsInSingleText);
   if Trim(LFileNameOnStart) <> '' then
   begin
     Self.OpenFile(LFileNameOnStart);
@@ -151,9 +146,10 @@ begin
   VUVar.vCurrentFileName := LFileName;
   Self.SynEditMain.Lines.LoadFromFile(LFileName);
   Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
-  LLangTxt := VULang.SetHightlighter(LFileName,Self.SynEditMain,
+  LLangTxt := VULang.SetLang(LFileName,Self.SynEditMain,
     Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynJSONSynMain,Self.SynPasSynMain,
-    Self.SynPHPSynMain,Self.SynPythonSynMain
+      Self.SynPHPSynMain,Self.SynPythonSynMain,
+    Self.SynCompletionMain
   );
   Self.StatusBarMain.Panels[0].Text := LLangTxt;
   Self.StatusBarMain.Panels[1].Text := LFileName;
@@ -215,8 +211,7 @@ begin
   LLangText := VULang.SetLang(ALang,Self.SynEditMain,
     Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynJSONSynMain,Self.SynPasSynMain,
       Self.SynPHPSynMain,Self.SynPythonSynMain,
-    Self.SynCompletionHTML,Self.SynCompletionJava,Self.SynCompletionJSON,Self.SynCompletionPas,
-      Self.SynCompletionPHP,Self.SynCompletionPython
+    Self.SynCompletionMain
   );
   Self.StatusBarMain.Panels[0].Text := LLangText;
 end;
