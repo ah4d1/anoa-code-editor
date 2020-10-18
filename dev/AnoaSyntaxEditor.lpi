@@ -50,24 +50,20 @@
         <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
-        <Filename Value="units\unitpastools.pas"/>
+        <Filename Value="units\UnitPasTools.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitPasTools"/>
       </Unit2>
       <Unit3>
-        <Filename Value="units\unitpaslang.pas"/>
+        <Filename Value="units\UnitPasLang.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitPasLang"/>
       </Unit3>
       <Unit4>
-        <Filename Value="units\unitpasvar.pas"/>
+        <Filename Value="units\UnitPasVar.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitPasVar"/>
       </Unit4>
       <Unit5>
-        <Filename Value="units\unitpassave.pas"/>
+        <Filename Value="units\UnitPasSave.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitPasSave"/>
       </Unit5>
     </Units>
   </ProjectOptions>
