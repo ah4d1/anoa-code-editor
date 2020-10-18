@@ -118,10 +118,13 @@ begin
 
   LDefaultFilter := ''
     + 'All Files (*.*)|*.*'
+    + '|' + Self.SynCSSynMain.DefaultFilter
     + '|' + Self.SynHTMLSynMain.DefaultFilter
     + '|' + Self.SynJavaSynMain.DefaultFilter
+    + '|' + Self.SynJSONSynMain.DefaultFilter
     + '|' + Self.SynPasSynMain.DefaultFilter
     + '|' + Self.SynPHPSynMain.DefaultFilter
+    + '|' + Self.SynPythonSynMain.DefaultFilter
   ;
   Self.OpenDialogMain.Filter := string(LDefaultFilter);
 
