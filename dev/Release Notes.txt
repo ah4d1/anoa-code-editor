@@ -3,7 +3,9 @@ v.1.0.0.4 : (Work in Progress)
 Added : Language information at Status Bar
 Added : Language : Python (Main Menu : Settings | Language | Python)
 Added : Language : JSON (Main Menu : Settings | Language | JSON)
+Added : Language : C# (Main Menu : Settings | Language | C#)
 Added : Syntax completion (use Ctrl+Space) : Python
+Added : Syntax completion (use Ctrl+Space) : C#
 Update : Code refactoring & other minor updates
 
 v.1.0.0.3 : (Released 17th Oct 2020)
