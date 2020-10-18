@@ -14,7 +14,7 @@ type
     vImageIndexNormalFile : Byte;
     vImageIndexModifiedFile : Byte;
     vASETypeLang : TStringList;
-    vReservedWords : array[0..5] of WideString; // see TASETypeLang
+    vReservedWords : array[0..5] of WideString; // to determine size of the array, see TASETypeLang
     procedure fcInit;
   end;
 
