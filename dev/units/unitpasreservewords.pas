@@ -9,14 +9,16 @@ uses
 
 type
   TUReserveWords = class
-    vReservedWords : array[0..6] of WideString; // always check size of the array
-    function fcCS : WideString; // C Sharp
-    function fcHTML : WideString;
-    function fcJava : WideString;
-    function fcJSON : WideString;
+    vLangTxt          : WideString;
+    vReservedWords    : array[0..7] of WideString; // always check size of the array
+    function fcCS     : WideString; // C Sharp
+    function fcHTML   : WideString;
+    function fcJava   : WideString;
+    function fcJSON   : WideString;
     function fcPascal : WideString;
-    function fcPHP : WideString;
+    function fcPHP    : WideString;
     function fcPython : WideString;
+    function fcSQL    : WideString;
     constructor Create (AOwner : TComponent);
   end;
 
@@ -29,6 +31,7 @@ constructor TUReserveWords.Create (AOwner : TComponent);
 var
   LRsrvWrd : Integer;
 begin
+  Self.vLangTxt := 'C#|HTML|Java|JSON|Pascal|PHP|Python|SQL';
   LRsrvWrd := -1;
   LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcCS;
   LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcHTML;
@@ -37,6 +40,7 @@ begin
   LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcPascal;
   LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcPHP;
   LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcPython;
+  LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcSQL;
 end;
 
 function TUReserveWords.fcCS : WideString;
@@ -109,6 +113,20 @@ begin
   Result := 'and|as|assert|break|class|continue|def|del|elif|else|except|FALSE'
     + '|finally|for|from|global|if|import|in|is|lambda|None|nonlocal|not|or|pass|raise'
     + '|return|TRUE|try|while|with|yield'
+  ;
+end;
+
+function TUReserveWords.fcSQL : WideString;
+begin
+  Result := 'ADD|ADD CONSTRAINT|ALTER|ALTER COLUMN|ALTER TABLE|ALL|AND|ANY|AS|ASC'
+    + '|BACKUP DATABASE|BETWEEN|CASE|CHECK|COLUMN|CONSTRAINT|CREATE|CREATE DATABASE'
+    + '|CREATE INDEX|CREATE OR REPLACE VIEW|CREATE TABLE|CREATE PROCEDURE|CREATE UNIQUE INDEX'
+    + '|CREATE VIEW|DATABASE|DEFAULT|DELETE|DESC|DISTINCT|DROP|DROP COLUMN|DROP CONSTRAINT'
+    + '|DROP DATABASE|DROP DEFAULT|DROP INDEX|DROP TABLE|DROP VIEW|EXEC|EXISTS|FOREIGN KEY'
+    + '|FROM|FULL OUTER JOIN|GROUP BY|HAVING|IN|INDEX|INNER JOIN|INSERT INTO|INSERT INTO SELECT'
+    + '|IS NULL|IS NOT NULL|JOIN|LEFT JOIN|LIKE|LIMIT|NOT|NOT NULL|OR|ORDER BY|OUTER JOIN'
+    + '|PRIMARY KEY|PROCEDURE|RIGHT JOIN|ROWNUM|SELECT|SELECT DISTINCT|SELECT INTO|SELECT TOP'
+    + '|SET|TABLE|TOP|TRUNCATE TABLE|UNION|UNION ALL|UNIQUE|UPDATE|VALUES|VIEW|WHERE'
   ;
 end;
 
