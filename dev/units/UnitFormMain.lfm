@@ -626,6 +626,14 @@ object FormMain: TFormMain
         OnClick = MenuItemFileExitClick
       end
     end
+    object MenuItemEdit: TMenuItem
+      Caption = '&Edit'
+      object MenuItemEditFindReplace: TMenuItem
+        Caption = '&Find / Replace'
+        ShortCut = 16454
+        OnClick = MenuItemEditFindReplaceClick
+      end
+    end
     object MenuItemSettings: TMenuItem
       Caption = '&Settings'
       object MenuItemSettingsLang: TMenuItem
