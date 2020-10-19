@@ -1,4 +1,4 @@
-v.1.0.0.4 : (Work in Progress)
+v.1.0.0.5 : (Work in Progress)
 ----------------------------------------------------------
 Added : Language information at Status Bar
 Added : Language : Python (Main Menu : Settings | Language | Python)
