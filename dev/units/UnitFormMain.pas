@@ -6,9 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  StdCtrls, Spin, SynHighlighterJSON, SynHighlighterCS, SynEdit,
-  SynHighlighterPas, SynHighlighterJava, SynHighlighterHTML, SynHighlighterPHP,
-  SynCompletion, SynHighlighterPython, UnitPasVar, UnitPasSynHighlighter;
+  StdCtrls, Spin, SynEdit, SynCompletion, UnitPasSynHighlighter;
 
 type
 
@@ -22,6 +20,7 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemSettingsLangSQL: TMenuItem;
     MenuItemSettingsLangCSharp: TMenuItem;
     MenuItemSettingsLangJSON: TMenuItem;
     MenuItemSettingsLangPython: TMenuItem;
@@ -63,6 +62,7 @@ type
     procedure MenuItemSettingsLangPascalClick(Sender: TObject);
     procedure MenuItemSettingsLangPHPClick(Sender: TObject);
     procedure MenuItemSettingsLangPythonClick(Sender: TObject);
+    procedure MenuItemSettingsLangSQLClick(Sender: TObject);
     procedure SpinEditFontSizeChange(Sender: TObject);
     procedure SynEditMainChange(Sender: TObject);
   private
@@ -82,7 +82,7 @@ implementation
 { TFormMain }
 
 uses
-  UnitPasSave, UnitPasLang, UnitPasTools;
+  UnitPasVar, UnitPasSave, UnitPasLang, UnitPasTools;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 var
@@ -187,6 +187,11 @@ end;
 procedure TFormMain.MenuItemSettingsLangPythonClick(Sender: TObject);
 begin
   Self.SetLang(aseLangPython);
+end;
+
+procedure TFormMain.MenuItemSettingsLangSQLClick(Sender: TObject);
+begin
+  Self.SetLang(aseLangSQL);
 end;
 
 procedure TFormMain.SetLang (ALang : TASETypeLang);
