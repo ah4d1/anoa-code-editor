@@ -37,7 +37,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="7">
+    <Units Count="8">
       <Unit0>
         <Filename Value="AnoaSyntaxEditor.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -66,10 +66,14 @@
         <IsPartOfProject Value="True"/>
       </Unit5>
       <Unit6>
-        <Filename Value="units\unitpassynhighlighter.pas"/>
+        <Filename Value="units\UnitPasSynHighlighter.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitPasSynHighlighter"/>
       </Unit6>
+      <Unit7>
+        <Filename Value="units\unitpasreservewords.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitPasReserveWords"/>
+      </Unit7>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
