@@ -548,7 +548,7 @@ object FormMain: TFormMain
         FoldedCodeColor.FrameColor = clGray
         MouseLinkColor.Background = clNone
         MouseLinkColor.Foreground = clBlue
-        LineHighlightColor.Background = 15790320
+        LineHighlightColor.Background = 13876617
         LineHighlightColor.Foreground = clNone
         OnChange = SynEditMainChange
         inline SynLeftGutterPartList1: TSynGutterPartList
@@ -670,6 +670,10 @@ object FormMain: TFormMain
       object MenuItemSettingsAddToSysMenu: TMenuItem
         Caption = 'Add to SysMenu'
         OnClick = MenuItemSettingsAddToSysMenuClick
+      end
+      object MenuItemSettingsSwitchColor: TMenuItem
+        Caption = 'Switch Color'
+        OnClick = MenuItemSettingsSwitchColorClick
       end
     end
     object MenuItem3: TMenuItem
