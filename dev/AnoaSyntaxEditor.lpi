@@ -70,9 +70,8 @@
         <IsPartOfProject Value="True"/>
       </Unit6>
       <Unit7>
-        <Filename Value="units\unitpasreservewords.pas"/>
+        <Filename Value="units\UnitPasReserveWords.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitPasReserveWords"/>
       </Unit7>
     </Units>
   </ProjectOptions>
