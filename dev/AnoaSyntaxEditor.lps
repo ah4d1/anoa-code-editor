@@ -39,17 +39,16 @@
         <Filename Value="units\UnitPasLang.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="3"/>
-        <CursorPos X="22" Y="9"/>
+        <TopLine Value="56"/>
+        <CursorPos X="54" Y="69"/>
         <UsageCount Value="59"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="units\UnitPasVar.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="31"/>
+        <TopLine Value="15"/>
         <CursorPos X="38" Y="40"/>
         <UsageCount Value="58"/>
         <Loaded Value="True"/>
@@ -65,9 +64,10 @@
       <Unit6>
         <Filename Value="units\UnitPasSynHighlighter.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="9"/>
-        <CursorPos X="26" Y="37"/>
+        <TopLine Value="29"/>
+        <CursorPos Y="51"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit6>
