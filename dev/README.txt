@@ -12,6 +12,15 @@ Binary      : https://sourceforge.net/projects/anoa-syntax-editor/files/
 Source Code : https://github.com/ah4d1/anoa-syntax-editor
 
 
+MAIN FEATURES :
+-------------------------------------
+- Open & save file.
+- Easy-to-use editor.
+- Syntax highlighting.
+- Syntax completion (use Ctrl + Space).
+- Support many popular languages.
+
+
 THANKS TO :
 -------------------------------------
 Lazarus IDE : https://www.lazarus-ide.org/
