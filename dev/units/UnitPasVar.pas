@@ -31,9 +31,9 @@ begin
   Self.vCurrentFileName := '';
   Self.vImageIndexNormalFile := 3;
   Self.vImageIndexModifiedFile := 4;
-  Self.vASETypeLang := VUTools.FcStringExplode('C#|HTML|Java|JSON|Pascal|PHP|Python','|');
   Self.vSynHighlighter := TUSynHighlighter.Create(AOwner);
   Self.vReservedWords := TUReserveWords.Create(AOwner);
+  Self.vASETypeLang := VUTools.FcStringExplode(Self.vReservedWords.vLangTxt,'|');
 end;
 
 end.
