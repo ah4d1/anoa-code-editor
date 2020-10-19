@@ -86,30 +86,13 @@ uses
 
 procedure TFormMain.FormCreate(Sender: TObject);
 var
-  LDefaultFilter : WideString;
   LFileNameOnStart : TFileName;
 begin
   VUVar := TUVar.Create(Self);
+  Self.OpenDialogMain.Filter := string(VUVar.vSynHighlighter.fcDefaultFilter);
 
-  LDefaultFilter := ''
-    + 'All Files (*.*)|*.*'
-    + '|' + VUVar.vSynHighlighter.vCS.DefaultFilter
-    + '|' + VUVar.vSynHighlighter.vHTML.DefaultFilter
-    + '|' + VUVar.vSynHighlighter.vJava.DefaultFilter
-    + '|' + VUVar.vSynHighlighter.vJSOn.DefaultFilter
-    + '|' + VUVar.vSynHighlighter.vPas.DefaultFilter
-    + '|' + VUVar.vSynHighlighter.vPHP.DefaultFilter
-     + '|' + VUVar.vSynHighlighter.vPython.DefaultFilter
-  ;
-  Self.OpenDialogMain.Filter := string(LDefaultFilter);
-
-  {
   LFileNameOnStart := string(VUTools.FcParamsInSingleText);
-  if Trim(LFileNameOnStart) <> '' then
-  begin
-    Self.OpenFile(LFileNameOnStart);
-  end;
-  }
+  if Trim(LFileNameOnStart) <> '' then Self.OpenFile(LFileNameOnStart);
 end;
 
 procedure TFormMain.MenuItemFileExitClick(Sender: TObject);
