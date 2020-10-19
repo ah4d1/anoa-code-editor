@@ -1,3 +1,9 @@
+v.1.0.0.6 : (Work in Progress)
+----------------------------------------------------------
+Added : Language : COBOL (Main Menu : Settings | Language | COBOL)
+Added : Syntax completion (use Ctrl+Space) : COBOL
+Update : Code refactoring & other minor updates
+
 v.1.0.0.5 : (Released 19th Oct 2020)
 ----------------------------------------------------------
 Added : Language information at Status Bar
