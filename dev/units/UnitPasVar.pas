@@ -5,30 +5,18 @@ unit UnitPasVar;
 interface
 
 uses
-  Classes, SysUtils, SynHighlighterCS, SynHighlighterHTML, SynHighlighterJava, SynHighlighterJSON,
-  SynHighlighterPas, SynHighlighterPHP, SynHighlighterPython;
+  Classes, SysUtils, UnitPasSynHighlighter;
 
 type
   TASETypeLang = (aseLangCSharp,aseLangHTML,aseLangJava,aseLangJSON,aseLangPas,aseLangPHP,aseLangPython);
   {After add TASETypeLang, see also vASETypeLang & vReservedWords}
-
-  TUVar_SynHighlighter = class
-    vCS : TSynCSSyn;
-    vHTML : TSynHTMLSyn;
-    vJava : TSynJavaSyn;
-    vJSON : TSynJSONSyn;
-    vPas : TSynPasSyn;
-    vPHP : TSynPHPSyn;
-    vPython : TSynPythonSyn;
-    constructor Create (AOwner : TComponent);
-  end;
 
   TUVar = class
     vCurrentFileName : TFileName;
     vImageIndexNormalFile : Byte;
     vImageIndexModifiedFile : Byte;
     vASETypeLang : TStringList;
-    vSynHighlighter : TUVar_SynHighlighter;
+    vSynHighlighter : TUSynHighlighter;
     vReservedWords : array[0..6] of WideString; // to determine size of the array, see TASETypeLang
     constructor Create (AOwner : TComponent);
   end;
@@ -41,17 +29,6 @@ implementation
 uses
   UnitPasTools;
 
-constructor TUVar_SynHighlighter.Create (AOwner : TComponent);
-begin
-  vCS := TSynCSSyn.Create(AOwner);
-  vHTML := TSynHTMLSyn.Create(AOwner);
-  vJava := TSynJavaSyn.Create(AOwner);
-  vJSON := TSynJSONSyn.Create(AOwner);
-  vPas := TSynPasSyn.Create(AOwner);
-  vPHP := TSynPHPSyn.Create(AOwner);
-  vPython := TSynPythonSyn.Create(AOwner);
-end;
-
 constructor TUVar.Create (AOwner : TComponent);
 var
   LRsrvWrd : Integer;
@@ -60,7 +37,7 @@ begin
   Self.vImageIndexNormalFile := 3;
   Self.vImageIndexModifiedFile := 4;
   vASETypeLang := VUTools.FcStringExplode('C#|HTML|Java|JSON|Pascal|PHP|Python','|');
-  vSynHighlighter := TUVar_SynHighlighter.Create(AOwner);
+  vSynHighlighter := TUSynHighlighter.Create(AOwner);
   {Reserve Words}
   LRsrvWrd := -1;
   {CSharp}
