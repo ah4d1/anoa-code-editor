@@ -34,7 +34,7 @@ begin
   Result := LResult;
 end;
 
-// set App as Administrator
+// App must be as Administrator
 procedure TUTools.FcAddAppToWinExplorerContextMenu (AMenuTitle : string; AAppExeName : TFileName);
 begin
   Self.FcRegistryWriteString(HKEY_CLASSES_ROOT,'*\shell\' + AMenuTitle + '\command\',
@@ -59,8 +59,8 @@ var
   LStrings : TStringList;
 begin
   LStrings := TStringList.Create;
-  LStrings.StrictDelimiter := True; // hanya menggunakan spasi yang ditentukan, jika FALSE maka spasi akan diperhitungkan sebagai delimiter
-  LStrings.Delimiter := ADelimiter; // set char sebagai delimiter
+  LStrings.StrictDelimiter := True; // only use chosen delimiter, if FALSE then space will be treated as delimiter
+  LStrings.Delimiter := ADelimiter; // set char as delimiter
   LStrings.DelimitedText := AString;
   Result := LStrings
 end;
