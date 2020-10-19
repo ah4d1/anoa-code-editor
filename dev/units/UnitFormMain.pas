@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
   StdCtrls, Spin, SynHighlighterJSON, SynHighlighterCS, SynEdit,
   SynHighlighterPas, SynHighlighterJava, SynHighlighterHTML, SynHighlighterPHP,
-  SynCompletion, SynHighlighterPython, UnitPasVar;
+  SynCompletion, SynHighlighterPython, UnitPasVar, UnitPasSynHighlighter;
 
 type
 
@@ -89,7 +89,7 @@ var
   LFileNameOnStart : TFileName;
 begin
   VUVar := TUVar.Create(Self);
-  Self.OpenDialogMain.Filter := string(VUVar.vSynHighlighter.fcDefaultFilter);
+  Self.OpenDialogMain.Filter := string(VUVar.vSynHighlighter.fcSetDefaultFilter);
 
   LFileNameOnStart := string(VUTools.FcParamsInSingleText);
   if Trim(LFileNameOnStart) <> '' then Self.OpenFile(LFileNameOnStart);
@@ -130,11 +130,7 @@ begin
   VUVar.vCurrentFileName := LFileName;
   Self.SynEditMain.Lines.LoadFromFile(LFileName);
   Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
-  LLangTxt := VULang.SetLang(LFileName,Self.SynEditMain,
-    VUVar.vSynHighlighter.vCS,VUVar.vSynHighlighter.vHTML,VUVar.vSynHighlighter.vJava,VUVar.vSynHighlighter.vJSON,
-      VUVar.vSynHighlighter.vPas,VUVar.vSynHighlighter.vPHP,VUVar.vSynHighlighter.vPython,
-    Self.SynCompletionMain
-  );
+  LLangTxt := VULang.SetLang(LFileName,Self.SynEditMain,Self.SynCompletionMain);
   Self.StatusBarMain.Panels[0].Text := LLangTxt;
   Self.StatusBarMain.Panels[1].Text := LFileName;
 end;
@@ -197,11 +193,7 @@ procedure TFormMain.SetLang (ALang : TASETypeLang);
 var
   LLangText : string;
 begin
-  LLangText := VULang.SetLang(ALang,Self.SynEditMain,
-    VUVar.vSynHighlighter.vCS,VUVar.vSynHighlighter.vHTML,VUVar.vSynHighlighter.vJava,VUVar.vSynHighlighter.vJSON,
-      VUVar.vSynHighlighter.vPas,VUVar.vSynHighlighter.vPHP,VUVar.vSynHighlighter.vPython,
-    Self.SynCompletionMain
-  );
+  LLangText := VULang.SetLang(ALang,Self.SynEditMain,Self.SynCompletionMain);
   Self.StatusBarMain.Panels[0].Text := LLangText;
 end;
 
