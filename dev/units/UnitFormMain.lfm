@@ -681,13 +681,6 @@ object FormMain: TFormMain
     left = 389
     top = 256
   end
-  object SynPasSynMain: TSynPasSyn
-    Enabled = False
-    CompilerMode = pcmDelphi
-    NestedComments = False
-    left = 583
-    top = 232
-  end
   object ImageListMain: TImageList
     left = 392
     top = 352
@@ -918,36 +911,6 @@ object FormMain: TFormMain
       3E957E223FE3E7B8BFCFE6F3C9FF011342E750
     }
   end
-  object SynJavaSynMain: TSynJavaSyn
-    DefaultFilter = 'Java Files (*.java)|*.java'
-    Enabled = False
-    left = 583
-    top = 133
-  end
-  object SynHTMLSynMain: TSynHTMLSyn
-    DefaultFilter = 'HTML Document (*.htm,*.html)|*.htm;*.html'
-    Enabled = False
-    left = 583
-    top = 56
-  end
-  object SynPHPSynMain: TSynPHPSyn
-    DefaultFilter = 'PHP Files (*.php,*.php3,*.phtml,*.inc)|*.php;*.php3;*.phtml;*.inc'
-    Enabled = False
-    left = 600
-    top = 248
-  end
-  object SynPythonSynMain: TSynPythonSyn
-    DefaultFilter = 'Python Files (*.py)|*.py'
-    Enabled = False
-    left = 584
-    top = 344
-  end
-  object SynJSONSynMain: TSynJSONSyn
-    DefaultFilter = 'JSON Files (*.json)|*.json'
-    Enabled = False
-    left = 600
-    top = 152
-  end
   object SynCompletionMain: TSynCompletion
     Position = 0
     LinesInWindow = 6
@@ -961,10 +924,5 @@ object FormMain: TFormMain
     ToggleReplaceWhole = False
     left = 384
     top = 448
-  end
-  object SynCSSynMain: TSynCSSyn
-    Enabled = False
-    left = 720
-    top = 56
   end
 end
