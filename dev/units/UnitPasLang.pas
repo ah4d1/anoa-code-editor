@@ -39,7 +39,7 @@ var
   LLangTxt : string;
 begin
   ASynCompletion.Editor := ASynEdit;
-  ASynCompletion.ItemList := VUTools.FcStringExplode(VUVar.vReservedWords[Ord(ALang)],'|');
+  ASynCompletion.ItemList := VUTools.FcStringExplode(VUVar.vReservedWords.vReservedWords[Ord(ALang)],'|');
   LLangTxt := VUVar.vASETypeLang[Ord(ALang)];
   ASynEdit.Highlighter := VUVar.vSynHighlighter.fcGetHighlighter(ALang);
   Result := LLangTxt;
