@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="14">
+    <Units Count="15">
       <Unit0>
         <Filename Value="AnoaSyntaxEditor.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -20,8 +20,8 @@
         <ComponentName Value="FormMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="207"/>
-        <CursorPos X="30" Y="218"/>
+        <TopLine Value="99"/>
+        <CursorPos X="40" Y="95"/>
         <UsageCount Value="78"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -29,7 +29,7 @@
       <Unit2>
         <Filename Value="units\UnitPasTools.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="11"/>
         <CursorPos X="14" Y="15"/>
         <UsageCount Value="63"/>
@@ -38,7 +38,7 @@
       <Unit3>
         <Filename Value="units\UnitPasLang.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="1"/>
         <TopLine Value="3"/>
         <CursorPos X="22" Y="9"/>
         <UsageCount Value="59"/>
@@ -48,91 +48,103 @@
         <Filename Value="units\UnitPasVar.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="10"/>
-        <CursorPos X="4" Y="43"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="31"/>
+        <CursorPos X="38" Y="40"/>
         <UsageCount Value="58"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="units\UnitPasSave.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <CursorPos X="40" Y="26"/>
         <UsageCount Value="58"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
+        <Filename Value="units\UnitPasSynHighlighter.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="9"/>
+        <CursorPos X="26" Y="37"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit6>
+      <Unit7>
         <Filename Value="C:\lazarus\lcl\comctrls.pp"/>
         <UnitName Value="ComCtrls"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="18"/>
         <CursorPos X="14" Y="24"/>
         <UsageCount Value="7"/>
-      </Unit6>
-      <Unit7>
+      </Unit7>
+      <Unit8>
         <Filename Value="C:\lazarus\components\synedit\synedit.pp"/>
         <UnitName Value="SynEdit"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1243"/>
         <CursorPos X="3" Y="1254"/>
         <UsageCount Value="7"/>
-      </Unit7>
-      <Unit8>
+      </Unit8>
+      <Unit9>
         <Filename Value="C:\lazarus\components\synedit\synhighlighterhtml.pp"/>
         <UnitName Value="SynHighlighterHTML"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="41"/>
         <CursorPos X="24" Y="44"/>
         <UsageCount Value="7"/>
-      </Unit8>
-      <Unit9>
+      </Unit9>
+      <Unit10>
         <Filename Value="C:\lazarus\components\synedit\synedithighlighterxmlbase.pas"/>
         <UnitName Value="SynEditHighlighterXMLBase"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="50"/>
         <CursorPos X="3" Y="61"/>
         <UsageCount Value="7"/>
-      </Unit9>
-      <Unit10>
+      </Unit10>
+      <Unit11>
         <Filename Value="C:\lazarus\components\synedit\synhighlighterjava.pas"/>
         <UnitName Value="SynHighlighterJava"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="3" Y="77"/>
         <UsageCount Value="7"/>
-      </Unit10>
-      <Unit11>
+      </Unit11>
+      <Unit12>
         <Filename Value="C:\lazarus\components\synedit\syncompletion.pas"/>
         <UnitName Value="SynCompletion"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="26"/>
         <CursorPos X="19" Y="38"/>
         <UsageCount Value="12"/>
-      </Unit11>
-      <Unit12>
-        <Filename Value="C:\lazarus\components\synedit\synhighlighterpython.pas"/>
-        <UnitName Value="SynHighlighterPython"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="181"/>
-        <CursorPos X="45" Y="188"/>
-        <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit12>
       <Unit13>
+        <Filename Value="C:\lazarus\components\synedit\synhighlighterpython.pas"/>
+        <UnitName Value="SynHighlighterPython"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="181"/>
+        <CursorPos X="45" Y="188"/>
+        <UsageCount Value="12"/>
+      </Unit13>
+      <Unit14>
         <Filename Value="C:\lazarus\components\synedit\synhighlighterpas.pp"/>
         <UnitName Value="SynHighlighterPas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="704"/>
         <CursorPos Y="705"/>
         <UsageCount Value="10"/>
-      </Unit13>
+      </Unit14>
     </Units>
-    <JumpHistory Count="1">
+    <JumpHistory Count="2" HistoryIndex="1">
       <Position1>
         <Filename Value="units\UnitPasVar.pas"/>
         <Caret Line="55" Column="18" TopLine="42"/>
       </Position1>
+      <Position2>
+        <Filename Value="units\UnitFormMain.pas"/>
+        <Caret Line="107" Column="79" TopLine="89"/>
+      </Position2>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
