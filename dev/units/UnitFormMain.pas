@@ -20,6 +20,7 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemSettingsLangCobol: TMenuItem;
     MenuItemSettingsLangSQL: TMenuItem;
     MenuItemSettingsLangCSharp: TMenuItem;
     MenuItemSettingsLangJSON: TMenuItem;
@@ -55,6 +56,7 @@ type
     procedure MenuItemFileSaveAsClick(Sender: TObject);
     procedure MenuItemFileSaveClick(Sender: TObject);
     procedure MenuItemSettingsAddToSysMenuClick(Sender: TObject);
+    procedure MenuItemSettingsLangCobolClick(Sender: TObject);
     procedure MenuItemSettingsLangCSharpClick(Sender: TObject);
     procedure MenuItemSettingsLangHTMLClick(Sender: TObject);
     procedure MenuItemSettingsLangJavaClick(Sender: TObject);
@@ -154,9 +156,14 @@ begin
   MessageDlg('Please check at Windows Explorer Context Menu',mtInformation,[mbOK],0);
 end;
 
+procedure TFormMain.MenuItemSettingsLangCobolClick(Sender: TObject);
+begin
+  Self.SetLang(aseLangCobol);
+end;
+
 procedure TFormMain.MenuItemSettingsLangCSharpClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangCSharp);
+  Self.SetLang(aseLangCS);
 end;
 
 procedure TFormMain.MenuItemSettingsLangHTMLClick(Sender: TObject);
