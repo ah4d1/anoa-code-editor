@@ -658,6 +658,10 @@ object FormMain: TFormMain
           Caption = 'Python'
           OnClick = MenuItemSettingsLangPythonClick
         end
+        object MenuItemSettingsLangSQL: TMenuItem
+          Caption = 'SQL'
+          OnClick = MenuItemSettingsLangSQLClick
+        end
       end
       object MenuItemSettingsAddToSysMenu: TMenuItem
         Caption = 'Add to SysMenu'
