@@ -1,0 +1,67 @@
+object FormFindReplace: TFormFindReplace
+  Left = 496
+  Height = 305
+  Top = 216
+  Width = 504
+  BorderStyle = bsDialog
+  Caption = 'Find / Replace'
+  ClientHeight = 305
+  ClientWidth = 504
+  DesignTimePPI = 144
+  FormStyle = fsStayOnTop
+  Position = poOwnerFormCenter
+  LCLVersion = '2.0.0.4'
+  object PageControlMain: TPageControl
+    Left = 16
+    Height = 268
+    Top = 16
+    Width = 472
+    ActivePage = TabSheetReplace
+    TabIndex = 0
+    TabOrder = 0
+    object TabSheetReplace: TTabSheet
+      Caption = 'Replace'
+      ClientHeight = 230
+      ClientWidth = 464
+      object Label1: TLabel
+        Left = 11
+        Height = 25
+        Top = 16
+        Width = 34
+        Caption = 'Find'
+        ParentColor = False
+      end
+      object EditFind: TEdit
+        Left = 11
+        Height = 33
+        Top = 48
+        Width = 437
+        TabOrder = 0
+      end
+      object Label2: TLabel
+        Left = 11
+        Height = 25
+        Top = 96
+        Width = 98
+        Caption = 'Replace with'
+        ParentColor = False
+      end
+      object EditReplaceWith: TEdit
+        Left = 11
+        Height = 33
+        Top = 127
+        Width = 437
+        TabOrder = 1
+      end
+      object ButtonReplaceAll: TButton
+        Left = 335
+        Height = 38
+        Top = 175
+        Width = 113
+        Caption = 'Replace All'
+        OnClick = ButtonReplaceAllClick
+        TabOrder = 2
+      end
+    end
+  end
+end
