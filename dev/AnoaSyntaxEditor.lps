@@ -20,6 +20,8 @@
         <ComponentName Value="FormMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="10"/>
         <CursorPos X="64" Y="9"/>
         <UsageCount Value="98"/>
         <Loaded Value="True"/>
@@ -81,9 +83,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnitFormFindReplace"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="90" Y="8"/>
+        <TopLine Value="6"/>
+        <CursorPos X="60" Y="20"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
