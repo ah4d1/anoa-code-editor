@@ -20,7 +20,7 @@
         <ComponentName Value="FormMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="99"/>
+        <TopLine Value="176"/>
         <CursorPos X="79" Y="133"/>
         <UsageCount Value="80"/>
         <Loaded Value="True"/>
@@ -29,9 +29,8 @@
       <Unit2>
         <Filename Value="units\UnitPasTools.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="47"/>
+        <TopLine Value="37"/>
         <CursorPos X="103" Y="62"/>
         <UsageCount Value="65"/>
         <Loaded Value="True"/>
@@ -40,6 +39,7 @@
         <Filename Value="units\UnitPasLang.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
+        <TopLine Value="24"/>
         <CursorPos X="119" Y="13"/>
         <UsageCount Value="61"/>
         <Loaded Value="True"/>
@@ -48,6 +48,7 @@
         <Filename Value="units\UnitPasVar.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
+        <TopLine Value="36"/>
         <CursorPos Y="11"/>
         <UsageCount Value="60"/>
         <Loaded Value="True"/>
@@ -63,8 +64,8 @@
       <Unit6>
         <Filename Value="units\UnitPasSynHighlighter.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="47"/>
         <CursorPos X="10" Y="58"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
