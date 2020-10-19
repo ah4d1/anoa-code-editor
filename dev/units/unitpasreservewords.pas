@@ -8,7 +8,8 @@ uses
   Classes, SysUtils;
 
 type
-  TUReserveWords = object
+  TUReserveWords = class
+    vReservedWords : array[0..6] of WideString; // always check size of the array
     function fcCS : WideString; // C Sharp
     function fcHTML : WideString;
     function fcJava : WideString;
@@ -16,12 +17,27 @@ type
     function fcPascal : WideString;
     function fcPHP : WideString;
     function fcPython : WideString;
+    constructor Create (AOwner : TComponent);
   end;
 
 var
   VUReserveWords : TUReserveWords;
 
 implementation
+
+constructor TUReserveWords.Create (AOwner : TComponent);
+var
+  LRsrvWrd : Integer;
+begin
+  LRsrvWrd := -1;
+  LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcCS;
+  LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcHTML;
+  LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcJava;
+  LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcJSON;
+  LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcPascal;
+  LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcPHP;
+  LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcPython;
+end;
 
 function TUReserveWords.fcCS : WideString;
 begin
