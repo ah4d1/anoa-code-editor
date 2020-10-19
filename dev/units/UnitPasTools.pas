@@ -5,7 +5,7 @@ unit UnitPasTools;
 interface
 
 uses
-  Classes, SysUtils, Registry;
+  Classes, SysUtils, Registry, Graphics;
 
 type
   TUTools = object
@@ -13,6 +13,7 @@ type
     procedure FcAddAppToWinExplorerContextMenu (AMenuTitle : string; AAppExeName : TFileName);
     procedure FcRegistryWriteString (ARootKey : HKEY; AKey,AName,AValue : string);
     function FcStringExplode (AString : string; ADelimiter : Char) : TStringList;
+    function ComplementaryColor (AColor: TColor): TColor;
   end;
 
 var
@@ -63,6 +64,12 @@ begin
   LStrings.Delimiter := ADelimiter; // set char as delimiter
   LStrings.DelimitedText := AString;
   Result := LStrings
+end;
+
+function TUTools.ComplementaryColor (AColor: TColor): TColor;
+begin
+  Result := clWhite - ColorToRGB(AColor);
+    // OR : RGBToColor(255 - Red(AColor), 255- Green(AColor), 255 - Blue(AColor));
 end;
 
 end.
