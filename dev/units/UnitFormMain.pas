@@ -20,6 +20,8 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemEditFindReplace: TMenuItem;
+    MenuItemEdit: TMenuItem;
     MenuItemSettingsSwitchColor: TMenuItem;
     MenuItemSettingsLangCobol: TMenuItem;
     MenuItemSettingsLangSQL: TMenuItem;
@@ -51,6 +53,7 @@ type
     ToolButton2: TToolButton;
     procedure FormCreate(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
+    procedure MenuItemEditFindReplaceClick(Sender: TObject);
     procedure MenuItemFileExitClick(Sender: TObject);
     procedure MenuItemFileNewClick(Sender: TObject);
     procedure MenuItemFileOpenClick(Sender: TObject);
@@ -86,7 +89,7 @@ implementation
 { TFormMain }
 
 uses
-  UnitPasVar, UnitPasSave, UnitPasLang, UnitPasTools;
+  UnitFormFindReplace, UnitPasVar, UnitPasSave, UnitPasLang, UnitPasTools;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 var
@@ -115,6 +118,13 @@ end;
 procedure TFormMain.MenuItem4Click(Sender: TObject);
 begin
   MessageDlg('About','Anoa-Syntax-Editor',mtInformation,[mbOK],0);
+end;
+
+procedure TFormMain.MenuItemEditFindReplaceClick(Sender: TObject);
+begin
+  FormFindReplace := TFormFindReplace.Create(Self);
+  FormFindReplace.Show;
+  // Self.SynEditMain.SearchReplace('begin','begin2',[ssoReplaceAll]);
 end;
 
 procedure TFormMain.MenuItemFileOpenClick(Sender: TObject);
