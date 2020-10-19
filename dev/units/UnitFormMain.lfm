@@ -630,6 +630,10 @@ object FormMain: TFormMain
       Caption = '&Settings'
       object MenuItemSettingsLang: TMenuItem
         Caption = '&Language'
+        object MenuItemSettingsLangCobol: TMenuItem
+          Caption = 'COBOL'
+          OnClick = MenuItemSettingsLangCobolClick
+        end
         object MenuItemSettingsLangCSharp: TMenuItem
           Caption = 'C#'
           OnClick = MenuItemSettingsLangCSharpClick
