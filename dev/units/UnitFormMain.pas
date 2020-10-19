@@ -20,6 +20,7 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemSettingsSwitchColor: TMenuItem;
     MenuItemSettingsLangCobol: TMenuItem;
     MenuItemSettingsLangSQL: TMenuItem;
     MenuItemSettingsLangCSharp: TMenuItem;
@@ -65,6 +66,7 @@ type
     procedure MenuItemSettingsLangPHPClick(Sender: TObject);
     procedure MenuItemSettingsLangPythonClick(Sender: TObject);
     procedure MenuItemSettingsLangSQLClick(Sender: TObject);
+    procedure MenuItemSettingsSwitchColorClick(Sender: TObject);
     procedure SpinEditFontSizeChange(Sender: TObject);
     procedure SynEditMainChange(Sender: TObject);
   private
@@ -199,6 +201,15 @@ end;
 procedure TFormMain.MenuItemSettingsLangSQLClick(Sender: TObject);
 begin
   Self.SetLang(aseLangSQL);
+end;
+
+procedure TFormMain.MenuItemSettingsSwitchColorClick(Sender: TObject);
+begin
+  Self.SynEditMain.Color := VUTools.ComplementaryColor(Self.SynEditMain.Color);
+  Self.SynEditMain.Font.Color := VUTools.ComplementaryColor(Self.SynEditMain.Font.Color);
+  Self.SynEditMain.Gutter.Color := VUTools.ComplementaryColor(Self.SynEditMain.Gutter.Color);
+  Self.SynEditMain.Gutter.Parts[1].MarkupInfo.Background := VUTools.ComplementaryColor(Self.SynEditMain.Gutter.Parts[1].MarkupInfo.Background);;
+  Self.SynEditMain.LineHighlightColor.Background := VUTools.ComplementaryColor(Self.SynEditMain.LineHighlightColor.Background);
 end;
 
 procedure TFormMain.SetLang (ALang : TASETypeLang);
