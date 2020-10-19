@@ -5,8 +5,7 @@ unit UnitPasLang;
 interface
 
 uses
-  Classes, SysUtils, SynEdit, SynHighlighterCS, SynHighlighterHTML, SynHighlighterJava, SynHighlighterJSON,
-  SynHighlighterPas, SynHighlighterPHP, SynHighlighterPython, SynCompletion, UnitPasVar, UnitPasSynHighlighter;
+  Classes, SysUtils, SynEdit, SynCompletion, UnitPasVar, UnitPasSynHighlighter;
 
 type
   TULang = object
