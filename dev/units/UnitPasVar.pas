@@ -8,9 +8,6 @@ uses
   Classes, SysUtils, UnitPasSynHighlighter;
 
 type
-  TASETypeLang = (aseLangCSharp,aseLangHTML,aseLangJava,aseLangJSON,aseLangPas,aseLangPHP,aseLangPython);
-  {After add TASETypeLang, see also vASETypeLang & vReservedWords}
-
   TUVar = class
     vCurrentFileName : TFileName;
     vImageIndexNormalFile : Byte;
