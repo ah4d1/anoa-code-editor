@@ -43,14 +43,7 @@ type
     SpinEditFontSize: TSpinEdit;
     StatusBarMain: TStatusBar;
     SynCompletionMain: TSynCompletion;
-    SynCSSynMain: TSynCSSyn;
     SynEditMain: TSynEdit;
-    SynHTMLSynMain: TSynHTMLSyn;
-    SynJavaSynMain: TSynJavaSyn;
-    SynJSONSynMain: TSynJSONSyn;
-    SynPasSynMain: TSynPasSyn;
-    SynPHPSynMain: TSynPHPSyn;
-    SynPythonSynMain: TSynPythonSyn;
     TabSheet1: TTabSheet;
     ToolBarMain: TToolBar;
     ToolButton1: TToolButton;
@@ -91,6 +84,34 @@ implementation
 uses
   UnitPasSave, UnitPasLang, UnitPasTools;
 
+procedure TFormMain.FormCreate(Sender: TObject);
+var
+  LDefaultFilter : WideString;
+  LFileNameOnStart : TFileName;
+begin
+  VUVar := TUVar.Create(Self);
+
+  LDefaultFilter := ''
+    + 'All Files (*.*)|*.*'
+    + '|' + VUVar.vSynHighlighter.vCS.DefaultFilter
+    + '|' + VUVar.vSynHighlighter.vHTML.DefaultFilter
+    + '|' + VUVar.vSynHighlighter.vJava.DefaultFilter
+    + '|' + VUVar.vSynHighlighter.vJSOn.DefaultFilter
+    + '|' + VUVar.vSynHighlighter.vPas.DefaultFilter
+    + '|' + VUVar.vSynHighlighter.vPHP.DefaultFilter
+     + '|' + VUVar.vSynHighlighter.vPython.DefaultFilter
+  ;
+  Self.OpenDialogMain.Filter := string(LDefaultFilter);
+
+  {
+  LFileNameOnStart := string(VUTools.FcParamsInSingleText);
+  if Trim(LFileNameOnStart) <> '' then
+  begin
+    Self.OpenFile(LFileNameOnStart);
+  end;
+  }
+end;
+
 procedure TFormMain.MenuItemFileExitClick(Sender: TObject);
 begin
   Application.Terminate;
@@ -107,32 +128,6 @@ end;
 procedure TFormMain.MenuItem4Click(Sender: TObject);
 begin
   MessageDlg('About','Anoa-Syntax-Editor',mtInformation,[mbOK],0);
-end;
-
-procedure TFormMain.FormCreate(Sender: TObject);
-var
-  LDefaultFilter : WideString;
-  LFileNameOnStart : TFileName;
-begin
-  VUVar.fcInit;
-
-  LDefaultFilter := ''
-    + 'All Files (*.*)|*.*'
-    + '|' + Self.SynCSSynMain.DefaultFilter
-    + '|' + Self.SynHTMLSynMain.DefaultFilter
-    + '|' + Self.SynJavaSynMain.DefaultFilter
-    + '|' + Self.SynJSONSynMain.DefaultFilter
-    + '|' + Self.SynPasSynMain.DefaultFilter
-    + '|' + Self.SynPHPSynMain.DefaultFilter
-    + '|' + Self.SynPythonSynMain.DefaultFilter
-  ;
-  Self.OpenDialogMain.Filter := string(LDefaultFilter);
-
-  LFileNameOnStart := string(VUTools.FcParamsInSingleText);
-  if Trim(LFileNameOnStart) <> '' then
-  begin
-    Self.OpenFile(LFileNameOnStart);
-  end;
 end;
 
 procedure TFormMain.MenuItemFileOpenClick(Sender: TObject);
@@ -153,8 +148,8 @@ begin
   Self.SynEditMain.Lines.LoadFromFile(LFileName);
   Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
   LLangTxt := VULang.SetLang(LFileName,Self.SynEditMain,
-    Self.SynCSSynMain,Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynJSONSynMain,
-      Self.SynPasSynMain,Self.SynPHPSynMain,Self.SynPythonSynMain,
+    VUVar.vSynHighlighter.vCS,VUVar.vSynHighlighter.vHTML,VUVar.vSynHighlighter.vJava,VUVar.vSynHighlighter.vJSON,
+      VUVar.vSynHighlighter.vPas,VUVar.vSynHighlighter.vPHP,VUVar.vSynHighlighter.vPython,
     Self.SynCompletionMain
   );
   Self.StatusBarMain.Panels[0].Text := LLangTxt;
@@ -220,8 +215,8 @@ var
   LLangText : string;
 begin
   LLangText := VULang.SetLang(ALang,Self.SynEditMain,
-    Self.SynCSSynMain,Self.SynHTMLSynMain,Self.SynJavaSynMain,Self.SynJSONSynMain,
-      Self.SynPasSynMain,Self.SynPHPSynMain,Self.SynPythonSynMain,
+    VUVar.vSynHighlighter.vCS,VUVar.vSynHighlighter.vHTML,VUVar.vSynHighlighter.vJava,VUVar.vSynHighlighter.vJSON,
+      VUVar.vSynHighlighter.vPas,VUVar.vSynHighlighter.vPHP,VUVar.vSynHighlighter.vPython,
     Self.SynCompletionMain
   );
   Self.StatusBarMain.Panels[0].Text := LLangText;
