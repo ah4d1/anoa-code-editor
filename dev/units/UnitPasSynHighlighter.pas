@@ -6,10 +6,12 @@ interface
 
 uses
   Classes, SysUtils, SynEditHighlighter, SynHighlighterCS, SynHighlighterHTML, SynHighlighterJava,
-  SynHighlighterJSON, SynHighlighterPas, SynHighlighterPHP, SynHighlighterPython;
+  SynHighlighterJSON, SynHighlighterPas, SynHighlighterPHP, SynHighlighterPython, SynHighlighterSQL;
 
 type
-  TASETypeLang = (aseLangCSharp,aseLangHTML,aseLangJava,aseLangJSON,aseLangPas,aseLangPHP,aseLangPython);
+  TASETypeLang = (aseLangCSharp,aseLangHTML,aseLangJava,aseLangJSON,aseLangPas
+    ,aseLangPHP,aseLangPython,aseLangSQL
+  );
   {After add TASETypeLang, see also vASETypeLang & vReservedWords at UnitPasVar}
 
   TUSynHighlighter = class
@@ -20,6 +22,7 @@ type
     vPas : TSynPasSyn;
     vPHP : TSynPHPSyn;
     vPython : TSynPythonSyn;
+    vSQL : TSynSQLSyn;
     constructor Create (AOwner : TComponent);
     function fcSetDefaultFilter : WideString;
     function fcGetLang (AFileExt : string) : TASETypeLang;
@@ -30,13 +33,14 @@ implementation
 
 constructor TUSynHighlighter.Create (AOwner : TComponent);
 begin
-  vCS := TSynCSSyn.Create(AOwner);
-  vHTML := TSynHTMLSyn.Create(AOwner);
-  vJava := TSynJavaSyn.Create(AOwner);
-  vJSON := TSynJSONSyn.Create(AOwner);
-  vPas := TSynPasSyn.Create(AOwner);
-  vPHP := TSynPHPSyn.Create(AOwner);
-  vPython := TSynPythonSyn.Create(AOwner);
+  Self.vCS := TSynCSSyn.Create(AOwner);
+  Self.vHTML := TSynHTMLSyn.Create(AOwner);
+  Self.vJava := TSynJavaSyn.Create(AOwner);
+  Self.vJSON := TSynJSONSyn.Create(AOwner);
+  Self.vPas := TSynPasSyn.Create(AOwner);
+  Self.vPHP := TSynPHPSyn.Create(AOwner);
+  Self.vPython := TSynPythonSyn.Create(AOwner);
+  Self.vSQL := TSynSQLSyn.Create(AOwner);
 end;
 
 function TUSynHighlighter.fcSetDefaultFilter : WideString;
@@ -49,7 +53,8 @@ begin
     + '|' + Self.vJSOn.DefaultFilter
     + '|' + Self.vPas.DefaultFilter
     + '|' + Self.vPHP.DefaultFilter
-     + '|' + Self.vPython.DefaultFilter
+    + '|' + Self.vPython.DefaultFilter
+    + '|' + Self.vSQL.DefaultFilter
   ;
 end;
 
@@ -64,6 +69,7 @@ begin
     else if Pos(AFileExt,Self.vPas.DefaultFilter) >= 1 then LLang := aseLangPas
     else if Pos(AFileExt,Self.vPHP.DefaultFilter) >= 1 then LLang := aseLangPHP
     else if Pos(AFileExt,Self.vPython.DefaultFilter) >= 1 then LLang := aseLangPython
+    else if Pos(AFileExt,Self.vSQL.DefaultFilter) >= 1 then LLang := aseLangSQL
   ;
   Result := LLang;
 end;
@@ -80,6 +86,7 @@ begin
     aseLangPas    : LResult := Self.vPas;
     aseLangPHP    : LResult := Self.vPHP;
     aseLangPython : LResult := Self.vPython;
+    aseLangSQL    : LResult := Self.vSQL;
   end;
   Result := LResult;
 end;
