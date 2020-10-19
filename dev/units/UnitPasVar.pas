@@ -5,7 +5,7 @@ unit UnitPasVar;
 interface
 
 uses
-  Classes, SysUtils, UnitPasSynHighlighter;
+  Classes, SysUtils, UnitPasSynHighlighter, UnitPasReserveWords;
 
 type
   TUVar = class
@@ -14,7 +14,7 @@ type
     vImageIndexModifiedFile : Byte;
     vASETypeLang : TStringList;
     vSynHighlighter : TUSynHighlighter;
-    vReservedWords : array[0..6] of WideString; // to determine size of the array, see TASETypeLang
+    vReservedWords : TUReserveWords;
     constructor Create (AOwner : TComponent);
   end;
 
@@ -24,26 +24,16 @@ var
 implementation
 
 uses
-  UnitPasReserveWords, UnitPasTools;
+  UnitPasTools;
 
 constructor TUVar.Create (AOwner : TComponent);
-var
-  LRsrvWrd : Integer;
 begin
   Self.vCurrentFileName := '';
   Self.vImageIndexNormalFile := 3;
   Self.vImageIndexModifiedFile := 4;
-  vASETypeLang := VUTools.FcStringExplode('C#|HTML|Java|JSON|Pascal|PHP|Python','|');
-  vSynHighlighter := TUSynHighlighter.Create(AOwner);
-  {Reserve Words}
-  LRsrvWrd := -1;
-  LRsrvWrd := LRsrvWrd + 1; vReservedWords[LRsrvWrd] := VUReserveWords.fcCS;
-  LRsrvWrd := LRsrvWrd + 1; vReservedWords[LRsrvWrd] := VUReserveWords.fcHTML;
-  LRsrvWrd := LRsrvWrd + 1; vReservedWords[LRsrvWrd] := VUReserveWords.fcJava;
-  LRsrvWrd := LRsrvWrd + 1; vReservedWords[LRsrvWrd] := VUReserveWords.fcJSON;
-  LRsrvWrd := LRsrvWrd + 1; vReservedWords[LRsrvWrd] := VUReserveWords.fcPascal;
-  LRsrvWrd := LRsrvWrd + 1; vReservedWords[LRsrvWrd] := VUReserveWords.fcPHP;
-  LRsrvWrd := LRsrvWrd + 1; vReservedWords[LRsrvWrd] := VUReserveWords.fcPython;
+  Self.vASETypeLang := VUTools.FcStringExplode('C#|HTML|Java|JSON|Pascal|PHP|Python','|');
+  Self.vSynHighlighter := TUSynHighlighter.Create(AOwner);
+  Self.vReservedWords := TUReserveWords.Create(AOwner);
 end;
 
 end.
