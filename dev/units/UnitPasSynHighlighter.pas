@@ -13,8 +13,6 @@ type
   TASETypeLang = (aseLangNone,aseLangCobol,aseLangCS,aseLangHTML,aseLangJava,aseLangJSON,aseLangPas
     ,aseLangPHP,aseLangPython,aseLangSQL
   );
-  {After add TASETypeLang, see also vASETypeLang & vReservedWords at UnitPasVar}
-
   TUSynHighlighter = class
     vNone   : TSynCustomHighLighter;
     vCobol  : TSynCobolSyn;
