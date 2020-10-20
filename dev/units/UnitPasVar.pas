@@ -5,7 +5,7 @@ unit UnitPasVar;
 interface
 
 uses
-  Classes, SysUtils, SynEditHighlighter, UnitPasPageControl, UnitPasSynEdit, UnitPasSynCompletion,
+  Classes, SysUtils, SynEditHighlighter, UnitPasPageControl, UnitCmpSynEdit,
   UnitPasStatusBar, UnitPasSynHighlighter, UnitPasReserveWords;
 
 type
@@ -21,13 +21,13 @@ type
     procedure Update (AASETypeLang : TASETypeLang; AFileName : TFileName); overload;
   end;
   TUVar = class
+    vTabNo : Byte;
     vCurrentData : TUVar_CurrentData;
     vASETypeLang : TStringList;
     vPageControl : TUPageControl;
     vImageIndexNormalFile : Byte;
     vImageIndexModifiedFile : Byte;
     vSynEdit : TUSynEdit;
-    vSynCompletion : TUSynCompletion;
     vStatusBar : TUStatusBar;
     vSynHighlighter : TUSynHighlighter;
     vReservedWords : TUReserveWords;
@@ -72,11 +72,11 @@ end;
 
 constructor TUVar.Create (AOwner : TComponent);
 begin
+  Self.vTabNo := 0;
   Self.vImageIndexNormalFile := 3;
   Self.vImageIndexModifiedFile := 4;
   Self.vPageControl := TUPageControl.Create;
-  Self.vSynEdit := TUSynEdit.Create;
-  Self.vSynCompletion := TUSynCompletion.Create;
+  Self.vSynEdit := TUSynEdit.Create(AOwner);
   Self.vStatusBar := TUStatusBar.Create;
   Self.vSynHighlighter := TUSynHighlighter.Create(AOwner);
   Self.vReservedWords := TUReserveWords.Create(AOwner);
