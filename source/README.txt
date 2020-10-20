@@ -7,9 +7,19 @@ License     : GNU General Public License version 2
 PROJECT DETAILS :
 -------------------------------------
 Started     : 13th October 2020
-Website     : anoa-projects.com
+Website     : www.anoa-projects.com
 Binary      : https://sourceforge.net/projects/anoa-syntax-editor/files/
 Source Code : https://github.com/ah4d1/anoa-syntax-editor
+
+
+MAIN FEATURES :
+-------------------------------------
+- Open & save file.
+- Easy-to-use editor.
+- Syntax highlighting.
+- Syntax completion (use Ctrl + Space).
+- Support many popular languages.
+- Find & replace.
 
 
 THANKS TO :
