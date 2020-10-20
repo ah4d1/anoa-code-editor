@@ -5,12 +5,12 @@ unit UnitPasSave;
 interface
 
 uses
-  Classes, SysUtils, SynEdit, ComCtrls;
+  Classes, SysUtils, SynEdit;
 
 type
-  TUSave = object
-    procedure Save (AFileName : TFileName; ASynEdit : TSynEdit; APageControlMain : TPageControl;
-      AImageIndex : Byte);
+  TUSave = class
+    constructor Create;
+    procedure Save (ASynEdit : TSynEdit; AFileName : TFileName);
   end;
 
 var
@@ -18,14 +18,14 @@ var
 
 implementation
 
-procedure TUSave.Save (AFileName : TFileName; ASynEdit : TSynEdit; APageControlMain : TPageControl;
-  AImageIndex : Byte);
+constructor TUSave.Create;
 begin
-  if FileExists(AFileName) then
-  begin
-    ASynEdit.Lines.SaveToFile(AFileName);
-    APageControlMain.ActivePage.ImageIndex := AImageIndex;
-  end;
+  //
+end;
+
+procedure TUSave.Save (ASynEdit : TSynEdit; AFileName : TFileName);
+begin
+  ASynEdit.Lines.SaveToFile(AFileName);
 end;
 
 end.
