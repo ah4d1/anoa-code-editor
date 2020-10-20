@@ -9,7 +9,8 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, UnitFormMain, UnitPasTools, UnitPasLang, UnitPasVar,
   UnitPasSynHighlighter, UnitPasReserveWords, UnitFormFindReplace,
-  UnitFormAbout, UnitPasStatusBar, UnitPasPageControl, UnitPasSynEdit, UnitPasSynCompletion;
+  UnitFormAbout, UnitPasStatusBar, UnitPasPageControl, UnitCmpSynEdit,
+  UnitCmpTabSheet, UnitCmpSynCompletion;
 
 {$R *.res}
 
