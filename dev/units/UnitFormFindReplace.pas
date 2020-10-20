@@ -39,11 +39,13 @@ implementation
 { TFormFindReplace }
 
 uses
-  UnitFormMain;
+  UnitFormMain, UnitCmpTabSheet;
 
 procedure TFormFindReplace.ButtonReplaceAllClick(Sender: TObject);
 begin
-  FormMain.SynEditMain.SearchReplace(Self.EditFind.Text,Self.EditReplaceWith.Text,[ssoReplaceAll]);;
+  ((FormMain.PageControlMain.ActivePage) as TUTabSheet).vSynEdit.SearchReplace(
+    Self.EditFind.Text,Self.EditReplaceWith.Text,[ssoReplaceAll]
+  );
 end;
 
 procedure TFormFindReplace.FormActivate(Sender: TObject);
