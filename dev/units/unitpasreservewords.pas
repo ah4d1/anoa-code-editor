@@ -10,7 +10,8 @@ uses
 type
   TUReserveWords = class
     vLangTxt          : WideString;
-    vReservedWords    : array[0..8] of WideString; // always check size of the array
+    vReservedWords    : array[0..9] of WideString; // always check size of the array
+    function fcNone   : WideString;
     function fcCobol  : WideString;
     function fcCS     : WideString; // C Sharp
     function fcHTML   : WideString;
@@ -32,8 +33,9 @@ constructor TUReserveWords.Create (AOwner : TComponent);
 var
   LRsrvWrd : Integer;
 begin
-  Self.vLangTxt := 'COBOL|C#|HTML|Java|JSON|Pascal|PHP|Python|SQL';
+  Self.vLangTxt := '|COBOL|C#|HTML|Java|JSON|Pascal|PHP|Python|SQL';
   LRsrvWrd := -1;
+  LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcNone;
   LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcCobol;
   LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcCS;
   LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcHTML;
@@ -43,6 +45,11 @@ begin
   LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcPHP;
   LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcPython;
   LRsrvWrd := LRsrvWrd + 1; Self.vReservedWords[LRsrvWrd] := Self.fcSQL;
+end;
+
+function TUReserveWords.fcNone : WideString;
+begin
+  Result := '';
 end;
 
 function TUReserveWords.fcCobol : WideString;
