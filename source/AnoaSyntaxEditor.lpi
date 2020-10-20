@@ -37,7 +37,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="10">
+    <Units Count="13">
       <Unit0>
         <Filename Value="AnoaSyntaxEditor.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -62,31 +62,47 @@
         <IsPartOfProject Value="True"/>
       </Unit4>
       <Unit5>
-        <Filename Value="units\UnitPasSave.pas"/>
+        <Filename Value="units\UnitPasSynHighlighter.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit5>
       <Unit6>
-        <Filename Value="units\UnitPasSynHighlighter.pas"/>
+        <Filename Value="units\UnitPasReserveWords.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit6>
       <Unit7>
-        <Filename Value="units\UnitPasReserveWords.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit7>
-      <Unit8>
         <Filename Value="units\UnitFormFindReplace.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormFindReplace"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit8>
-      <Unit9>
+      </Unit7>
+      <Unit8>
         <Filename Value="units\UnitFormAbout.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormAbout"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="units\unitpasstatusbar.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitPasStatusBar"/>
       </Unit9>
+      <Unit10>
+        <Filename Value="units\unitpaspagecontrol.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitPasPageControl"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="units\unitpassynedit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitPasSynEdit"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="units\unitpassyncompletion.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitPasSynCompletion"/>
+      </Unit12>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
