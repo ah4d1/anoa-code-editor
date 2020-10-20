@@ -37,7 +37,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="13">
+    <Units Count="14">
       <Unit0>
         <Filename Value="AnoaSyntaxEditor.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -84,25 +84,28 @@
         <ResourceBaseClass Value="Form"/>
       </Unit8>
       <Unit9>
-        <Filename Value="units\unitpasstatusbar.pas"/>
+        <Filename Value="units\UnitPasStatusBar.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitPasStatusBar"/>
       </Unit9>
       <Unit10>
-        <Filename Value="units\unitpaspagecontrol.pas"/>
+        <Filename Value="units\UnitPasPageControl.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitPasPageControl"/>
       </Unit10>
       <Unit11>
-        <Filename Value="units\unitpassynedit.pas"/>
+        <Filename Value="units\unitcmpsynedit.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitPasSynEdit"/>
+        <UnitName Value="UnitCmpSynEdit"/>
       </Unit11>
       <Unit12>
-        <Filename Value="units\unitpassyncompletion.pas"/>
+        <Filename Value="units\unitcmptabsheet.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitPasSynCompletion"/>
+        <UnitName Value="UnitCmpTabSheet"/>
       </Unit12>
+      <Unit13>
+        <Filename Value="units\unitcmpsyncompletion.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitCmpSynCompletion"/>
+      </Unit13>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
