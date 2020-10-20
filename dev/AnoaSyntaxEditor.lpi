@@ -37,7 +37,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="10">
+    <Units Count="13">
       <Unit0>
         <Filename Value="AnoaSyntaxEditor.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -87,6 +87,21 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit9>
+      <Unit10>
+        <Filename Value="units\unitpasstatusbar.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitPasStatusBar"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="units\unitpaspagecontrol.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitPasPageControl"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="units\unitpassynedit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitPasSynEdit"/>
+      </Unit12>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
