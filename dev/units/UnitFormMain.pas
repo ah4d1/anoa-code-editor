@@ -107,6 +107,7 @@ var
 begin
   VUVar := TUVar.Create(Self);
   Self.OpenDialogMain.Filter := string(VUVar.vSynHighlighter.fcSetDefaultFilter);
+  Self.SaveDialogMain.Filter := string(VUVar.vSynHighlighter.fcSetDefaultFilter);
 
   LFileNameOnStart := string(VUTools.FcParamsInSingleText);
   if Trim(LFileNameOnStart) <> '' then Self.OpenFile(LFileNameOnStart);
@@ -131,7 +132,7 @@ begin
   Self.PageControlMain.ActivePage.ImageIndex := VUVar.vImageIndexNormalFile;
   Self.PageControlMain.ActivePage.Caption := 'New';
   Self.SynEditMain.Lines.Clear;
-  Self.StatusBarMain.Panels[1].Text := '';
+  VUVar.vStatusBar.Update(Self.StatusBarMain,'','');
 end;
 
 procedure TFormMain.MenuItem4Click(Sender: TObject);
@@ -170,30 +171,36 @@ begin
 end;
 
 procedure TFormMain.OpenFile (AFileName : TFileName);
-var
-  LFileName : TFileName;
-  LLangTxt : string;
 begin
-  LFileName := AFileName;
-  VUVar.vCurrentFileName := LFileName;
-  Self.SynEditMain.Lines.LoadFromFile(LFileName);
-  Self.PageControlMain.ActivePage.Caption := ExtractFileName(LFileName);
-  LLangTxt := VULang.SetLang(LFileName,Self.SynEditMain,Self.SynCompletionMain);
-  Self.StatusBarMain.Panels[0].Text := LLangTxt;
-  Self.StatusBarMain.Panels[1].Text := LFileName;
+  VUVar.vCurrentData.Update(AFileName);
+  Self.SynEditMain.Lines.LoadFromFile(AFileName);
+  VUVar.vSynEdit.Update(Self.SynEditMain,VUVar.vCurrentData.vHighlighter);
+  VUVar.vPageControl.Update(Self.PageControlMain,VUVar.vImageIndexNormalFile,VUVar.vCurrentData.vFileName);
+  VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vLangTxt,VUVar.vCurrentData.vFileName);
 end;
 
 procedure TFormMain.MenuItemFileSaveAsClick(Sender: TObject);
 begin
-  if Self.OpenDialogMain.Execute then
+  if Self.SaveDialogMain.Execute then
   begin
-    Self.SynEditMain.Lines.SaveToFile(Self.OpenDialogMain.FileName);
+    VUVar.vCurrentData.Update(Self.SaveDialogMain.FileName);
+    VUVar.vSave.Save(Self.SynEditMain,VUVar.vCurrentData.vFileName);
+    VUVar.vPageControl.Update(Self.PageControlMain,VUVar.vImageIndexNormalFile,VUVar.vCurrentData.vFileName);
+    VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vLangTxt,VUVar.vCurrentData.vFileName);
   end;
 end;
 
 procedure TFormMain.MenuItemFileSaveClick(Sender: TObject);
 begin
-  VUSave.Save(VUVar.vCurrentFileName,Self.SynEditMain,Self.PageControlMain,VUVar.vImageIndexNormalFile);
+  if FileExists(VUVar.vCurrentData.vFileName) then
+  begin
+    VUVar.vSave.Save(Self.SynEditMain,VUVar.vCurrentData.vFileName);
+    VUVar.vPageControl.Update(Self.PageControlMain,VUVar.vImageIndexNormalFile,VUVar.vCurrentData.vFileName);
+    VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vLangTxt,VUVar.vCurrentData.vFileName);
+  end
+  else
+    Self.MenuItemFileSaveAsClick(Sender)
+  ;
 end;
 
 procedure TFormMain.MenuItemSettingsAddToSysMenuClick(Sender: TObject);
@@ -262,11 +269,9 @@ begin
 end;
 
 procedure TFormMain.SetLang (ALang : TASETypeLang);
-var
-  LLangText : string;
 begin
-  LLangText := VULang.SetLang(ALang,Self.SynEditMain,Self.SynCompletionMain);
-  Self.StatusBarMain.Panels[0].Text := LLangText;
+  VUVar.vCurrentData.Update(ALang);
+  VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vASETypeLang);
 end;
 
 procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
