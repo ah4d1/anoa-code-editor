@@ -94,7 +94,7 @@ implementation
 { TFormMain }
 
 uses
-  UnitFormFindReplace, UnitPasVar, UnitPasSave, UnitPasLang, UnitPasTools;
+  UnitFormFindReplace, UnitFormAbout, UnitPasVar, UnitPasSave, UnitPasLang, UnitPasTools;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 var
@@ -131,14 +131,14 @@ end;
 
 procedure TFormMain.MenuItem4Click(Sender: TObject);
 begin
-  MessageDlg('About','Anoa-Syntax-Editor',mtInformation,[mbOK],0);
+  FormAbout := TFormAbout.Create(Self);
+  FormAbout.ShowModal;
 end;
 
 procedure TFormMain.MenuItemEditFindReplaceClick(Sender: TObject);
 begin
   FormFindReplace := TFormFindReplace.Create(Self);
   FormFindReplace.Show;
-  // Self.SynEditMain.SearchReplace('begin','begin2',[ssoReplaceAll]);
 end;
 
 procedure TFormMain.MenuItemEditRedoClick(Sender: TObject);
