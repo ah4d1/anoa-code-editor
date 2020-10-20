@@ -10,21 +10,22 @@ uses
   SynHighlighterSQL;
 
 type
-  TASETypeLang = (aseLangCobol,aseLangCS,aseLangHTML,aseLangJava,aseLangJSON,aseLangPas
+  TASETypeLang = (aseLangNone,aseLangCobol,aseLangCS,aseLangHTML,aseLangJava,aseLangJSON,aseLangPas
     ,aseLangPHP,aseLangPython,aseLangSQL
   );
   {After add TASETypeLang, see also vASETypeLang & vReservedWords at UnitPasVar}
 
   TUSynHighlighter = class
-    vCobol : TSynCobolSyn;
-    vCS : TSynCSSyn;
-    vHTML : TSynHTMLSyn;
-    vJava : TSynJavaSyn;
-    vJSON : TSynJSONSyn;
-    vPas : TSynPasSyn;
-    vPHP : TSynPHPSyn;
+    vNone   : TSynCustomHighLighter;
+    vCobol  : TSynCobolSyn;
+    vCS     : TSynCSSyn;
+    vHTML   : TSynHTMLSyn;
+    vJava   : TSynJavaSyn;
+    vJSON   : TSynJSONSyn;
+    vPas    : TSynPasSyn;
+    vPHP    : TSynPHPSyn;
     vPython : TSynPythonSyn;
-    vSQL : TSynSQLSyn;
+    vSQL    : TSynSQLSyn;
     constructor Create (AOwner : TComponent);
     function fcSetDefaultFilter : WideString;
     function fcGetLang (AFileExt : string) : TASETypeLang;
@@ -35,15 +36,16 @@ implementation
 
 constructor TUSynHighlighter.Create (AOwner : TComponent);
 begin
-  Self.vCobol := TSynCobolSyn.Create(AOwner);
-  Self.vCS := TSynCSSyn.Create(AOwner);
-  Self.vHTML := TSynHTMLSyn.Create(AOwner);
-  Self.vJava := TSynJavaSyn.Create(AOwner);
-  Self.vJSON := TSynJSONSyn.Create(AOwner);
-  Self.vPas := TSynPasSyn.Create(AOwner);
-  Self.vPHP := TSynPHPSyn.Create(AOwner);
+  Self.vNone   := nil;
+  Self.vCobol  := TSynCobolSyn.Create(AOwner);
+  Self.vCS     := TSynCSSyn.Create(AOwner);
+  Self.vHTML   := TSynHTMLSyn.Create(AOwner);
+  Self.vJava   := TSynJavaSyn.Create(AOwner);
+  Self.vJSON   := TSynJSONSyn.Create(AOwner);
+  Self.vPas    := TSynPasSyn.Create(AOwner);
+  Self.vPHP    := TSynPHPSyn.Create(AOwner);
   Self.vPython := TSynPythonSyn.Create(AOwner);
-  Self.vSQL := TSynSQLSyn.Create(AOwner);
+  Self.vSQL    := TSynSQLSyn.Create(AOwner);
 end;
 
 function TUSynHighlighter.fcSetDefaultFilter : WideString;
@@ -66,6 +68,7 @@ function TUSynHighlighter.fcGetLang (AFileExt : string) : TASETypeLang;
 var
   LLang : TASETypeLang;
 begin
+  LLang := aseLangNone;
   if Pos(AFileExt,Self.vCobol.DefaultFilter) >= 1 then LLang := aseLangCobol
     else if Pos(AFileExt,Self.vCS.DefaultFilter) >= 1 then LLang := aseLangCS
     else if Pos(AFileExt,Self.vHTML.DefaultFilter) >= 1 then LLang := aseLangHTML
@@ -84,6 +87,7 @@ var
   LResult : TSynCustomHighlighter;
 begin
   case ALang of
+    aseLangNone   : LResult := Self.vNone;
     aseLangCobol  : LResult := Self.vCobol;
     aseLangCS     : LResult := Self.vCS;
     aseLangHTML   : LResult := Self.vHTML;
