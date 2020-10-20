@@ -3,6 +3,8 @@ v.1.0.0.6 : (Work in Progress)
 Added : Language : COBOL (Main Menu : Settings | Language | COBOL)
 Added : Syntax completion (use Ctrl+Space) : COBOL
 Added : Switch editor color (Main Menu : Settings | Switch Color)
+Added : Undo (Main Menu : Edit | Undo)
+Added : Redo (Main Menu : Edit | Redo)
 Added : Find / Replace (Main Menu : Edit | Find / Replace)
 Update : Code refactoring & other minor updates
 
