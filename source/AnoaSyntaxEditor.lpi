@@ -37,7 +37,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="8">
+    <Units Count="10">
       <Unit0>
         <Filename Value="AnoaSyntaxEditor.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -70,10 +70,23 @@
         <IsPartOfProject Value="True"/>
       </Unit6>
       <Unit7>
-        <Filename Value="units\unitpasreservewords.pas"/>
+        <Filename Value="units\UnitPasReserveWords.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="UnitPasReserveWords"/>
       </Unit7>
+      <Unit8>
+        <Filename Value="units\UnitFormFindReplace.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormFindReplace"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="units\UnitFormAbout.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormAbout"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit9>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
