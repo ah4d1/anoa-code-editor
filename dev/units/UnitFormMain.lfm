@@ -1,12 +1,12 @@
 object FormMain: TFormMain
-  Left = 504
-  Height = 582
-  Top = 206
-  Width = 890
+  Left = 359
+  Height = 786
+  Top = 136
+  Width = 1201
   ActiveControl = SynEditMain
   Caption = 'Anoa-Syntax-Editor'
-  ClientHeight = 552
-  ClientWidth = 890
+  ClientHeight = 756
+  ClientWidth = 1201
   DesignTimePPI = 144
   Menu = MainMenuMain
   OnActivate = FormActivate
@@ -16,8 +16,8 @@ object FormMain: TFormMain
   object StatusBarMain: TStatusBar
     Left = 0
     Height = 36
-    Top = 516
-    Width = 890
+    Top = 720
+    Width = 1201
     Panels = <    
       item
         Alignment = taCenter
@@ -33,7 +33,7 @@ object FormMain: TFormMain
     Left = 0
     Height = 39
     Top = 0
-    Width = 890
+    Width = 1201
     Caption = 'ToolBarMain'
     Images = ImageListMain
     ImagesWidth = 24
@@ -77,9 +77,9 @@ object FormMain: TFormMain
   end
   object PageControlMain: TPageControl
     Left = 0
-    Height = 477
+    Height = 681
     Top = 39
-    Width = 890
+    Width = 1201
     ActivePage = TabSheet1
     Align = alClient
     Images = ImageListMain
@@ -88,14 +88,14 @@ object FormMain: TFormMain
     TabOrder = 2
     object TabSheet1: TTabSheet
       Caption = 'New'
-      ClientHeight = 439
-      ClientWidth = 882
+      ClientHeight = 643
+      ClientWidth = 1193
       ImageIndex = 3
       inline SynEditMain: TSynEdit
         Left = 0
-        Height = 439
+        Height = 643
         Top = 0
-        Width = 882
+        Width = 1193
         Align = alClient
         Font.Height = -18
         Font.Name = 'Courier New'
