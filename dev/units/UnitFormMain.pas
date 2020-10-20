@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  StdCtrls, Spin, SynEdit, SynCompletion, UnitPasSynHighlighter;
+  StdCtrls, Spin, SynHighlighterCobol, SynEdit, SynCompletion,
+  UnitPasSynHighlighter;
 
 type
 
@@ -20,6 +21,8 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemSettingsLangNone: TMenuItem;
+    MenuItemEditShowCompletion: TMenuItem;
     MenuItemEditRedo: TMenuItem;
     MenuItemEditUndo: TMenuItem;
     MenuItemEditFindReplace: TMenuItem;
@@ -56,6 +59,7 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
+    procedure MenuItemEditShowCompletionClick(Sender: TObject);
     procedure MenuItemEditFindReplaceClick(Sender: TObject);
     procedure MenuItemEditRedoClick(Sender: TObject);
     procedure MenuItemEditUndoClick(Sender: TObject);
@@ -70,6 +74,7 @@ type
     procedure MenuItemSettingsLangHTMLClick(Sender: TObject);
     procedure MenuItemSettingsLangJavaClick(Sender: TObject);
     procedure MenuItemSettingsLangJSONClick(Sender: TObject);
+    procedure MenuItemSettingsLangNoneClick(Sender: TObject);
     procedure MenuItemSettingsLangPascalClick(Sender: TObject);
     procedure MenuItemSettingsLangPHPClick(Sender: TObject);
     procedure MenuItemSettingsLangPythonClick(Sender: TObject);
@@ -133,6 +138,11 @@ procedure TFormMain.MenuItem4Click(Sender: TObject);
 begin
   FormAbout := TFormAbout.Create(Self);
   FormAbout.ShowModal;
+end;
+
+procedure TFormMain.MenuItemEditShowCompletionClick(Sender: TObject);
+begin
+  Self.SynEditMain.CommandProcessor(Self.SynCompletionMain.ExecCommandID, '', nil)
 end;
 
 procedure TFormMain.MenuItemEditFindReplaceClick(Sender: TObject);
@@ -215,6 +225,11 @@ end;
 procedure TFormMain.MenuItemSettingsLangJSONClick(Sender: TObject);
 begin
   Self.SetLang(aseLangJSON);
+end;
+
+procedure TFormMain.MenuItemSettingsLangNoneClick(Sender: TObject);
+begin
+  Self.SetLang(aseLangNone);
 end;
 
 procedure TFormMain.MenuItemSettingsLangPascalClick(Sender: TObject);
