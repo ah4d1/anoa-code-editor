@@ -1,22 +1,23 @@
 object FormMain: TFormMain
-  Left = 504
-  Height = 582
-  Top = 206
-  Width = 890
+  Left = 359
+  Height = 786
+  Top = 136
+  Width = 1201
   ActiveControl = SynEditMain
   Caption = 'Anoa-Syntax-Editor'
-  ClientHeight = 552
-  ClientWidth = 890
+  ClientHeight = 756
+  ClientWidth = 1201
   DesignTimePPI = 144
   Menu = MainMenuMain
+  OnActivate = FormActivate
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
   object StatusBarMain: TStatusBar
     Left = 0
     Height = 36
-    Top = 516
-    Width = 890
+    Top = 720
+    Width = 1201
     Panels = <    
       item
         Alignment = taCenter
@@ -32,7 +33,7 @@ object FormMain: TFormMain
     Left = 0
     Height = 39
     Top = 0
-    Width = 890
+    Width = 1201
     Caption = 'ToolBarMain'
     Images = ImageListMain
     ImagesWidth = 24
@@ -76,9 +77,9 @@ object FormMain: TFormMain
   end
   object PageControlMain: TPageControl
     Left = 0
-    Height = 477
+    Height = 681
     Top = 39
-    Width = 890
+    Width = 1201
     ActivePage = TabSheet1
     Align = alClient
     Images = ImageListMain
@@ -87,14 +88,14 @@ object FormMain: TFormMain
     TabOrder = 2
     object TabSheet1: TTabSheet
       Caption = 'New'
-      ClientHeight = 439
-      ClientWidth = 882
+      ClientHeight = 643
+      ClientWidth = 1193
       ImageIndex = 3
       inline SynEditMain: TSynEdit
         Left = 0
-        Height = 439
+        Height = 643
         Top = 0
-        Width = 882
+        Width = 1193
         Align = alClient
         Font.Height = -18
         Font.Name = 'Courier New'
@@ -548,7 +549,7 @@ object FormMain: TFormMain
         FoldedCodeColor.FrameColor = clGray
         MouseLinkColor.Background = clNone
         MouseLinkColor.Foreground = clBlue
-        LineHighlightColor.Background = 15790320
+        LineHighlightColor.Background = 13876617
         LineHighlightColor.Foreground = clNone
         OnChange = SynEditMainChange
         inline SynLeftGutterPartList1: TSynGutterPartList
@@ -626,10 +627,41 @@ object FormMain: TFormMain
         OnClick = MenuItemFileExitClick
       end
     end
+    object MenuItemEdit: TMenuItem
+      Caption = '&Edit'
+      object MenuItemEditUndo: TMenuItem
+        Caption = '&Undo'
+        ShortCut = 16474
+        OnClick = MenuItemEditUndoClick
+      end
+      object MenuItemEditRedo: TMenuItem
+        Caption = '&Redo'
+        ShortCut = 24666
+        OnClick = MenuItemEditRedoClick
+      end
+      object MenuItemEditFindReplace: TMenuItem
+        Caption = '&Find / Replace ...'
+        ShortCut = 16454
+        OnClick = MenuItemEditFindReplaceClick
+      end
+      object MenuItemEditShowCompletion: TMenuItem
+        Caption = 'Show Completion ...'
+        ShortCut = 16416
+        OnClick = MenuItemEditShowCompletionClick
+      end
+    end
     object MenuItemSettings: TMenuItem
       Caption = '&Settings'
       object MenuItemSettingsLang: TMenuItem
         Caption = '&Language'
+        object MenuItemSettingsLangNone: TMenuItem
+          Caption = 'None'
+          OnClick = MenuItemSettingsLangNoneClick
+        end
+        object MenuItemSettingsLangCobol: TMenuItem
+          Caption = 'COBOL'
+          OnClick = MenuItemSettingsLangCobolClick
+        end
         object MenuItemSettingsLangCSharp: TMenuItem
           Caption = 'C#'
           OnClick = MenuItemSettingsLangCSharpClick
@@ -663,8 +695,12 @@ object FormMain: TFormMain
           OnClick = MenuItemSettingsLangSQLClick
         end
       end
+      object MenuItemSettingsSwitchColor: TMenuItem
+        Caption = 'Switch Editor Color'
+        OnClick = MenuItemSettingsSwitchColorClick
+      end
       object MenuItemSettingsAddToSysMenu: TMenuItem
-        Caption = 'Add to SysMenu'
+        Caption = 'Add to Win Explorer Menu'
         OnClick = MenuItemSettingsAddToSysMenuClick
       end
     end
