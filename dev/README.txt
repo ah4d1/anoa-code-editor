@@ -8,7 +8,7 @@ PROJECT DETAILS :
 -------------------------------------
 Started     : 13th October 2020
 Website     : www.anoa-projects.com
-Binary      : anoa-syntax-editor.sourceforge.io
+Binary      : www.anoa-syntax-editor.sourceforge.io
 Source Code : https://github.com/ah4d1/anoa-syntax-editor
 
 
