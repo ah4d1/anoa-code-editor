@@ -19,6 +19,7 @@ MAIN FEATURES :
 - Syntax highlighting.
 - Syntax completion (use Ctrl + Space).
 - Support many popular languages.
+- Find & replace.
 
 
 THANKS TO :
