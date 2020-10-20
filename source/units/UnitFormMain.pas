@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  StdCtrls, Spin, SynEdit, SynCompletion, UnitPasSynHighlighter;
+  StdCtrls, Spin, SynHighlighterCobol, SynEdit, SynCompletion,
+  UnitPasSynHighlighter;
 
 type
 
@@ -20,6 +21,14 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemSettingsLangNone: TMenuItem;
+    MenuItemEditShowCompletion: TMenuItem;
+    MenuItemEditRedo: TMenuItem;
+    MenuItemEditUndo: TMenuItem;
+    MenuItemEditFindReplace: TMenuItem;
+    MenuItemEdit: TMenuItem;
+    MenuItemSettingsSwitchColor: TMenuItem;
+    MenuItemSettingsLangCobol: TMenuItem;
     MenuItemSettingsLangSQL: TMenuItem;
     MenuItemSettingsLangCSharp: TMenuItem;
     MenuItemSettingsLangJSON: TMenuItem;
@@ -47,22 +56,30 @@ type
     ToolBarMain: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
+    procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
+    procedure MenuItemEditShowCompletionClick(Sender: TObject);
+    procedure MenuItemEditFindReplaceClick(Sender: TObject);
+    procedure MenuItemEditRedoClick(Sender: TObject);
+    procedure MenuItemEditUndoClick(Sender: TObject);
     procedure MenuItemFileExitClick(Sender: TObject);
     procedure MenuItemFileNewClick(Sender: TObject);
     procedure MenuItemFileOpenClick(Sender: TObject);
     procedure MenuItemFileSaveAsClick(Sender: TObject);
     procedure MenuItemFileSaveClick(Sender: TObject);
     procedure MenuItemSettingsAddToSysMenuClick(Sender: TObject);
+    procedure MenuItemSettingsLangCobolClick(Sender: TObject);
     procedure MenuItemSettingsLangCSharpClick(Sender: TObject);
     procedure MenuItemSettingsLangHTMLClick(Sender: TObject);
     procedure MenuItemSettingsLangJavaClick(Sender: TObject);
     procedure MenuItemSettingsLangJSONClick(Sender: TObject);
+    procedure MenuItemSettingsLangNoneClick(Sender: TObject);
     procedure MenuItemSettingsLangPascalClick(Sender: TObject);
     procedure MenuItemSettingsLangPHPClick(Sender: TObject);
     procedure MenuItemSettingsLangPythonClick(Sender: TObject);
     procedure MenuItemSettingsLangSQLClick(Sender: TObject);
+    procedure MenuItemSettingsSwitchColorClick(Sender: TObject);
     procedure SpinEditFontSizeChange(Sender: TObject);
     procedure SynEditMainChange(Sender: TObject);
   private
@@ -82,7 +99,7 @@ implementation
 { TFormMain }
 
 uses
-  UnitPasVar, UnitPasSave, UnitPasLang, UnitPasTools;
+  UnitFormFindReplace, UnitFormAbout, UnitPasVar, UnitPasSave, UnitPasLang, UnitPasTools;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 var
@@ -93,6 +110,15 @@ begin
 
   LFileNameOnStart := string(VUTools.FcParamsInSingleText);
   if Trim(LFileNameOnStart) <> '' then Self.OpenFile(LFileNameOnStart);
+end;
+
+procedure TFormMain.FormActivate(Sender: TObject);
+begin
+  if FormFindReplace <> nil then
+  begin
+    FormFindReplace.AlphaBlend := True;
+    FormFindReplace.AlphaBlendValue := 175;
+  end;
 end;
 
 procedure TFormMain.MenuItemFileExitClick(Sender: TObject);
@@ -110,7 +136,29 @@ end;
 
 procedure TFormMain.MenuItem4Click(Sender: TObject);
 begin
-  MessageDlg('About','Anoa-Syntax-Editor',mtInformation,[mbOK],0);
+  FormAbout := TFormAbout.Create(Self);
+  FormAbout.ShowModal;
+end;
+
+procedure TFormMain.MenuItemEditShowCompletionClick(Sender: TObject);
+begin
+  Self.SynEditMain.CommandProcessor(Self.SynCompletionMain.ExecCommandID, '', nil)
+end;
+
+procedure TFormMain.MenuItemEditFindReplaceClick(Sender: TObject);
+begin
+  FormFindReplace := TFormFindReplace.Create(Self);
+  FormFindReplace.Show;
+end;
+
+procedure TFormMain.MenuItemEditRedoClick(Sender: TObject);
+begin
+  Self.SynEditMain.Redo;
+end;
+
+procedure TFormMain.MenuItemEditUndoClick(Sender: TObject);
+begin
+  Self.SynEditMain.Undo;
 end;
 
 procedure TFormMain.MenuItemFileOpenClick(Sender: TObject);
@@ -154,9 +202,14 @@ begin
   MessageDlg('Please check at Windows Explorer Context Menu',mtInformation,[mbOK],0);
 end;
 
+procedure TFormMain.MenuItemSettingsLangCobolClick(Sender: TObject);
+begin
+  Self.SetLang(aseLangCobol);
+end;
+
 procedure TFormMain.MenuItemSettingsLangCSharpClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangCSharp);
+  Self.SetLang(aseLangCS);
 end;
 
 procedure TFormMain.MenuItemSettingsLangHTMLClick(Sender: TObject);
@@ -172,6 +225,11 @@ end;
 procedure TFormMain.MenuItemSettingsLangJSONClick(Sender: TObject);
 begin
   Self.SetLang(aseLangJSON);
+end;
+
+procedure TFormMain.MenuItemSettingsLangNoneClick(Sender: TObject);
+begin
+  Self.SetLang(aseLangNone);
 end;
 
 procedure TFormMain.MenuItemSettingsLangPascalClick(Sender: TObject);
@@ -192,6 +250,15 @@ end;
 procedure TFormMain.MenuItemSettingsLangSQLClick(Sender: TObject);
 begin
   Self.SetLang(aseLangSQL);
+end;
+
+procedure TFormMain.MenuItemSettingsSwitchColorClick(Sender: TObject);
+begin
+  Self.SynEditMain.Color := VUTools.ComplementaryColor(Self.SynEditMain.Color);
+  Self.SynEditMain.Font.Color := VUTools.ComplementaryColor(Self.SynEditMain.Font.Color);
+  Self.SynEditMain.Gutter.Color := VUTools.ComplementaryColor(Self.SynEditMain.Gutter.Color);
+  Self.SynEditMain.Gutter.Parts[1].MarkupInfo.Background := VUTools.ComplementaryColor(Self.SynEditMain.Gutter.Parts[1].MarkupInfo.Background);;
+  Self.SynEditMain.LineHighlightColor.Background := VUTools.ComplementaryColor(Self.SynEditMain.LineHighlightColor.Background);
 end;
 
 procedure TFormMain.SetLang (ALang : TASETypeLang);
