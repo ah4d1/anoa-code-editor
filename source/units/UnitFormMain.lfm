@@ -961,6 +961,7 @@ object FormMain: TFormMain
     ShortCut = 16416
     EndOfTokenChr = '()[].'
     ExecCommandID = ecSynCompletionExecute
+    Editor = SynEditMain
     ToggleReplaceWhole = False
     left = 384
     top = 448
