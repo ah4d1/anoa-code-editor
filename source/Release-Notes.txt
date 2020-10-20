@@ -1,3 +1,10 @@
+v.1.0.0.7 : (Released 20th Oct 2020)
+----------------------------------------------------------
+Added  : Save dialog default filter
+Fixed  : Update language type and file name info at status bar while saving file.
+Fixed  : Fixing bugs
+Update : Code refactoring & other minor updates
+
 v.1.0.0.6 : (Released 20th Oct 2020)
 ----------------------------------------------------------
 Added : Language : COBOL (Main Menu : Settings | Language | COBOL)
