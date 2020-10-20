@@ -13,13 +13,15 @@ type
 
   TFormFindReplace = class(TForm)
     ButtonReplaceAll: TButton;
+    ComboBoxDirection: TComboBox;
     EditFind: TEdit;
     EditReplaceWith: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    PageControlMain: TPageControl;
-    TabSheetReplace: TTabSheet;
+    GroupBoxOptions: TGroupBox;
+    LabelFind: TLabel;
+    LabelReplaceWith: TLabel;
+    LabelDirection: TLabel;
     procedure ButtonReplaceAllClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
 
   public
@@ -41,6 +43,12 @@ uses
 procedure TFormFindReplace.ButtonReplaceAllClick(Sender: TObject);
 begin
   FormMain.SynEditMain.SearchReplace(Self.EditFind.Text,Self.EditReplaceWith.Text,[ssoReplaceAll]);;
+end;
+
+procedure TFormFindReplace.FormActivate(Sender: TObject);
+begin
+  Self.AlphaBlend := False;
+  Self.AlphaBlendValue := 255;
 end;
 
 end.
