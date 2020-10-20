@@ -1,4 +1,4 @@
-v.1.0.0.7 : (Work in progress)
+v.1.0.0.7 : (Released 20th Oct 2020)
 ----------------------------------------------------------
 Added  : Save dialog default filter
 Fixed  : Update language type and file name info at status bar while saving file.
