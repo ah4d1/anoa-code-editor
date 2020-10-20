@@ -22,6 +22,7 @@ type
     LabelDirection: TLabel;
     procedure ButtonReplaceAllClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
   private
 
   public
@@ -49,6 +50,12 @@ procedure TFormFindReplace.FormActivate(Sender: TObject);
 begin
   Self.AlphaBlend := False;
   Self.AlphaBlendValue := 255;
+end;
+
+procedure TFormFindReplace.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+begin
+  Self.Release;
 end;
 
 end.
