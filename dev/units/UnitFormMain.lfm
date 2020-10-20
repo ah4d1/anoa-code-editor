@@ -9,6 +9,7 @@ object FormMain: TFormMain
   ClientWidth = 890
   DesignTimePPI = 144
   Menu = MainMenuMain
+  OnActivate = FormActivate
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
@@ -628,8 +629,18 @@ object FormMain: TFormMain
     end
     object MenuItemEdit: TMenuItem
       Caption = '&Edit'
+      object MenuItemEditUndo: TMenuItem
+        Caption = '&Undo'
+        ShortCut = 16474
+        OnClick = MenuItemEditUndoClick
+      end
+      object MenuItemEditRedo: TMenuItem
+        Caption = '&Redo'
+        ShortCut = 24666
+        OnClick = MenuItemEditRedoClick
+      end
       object MenuItemEditFindReplace: TMenuItem
-        Caption = '&Find / Replace'
+        Caption = '&Find / Replace ...'
         ShortCut = 16454
         OnClick = MenuItemEditFindReplaceClick
       end
@@ -675,13 +686,13 @@ object FormMain: TFormMain
           OnClick = MenuItemSettingsLangSQLClick
         end
       end
-      object MenuItemSettingsAddToSysMenu: TMenuItem
-        Caption = 'Add to SysMenu'
-        OnClick = MenuItemSettingsAddToSysMenuClick
-      end
       object MenuItemSettingsSwitchColor: TMenuItem
-        Caption = 'Switch Color'
+        Caption = 'Switch Editor Color'
         OnClick = MenuItemSettingsSwitchColorClick
+      end
+      object MenuItemSettingsAddToSysMenu: TMenuItem
+        Caption = 'Add to Win Explorer Menu'
+        OnClick = MenuItemSettingsAddToSysMenuClick
       end
     end
     object MenuItem3: TMenuItem
