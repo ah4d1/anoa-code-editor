@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="19">
+    <Units Count="20">
       <Unit0>
         <Filename Value="AnoaSyntaxEditor.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="124"/>
+        <UsageCount Value="128"/>
       </Unit0>
       <Unit1>
         <Filename Value="units\UnitFormMain.pas"/>
@@ -20,19 +20,18 @@
         <ComponentName Value="FormMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="51"/>
-        <CursorPos X="53" Y="68"/>
-        <UsageCount Value="124"/>
+        <TopLine Value="132"/>
+        <CursorPos X="112" Y="139"/>
+        <UsageCount Value="128"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="units\UnitPasTools.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <CursorPos X="40" Y="8"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="113"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -40,15 +39,15 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
         <CursorPos X="27" Y="43"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="109"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="units\UnitPasVar.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <CursorPos X="17" Y="22"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="108"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
@@ -56,240 +55,253 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="40" Y="26"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="108"/>
       </Unit5>
       <Unit6>
         <Filename Value="units\UnitPasSynHighlighter.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="79"/>
+        <EditorIndex Value="7"/>
         <CursorPos X="43" Y="101"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="70"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="units\UnitPasReserveWords.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="53"/>
         <CursorPos X="9" Y="54"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="64"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
-        <Filename Value="units\unitformfindreplace.pas"/>
+        <Filename Value="units\UnitFormFindReplace.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormFindReplace"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="UnitFormFindReplace"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="32"/>
-        <CursorPos X="55" Y="49"/>
-        <UsageCount Value="46"/>
+        <TopLine Value="40"/>
+        <CursorPos Y="59"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit8>
       <Unit9>
+        <Filename Value="units\UnitFormAbout.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormAbout"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="16"/>
+        <CursorPos X="101" Y="26"/>
+        <UsageCount Value="24"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit9>
+      <Unit10>
         <Filename Value="C:\lazarus\lcl\comctrls.pp"/>
         <UnitName Value="ComCtrls"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="18"/>
         <CursorPos X="14" Y="24"/>
         <UsageCount Value="2"/>
-      </Unit9>
-      <Unit10>
+      </Unit10>
+      <Unit11>
         <Filename Value="C:\lazarus\components\synedit\synedit.pp"/>
         <UnitName Value="SynEdit"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1101"/>
         <CursorPos X="14" Y="1112"/>
         <UsageCount Value="10"/>
-      </Unit10>
-      <Unit11>
+      </Unit11>
+      <Unit12>
         <Filename Value="C:\lazarus\components\synedit\synhighlighterhtml.pp"/>
         <UnitName Value="SynHighlighterHTML"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="41"/>
         <CursorPos X="24" Y="44"/>
         <UsageCount Value="2"/>
-      </Unit11>
-      <Unit12>
+      </Unit12>
+      <Unit13>
         <Filename Value="C:\lazarus\components\synedit\synedithighlighterxmlbase.pas"/>
         <UnitName Value="SynEditHighlighterXMLBase"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="50"/>
         <CursorPos X="3" Y="61"/>
         <UsageCount Value="2"/>
-      </Unit12>
-      <Unit13>
+      </Unit13>
+      <Unit14>
         <Filename Value="C:\lazarus\components\synedit\synhighlighterjava.pas"/>
         <UnitName Value="SynHighlighterJava"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="3" Y="77"/>
         <UsageCount Value="2"/>
-      </Unit13>
-      <Unit14>
+      </Unit14>
+      <Unit15>
         <Filename Value="C:\lazarus\components\synedit\syncompletion.pas"/>
         <UnitName Value="SynCompletion"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="26"/>
         <CursorPos X="19" Y="38"/>
         <UsageCount Value="7"/>
-      </Unit14>
-      <Unit15>
+      </Unit15>
+      <Unit16>
         <Filename Value="C:\lazarus\components\synedit\synhighlighterpython.pas"/>
         <UnitName Value="SynHighlighterPython"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="181"/>
         <CursorPos X="45" Y="188"/>
         <UsageCount Value="7"/>
-      </Unit15>
-      <Unit16>
+      </Unit16>
+      <Unit17>
         <Filename Value="C:\lazarus\components\synedit\synhighlighterpas.pp"/>
         <UnitName Value="SynHighlighterPas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="704"/>
         <CursorPos Y="705"/>
         <UsageCount Value="5"/>
-      </Unit16>
-      <Unit17>
+      </Unit17>
+      <Unit18>
         <Filename Value="C:\lazarus\components\synedit\synedithighlighter.pp"/>
         <UnitName Value="SynEditHighlighter"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos X="24" Y="28"/>
         <UsageCount Value="5"/>
-      </Unit17>
-      <Unit18>
+      </Unit18>
+      <Unit19>
         <Filename Value="C:\lazarus\components\synedit\synedittypes.pp"/>
         <UnitName Value="SynEditTypes"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="71"/>
         <CursorPos X="16" Y="87"/>
         <UsageCount Value="10"/>
-      </Unit18>
+      </Unit19>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="214" Column="30" TopLine="206"/>
+        <Filename Value="units\unitformfindreplace.pas"/>
+        <Caret Line="20" Column="60" TopLine="6"/>
       </Position1>
       <Position2>
-        <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="215" Column="30" TopLine="207"/>
+        <Filename Value="units\unitformfindreplace.pas"/>
+        <Caret Line="19" Column="60" TopLine="6"/>
       </Position2>
       <Position3>
-        <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="222" Column="30" TopLine="214"/>
+        <Filename Value="units\unitformfindreplace.pas"/>
+        <Caret Line="18" Column="60" TopLine="6"/>
       </Position3>
       <Position4>
-        <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="125" Column="53" TopLine="123"/>
+        <Filename Value="units\unitformfindreplace.pas"/>
+        <Caret Line="17" Column="60" TopLine="6"/>
       </Position4>
       <Position5>
-        <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="9" Column="78" TopLine="4"/>
+        <Filename Value="units\unitformfindreplace.pas"/>
+        <Caret Line="21" Column="60" TopLine="6"/>
       </Position5>
       <Position6>
         <Filename Value="units\unitformfindreplace.pas"/>
+        <Caret Line="20" Column="60" TopLine="6"/>
       </Position6>
       <Position7>
-        <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="125" Column="65" TopLine="114"/>
+        <Filename Value="units\unitformfindreplace.pas"/>
+        <Caret Line="21" Column="35" TopLine="6"/>
       </Position7>
       <Position8>
         <Filename Value="units\unitformfindreplace.pas"/>
-        <Caret Line="29" Column="48" TopLine="14"/>
+        <Caret Line="20" Column="30" TopLine="6"/>
       </Position8>
       <Position9>
         <Filename Value="units\unitformfindreplace.pas"/>
-        <Caret Line="43" Column="56" TopLine="25"/>
+        <Caret Line="21" Column="28" TopLine="6"/>
       </Position9>
       <Position10>
         <Filename Value="units\unitformfindreplace.pas"/>
-        <Caret Line="20" Column="60" TopLine="6"/>
+        <Caret Line="22" Column="28" TopLine="6"/>
       </Position10>
       <Position11>
-        <Filename Value="units\unitformfindreplace.pas"/>
-        <Caret Line="21" Column="60" TopLine="6"/>
-      </Position11>
-      <Position12>
-        <Filename Value="units\unitformfindreplace.pas"/>
-        <Caret Line="20" Column="60" TopLine="6"/>
-      </Position12>
-      <Position13>
-        <Filename Value="units\unitformfindreplace.pas"/>
-        <Caret Line="19" Column="60" TopLine="6"/>
-      </Position13>
-      <Position14>
-        <Filename Value="units\unitformfindreplace.pas"/>
-        <Caret Line="18" Column="60" TopLine="6"/>
-      </Position14>
-      <Position15>
-        <Filename Value="units\unitformfindreplace.pas"/>
-        <Caret Line="17" Column="60" TopLine="6"/>
-      </Position15>
-      <Position16>
-        <Filename Value="units\unitformfindreplace.pas"/>
-        <Caret Line="21" Column="60" TopLine="6"/>
-      </Position16>
-      <Position17>
-        <Filename Value="units\unitformfindreplace.pas"/>
-        <Caret Line="20" Column="60" TopLine="6"/>
-      </Position17>
-      <Position18>
-        <Filename Value="units\unitformfindreplace.pas"/>
-        <Caret Line="21" Column="35" TopLine="6"/>
-      </Position18>
-      <Position19>
-        <Filename Value="units\unitformfindreplace.pas"/>
-        <Caret Line="20" Column="30" TopLine="6"/>
-      </Position19>
-      <Position20>
-        <Filename Value="units\unitformfindreplace.pas"/>
-        <Caret Line="21" Column="28" TopLine="6"/>
-      </Position20>
-      <Position21>
-        <Filename Value="units\unitformfindreplace.pas"/>
-        <Caret Line="22" Column="28" TopLine="6"/>
-      </Position21>
-      <Position22>
-        <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="9" Column="64" TopLine="14"/>
-      </Position22>
-      <Position23>
         <Filename Value="units\UnitFormMain.pas"/>
         <Caret Line="112" TopLine="106"/>
-      </Position23>
-      <Position24>
+      </Position11>
+      <Position12>
         <Filename Value="units\UnitFormMain.pas"/>
         <Caret Line="114" TopLine="108"/>
-      </Position24>
-      <Position25>
+      </Position12>
+      <Position13>
         <Filename Value="units\UnitFormMain.pas"/>
         <Caret Line="144" Column="24" TopLine="142"/>
+      </Position13>
+      <Position14>
+        <Filename Value="units\UnitFormMain.pas"/>
+        <Caret Line="151" Column="24" TopLine="149"/>
+      </Position14>
+      <Position15>
+        <Filename Value="units\UnitFormMain.pas"/>
+        <Caret Line="146" Column="22" TopLine="144"/>
+      </Position15>
+      <Position16>
+        <Filename Value="units\UnitFormMain.pas"/>
+        <Caret Line="148" Column="22" TopLine="146"/>
+      </Position16>
+      <Position17>
+        <Filename Value="units\UnitFormMain.pas"/>
+        <Caret Line="162" Column="42" TopLine="146"/>
+      </Position17>
+      <Position18>
+        <Filename Value="units\UnitFormMain.pas"/>
+        <Caret Line="161" Column="42" TopLine="145"/>
+      </Position18>
+      <Position19>
+        <Filename Value="units\UnitFormAbout.pas"/>
+        <Caret TopLine="4"/>
+      </Position19>
+      <Position20>
+        <Filename Value="units\UnitFormFindReplace.pas"/>
+        <Caret Line="50" Column="55" TopLine="33"/>
+      </Position20>
+      <Position21>
+        <Filename Value="units\UnitFormAbout.pas"/>
+        <Caret Line="23" Column="46" TopLine="15"/>
+      </Position21>
+      <Position22>
+        <Filename Value="units\UnitFormAbout.pas"/>
+        <Caret Line="24" Column="46" TopLine="15"/>
+      </Position22>
+      <Position23>
+        <Filename Value="units\UnitFormAbout.pas"/>
+        <Caret Line="25" Column="46" TopLine="15"/>
+      </Position23>
+      <Position24>
+        <Filename Value="units\UnitFormAbout.pas"/>
+        <Caret Line="27" Column="46" TopLine="15"/>
+      </Position24>
+      <Position25>
+        <Filename Value="units\UnitFormAbout.pas"/>
+        <Caret Line="26" Column="46" TopLine="15"/>
       </Position25>
       <Position26>
         <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="151" Column="24" TopLine="149"/>
+        <Caret Line="97" Column="39" TopLine="85"/>
       </Position26>
       <Position27>
-        <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="146" Column="22" TopLine="144"/>
+        <Filename Value="units\UnitFormAbout.pas"/>
+        <Caret Line="26" Column="101" TopLine="15"/>
       </Position27>
       <Position28>
-        <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="148" Column="22" TopLine="146"/>
+        <Filename Value="units\UnitFormAbout.pas"/>
+        <Caret Line="25" Column="101" TopLine="15"/>
       </Position28>
       <Position29>
-        <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="162" Column="42" TopLine="146"/>
+        <Filename Value="units\UnitFormAbout.pas"/>
+        <Caret Line="27" Column="101" TopLine="16"/>
       </Position29>
       <Position30>
-        <Filename Value="units\UnitFormMain.pas"/>
-        <Caret Line="161" Column="42" TopLine="145"/>
+        <Filename Value="units\UnitFormAbout.pas"/>
+        <Caret Line="26" Column="101" TopLine="16"/>
       </Position30>
     </JumpHistory>
     <RunParams>
