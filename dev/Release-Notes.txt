@@ -1,4 +1,4 @@
-v.1.0.0.6 : (Work in Progress)
+v.1.0.0.6 : (Released 20th Oct 2020)
 ----------------------------------------------------------
 Added : Language : COBOL (Main Menu : Settings | Language | COBOL)
 Added : Syntax completion (use Ctrl+Space) : COBOL
