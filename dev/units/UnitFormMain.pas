@@ -173,8 +173,9 @@ end;
 procedure TFormMain.OpenFile (AFileName : TFileName);
 begin
   VUVar.vCurrentData.Update(AFileName);
-  Self.SynEditMain.Lines.LoadFromFile(AFileName);
+  VUVar.vSynEdit.Open(Self.SynEditMain,AFileName);
   VUVar.vSynEdit.Update(Self.SynEditMain,VUVar.vCurrentData.vHighlighter);
+  VUVar.vSynCompletion.Update(Self.SynCompletionMain,VUVar.vCurrentData.vASETypeLang);
   VUVar.vPageControl.Update(Self.PageControlMain,VUVar.vImageIndexNormalFile,VUVar.vCurrentData.vFileName);
   VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vLangTxt,VUVar.vCurrentData.vFileName);
 end;
@@ -184,7 +185,8 @@ begin
   if Self.SaveDialogMain.Execute then
   begin
     VUVar.vCurrentData.Update(Self.SaveDialogMain.FileName);
-    VUVar.vSave.Save(Self.SynEditMain,VUVar.vCurrentData.vFileName);
+    VUVar.vSynEdit.Save(Self.SynEditMain,VUVar.vCurrentData.vFileName);
+    VUVar.vSynCompletion.Update(Self.SynCompletionMain,VUVar.vCurrentData.vASETypeLang);
     VUVar.vPageControl.Update(Self.PageControlMain,VUVar.vImageIndexNormalFile,VUVar.vCurrentData.vFileName);
     VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vLangTxt,VUVar.vCurrentData.vFileName);
   end;
@@ -194,8 +196,9 @@ procedure TFormMain.MenuItemFileSaveClick(Sender: TObject);
 begin
   if FileExists(VUVar.vCurrentData.vFileName) then
   begin
-    VUVar.vSave.Save(Self.SynEditMain,VUVar.vCurrentData.vFileName);
     VUVar.vPageControl.Update(Self.PageControlMain,VUVar.vImageIndexNormalFile,VUVar.vCurrentData.vFileName);
+    VUVar.vSynEdit.Save(Self.SynEditMain,VUVar.vCurrentData.vFileName);
+    VUVar.vSynCompletion.Update(Self.SynCompletionMain,VUVar.vCurrentData.vASETypeLang);
     VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vLangTxt,VUVar.vCurrentData.vFileName);
   end
   else
@@ -271,6 +274,8 @@ end;
 procedure TFormMain.SetLang (ALang : TASETypeLang);
 begin
   VUVar.vCurrentData.Update(ALang);
+  VUVar.vSynEdit.Update(Self.SynEditMain,VUVar.vCurrentData.vHighlighter);
+  VUVar.vSynCompletion.Update(Self.SynCompletionMain,ALang);
   VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vASETypeLang);
 end;
 
