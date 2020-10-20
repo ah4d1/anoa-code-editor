@@ -20,6 +20,8 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItemEditRedo: TMenuItem;
+    MenuItemEditUndo: TMenuItem;
     MenuItemEditFindReplace: TMenuItem;
     MenuItemEdit: TMenuItem;
     MenuItemSettingsSwitchColor: TMenuItem;
@@ -51,9 +53,12 @@ type
     ToolBarMain: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
+    procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
     procedure MenuItemEditFindReplaceClick(Sender: TObject);
+    procedure MenuItemEditRedoClick(Sender: TObject);
+    procedure MenuItemEditUndoClick(Sender: TObject);
     procedure MenuItemFileExitClick(Sender: TObject);
     procedure MenuItemFileNewClick(Sender: TObject);
     procedure MenuItemFileOpenClick(Sender: TObject);
@@ -102,6 +107,15 @@ begin
   if Trim(LFileNameOnStart) <> '' then Self.OpenFile(LFileNameOnStart);
 end;
 
+procedure TFormMain.FormActivate(Sender: TObject);
+begin
+  if FormFindReplace <> nil then
+  begin
+    FormFindReplace.AlphaBlend := True;
+    FormFindReplace.AlphaBlendValue := 175;
+  end;
+end;
+
 procedure TFormMain.MenuItemFileExitClick(Sender: TObject);
 begin
   Application.Terminate;
@@ -125,6 +139,16 @@ begin
   FormFindReplace := TFormFindReplace.Create(Self);
   FormFindReplace.Show;
   // Self.SynEditMain.SearchReplace('begin','begin2',[ssoReplaceAll]);
+end;
+
+procedure TFormMain.MenuItemEditRedoClick(Sender: TObject);
+begin
+  Self.SynEditMain.Redo;
+end;
+
+procedure TFormMain.MenuItemEditUndoClick(Sender: TObject);
+begin
+  Self.SynEditMain.Undo;
 end;
 
 procedure TFormMain.MenuItemFileOpenClick(Sender: TObject);
