@@ -83,8 +83,6 @@ type
     procedure SpinEditFontSizeChange(Sender: TObject);
     procedure SynEditMainChange(Sender: TObject);
   private
-    procedure AddTab;
-    procedure OpenFile (AFileName : TFileName);
     procedure SetLang (ALang : TASETypeLang);
     function fcCurrentTabSheet : tucTabSheet;
     function fcCurrentSynEdit : tucSynEdit;
@@ -140,10 +138,7 @@ end;
 
 procedure TFormMain.MenuItemFileNewClick(Sender: TObject);
 begin
-  Self.PageControlMain.ActivePage.ImageIndex := vupVar.vImageIndexNormalFile;
-  Self.PageControlMain.ActivePage.Caption := 'New' + IntToStr(vupVar.vTabNo);
-  Self.fcCurrentSynEdit.Lines.Clear;
-  // VUVar.vStatusBar.Update(Self.StatusBarMain,'','');
+  vMain.fcAddTab;
 end;
 
 procedure TFormMain.MenuItem4Click(Sender: TObject);
@@ -155,15 +150,6 @@ end;
 procedure TFormMain.MenuItemAddTabClick(Sender: TObject);
 begin
   vMain.fcAddTab;
-end;
-
-procedure TFormMain.AddTab;
-begin
-  with tucTabSheet.Create(Self) do
-  begin
-    Parent := Self.PageControlMain;
-  end;
-  Self.PageControlMain.TabIndex := Self.PageControlMain.PageCount - 1;
 end;
 
 procedure TFormMain.MenuItemEditShowCompletionClick(Sender: TObject);
@@ -191,18 +177,9 @@ procedure TFormMain.MenuItemFileOpenClick(Sender: TObject);
 begin
   if Self.OpenDialogMain.Execute then
   begin
-    Self.OpenFile(Self.OpenDialogMain.FileName);
+    vMain.fcAddTab(Self.OpenDialogMain.FileName);
+    // Then Update Current Data
   end;
-end;
-
-procedure TFormMain.OpenFile (AFileName : TFileName);
-begin
-  vupVar.vCurrentData.Update(AFileName);
-  Self.fcCurrentSynEdit.fcOpen(AFileName);
-  Self.fcCurrentTabSheet.fcOpen(AFileName);
-  Self.fcCurrentTabSheet.fcUpdate(vupVar.vCurrentData.vASETypeLang,vupVar.vCurrentData.vHighlighter);
-  // VUVar.vPageControl.Update(Self.PageControlMain,VUVar.vImageIndexNormalFile,VUVar.vCurrentData.vFileName);
-  // VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vLangTxt,VUVar.vCurrentData.vFileName);
 end;
 
 procedure TFormMain.MenuItemFileSaveAsClick(Sender: TObject);
