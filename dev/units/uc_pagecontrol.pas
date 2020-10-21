@@ -12,7 +12,8 @@ type
   public
     constructor Create (AOwner : TComponent); override;
     procedure fcInit (AImageList : TImageList; APopupMenu : TPopupMenu);
-    procedure fcAddTab (AOwner : TComponent; ACaption : string; AImageIndex : Byte);
+    procedure fcAddTab (ACaption : string; AImageIndex : Byte);
+    procedure fcAddTabThenOpen (AFileName : TFileName; AImageIndex : Byte);
     procedure fcUpdate (ALang : TASETypeLang; AHighlighter : TSynCustomHighlighter);
   end;
 
@@ -31,16 +32,21 @@ begin
   Self.PopupMenu := APopupMenu;
 end;
 
-procedure tucPageControl.fcAddTab (AOwner : TComponent; ACaption : string;
-  AImageIndex : Byte);
+procedure tucPageControl.fcAddTab (ACaption : string; AImageIndex : Byte);
 begin
-  with tucTabSheet.Create(AOwner) do
+  with tucTabSheet.Create(Self) do
   begin
     Parent := Self;
     Caption := ACaption;
     ImageIndex := AImageIndex;
   end;
   Self.TabIndex := Self.PageCount - 1;
+end;
+
+procedure tucPageControl.fcAddTabThenOpen (AFileName : TFileName; AImageIndex : Byte);
+begin
+  Self.fcAddTab(ExtractFileName(AFileName),AImageIndex);
+  (Self.ActivePage as tucTabSheet).fcOpen(AFileName);
 end;
 
 procedure tucPageControl.fcUpdate (ALang : TASETypeLang; AHighlighter : TSynCustomHighlighter);
