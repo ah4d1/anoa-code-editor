@@ -12,22 +12,6 @@ object FormMain: TFormMain
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
-  object StatusBarMain: TStatusBar
-    Left = 0
-    Height = 36
-    Top = 720
-    Width = 1201
-    Panels = <    
-      item
-        Alignment = taCenter
-        Width = 100
-      end    
-      item
-        Width = 50
-      end>
-    SimpleText = 'Ready'
-    SimplePanel = False
-  end
   object ToolBarMain: TToolBar
     Left = 0
     Height = 39
@@ -36,7 +20,7 @@ object FormMain: TFormMain
     Caption = 'ToolBarMain'
     Images = ImageListMain
     ImagesWidth = 24
-    TabOrder = 1
+    TabOrder = 0
     object ToolButton1: TToolButton
       Left = 1
       Top = 2
@@ -76,14 +60,15 @@ object FormMain: TFormMain
   end
   object PageControlMain: TPageControl
     Left = 0
-    Height = 681
+    Height = 717
     Top = 39
     Width = 1201
     Align = alClient
     Images = ImageListMain
     ImagesWidth = 24
     PopupMenu = PopupMenuPageControl
-    TabOrder = 2
+    TabOrder = 1
+    OnChange = PageControlMainChange
   end
   object MainMenuMain: TMainMenu
     Images = ImageListMain
