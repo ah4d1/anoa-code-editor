@@ -5,7 +5,7 @@ unit uc_tabsheet;
 interface
 
 uses
-  Classes, SysUtils, ComCtrls, SynEditHighlighter, uc_synedit, uc_syncompletion, UnitPasSynHighlighter;
+  Classes, SysUtils, ComCtrls, SynEditHighlighter, uc_synedit, uc_syncompletion, up_synhighlighter;
 
 type
   tucTabSheet = class(TTabSheet)
@@ -25,7 +25,7 @@ type
 implementation
 
 uses
-  UnitPasVar;
+  up_var;
 
 constructor tucTabSheet.Create (AOwner : TComponent);
 begin
@@ -44,8 +44,8 @@ end;
 
 procedure tucTabSheet.fcSave (AFileName : TFileName);
 begin
-  Self.Caption    := 'New' + IntToStr(VUVar.vTabNo + 1);
-  Self.ImageIndex := VUVar.vImageIndexNormalFile;
+  Self.Caption    := 'New' + IntToStr(vupVar.vTabNo + 1);
+  Self.ImageIndex := vupVar.vImageIndexNormalFile;
   Self.vSynEdit.fcSave(AFileName);
 end;
 
