@@ -42,16 +42,16 @@ begin
   Self.Caption := ACaption;
 end;
 
+procedure tucTabSheet.fcOpen (AFileName : TFileName);
+begin
+  Self.vSynEdit.fcOpen(AFileName);
+end;
+
 procedure tucTabSheet.fcSave (AFileName : TFileName);
 begin
   Self.Caption    := 'New' + IntToStr(vupVar.vTabNo + 1);
   Self.ImageIndex := vupVar.vImageIndexNormalFile;
   Self.vSynEdit.fcSave(AFileName);
-end;
-
-procedure tucTabSheet.fcOpen (AFileName : TFileName);
-begin
-  Self.vSynEdit.fcOpen(AFileName);
 end;
 
 procedure tucTabSheet.fcUpdate (AASETypeLang : TASETypeLang; AHighlighter : TSynCustomHighlighter);
