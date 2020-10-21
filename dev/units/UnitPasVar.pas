@@ -5,7 +5,7 @@ unit UnitPasVar;
 interface
 
 uses
-  Classes, SysUtils, SynEditHighlighter, UnitPasPageControl, UnitCmpSynEdit,
+  Classes, SysUtils, SynEditHighlighter, uc_pagecontrol, uc_synedit,
   UnitPasStatusBar, UnitPasSynHighlighter, UnitPasReserveWords;
 
 type
@@ -24,10 +24,10 @@ type
     vTabNo : Byte;
     vCurrentData : TUVar_CurrentData;
     vASETypeLang : TStringList;
-    vPageControl : TUPageControl;
+    vPageControl : tucPageControl;
     vImageIndexNormalFile : Byte;
     vImageIndexModifiedFile : Byte;
-    vSynEdit : TUSynEdit;
+    vSynEdit : tucSynEdit;
     vStatusBar : TUStatusBar;
     vSynHighlighter : TUSynHighlighter;
     vReservedWords : TUReserveWords;
@@ -75,8 +75,8 @@ begin
   Self.vTabNo := 0;
   Self.vImageIndexNormalFile := 3;
   Self.vImageIndexModifiedFile := 4;
-  Self.vPageControl := TUPageControl.Create;
-  Self.vSynEdit := TUSynEdit.Create(AOwner);
+  Self.vPageControl := tucPageControl.Create(AOwner);
+  Self.vSynEdit := tucSynEdit.Create(AOwner);
   Self.vStatusBar := TUStatusBar.Create;
   Self.vSynHighlighter := TUSynHighlighter.Create(AOwner);
   Self.vReservedWords := TUReserveWords.Create(AOwner);
