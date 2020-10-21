@@ -5,7 +5,7 @@ unit uc_statusbar;
 interface
 
 uses
-  Classes, SysUtils, ComCtrls, UnitPasSynHighlighter, Dialogs;
+  Classes, SysUtils, ComCtrls, up_synhighlighter, Dialogs;
 
 type
   tucStatusBar = class(TStatusBar)
@@ -16,7 +16,6 @@ type
     property vStatusPanel0 : TStatusPanel read FStatusPanel0 write FStatusPanel0;
     property vStatusPanel1 : TStatusPanel read FStatusPanel1 write FStatusPanel1;
     constructor Create (AOwner : TComponent); override;
-    procedure fcInit;
     procedure fcUpdate (ALang : TASETypeLang);
     procedure fcUpdate (ALangTxt : string);
     procedure fcUpdate (ALangTxt : string; AFileName : TFileName);
@@ -25,7 +24,7 @@ type
 implementation
 
 uses
-  UnitPasLang;
+  up_lang;
 
 constructor tucStatusBar.Create (AOwner : TComponent);
 begin
@@ -34,6 +33,7 @@ begin
   Self.vStatusPanel0.Width := 200;
   Self.vStatusPanel0.Text := 'TEST';
   {
+  // ERROR
   with Self.Panels.Add do
   begin
     Alignment := taLeftJustify;
@@ -49,14 +49,9 @@ begin
   }
 end;
 
-procedure tucStatusBar.fcInit;
-begin
-  {}
-end;
-
 procedure tucStatusBar.fcUpdate (ALang : TASETypeLang);
 begin
-  Self.fcUpdate(VULang.GetLangTxt(ALang));
+  Self.fcUpdate(vupLang.fcGetLangTxt(ALang));
 end;
 
 procedure tucStatusBar.fcUpdate (ALangTxt : string);
