@@ -21,14 +21,13 @@ type
     procedure Update (AASETypeLang : TASETypeLang; AFileName : TFileName); overload;
   end;
   tupVar = class
+    vTabPrefix : string;
     vTabNo : Byte;
     vCurrentData : tupVar_CurrentData;
     vASETypeLang : TStringList;
     vPageControl : tucPageControl;
     vImageIndexNormalFile : Byte;
     vImageIndexModifiedFile : Byte;
-    vSynEdit : tucSynEdit;
-    vStatusBar : tucStatusBar;
     vSynHighlighter : tupSynHighlighter;
     vReservedWords : tupReserveWords;
     constructor Create (AOwner : TComponent);
@@ -72,12 +71,11 @@ end;
 
 constructor tupVar.Create (AOwner : TComponent);
 begin
+  Self.vTabPrefix := 'Tab';
   Self.vTabNo := 0;
   Self.vImageIndexNormalFile := 3;
   Self.vImageIndexModifiedFile := 4;
   Self.vPageControl := tucPageControl.Create(AOwner);
-  Self.vSynEdit := tucSynEdit.Create(AOwner);
-  Self.vStatusBar := tucStatusBar.Create(AOwner);
   Self.vSynHighlighter := tupSynHighlighter.Create(AOwner);
   Self.vReservedWords := tupReserveWords.Create(AOwner);
   Self.vASETypeLang := vupTools.FcStringExplode(Self.vReservedWords.vLangTxt,'|');
