@@ -10,18 +10,15 @@ uses
 type
   tucMain = class(TComponent)
   private
-    FTabPrefix : string;
-    FTabNo : Byte;
     FPageControl : tucPageControl;
     FStatusBar : tucStatusBar;
   public
-    property vTabPrefix : string read FTabPrefix write FTabPrefix;
-    property vTabNo : Byte read FTabNo write FTabNo;
     property vPageControl : tucPageControl read FPageControl write FPageControl;
     property vStatusBar : tucStatusBar read FStatusBar write FStatusBar;
     constructor Create (AOwner : TWinControl; AImageList : TImageList; APopupMenu : TPopupMenu); overload;
+    procedure fcAddTab; overload;
+    procedure fcAddTab (AFileName : TFileName); overload;
     procedure fcUpdate (ALang : TASETypeLang; AHighlighter : TSynCustomHighlighter);
-    procedure fcAddTab;
   end;
 
 implementation
@@ -31,8 +28,6 @@ uses
 
 constructor tucMain.Create (AOwner : TWinControl; AImageList : TImageList; APopupMenu : TPopupMenu);
 begin
-  Self.vTabPrefix := 'Tab';
-  Self.vTabNo := 0;
   Self.vPageControl := tucPageControl.Create(AOwner);
   Self.vPageControl.Parent := AOwner;
   Self.vPageControl.fcInit(AImageList,APopupMenu);
@@ -40,16 +35,22 @@ begin
   Self.vStatusBar.Parent := AOwner;
 end;
 
+procedure tucMain.fcAddTab;
+begin
+  vupVar.vTabNo := vupVar.vTabNo + 1;
+  Self.vPageControl.fcAddTab(vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),vupVar.vImageIndexNormalFile);
+end;
+
+procedure tucMain.fcAddTab (AFileName : TFileName);
+begin
+  vupVar.vTabNo := vupVar.vTabNo + 1;
+  Self.vPageControl.fcAddTabThenOpen(ExtractFilename(AFileName),vupVar.vImageIndexNormalFile);
+end;
+
 procedure tucMain.fcUpdate (ALang : TASETypeLang; AHighlighter : TSynCustomHighlighter);
 begin
   Self.vPageControl.fcUpdate(ALang,AHighlighter);
   Self.vStatusBar.fcUpdate(ALang);
-end;
-
-procedure tucMain.fcAddTab;
-begin
-  Self.vTabNo := Self.vTabNo + 1;
-  Self.vPageControl.fcAddTab(Self,Self.vTabPrefix + IntToStr(Self.vTabNo),vupVar.vImageIndexNormalFile);
 end;
 
 end.
