@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  StdCtrls, Spin, SynHighlighterCobol, SynEdit, SynCompletion,
-  UnitCmpSynEdit, UnitCmpSynCompletion, UnitPasSynHighlighter;
+  StdCtrls, Spin, SynHighlighterCobol, SynEdit, SynCompletion, uc_tabsheet,
+  uc_synedit, uc_syncompletion, UnitPasSynHighlighter;
 
 type
 
@@ -51,7 +51,6 @@ type
     PopupMenuPageControl: TPopupMenu;
     SaveDialogMain: TSaveDialog;
     SpinEditFontSize: TSpinEdit;
-    StatusBarMain: TStatusBar;
     ToolBarMain: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
@@ -80,14 +79,16 @@ type
     procedure MenuItemSettingsLangPythonClick(Sender: TObject);
     procedure MenuItemSettingsLangSQLClick(Sender: TObject);
     procedure MenuItemSettingsSwitchColorClick(Sender: TObject);
+    procedure PageControlMainChange(Sender: TObject);
     procedure SpinEditFontSizeChange(Sender: TObject);
     procedure SynEditMainChange(Sender: TObject);
   private
     procedure AddTab;
     procedure OpenFile (AFileName : TFileName);
     procedure SetLang (ALang : TASETypeLang);
-    function fcCurrentSynEdit : TUSynEdit;
-    function fcCurrentSynCompletion : TUSynCompletion;
+    function fcCurrentTabSheet : tucTabSheet;
+    function fcCurrentSynEdit : tucSynEdit;
+    function fcCurrentSynCompletion : tucSynCompletion;
   public
 
   end;
@@ -102,7 +103,10 @@ implementation
 { TFormMain }
 
 uses
-  UnitFormFindReplace, UnitFormAbout, UnitCmpTabSheet, UnitPasVar, UnitPasTools;
+  uc_main, UnitFormFindReplace, UnitFormAbout, UnitPasVar, UnitPasTools;
+
+var
+  vMain : tucMain;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 var
@@ -112,10 +116,24 @@ begin
   Self.OpenDialogMain.Filter := string(VUVar.vSynHighlighter.fcSetDefaultFilter);
   Self.SaveDialogMain.Filter := string(VUVar.vSynHighlighter.fcSetDefaultFilter);
 
+  vMain := tucMain.Create(Self,Self.ImageListMain,VUVar.vImageIndexNormalFile,'New');
+
+  {
+  with tucPageControl.Create(Self) do
+  begin
+    Align       := alClient;
+    Images      := Self.ImageListMain;
+    ImagesWidth := 24;
+    PopupMenu   := Self.PopupMenuPageControl;
+  end;
+  }
+
+  {
   Self.AddTab;
 
   LFileNameOnStart := string(VUTools.FcParamsInSingleText);
   if Trim(LFileNameOnStart) <> '' then Self.OpenFile(LFileNameOnStart);
+  }
 end;
 
 procedure TFormMain.FormActivate(Sender: TObject);
@@ -137,7 +155,7 @@ begin
   Self.PageControlMain.ActivePage.ImageIndex := VUVar.vImageIndexNormalFile;
   Self.PageControlMain.ActivePage.Caption := 'New' + IntToStr(VUVar.vTabNo);
   Self.fcCurrentSynEdit.Lines.Clear;
-  VUVar.vStatusBar.Update(Self.StatusBarMain,'','');
+  // VUVar.vStatusBar.Update(Self.StatusBarMain,'','');
 end;
 
 procedure TFormMain.MenuItem4Click(Sender: TObject);
@@ -153,12 +171,9 @@ end;
 
 procedure TFormMain.AddTab;
 begin
-  VUVar.vTabNo := VUVar.vTabNo + 1;
-  with TUTabSheet.Create(Self) do
+  with tucTabSheet.Create(Self) do
   begin
     Parent := Self.PageControlMain;
-    Caption := 'New' + IntToStr(VUVar.vTabNo);
-    ImageIndex := 3;
   end;
   Self.PageControlMain.TabIndex := Self.PageControlMain.PageCount - 1;
 end;
@@ -196,10 +211,10 @@ procedure TFormMain.OpenFile (AFileName : TFileName);
 begin
   VUVar.vCurrentData.Update(AFileName);
   Self.fcCurrentSynEdit.fcOpen(AFileName);
-  Self.fcCurrentSynEdit.fcUpdate(VUVar.vCurrentData.vHighlighter);
-  Self.fcCurrentSynCompletion.fcUpdate(VUVar.vCurrentData.vASETypeLang);
-  VUVar.vPageControl.Update(Self.PageControlMain,VUVar.vImageIndexNormalFile,VUVar.vCurrentData.vFileName);
-  VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vLangTxt,VUVar.vCurrentData.vFileName);
+  Self.fcCurrentTabSheet.fcOpen(AFileName);
+  Self.fcCurrentTabSheet.fcUpdate(VUVar.vCurrentData.vASETypeLang,VUVar.vCurrentData.vHighlighter);
+  // VUVar.vPageControl.Update(Self.PageControlMain,VUVar.vImageIndexNormalFile,VUVar.vCurrentData.vFileName);
+  // VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vLangTxt,VUVar.vCurrentData.vFileName);
 end;
 
 procedure TFormMain.MenuItemFileSaveAsClick(Sender: TObject);
@@ -207,10 +222,9 @@ begin
   if Self.SaveDialogMain.Execute then
   begin
     VUVar.vCurrentData.Update(Self.SaveDialogMain.FileName);
-    Self.fcCurrentSynEdit.fcSave(VUVar.vCurrentData.vFileName);
-    Self.fcCurrentSynCompletion.fcUpdate(VUVar.vCurrentData.vASETypeLang);
-    VUVar.vPageControl.Update(Self.PageControlMain,VUVar.vImageIndexNormalFile,VUVar.vCurrentData.vFileName);
-    VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vLangTxt,VUVar.vCurrentData.vFileName);
+    Self.fcCurrentTabSheet.fcSave(VUVar.vCurrentData.vFileName);
+    Self.fcCurrentTabSheet.fcUpdate(VUVar.vCurrentData.vASETypeLang,VUVar.vCurrentData.vHighlighter);
+    // VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vLangTxt,VUVar.vCurrentData.vFileName);
   end;
 end;
 
@@ -218,10 +232,10 @@ procedure TFormMain.MenuItemFileSaveClick(Sender: TObject);
 begin
   if FileExists(VUVar.vCurrentData.vFileName) then
   begin
-    VUVar.vPageControl.Update(Self.PageControlMain,VUVar.vImageIndexNormalFile,VUVar.vCurrentData.vFileName);
-    Self.fcCurrentSynEdit.fcSave(VUVar.vCurrentData.vFileName);
-    Self.fcCurrentSynCompletion.fcUpdate(VUVar.vCurrentData.vASETypeLang);
-    VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vLangTxt,VUVar.vCurrentData.vFileName);
+    // VUVar.vPageControl.Update(Self.PageControlMain,VUVar.vImageIndexNormalFile,VUVar.vCurrentData.vFileName);
+    Self.fcCurrentTabSheet.fcSave(VUVar.vCurrentData.vFileName);
+    Self.fcCurrentTabSheet.fcUpdate(VUVar.vCurrentData.vASETypeLang,VUVar.vCurrentData.vHighlighter);
+    // VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vLangTxt,VUVar.vCurrentData.vFileName);
   end
   else
     Self.MenuItemFileSaveAsClick(Sender)
@@ -286,7 +300,7 @@ end;
 
 procedure TFormMain.MenuItemSettingsSwitchColorClick(Sender: TObject);
 begin
-  with ((Self.PageControlMain.ActivePage) as TUTabSheet).vSynEdit do
+  with ((Self.PageControlMain.ActivePage) as tucTabSheet).vSynEdit do
   begin
     Color := VUTools.ComplementaryColor(Color);
     Font.Color := VUTools.ComplementaryColor(Color);
@@ -296,12 +310,19 @@ begin
   end;
 end;
 
+procedure TFormMain.PageControlMainChange(Sender: TObject);
+begin
+  // VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vLangTxt,VUVar.vCurrentData.vFileName);
+end;
+
 procedure TFormMain.SetLang (ALang : TASETypeLang);
 begin
   VUVar.vCurrentData.Update(ALang);
-  Self.fcCurrentSynEdit.fcUpdate(VUVar.vCurrentData.vHighlighter);
-  Self.fcCurrentSynCompletion.fcUpdate(VUVar.vCurrentData.vASETypeLang);
+  vMain.fcUpdate(VUVar.vCurrentData.vASETypeLang,VUVar.vCurrentData.vHighlighter);
+  {
+  Self.fcCurrentTabSheet.fcUpdate(VUVar.vCurrentData.vASETypeLang,VUVar.vCurrentData.vHighlighter);
   VUVar.vStatusBar.Update(Self.StatusBarMain,VUVar.vCurrentData.vASETypeLang);
+  }
 end;
 
 procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
@@ -314,14 +335,19 @@ begin
   Self.PageControlMain.ActivePage.ImageIndex := VUVar.vImageIndexModifiedFile;
 end;
 
-function TFormMain.fcCurrentSynEdit : TUSynEdit;
+function TFormMain.fcCurrentTabSheet : tucTabSheet;
 begin
-  Result := (((Self.PageControlMain.ActivePage) as TUTabSheet).vSynEdit as TUSynEdit);
+  Result := ((Self.PageControlMain.ActivePage) as tucTabSheet);
 end;
 
-function TFormMain.fcCurrentSynCompletion : TUSynCompletion;
+function TFormMain.fcCurrentSynEdit : tucSynEdit;
 begin
-  Result := (((Self.PageControlMain.ActivePage) as TUTabSheet).vSynCompletion as TUSynCompletion);
+  Result := (((Self.PageControlMain.ActivePage) as tucTabSheet).vSynEdit as tucSynEdit);
+end;
+
+function TFormMain.fcCurrentSynCompletion : tucSynCompletion;
+begin
+  Result := (((Self.PageControlMain.ActivePage) as tucTabSheet).vSynCompletion as tucSynCompletion);
 end;
 
 end.
