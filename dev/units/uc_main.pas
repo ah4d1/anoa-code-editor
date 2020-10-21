@@ -44,7 +44,7 @@ end;
 procedure tucMain.fcAddTab (AFileName : TFileName);
 begin
   vupVar.vTabNo := vupVar.vTabNo + 1;
-  Self.vPageControl.fcAddTabThenOpen(ExtractFilename(AFileName),vupVar.vImageIndexNormalFile);
+  Self.vPageControl.fcAddTabThenOpen(AFileName,vupVar.vImageIndexNormalFile);
 end;
 
 procedure tucMain.fcUpdate (ALang : TASETypeLang; AHighlighter : TSynCustomHighlighter);
