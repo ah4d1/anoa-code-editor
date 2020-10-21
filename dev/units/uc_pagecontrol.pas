@@ -5,16 +5,14 @@ unit uc_pagecontrol;
 interface
 
 uses
-  Classes, SysUtils, ComCtrls, Controls, SynEditHighlighter, uc_tabsheet, UnitPasSynHighlighter;
+  Classes, SysUtils, ComCtrls, Controls, Menus, SynEditHighlighter, uc_tabsheet, up_synhighlighter, Dialogs;
 
 type
   tucPageControl = class(TPageControl)
-  private
-    FTabSheet : tucTabSheet;
   public
-    property vTabSheet : tucTabSheet read FTabSheet write FTabSheet;
     constructor Create (AOwner : TComponent); override;
-    procedure fcInit (AImageList : TImageList; AImageIndex : Byte; ACaption : string);
+    procedure fcInit (AImageList : TImageList; APopupMenu : TPopupMenu);
+    procedure fcAddTab (AOwner : TComponent; ACaption : string; AImageIndex : Byte);
     procedure fcUpdate (ALang : TASETypeLang; AHighlighter : TSynCustomHighlighter);
   end;
 
@@ -24,34 +22,31 @@ constructor tucPageControl.Create (AOwner : TComponent);
 begin
   inherited Create(AOwner);
   Self.Align := alClient;
-
-  Self.vTabSheet := tucTabSheet.Create(AOwner);
-  Self.vTabSheet.Parent := Self;
-
-  // Self.Images      := Self.ImageListMain;
-  // Self.ImagesWidth := 24;
-  // Self.PopupMenu   := Self.PopupMenuPageControl;
 end;
 
-procedure tucPageControl.fcInit (AImageList : TImageList; AImageIndex : Byte; ACaption : string);
+procedure tucPageControl.fcInit (AImageList : TImageList; APopupMenu : TPopupMenu);
 begin
   Self.Images := AImageList;
   Self.ImagesWidth := 24;
-  Self.vTabSheet.fcInit(AImageIndex,ACaption);
+  Self.PopupMenu := APopupMenu;
+end;
+
+procedure tucPageControl.fcAddTab (AOwner : TComponent; ACaption : string;
+  AImageIndex : Byte);
+begin
+  with tucTabSheet.Create(AOwner) do
+  begin
+    Parent := Self;
+    Caption := ACaption;
+    ImageIndex := AImageIndex;
+  end;
+  Self.TabIndex := Self.PageCount - 1;
 end;
 
 procedure tucPageControl.fcUpdate (ALang : TASETypeLang; AHighlighter : TSynCustomHighlighter);
 begin
-  Self.vTabSheet.fcUpdate(ALang,AHighlighter);
+  // Self.vTabSheet.fcUpdate(ALang,AHighlighter);
 end;
-
-{
-procedure tucPageControl.fcUpdate (APageControl : TPageControl; AImageIndex : Byte; AFileName : TFileName);
-begin
-  APageControl.ActivePage.ImageIndex := AImageIndex;
-  APageControl.ActivePage.Caption := ExtractFileName(AFileName);
-end;
-}
 
 end.
 
