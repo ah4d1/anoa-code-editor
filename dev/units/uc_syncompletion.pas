@@ -5,7 +5,7 @@ unit uc_syncompletion;
 interface
 
 uses
-  Classes, SysUtils, SynCompletion, UnitPasSynHighlighter;
+  Classes, SysUtils, SynCompletion, up_synhighlighter;
 
 type
   tucSynCompletion = class(TSynCompletion)
@@ -16,7 +16,7 @@ type
 implementation
 
 uses
-  UnitPasVar, UnitPasTools;
+  up_var, up_tools;
 
 constructor tucSynCompletion.Create (AOwner : TComponent);
 begin
@@ -25,7 +25,7 @@ end;
 
 procedure tucSynCompletion.fcUpdate (ALang : TASETypeLang);
 begin
-  Self.ItemList := VUTools.FcStringExplode(VUVar.vReservedWords.vReservedWords[Ord(ALang)],'|');
+  Self.ItemList := vupTools.FcStringExplode(vupVar.vReservedWords.vReservedWords[Ord(ALang)],'|');
 end;
 
 end.
