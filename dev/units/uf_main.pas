@@ -112,16 +112,16 @@ procedure TFormMain.FormCreate(Sender: TObject);
 var
   LFileNameOnStart : TFileName;
 begin
+  LFileNameOnStart := string(vupTools.FcParamsInSingleText);
   vupVar := tupVar.Create(Self);
   Self.OpenDialogMain.Filter := string(vupVar.vSynHighlighter.fcSetDefaultFilter);
   Self.SaveDialogMain.Filter := string(vupVar.vSynHighlighter.fcSetDefaultFilter);
   vMain := tucMain.Create(Self,Self.ImageListMain,Self.PopupMenuPageControl);
-  vMain.fcAddTab;
-
-  {
-  LFileNameOnStart := string(VUTools.FcParamsInSingleText);
-  if Trim(LFileNameOnStart) <> '' then Self.OpenFile(LFileNameOnStart);
-  }
+  if Trim(LFileNameOnStart) = '' then
+    vMain.fcAddTab
+  else
+    vMain.fcAddTab(LFileNameOnStart)
+  ;
 end;
 
 procedure TFormMain.FormActivate(Sender: TObject);
