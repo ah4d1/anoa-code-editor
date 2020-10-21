@@ -5,7 +5,7 @@ unit uc_synedit;
 interface
 
 uses
-  Classes, SysUtils, SynEdit, ComCtrls, Controls, Graphics, SynEditHighlighter;
+  Classes, SysUtils, SynEdit, ComCtrls, Controls, Graphics, SynEditHighlighter, Dialogs;
 
 type
   tucSynEdit = class(TSynEdit)
@@ -19,7 +19,7 @@ type
 implementation
 
 uses
-  UnitPasVar;
+  uc_main, uc_pagecontrol, uc_tabsheet, up_var;
 
 constructor tucSynEdit.Create (AOwner : TComponent);
 begin
@@ -50,7 +50,7 @@ end;
 
 procedure tucSynEdit.fcChange (Sender: TObject);
 begin
-  (Self.Parent as TTabSheet).ImageIndex := VUVar.vImageIndexModifiedFile;
+  (Self.Parent as tucTabSheet).ImageIndex := vupVar.vImageIndexModifiedFile;
   inherited;
 end;
 
