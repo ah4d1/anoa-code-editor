@@ -1,3 +1,9 @@
+v.1.0.1.1 : (Work in progress)
+----------------------------------------------------------
+Added  : Copy, Cut & Paste functions
+Added  : CSS
+Update : Code refactoring & other minor updates
+
 v.1.0.1.0 : (Released 22nd Oct 2020)
 ----------------------------------------------------------
 Added  : Multitabs
