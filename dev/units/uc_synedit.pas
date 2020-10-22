@@ -17,6 +17,9 @@ type
     procedure fcChange (Sender: TObject);
     procedure fcUndo;
     procedure fcRedo;
+    procedure fcCopy;
+    procedure fcCut;
+    procedure fcPaste;
     procedure fcSetFontSize (ASize : Byte);
     procedure fcShowCompletion (ASynCompletion : tucSynCompletion);
     procedure fcSwitchColor;
@@ -68,6 +71,21 @@ end;
 procedure tucSynEdit.fcRedo;
 begin
   Self.Redo;
+end;
+
+procedure tucSynEdit.fcCopy;
+begin
+  Self.CopyToClipboard;
+end;
+
+procedure tucSynEdit.fcCut;
+begin
+  Self.CutToClipboard;
+end;
+
+procedure tucSynEdit.fcPaste;
+begin
+  Self.PasteFromClipboard;
 end;
 
 procedure tucSynEdit.fcSetFontSize (ASize : Byte);
