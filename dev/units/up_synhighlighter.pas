@@ -10,7 +10,7 @@ uses
   SynHighlighterSQL;
 
 type
-  taseTypeLang = (aseLangNone,aseLangCobol,aseLangCS,aseLangHTML,aseLangJava,aseLangJSON,aseLangPas
+  taseLang = (aseLangNone,aseLangCobol,aseLangCS,aseLangHTML,aseLangJava,aseLangJSON,aseLangPas
     ,aseLangPHP,aseLangPython,aseLangSQL
   );
   tupSynHighlighter = class
@@ -26,8 +26,8 @@ type
     vSQL    : TSynSQLSyn;
     constructor Create (AOwner : TComponent);
     function fcSetDefaultFilter : WideString;
-    function fcGetLang (AFileExt : string) : TASETypeLang;
-    function fcGetHighlighter (ALang : TASETypeLang) : TSynCustomHighlighter;
+    function fcGetLang (AFileExt : string) : taseLang;
+    function fcGetHighlighter (ALang : taseLang) : TSynCustomHighlighter;
   end;
 
 implementation
@@ -62,9 +62,9 @@ begin
   ;
 end;
 
-function tupSynHighlighter.fcGetLang (AFileExt : string) : TASETypeLang;
+function tupSynHighlighter.fcGetLang (AFileExt : string) : taseLang;
 var
-  LLang : TASETypeLang;
+  LLang : taseLang;
 begin
   LLang := aseLangNone;
   if Pos(AFileExt,Self.vCobol.DefaultFilter) >= 1 then LLang := aseLangCobol
@@ -80,7 +80,7 @@ begin
   Result := LLang;
 end;
 
-function tupSynHighlighter.fcGetHighlighter (ALang : TASETypeLang) : TSynCustomHighlighter;
+function tupSynHighlighter.fcGetHighlighter (ALang : taseLang) : TSynCustomHighlighter;
 var
   LResult : TSynCustomHighlighter;
 begin
