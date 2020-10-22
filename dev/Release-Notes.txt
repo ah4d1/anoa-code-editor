@@ -1,6 +1,8 @@
-v.1.0.0.8 : (Work in progress)
+v.1.0.1.0 : (Released 22nd Oct 2020)
 ----------------------------------------------------------
-- Add Tab
+Added  : Multitabs
+Fixed  : Fixing bugs
+Update : Code refactoring & major updates
 
 v.1.0.0.7 : (Released 20th Oct 2020)
 ----------------------------------------------------------
