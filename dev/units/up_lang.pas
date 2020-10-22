@@ -9,8 +9,8 @@ uses
 
 type
   tupLang = object
-    function fcGetLang (AFileExt : string) : TASETypeLang;
-    function fcGetLangTxt (AASETypeLang : TASETypeLang) : string;
+    function fcGetLang (AFileExt : string) : taseLang;
+    function fcGetLangTxt (ALang : taseLang) : string;
   end;
 
 var
@@ -21,14 +21,14 @@ implementation
 uses
   up_var;
 
-function tupLang.fcGetLang (AFileExt : string) : TASETypeLang;
+function tupLang.fcGetLang (AFileExt : string) : taseLang;
 begin
   Result := vupVar.vSynHighlighter.fcGetLang(AFileExt);
 end;
 
-function tupLang.fcGetLangTxt (AASETypeLang : TASETypeLang) : string;
+function tupLang.fcGetLangTxt (ALang : taseLang) : string;
 begin
-  Result := vupVar.vASETypeLang[Ord(AASETypeLang)];
+  Result := vupVar.vLang[Ord(ALang)];
 end;
 
 end.
