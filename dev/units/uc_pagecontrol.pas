@@ -17,10 +17,13 @@ type
     constructor Create (AOwner : TComponent); override;
     procedure fcInit (AImageList : TImageList; APopupMenu : TPopupMenu; AStatusBar : tucStatusBar);
     procedure fcAddTab (ACaption : string; AImageIndex : Byte);
-    procedure fcAddTabThenOpen (AFileName : TFileName; AImageIndex : Byte);
+    procedure fcAddTabThenOpen (ACurrentData : tupCurrentData; AImageIndex : Byte);
     procedure fcUpdate (ACurrentData : tupCurrentData);
     procedure fcUndo;
     procedure fcRedo;
+    procedure fcCopy;
+    procedure fcCut;
+    procedure fcPaste;
     procedure fcSetFontSize (ASize : Byte);
     procedure fcSetCurrentData;
     procedure fcSave (AFileName : TFileName);
@@ -60,10 +63,10 @@ begin
   Self.fcCurrentTabSheet.fcInit;
 end;
 
-procedure tucPageControl.fcAddTabThenOpen (AFileName : TFileName; AImageIndex : Byte);
+procedure tucPageControl.fcAddTabThenOpen (ACurrentData : tupCurrentData; AImageIndex : Byte);
 begin
-  Self.fcAddTab(ExtractFileName(AFileName),AImageIndex);
-  Self.fcCurrentTabSheet.fcOpen(AFileName);
+  Self.fcAddTab(ExtractFileName(ACurrentData.vFileName),AImageIndex);
+  Self.fcCurrentTabSheet.fcOpen(ACurrentData);
 end;
 
 procedure tucPageControl.fcUpdate (ACurrentData : tupCurrentData);
@@ -79,6 +82,21 @@ end;
 procedure tucPageControl.fcRedo;
 begin
   Self.fcCurrentTabSheet.fcRedo;
+end;
+
+procedure tucPageControl.fcCopy;
+begin
+  Self.fcCurrentTabSheet.fcCopy;
+end;
+
+procedure tucPageControl.fcCut;
+begin
+  Self.fcCurrentTabSheet.fcCut;
+end;
+
+procedure tucPageControl.fcPaste;
+begin
+  Self.fcCurrentTabSheet.fcPaste;
 end;
 
 procedure tucPageControl.fcSetFontSize (ASize : Byte);
