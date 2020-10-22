@@ -10,7 +10,7 @@ uses
 type
   tucSynCompletion = class(TSynCompletion)
     constructor Create (AOwner : TComponent); override;
-    procedure fcUpdate (ALang : TASETypeLang);
+    procedure fcUpdate (ALang : taseLang);
   end;
 
 implementation
@@ -23,7 +23,7 @@ begin
   inherited Create(AOwner);
 end;
 
-procedure tucSynCompletion.fcUpdate (ALang : TASETypeLang);
+procedure tucSynCompletion.fcUpdate (ALang : taseLang);
 begin
   Self.ItemList := vupTools.FcStringExplode(vupVar.vReservedWords.vReservedWords[Ord(ALang)],'|');
 end;
