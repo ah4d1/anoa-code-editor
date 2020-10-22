@@ -18,10 +18,13 @@ type
     property vStatusBar : tucStatusBar read FStatusBar write FStatusBar;
     constructor Create (AOwner : TWinControl; AImageList : TImageList; APopupMenu : TPopupMenu); overload;
     procedure fcAddTab; overload;
-    procedure fcAddTab (AFileName : TFileName); overload;
+    procedure fcAddTab (ACurrentData : tupCurrentData); overload;
     procedure fcUpdate (ACurrentData : tupCurrentData);
     procedure fcUndo;
     procedure fcRedo;
+    procedure fcCopy;
+    procedure fcCut;
+    procedure fcPaste;
     procedure fcSetFontSize (ASize : Byte);
     procedure fcSave (AFileName : TFileName);
     procedure fcShowCompletion;
@@ -48,10 +51,11 @@ begin
   Self.vPageControl.fcAddTab(vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),vupVar.vImageIndexNormalFile);
 end;
 
-procedure tucMain.fcAddTab (AFileName : TFileName);
+procedure tucMain.fcAddTab (ACurrentData : tupCurrentData);
 begin
   vupVar.vTabNo := vupVar.vTabNo + 1;
-  Self.vPageControl.fcAddTabThenOpen(AFileName,vupVar.vImageIndexNormalFile);
+  Self.vPageControl.fcAddTabThenOpen(ACurrentData,vupVar.vImageIndexNormalFile);
+  Self.vStatusBar.fcUpdate(ACurrentData);
 end;
 
 procedure tucMain.fcUpdate (ACurrentData : tupCurrentData);
@@ -68,6 +72,21 @@ end;
 procedure tucMain.fcRedo;
 begin
   Self.vPageControl.fcRedo;
+end;
+
+procedure tucMain.fcCopy;
+begin
+  Self.vPageControl.fcCopy;
+end;
+
+procedure tucMain.fcCut;
+begin
+  Self.vPageControl.fcCut;
+end;
+
+procedure tucMain.fcPaste;
+begin
+  Self.vPageControl.fcPaste;
 end;
 
 procedure tucMain.fcSetFontSize (ASize : Byte);
