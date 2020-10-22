@@ -22,21 +22,21 @@ object FormMain: TFormMain
     ImagesWidth = 24
     TabOrder = 0
     object ToolButton1: TToolButton
-      Left = 1
+      Left = 36
       Top = 2
       Caption = '&Open ...'
       ImageIndex = 0
       MenuItem = MenuItemFileOpen
     end
     object ToolButton2: TToolButton
-      Left = 36
+      Left = 71
       Top = 2
       Caption = '&Save'
       ImageIndex = 1
       MenuItem = MenuItemFileSave
     end
     object LabelFontSize: TLabel
-      Left = 73
+      Left = 110
       Height = 25
       Top = 6
       Width = 82
@@ -45,7 +45,7 @@ object FormMain: TFormMain
       ParentColor = False
     end
     object SpinEditFontSize: TSpinEdit
-      Left = 160
+      Left = 194
       Height = 33
       Top = 2
       Width = 57
@@ -56,6 +56,13 @@ object FormMain: TFormMain
       OnChange = SpinEditFontSizeChange
       TabOrder = 0
       Value = 9
+    end
+    object ToolButton3: TToolButton
+      Left = 1
+      Top = 2
+      Caption = '&New'
+      ImageIndex = 3
+      MenuItem = MenuItemFileNew
     end
   end
   object PageControlMain: TPageControl
@@ -68,7 +75,6 @@ object FormMain: TFormMain
     ImagesWidth = 24
     PopupMenu = PopupMenuPageControl
     TabOrder = 1
-    OnChange = PageControlMainChange
   end
   object MainMenuMain: TMainMenu
     Images = ImageListMain
@@ -185,10 +191,10 @@ object FormMain: TFormMain
     end
     object MenuItem3: TMenuItem
       Caption = '&Help'
-      object MenuItem4: TMenuItem
+      object MenuItemHelpAbout: TMenuItem
         Caption = '&About ...'
         ImageIndex = 2
-        OnClick = MenuItem4Click
+        OnClick = MenuItemHelpAboutClick
       end
     end
   end
