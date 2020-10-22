@@ -5,7 +5,8 @@ unit uc_synedit;
 interface
 
 uses
-  Classes, SysUtils, SynEdit, ComCtrls, Controls, Graphics, SynEditHighlighter, Dialogs;
+  Classes, SysUtils, SynEdit, ComCtrls, Controls, Graphics, SynEditHighlighter,
+  uc_syncompletion, Dialogs;
 
 type
   tucSynEdit = class(TSynEdit)
@@ -14,12 +15,17 @@ type
     procedure fcOpen (AFileName : TFileName);
     procedure fcSave (AFileName : TFileName);
     procedure fcChange (Sender: TObject);
+    procedure fcUndo;
+    procedure fcRedo;
+    procedure fcSetFontSize (ASize : Byte);
+    procedure fcShowCompletion (ASynCompletion : tucSynCompletion);
+    procedure fcSwitchColor;
   end;
 
 implementation
 
 uses
-  uc_main, uc_pagecontrol, uc_tabsheet, up_var;
+  uc_tabsheet, up_var, up_tools;
 
 constructor tucSynEdit.Create (AOwner : TComponent);
 begin
@@ -54,6 +60,34 @@ begin
   inherited;
 end;
 
+procedure tucSynEdit.fcUndo;
+begin
+  Self.Undo;
+end;
+
+procedure tucSynEdit.fcRedo;
+begin
+  Self.Redo;
+end;
+
+procedure tucSynEdit.fcSetFontSize (ASize : Byte);
+begin
+  Self.Font.Size := ASize;
+end;
+
+procedure tucSynEdit.fcShowCompletion (ASynCompletion : tucSynCompletion);
+begin
+  Self.CommandProcessor(ASynCompletion.ExecCommandID, '', nil);
+end;
+
+procedure tucSynEdit.fcSwitchColor;
+begin
+  Self.Color := vupTools.fcComplementaryColor(Self.Color);
+  Self.Font.Color := vupTools.fcComplementaryColor(Self.Font.Color);
+  Self.Gutter.Color := vupTools.fcComplementaryColor(Self.Gutter.Color);
+  Self.Gutter.Parts[1].MarkupInfo.Background := vupTools.fcComplementaryColor(Self.Gutter.Parts[1].MarkupInfo.Background);;
+  Self.LineHighlightColor.Background := vupTools.fcComplementaryColor(Self.LineHighlightColor.Background);
+end;
 
 end.
 
