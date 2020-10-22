@@ -5,58 +5,37 @@ unit uc_statusbar;
 interface
 
 uses
-  Classes, SysUtils, ComCtrls, up_synhighlighter, Dialogs;
+  Classes, SysUtils, ComCtrls, up_currentdata, up_synhighlighter, Dialogs;
 
 type
   tucStatusBar = class(TStatusBar)
-  private
-    FStatusPanel0 : TStatusPanel;
-    FStatusPanel1 : TStatusPanel;
   public
-    property vStatusPanel0 : TStatusPanel read FStatusPanel0 write FStatusPanel0;
-    property vStatusPanel1 : TStatusPanel read FStatusPanel1 write FStatusPanel1;
     constructor Create (AOwner : TComponent); override;
-    procedure fcUpdate (ALang : TASETypeLang);
-    procedure fcUpdate (ALangTxt : string);
-    procedure fcUpdate (ALangTxt : string; AFileName : TFileName);
+    procedure fcUpdate (ACurrentData : tupCurrentData); overload;
+  private
+    procedure fcUpdate (ALangTxt : string; AFileName : TFileName); overload;
   end;
 
 implementation
 
-uses
-  up_lang;
-
 constructor tucStatusBar.Create (AOwner : TComponent);
 begin
   inherited Create(AOwner);
-  Self.vStatusPanel0 := Self.Panels.Add;
-  Self.vStatusPanel0.Width := 200;
-  Self.vStatusPanel0.Text := 'TEST';
-  {
-  // ERROR
   with Self.Panels.Add do
   begin
-    Alignment := taLeftJustify;
-    Text := 'Test';
+    Alignment := taCenter;
     Width := 100;
   end;
   with Self.Panels.Add do
   begin
     Alignment := taLeftJustify;
-    Text := 'Test';
-    Width := 100;
   end;
-  }
+  Self.SimplePanel := False;
 end;
 
-procedure tucStatusBar.fcUpdate (ALang : TASETypeLang);
+procedure tucStatusBar.fcUpdate (ACurrentData : tupCurrentData);
 begin
-  Self.fcUpdate(vupLang.fcGetLangTxt(ALang));
-end;
-
-procedure tucStatusBar.fcUpdate (ALangTxt : string);
-begin
-  Self.Panels[0].Text := ALangTxt;
+  Self.fcUpdate(ACurrentData.vLangTxt,ACurrentData.vFileName);
 end;
 
 procedure tucStatusBar.fcUpdate (ALangTxt : string; AFileName : TFileName);
