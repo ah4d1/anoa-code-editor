@@ -20,6 +20,12 @@ type
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
+    MenuItem5: TMenuItem;
+    MenuItemSettingsLangCSS: TMenuItem;
+    MenuItemEditPaste: TMenuItem;
+    MenuItemEditCut: TMenuItem;
+    MenuItemEditCopy: TMenuItem;
     MenuItemHelpAbout: TMenuItem;
     MenuItemAddTab: TMenuItem;
     MenuItemSettingsLangNone: TMenuItem;
@@ -57,6 +63,9 @@ type
     ToolButton3: TToolButton;
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItemEditCopyClick(Sender: TObject);
+    procedure MenuItemEditCutClick(Sender: TObject);
+    procedure MenuItemEditPasteClick(Sender: TObject);
     procedure MenuItemHelpAboutClick(Sender: TObject);
     procedure MenuItemAddTabClick(Sender: TObject);
     procedure MenuItemEditShowCompletionClick(Sender: TObject);
@@ -71,6 +80,7 @@ type
     procedure MenuItemSettingsAddToSysMenuClick(Sender: TObject);
     procedure MenuItemSettingsLangCobolClick(Sender: TObject);
     procedure MenuItemSettingsLangCSharpClick(Sender: TObject);
+    procedure MenuItemSettingsLangCSSClick(Sender: TObject);
     procedure MenuItemSettingsLangHTMLClick(Sender: TObject);
     procedure MenuItemSettingsLangJavaClick(Sender: TObject);
     procedure MenuItemSettingsLangJSONClick(Sender: TObject);
@@ -112,8 +122,25 @@ begin
   if Trim(LFileNameOnStart) = '' then
     vucMain.fcAddTab
   else
-    vucMain.fcAddTab(LFileNameOnStart)
-  ;
+  begin
+    vupCurrentData.fcUpdate(LFileNameOnStart);
+    vucMain.fcAddTab(vupCurrentData);
+  end;
+end;
+
+procedure TFormMain.MenuItemEditCopyClick(Sender: TObject);
+begin
+  vucMain.fcCopy;
+end;
+
+procedure TFormMain.MenuItemEditCutClick(Sender: TObject);
+begin
+  vucMain.fcCut;
+end;
+
+procedure TFormMain.MenuItemEditPasteClick(Sender: TObject);
+begin
+  vucMain.fcPaste;
 end;
 
 procedure TFormMain.FormActivate(Sender: TObject);
@@ -173,10 +200,11 @@ end;
 
 procedure TFormMain.MenuItemFileOpenClick(Sender: TObject);
 begin
+  Self.OpenDialogMain.FileName := '';
   if Self.OpenDialogMain.Execute then
   begin
     vupCurrentData.fcUpdate(Self.OpenDialogMain.FileName);
-    vucMain.fcAddTab(vupCurrentData.vFileName);
+    vucMain.fcAddTab(vupCurrentData);
     vucMain.fcUpdate(vupCurrentData);
   end;
 end;
@@ -218,6 +246,11 @@ end;
 procedure TFormMain.MenuItemSettingsLangCSharpClick(Sender: TObject);
 begin
   Self.SetLang(aseLangCS);
+end;
+
+procedure TFormMain.MenuItemSettingsLangCSSClick(Sender: TObject);
+begin
+  Self.SetLang(aseLangCSS);
 end;
 
 procedure TFormMain.MenuItemSettingsLangHTMLClick(Sender: TObject);
