@@ -24,11 +24,14 @@ type
     property vSynCompletion : tucSynCompletion read FSynCompletion write FSynCompletion;
     constructor Create (AOwner : TComponent); override;
     procedure fcInit;
-    procedure fcOpen (AFileName : TFileName);
+    procedure fcOpen (ACurrentData : tupCurrentData);
     procedure fcSave (AFileName : TFileName);
     procedure fcUpdate (ACurrentData : tupCurrentData);
     procedure fcUndo;
     procedure fcRedo;
+    procedure fcCopy;
+    procedure fcCut;
+    procedure fcPaste;
     procedure fcSetFontSize (ASize : Byte);
     procedure fcSetCurrentData;
     procedure fcShowCompletion;
@@ -53,9 +56,10 @@ begin
   Self.vFileName := '';
 end;
 
-procedure tucTabSheet.fcOpen (AFileName : TFileName);
+procedure tucTabSheet.fcOpen (ACurrentData : tupCurrentData);
 begin
-  Self.vSynEdit.fcOpen(AFileName);
+  Self.vSynEdit.fcOpen(ACurrentData.vFileName);
+  Self.fcUpdate(ACurrentData);
 end;
 
 procedure tucTabSheet.fcSave (AFileName : TFileName);
@@ -67,10 +71,10 @@ end;
 
 procedure tucTabSheet.fcUpdate (ACurrentData : tupCurrentData);
 begin
-  Self.vSynEdit.fcUpdate(vupCurrentData.vHighlighter);
-  Self.vSynCompletion.fcUpdate(vupCurrentData.vLang);
-  Self.vLangTxt := vupCurrentData.vLangTxt;
-  Self.vFileName := vupCurrentData.vFileName;
+  Self.vSynEdit.fcUpdate(ACurrentData.vHighlighter);
+  Self.vSynCompletion.fcUpdate(ACurrentData.vLang);
+  Self.vLangTxt := ACurrentData.vLangTxt;
+  Self.vFileName := ACurrentData.vFileName;
 end;
 
 procedure tucTabSheet.fcUndo;
@@ -81,6 +85,21 @@ end;
 procedure tucTabSheet.fcRedo;
 begin
   Self.vSynEdit.fcRedo;
+end;
+
+procedure tucTabSheet.fcCopy;
+begin
+  Self.vSynEdit.fcCopy;
+end;
+
+procedure tucTabSheet.fcCut;
+begin
+  Self.vSynEdit.fcCut;
+end;
+
+procedure tucTabSheet.fcPaste;
+begin
+  Self.vSynEdit.fcPaste;
 end;
 
 procedure tucTabSheet.fcSetFontSize (ASize : Byte);
