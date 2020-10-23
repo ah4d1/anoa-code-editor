@@ -5,17 +5,20 @@ unit uc_pagecontrol;
 interface
 
 uses
-  Classes, SysUtils, ComCtrls, Controls, Menus, SynEditHighlighter, up_currentdata, uc_tabsheet,
+  Classes, SysUtils, ComCtrls, Controls, Menus, Spin, SynEditHighlighter, up_currentdata, uc_tabsheet,
   uc_statusbar, Dialogs;
 
 type
   tucPageControl = class(TPageControl)
   private
+    FSpinEdit : TSpinEdit;
     FStatusBar : tucStatusBar;
   public
+    property vSpinEdit : TSpinEdit read FSpinEdit write FSpinEdit;
     property vStatusBar : tucStatusBar read FStatusBar write FStatusBar;
     constructor Create (AOwner : TComponent); override;
-    procedure fcInit (AImageList : TImageList; APopupMenu : TPopupMenu; AStatusBar : tucStatusBar);
+    procedure fcInit (AImageList : TImageList; APopupMenu : TPopupMenu;
+      ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar);
     procedure fcAddTab (ACaption : string; AImageIndex : Byte);
     procedure fcAddTabThenOpen (ACurrentData : tupCurrentData; AImageIndex : Byte);
     procedure fcUpdate (ACurrentData : tupCurrentData);
@@ -24,7 +27,6 @@ type
     procedure fcCopy;
     procedure fcCut;
     procedure fcPaste;
-    procedure fcSetFontSize (ASize : Byte);
     procedure fcSetCurrentData;
     procedure fcSave (AFileName : TFileName);
     procedure Change; override;
@@ -43,11 +45,13 @@ begin
   Self.vStatusBar := tucStatusBar.Create(Self);
 end;
 
-procedure tucPageControl.fcInit (AImageList : TImageList; APopupMenu : TPopupMenu; AStatusBar : tucStatusBar);
+procedure tucPageControl.fcInit (AImageList : TImageList; APopupMenu : TPopupMenu;
+  ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar);
 begin
   Self.Images := AImageList;
   Self.ImagesWidth := 24;
   Self.PopupMenu := APopupMenu;
+  Self.vSpinEdit := ASpinEdit;
   Self.vStatusBar := AStatusBar;
 end;
 
@@ -99,14 +103,10 @@ begin
   Self.fcCurrentTabSheet.fcPaste;
 end;
 
-procedure tucPageControl.fcSetFontSize (ASize : Byte);
-begin
-  Self.fcCurrentTabSheet.fcSetFontSize(ASize);
-end;
-
 procedure tucPageControl.fcSetCurrentData;
 begin
   Self.fcCurrentTabSheet.fcSetCurrentData;
+  Self.vSpinEdit.Value := vupCurrentData.vFontSize;
   Self.vStatusBar.fcUpdate(vupCurrentData);
 end;
 
