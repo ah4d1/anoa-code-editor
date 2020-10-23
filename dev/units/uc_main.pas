@@ -14,14 +14,17 @@ type
     FSpinEdit : TSpinEdit;
     FPageControl : tucPageControl;
     FStatusBar : tucStatusBar;
+    FSaveDialog : TSaveDialog;
   public
     property vSpinEdit : TSpinEdit read FSpinEdit write FSpinEdit;
     property vPageControl : tucPageControl read FPageControl write FPageControl;
     property vStatusBar : tucStatusBar read FStatusBar write FStatusBar;
+    property vSaveDialog : TSaveDialog read FSaveDialog write FSaveDialog;
     constructor Create (AOwner : TWinControl; AImageList : TImageList; APopupMenu : TPopupMenu;
-      ASpinEdit : TSpinEdit); overload;
+      ASpinEdit : TSpinEdit; ASaveDialog : TSaveDialog); overload;
     procedure fcAddTab; overload;
     procedure fcAddTab (ACurrentData : tupCurrentData); overload;
+    procedure fcCloseTab (ACurrentData : tupCurrentData);
     procedure fcUpdate (ACurrentData : tupCurrentData);
     procedure fcUpdateFontSize;
     procedure fcUndo;
@@ -41,14 +44,15 @@ var
 implementation
 
 constructor tucMain.Create (AOwner : TWinControl; AImageList : TImageList; APopupMenu : TPopupMenu;
-  ASpinEdit : TSpinEdit); overload;
+  ASpinEdit : TSpinEdit; ASaveDialog : TSaveDialog); overload;
 begin
   Self.vSpinEdit := ASpinEdit;
+  Self.vSaveDialog := ASaveDialog;
   Self.vStatusBar := tucStatusBar.Create(AOwner);
   Self.vStatusBar.Parent := AOwner;
   Self.vPageControl := tucPageControl.Create(AOwner);
   Self.vPageControl.Parent := AOwner;
-  Self.vPageControl.fcInit(AImageList,APopupMenu,Self.vSpinEdit,Self.vStatusBar);
+  Self.vPageControl.fcInit(AImageList,APopupMenu,Self.vSpinEdit,Self.vStatusBar,Self.vSaveDialog);
 end;
 
 procedure tucMain.fcAddTab;
@@ -62,6 +66,13 @@ begin
   vupVar.vTabNo := vupVar.vTabNo + 1;
   Self.vPageControl.fcAddTabThenOpen(ACurrentData,vupVar.vImageIndexNormalFile);
   Self.vStatusBar.fcUpdate(ACurrentData);
+end;
+
+procedure tucMain.fcCloseTab (ACurrentData : tupCurrentData);
+begin
+  Self.vPageControl.fcCloseTab(ACurrentData,Self.vSaveDialog,
+    vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),vupVar.vImageIndexNormalFile
+  );
 end;
 
 procedure tucMain.fcUpdate (ACurrentData : tupCurrentData);
