@@ -20,6 +20,7 @@ type
     procedure fcCopy;
     procedure fcCut;
     procedure fcPaste;
+    procedure fcSelectAll;
     procedure fcShowCompletion (ASynCompletion : tucSynCompletion);
     procedure fcSwitchColor;
   end;
@@ -43,7 +44,6 @@ end;
 
 procedure tucSynEdit.fcUpdate (ACurrentData : tupCurrentData);
 begin
-  Self.Font.Size := ACurrentData.vFontSize;
   Self.Highlighter := ACurrentData.vHighlighter;
 end;
 
@@ -86,6 +86,11 @@ end;
 procedure tucSynEdit.fcPaste;
 begin
   Self.PasteFromClipboard;
+end;
+
+procedure tucSynEdit.fcSelectAll;
+begin
+  Self.SelectAll;
 end;
 
 procedure tucSynEdit.fcShowCompletion (ASynCompletion : tucSynCompletion);
