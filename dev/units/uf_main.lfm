@@ -309,6 +309,7 @@ object FormMain: TFormMain
     top = 156
   end
   object SaveDialogMain: TSaveDialog
+    Options = [ofOverwritePrompt, ofEnableSizing, ofViewDetail]
     left = 389
     top = 256
   end
@@ -875,6 +876,10 @@ object FormMain: TFormMain
     object MenuItemAddTab: TMenuItem
       Caption = 'Add Tab'
       OnClick = MenuItemAddTabClick
+    end
+    object MenuItemCloseTab: TMenuItem
+      Caption = 'Close Tab'
+      OnClick = MenuItemCloseTabClick
     end
   end
 end
