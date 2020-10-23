@@ -3,6 +3,7 @@ v.1.0.1.1 : (Work in progress)
 Added  : Copy, Cut, Paste, & Select All functions
 Added  : CSS Langugage
 Added  : More icons and toolbar buttons
+Added  : Close tab function (in popup menu of the page control)
 Fixed  : Font size changing for all tabs.
 Update : Code refactoring & other minor updates
 
