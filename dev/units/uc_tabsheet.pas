@@ -9,6 +9,7 @@ uses
   uc_syncompletion, up_synhighlighter, Dialogs;
 
 type
+  taseTextStatus = (aseTextStatusNormal,aseTextStatusModified);
   tucTabSheet = class(TTabSheet)
   private
     FLang : taseLang;
@@ -16,12 +17,14 @@ type
     FFileName : TFileName;
     FSynEdit : tucSynEdit;
     FSynCompletion : tucSynCompletion;
+    FTextStatus : taseTextStatus;
   public
     property vLang : taseLang read FLang write FLang;
     property vLangTxt : string read FLangTxt write FLangTxt;
     property vFileName : TFileName read FFileName write FFileName;
     property vSynEdit : tucSynEdit read FSynEdit write FSynEdit;
     property vSynCompletion : tucSynCompletion read FSynCompletion write FSynCompletion;
+    property vTextStatus : taseTextStatus read FTextStatus write FTextStatus;
     constructor Create (AOwner : TComponent); override;
     procedure fcInit;
     procedure fcOpen (ACurrentData : tupCurrentData);
@@ -54,6 +57,7 @@ begin
   Self.vLang := aseLangNone;
   Self.vLangTxt := '';
   Self.vFileName := '';
+  Self.vTextStatus := aseTextStatusNormal;
 end;
 
 procedure tucTabSheet.fcOpen (ACurrentData : tupCurrentData);
@@ -66,6 +70,7 @@ procedure tucTabSheet.fcSave (AFileName : TFileName);
 begin
   Self.Caption := ExtractFileName(AFileName);
   Self.ImageIndex := vupVar.vImageIndexNormalFile;
+  Self.vTextStatus := aseTextStatusNormal;
   Self.vSynEdit.fcSave(AFileName);
 end;
 
