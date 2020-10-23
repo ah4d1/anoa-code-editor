@@ -16,12 +16,14 @@ type
     FFileName : TFileName;
     FSynEdit : tucSynEdit;
     FSynCompletion : tucSynCompletion;
+    FFontSize : Byte;
   public
     property vLang : taseLang read FLang write FLang;
     property vLangTxt : string read FLangTxt write FLangTxt;
     property vFileName : TFileName read FFileName write FFileName;
     property vSynEdit : tucSynEdit read FSynEdit write FSynEdit;
     property vSynCompletion : tucSynCompletion read FSynCompletion write FSynCompletion;
+    property vFontSize : Byte read FFontSize write FFontSize;
     constructor Create (AOwner : TComponent); override;
     procedure fcInit;
     procedure fcOpen (ACurrentData : tupCurrentData);
@@ -32,7 +34,6 @@ type
     procedure fcCopy;
     procedure fcCut;
     procedure fcPaste;
-    procedure fcSetFontSize (ASize : Byte);
     procedure fcSetCurrentData;
     procedure fcShowCompletion;
     procedure fcSwitchEditorColor;
@@ -54,6 +55,7 @@ begin
   Self.vLang := aseLangNone;
   Self.vLangTxt := '';
   Self.vFileName := '';
+  Self.vFontSize := 9;
 end;
 
 procedure tucTabSheet.fcOpen (ACurrentData : tupCurrentData);
@@ -71,8 +73,9 @@ end;
 
 procedure tucTabSheet.fcUpdate (ACurrentData : tupCurrentData);
 begin
-  Self.vSynEdit.fcUpdate(ACurrentData.vHighlighter);
+  Self.vSynEdit.fcUpdate(ACurrentData);
   Self.vSynCompletion.fcUpdate(ACurrentData.vLang);
+  Self.vFontSize := ACurrentData.vFontSize;
   Self.vLangTxt := ACurrentData.vLangTxt;
   Self.vFileName := ACurrentData.vFileName;
 end;
@@ -102,13 +105,9 @@ begin
   Self.vSynEdit.fcPaste;
 end;
 
-procedure tucTabSheet.fcSetFontSize (ASize : Byte);
-begin
-  Self.vSynEdit.fcSetFontSize(ASize);
-end;
-
 procedure tucTabSheet.fcSetCurrentData;
 begin
+  vupCurrentData.vFontSize := Self.vFontSize;
   vupCurrentData.vLangTxt := Self.vLangTxt;
   vupCurrentData.vFileName := Self.vFileName;
 end;
