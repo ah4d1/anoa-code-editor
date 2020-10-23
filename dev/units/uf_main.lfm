@@ -217,6 +217,11 @@ object FormMain: TFormMain
         ShortCut = 16470
         OnClick = MenuItemEditPasteClick
       end
+      object MenuItemEditSelectAll: TMenuItem
+        Caption = 'Select &All'
+        ShortCut = 16449
+        OnClick = MenuItemEditSelectAllClick
+      end
       object MenuItem5: TMenuItem
         Caption = '-'
       end
