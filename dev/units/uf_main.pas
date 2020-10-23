@@ -61,6 +61,16 @@ type
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
+    ToolButton4: TToolButton;
+    ToolButton5: TToolButton;
+    ToolButton6: TToolButton;
+    ToolButton7: TToolButton;
+    ToolButton8: TToolButton;
+    ToolButtonFindReplace: TToolButton;
+    ToolButtonPaste: TToolButton;
+    ToolButtonCut: TToolButton;
+    ToolButtonRedo: TToolButton;
+    ToolButtonUndo: TToolButton;
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MenuItemEditCopyClick(Sender: TObject);
@@ -118,7 +128,7 @@ begin
   LFileNameOnStart := string(vupTools.FcParamsInSingleText);
   Self.OpenDialogMain.Filter := string(vupVar.vSynHighlighter.fcSetDefaultFilter);
   Self.SaveDialogMain.Filter := string(vupVar.vSynHighlighter.fcSetDefaultFilter);
-  vucMain := tucMain.Create(Self,Self.ImageListMain,Self.PopupMenuPageControl);
+  vucMain := tucMain.Create(Self,Self.ImageListMain,Self.PopupMenuPageControl,Self.SpinEditFontSize);
   if Trim(LFileNameOnStart) = '' then
     vucMain.fcAddTab
   else
@@ -159,7 +169,7 @@ end;
 
 procedure TFormMain.MenuItemFileNewClick(Sender: TObject);
 begin
-  vupCurrentData.fcUpdate(aseLangNone,'');
+  vupCurrentData.fcUpdate(vupVar.vDefaultFontSize,aseLangNone,'');
   vucMain.fcAddTab;
   vucMain.fcUpdate(vupCurrentData);
 end;
@@ -172,7 +182,7 @@ end;
 
 procedure TFormMain.MenuItemAddTabClick(Sender: TObject);
 begin
-  vupCurrentData.fcUpdate(aseLangNone,'');
+  vupCurrentData.fcUpdate(vupVar.vDefaultFontSize,aseLangNone,'');
   vucMain.fcAddTab;
   vucMain.fcUpdate(vupCurrentData);
 end;
@@ -297,7 +307,6 @@ procedure TFormMain.SetLang (ALang : taseLang);
 begin
   vupCurrentData.fcUpdate(ALang);
   vucMain.fcUpdate(vupCurrentData);
-  vucMain.fcUpdate(vupCurrentData);
 end;
 
 procedure TFormMain.MenuItemSettingsSwitchColorClick(Sender: TObject);
@@ -307,7 +316,8 @@ end;
 
 procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
 begin
-  vucMain.fcSetFontSize(Self.SpinEditFontSize.Value);
+  vupCurrentData.fcUpdate(Self.SpinEditFontSize.Value);
+  vucMain.fcUpdate(vupCurrentData);
 end;
 
 end.
