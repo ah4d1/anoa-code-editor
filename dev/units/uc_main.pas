@@ -23,11 +23,13 @@ type
     procedure fcAddTab; overload;
     procedure fcAddTab (ACurrentData : tupCurrentData); overload;
     procedure fcUpdate (ACurrentData : tupCurrentData);
+    procedure fcUpdateFontSize;
     procedure fcUndo;
     procedure fcRedo;
     procedure fcCopy;
     procedure fcCut;
     procedure fcPaste;
+    procedure fcSelectAll;
     procedure fcSave (AFileName : TFileName);
     procedure fcShowCompletion;
     procedure fcSwitchEditorColor;
@@ -64,9 +66,13 @@ end;
 
 procedure tucMain.fcUpdate (ACurrentData : tupCurrentData);
 begin
-  Self.vSpinEdit.Value := ACurrentData.vFontSize;
   Self.vPageControl.fcUpdate(ACurrentData);
   Self.vStatusBar.fcUpdate(ACurrentData);
+end;
+
+procedure tucMain.fcUpdateFontSize;
+begin
+  Self.vPageControl.fcUpdateFontSize;
 end;
 
 procedure tucMain.fcUndo;
@@ -92,6 +98,11 @@ end;
 procedure tucMain.fcPaste;
 begin
   Self.vPageControl.fcPaste;
+end;
+
+procedure tucMain.fcSelectAll;
+begin
+  Self.vPageControl.fcSelectAll;
 end;
 
 procedure tucMain.fcSave (AFileName : TFileName);
