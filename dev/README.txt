@@ -1,17 +1,18 @@
+
 Anoa-Syntax-Editor
 
-Copyright(c)2020 Ahadi Aprianto (ahadi.aprianto@gmail.com)
+Copyright(c)2020 Ahadi Aprianto
 License     : GNU General Public License version 2
 
 
 PROJECT DETAILS :
 -------------------------------------
 Started     : 13th October 2020
-Website     : www.anoa-projects.com
 Binary      : https://anoa-syntax-editor.sourceforge.io
 Source Code : https://github.com/ah4d1/anoa-syntax-editor
   - dev     : Code of on-going development.
   - source  : Code of the latest release version.
+
 
 MAIN FEATURES :
 -------------------------------------
@@ -26,26 +27,42 @@ MAIN FEATURES :
 - Easy adding context menu to Windows Explorer.
 
 
-THANKS TO :
+DEVELOPMENT ENVIRONMENT, THANKS TO :
 -------------------------------------
 Lazarus IDE : https://www.lazarus-ide.org/
 Free Pascal : https://www.freepascal.org/
+
+
+MAIN COMPONENT(S), THANKS TO :
+-------------------------------------
+SynEdit     : by Lazarus Team, SynEdit
+
+
+ADDITIONAL PACKAGE(S), THANKS TO :
+-------------------------------------
 ExtraSyn    : https://github.com/mriscoc/extrasyn
 
 
 LOGO, THANKS TO :
 -------------------------------------
 Logo image is "editor.png"
-Icon "editor.png" made by "Freepik" (www.freepik.com) from "Flaticon" (www.flaticon.com)
+Icon "editor.png" made by "Freepik" (http://www.freepik.com/) from "Flaticon" (https://www.flaticon.com/)
 
 
 ICONS, THANKS TO :
 -------------------------------------
-Icon "edit.png" made by "itim2101" (www.flaticon.com/free-icon/edit_1218493?term=edit%20file&page=2&position=55) from "Flaticon" (www.flaticon.com)
-Icon "edit-2.png" (original filename is "edit.png") made by "itim2101" (www.flaticon.com/free-icon/edit_1218456) from "Flaticon" (www.flaticon.com)
-Icon "editor.png" made by "Freepik" (www.freepik.com) from "Flaticon" (www.flaticon.com)
-Icon "folder.png" made by "Freepik" (www.flaticon.com/authors/freepik) from "Flaticon" (www.flaticon.com)
-Icon "save.png" made by "Smashicons" (www.smashicons.com) from "Flaticon" (www.flaticon.com)
+Icon "add-file.png" made by "Smashicons" (https://www.flaticon.com/authors/smashicons) from "Flaticon" (https://www.flaticon.com/)
+Icon "cut.png" made by "Smashicons" (https://www.flaticon.com/authors/smashicons) from "Flaticon" (https://www.flaticon.com/)
+Icon "edit.png" made by "itim2101" (https://www.flaticon.com/free-icon/edit_1218493?term=edit%20file&page=2&position=55) from "Flaticon" (https://www.flaticon.com/)
+Icon "edit-2.png" (original filename is "edit.png") made by "itim2101" (https://www.flaticon.com/free-icon/edit_1218456) from "Flaticon" (https://www.flaticon.com/)
+Icon "editor.png" made by "Freepik" (http://www.freepik.com/) from "Flaticon" (https://www.flaticon.com/)
+Icon "file.png" made by "Vitaly Gorbachev" (https://www.flaticon.com/authors/vitaly-gorbachev) from "Flaticon" (https://www.flaticon.com/)
+Icon "folder.png" made by "Freepik" (https://www.flaticon.com/authors/freepik) from "Flaticon" (https://www.flaticon.com/)
+Icon "paste.png" made by "Vitaly Gorbachev" (https://www.flaticon.com/authors/vitaly-gorbachev) from "Flaticon" (https://www.flaticon.com/)
+Icon "redo.png" made by "Pixel perfect" (https://www.flaticon.com/authors/pixel-perfect) from "Flaticon" (https://www.flaticon.com/)
+Icon "save.png" made by "Smashicons" (https://smashicons.com/) from "Flaticon" (https://www.flaticon.com/)
+Icon "search.png" made by "Dimitry Miroliubov" (https://www.flaticon.com/authors/dimitry-miroliubov) from "Flaticon" (https://www.flaticon.com/)
+Icon "undo.png" made by "Pixel perfect" (https://icon54.com/) from "Flaticon" (https://www.flaticon.com/)
 
 
 DISCLAIMER :
