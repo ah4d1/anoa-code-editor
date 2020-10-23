@@ -60,6 +60,7 @@ end;
 procedure tucSynEdit.fcChange (Sender: TObject);
 begin
   (Self.Parent as tucTabSheet).ImageIndex := vupVar.vImageIndexModifiedFile;
+  (Self.Parent as tucTabSheet).vTextStatus := aseTextStatusModified;
   inherited;
 end;
 
