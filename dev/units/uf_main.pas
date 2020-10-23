@@ -22,6 +22,7 @@ type
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
+    MenuItemCloseTab: TMenuItem;
     MenuItemEditSelectAll: TMenuItem;
     MenuItemSettingsLangCSS: TMenuItem;
     MenuItemEditPaste: TMenuItem;
@@ -74,6 +75,7 @@ type
     ToolButtonUndo: TToolButton;
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItemCloseTabClick(Sender: TObject);
     procedure MenuItemEditCopyClick(Sender: TObject);
     procedure MenuItemEditCutClick(Sender: TObject);
     procedure MenuItemEditPasteClick(Sender: TObject);
@@ -130,7 +132,9 @@ begin
   LFileNameOnStart := string(vupTools.FcParamsInSingleText);
   Self.OpenDialogMain.Filter := string(vupVar.vSynHighlighter.fcSetDefaultFilter);
   Self.SaveDialogMain.Filter := string(vupVar.vSynHighlighter.fcSetDefaultFilter);
-  vucMain := tucMain.Create(Self,Self.ImageListMain,Self.PopupMenuPageControl,Self.SpinEditFontSize);
+  vucMain := tucMain.Create(Self,Self.ImageListMain,Self.PopupMenuPageControl,
+    Self.SpinEditFontSize,Self.SaveDialogMain
+  );
   if Trim(LFileNameOnStart) = '' then
     vucMain.fcAddTab
   else
@@ -138,6 +142,11 @@ begin
     vupCurrentData.fcUpdate(LFileNameOnStart);
     vucMain.fcAddTab(vupCurrentData);
   end;
+end;
+
+procedure TFormMain.MenuItemCloseTabClick(Sender: TObject);
+begin
+  vucMain.fcCloseTab(vupCurrentData);
 end;
 
 procedure TFormMain.MenuItemEditCopyClick(Sender: TObject);
