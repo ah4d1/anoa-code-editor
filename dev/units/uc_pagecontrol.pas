@@ -22,11 +22,13 @@ type
     procedure fcAddTab (ACaption : string; AImageIndex : Byte);
     procedure fcAddTabThenOpen (ACurrentData : tupCurrentData; AImageIndex : Byte);
     procedure fcUpdate (ACurrentData : tupCurrentData);
+    procedure fcUpdateFontSize;
     procedure fcUndo;
     procedure fcRedo;
     procedure fcCopy;
     procedure fcCut;
     procedure fcPaste;
+    procedure fcSelectAll;
     procedure fcSetCurrentData;
     procedure fcSave (AFileName : TFileName);
     procedure Change; override;
@@ -78,6 +80,11 @@ begin
   Self.fcCurrentTabSheet.fcUpdate(ACurrentData);
 end;
 
+procedure tucPageControl.fcUpdateFontSize;
+begin
+  Self.fcCurrentTabSheet.vSynEdit.Font.Size := Self.vSpinEdit.Value;
+end;
+
 procedure tucPageControl.fcUndo;
 begin
   Self.fcCurrentTabSheet.fcUndo;
@@ -103,10 +110,14 @@ begin
   Self.fcCurrentTabSheet.fcPaste;
 end;
 
+procedure tucPageControl.fcSelectAll;
+begin
+  Self.fcCurrentTabSheet.fcSelectAll;
+end;
+
 procedure tucPageControl.fcSetCurrentData;
 begin
   Self.fcCurrentTabSheet.fcSetCurrentData;
-  Self.vSpinEdit.Value := vupCurrentData.vFontSize;
   Self.vStatusBar.fcUpdate(vupCurrentData);
 end;
 
@@ -114,6 +125,7 @@ procedure tucPageControl.Change;
 begin
   inherited Change;
   Self.fcSetCurrentData;
+  Self.fcUpdateFontSize;
 end;
 
 procedure tucPageControl.fcSave (AFileName : TFileName);
