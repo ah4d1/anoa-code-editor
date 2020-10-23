@@ -6,21 +6,25 @@ interface
 
 uses
   Classes, SysUtils, ComCtrls, Controls, Menus, Spin, SynEditHighlighter, up_currentdata, uc_tabsheet,
-  uc_statusbar, Dialogs;
+  uc_statusbar, Dialogs, UITypes;
 
 type
   tucPageControl = class(TPageControl)
   private
     FSpinEdit : TSpinEdit;
     FStatusBar : tucStatusBar;
+    FSaveDialog : TSaveDialog;
   public
     property vSpinEdit : TSpinEdit read FSpinEdit write FSpinEdit;
     property vStatusBar : tucStatusBar read FStatusBar write FStatusBar;
+    property vSaveDialog : TSaveDialog read FSaveDialog write FSaveDialog;
     constructor Create (AOwner : TComponent); override;
     procedure fcInit (AImageList : TImageList; APopupMenu : TPopupMenu;
-      ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar);
+      ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar; ASaveDialog : TSaveDialog);
     procedure fcAddTab (ACaption : string; AImageIndex : Byte);
     procedure fcAddTabThenOpen (ACurrentData : tupCurrentData; AImageIndex : Byte);
+    procedure fcCloseTab (ACurrentData : tupCurrentData; ASaveDialog : TSaveDialog;
+      ACaption : string; AImageIndex : Byte);
     procedure fcUpdate (ACurrentData : tupCurrentData);
     procedure fcUpdateFontSize;
     procedure fcUndo;
@@ -48,13 +52,14 @@ begin
 end;
 
 procedure tucPageControl.fcInit (AImageList : TImageList; APopupMenu : TPopupMenu;
-  ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar);
+  ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar; ASaveDialog : TSaveDialog);
 begin
   Self.Images := AImageList;
   Self.ImagesWidth := 24;
   Self.PopupMenu := APopupMenu;
   Self.vSpinEdit := ASpinEdit;
   Self.vStatusBar := AStatusBar;
+  Self.vSaveDialog := ASaveDialog;
 end;
 
 procedure tucPageControl.fcAddTab (ACaption : string; AImageIndex : Byte);
@@ -73,6 +78,40 @@ procedure tucPageControl.fcAddTabThenOpen (ACurrentData : tupCurrentData; AImage
 begin
   Self.fcAddTab(ExtractFileName(ACurrentData.vFileName),AImageIndex);
   Self.fcCurrentTabSheet.fcOpen(ACurrentData);
+end;
+
+procedure tucPageControl.fcCloseTab (ACurrentData : tupCurrentData; ASaveDialog : TSaveDialog;
+  ACaption : string; AImageIndex : Byte);
+var
+  LConfirmation : TModalResult;
+begin
+  if Self.fcCurrentTabSheet.vTextStatus = aseTextStatusNormal then
+    Self.fcCurrentTabSheet.Free
+  else
+  begin
+    LConfirmation := MessageDlg('Confirmation','Do you to save before close?',mtConfirmation,[mbYes,mbNo,mbCancel],0);
+    case LConfirmation of
+      mrYes :
+        begin
+          if FileExists(ACurrentData.vFileName) then
+          begin
+            Self.fcSave(ACurrentData.vFileName);
+            Self.fcCurrentTabSheet.Free;
+          end
+          else
+          begin
+            if Self.vSaveDialog.Execute then
+            begin
+              Self.fcSave(Self.vSaveDialog.FileName);
+              Self.fcCurrentTabSheet.Free;
+            end;
+          end;
+        end;
+      mrNo : Self.fcCurrentTabSheet.Free;
+      mrCancel : ;
+    end;
+  end;
+  if Self.PageCount <= 0 then Self.fcAddTab(ACaption,AImageIndex);
 end;
 
 procedure tucPageControl.fcUpdate (ACurrentData : tupCurrentData);
