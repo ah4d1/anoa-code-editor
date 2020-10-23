@@ -5,18 +5,21 @@ unit uc_main;
 interface
 
 uses
-  Classes, SysUtils, Controls, Menus, SynEditHighlighter, up_var, up_currentdata,
+  Classes, SysUtils, Controls, Menus, Spin, SynEditHighlighter, up_var, up_currentdata,
   uc_pagecontrol, uc_statusbar, Dialogs;
 
 type
   tucMain = class(TComponent)
   private
+    FSpinEdit : TSpinEdit;
     FPageControl : tucPageControl;
     FStatusBar : tucStatusBar;
   public
+    property vSpinEdit : TSpinEdit read FSpinEdit write FSpinEdit;
     property vPageControl : tucPageControl read FPageControl write FPageControl;
     property vStatusBar : tucStatusBar read FStatusBar write FStatusBar;
-    constructor Create (AOwner : TWinControl; AImageList : TImageList; APopupMenu : TPopupMenu); overload;
+    constructor Create (AOwner : TWinControl; AImageList : TImageList; APopupMenu : TPopupMenu;
+      ASpinEdit : TSpinEdit); overload;
     procedure fcAddTab; overload;
     procedure fcAddTab (ACurrentData : tupCurrentData); overload;
     procedure fcUpdate (ACurrentData : tupCurrentData);
@@ -25,7 +28,6 @@ type
     procedure fcCopy;
     procedure fcCut;
     procedure fcPaste;
-    procedure fcSetFontSize (ASize : Byte);
     procedure fcSave (AFileName : TFileName);
     procedure fcShowCompletion;
     procedure fcSwitchEditorColor;
@@ -36,13 +38,15 @@ var
 
 implementation
 
-constructor tucMain.Create (AOwner : TWinControl; AImageList : TImageList; APopupMenu : TPopupMenu); overload;
+constructor tucMain.Create (AOwner : TWinControl; AImageList : TImageList; APopupMenu : TPopupMenu;
+  ASpinEdit : TSpinEdit); overload;
 begin
+  Self.vSpinEdit := ASpinEdit;
   Self.vStatusBar := tucStatusBar.Create(AOwner);
   Self.vStatusBar.Parent := AOwner;
   Self.vPageControl := tucPageControl.Create(AOwner);
   Self.vPageControl.Parent := AOwner;
-  Self.vPageControl.fcInit(AImageList,APopupMenu,Self.vStatusBar);
+  Self.vPageControl.fcInit(AImageList,APopupMenu,Self.vSpinEdit,Self.vStatusBar);
 end;
 
 procedure tucMain.fcAddTab;
@@ -60,6 +64,7 @@ end;
 
 procedure tucMain.fcUpdate (ACurrentData : tupCurrentData);
 begin
+  Self.vSpinEdit.Value := ACurrentData.vFontSize;
   Self.vPageControl.fcUpdate(ACurrentData);
   Self.vStatusBar.fcUpdate(ACurrentData);
 end;
@@ -87,11 +92,6 @@ end;
 procedure tucMain.fcPaste;
 begin
   Self.vPageControl.fcPaste;
-end;
-
-procedure tucMain.fcSetFontSize (ASize : Byte);
-begin
-  Self.vPageControl.fcSetFontSize(ASize);
 end;
 
 procedure tucMain.fcSave (AFileName : TFileName);
