@@ -1,8 +1,9 @@
 v.1.0.1.1 : (Work in progress)
 ----------------------------------------------------------
-Added  : Copy, Cut & Paste functions
-Added  : CSS
-Added  : More icons
+Added  : Copy, Cut, Paste, & Select All functions
+Added  : CSS Langugage
+Added  : More icons and toolbar button
+Fixed  : Font size changing for all tabs.
 Update : Code refactoring & other minor updates
 
 v.1.0.1.0 : (Released 22nd Oct 2020)
