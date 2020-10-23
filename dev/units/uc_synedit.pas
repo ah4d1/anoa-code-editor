@@ -6,12 +6,12 @@ interface
 
 uses
   Classes, SysUtils, SynEdit, ComCtrls, Controls, Graphics, SynEditHighlighter,
-  uc_syncompletion, Dialogs;
+  up_currentdata, uc_syncompletion, Dialogs;
 
 type
   tucSynEdit = class(TSynEdit)
     constructor Create (AOwner : TComponent); override;
-    procedure fcUpdate (AHighlighter : TSynCustomHighlighter);
+    procedure fcUpdate (ACurrentData : tupCurrentData);
     procedure fcOpen (AFileName : TFileName);
     procedure fcSave (AFileName : TFileName);
     procedure fcChange (Sender: TObject);
@@ -20,7 +20,6 @@ type
     procedure fcCopy;
     procedure fcCut;
     procedure fcPaste;
-    procedure fcSetFontSize (ASize : Byte);
     procedure fcShowCompletion (ASynCompletion : tucSynCompletion);
     procedure fcSwitchColor;
   end;
@@ -42,9 +41,10 @@ begin
   Self.OnChange := @Self.fcChange;
 end;
 
-procedure tucSynEdit.fcUpdate (AHighlighter : TSynCustomHighlighter);
+procedure tucSynEdit.fcUpdate (ACurrentData : tupCurrentData);
 begin
-  Self.Highlighter := AHighlighter;
+  Self.Font.Size := ACurrentData.vFontSize;
+  Self.Highlighter := ACurrentData.vHighlighter;
 end;
 
 procedure tucSynEdit.fcOpen (AFileName : TFileName);
@@ -86,11 +86,6 @@ end;
 procedure tucSynEdit.fcPaste;
 begin
   Self.PasteFromClipboard;
-end;
-
-procedure tucSynEdit.fcSetFontSize (ASize : Byte);
-begin
-  Self.Font.Size := ASize;
 end;
 
 procedure tucSynEdit.fcShowCompletion (ASynCompletion : tucSynCompletion);
