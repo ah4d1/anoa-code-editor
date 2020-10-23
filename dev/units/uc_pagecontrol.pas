@@ -89,7 +89,9 @@ begin
     Self.fcCurrentTabSheet.Free
   else
   begin
-    LConfirmation := MessageDlg('Confirmation','Do you to save before close?',mtConfirmation,[mbYes,mbNo,mbCancel],0);
+    LConfirmation := MessageDlg('Confirmation','Do you want to save before close?',
+      mtConfirmation,[mbYes,mbNo,mbCancel],0
+    );
     case LConfirmation of
       mrYes :
         begin
