@@ -5,7 +5,7 @@ unit up_currentdata;
 interface
 
 uses
-  Classes, SysUtils, SynEditHighlighter, up_synhighlighter;
+  Classes, SysUtils, SynEditHighlighter, up_synhighlighter, Dialogs;
 
 type
   tupCurrentData = class
@@ -14,10 +14,12 @@ type
     vSynHighlighter : tupSynHighlighter;
     vHighlighter : TSynCustomHighlighter;
     vFileName : TFileName;
+    vFontSize : Byte;
     constructor Create (AHighlighter : tupSynHighlighter);
+    procedure fcUpdate (AFontSize : Byte); overload;
     procedure fcUpdate (ALang : taseLang); overload;
     procedure fcUpdate (AFileName : TFileName); overload;
-    procedure fcUpdate (ALang : taseLang; AFileName : TFileName); overload;
+    procedure fcUpdate (AFontSize : Byte; ALang : taseLang; AFileName : TFileName); overload;
   end;
 
 var
@@ -35,21 +37,28 @@ begin
   Self.vSynHighlighter := AHighlighter;
   Self.vHighlighter := AHighlighter.vNone;
   Self.vFileName := '';
+  Self.vFontSize := 9;
+end;
+
+procedure tupCurrentData.fcUpdate (AFontSize : Byte);
+begin
+  Self.fcUpdate(AFontSize,Self.vLang,Self.vFileName);
 end;
 
 procedure tupCurrentData.fcUpdate (ALang : taseLang);
 begin
-  Self.fcUpdate(ALang,Self.vFileName);
+  Self.fcUpdate(Self.vFontSize,ALang,Self.vFileName);
 end;
 
 procedure tupCurrentData.fcUpdate (AFileName : TFileName);
 begin
   Self.vLang := vupLang.fcGetLang(ExtractFileExt(AFileName));
-  Self.fcUpdate(Self.vLang,AFileName);
+  Self.fcUpdate(Self.vFontSize,Self.vLang,AFileName);
 end;
 
-procedure tupCurrentData.fcUpdate (ALang : taseLang; AFileName : TFileName);
+procedure tupCurrentData.fcUpdate (AFontSize : Byte; ALang : taseLang; AFileName : TFileName);
 begin
+  Self.vFontSize := AFontSize;
   Self.vLang := ALang;
   Self.vLangTxt := vupLang.fcGetLangTxt(Self.vLang);
   Self.vHighlighter := Self.vSynHighlighter.fcGetHighlighter(Self.vLang);
