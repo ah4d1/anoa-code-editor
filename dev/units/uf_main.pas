@@ -22,6 +22,7 @@ type
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
+    MenuItemEditSelectAll: TMenuItem;
     MenuItemSettingsLangCSS: TMenuItem;
     MenuItemEditPaste: TMenuItem;
     MenuItemEditCut: TMenuItem;
@@ -76,6 +77,7 @@ type
     procedure MenuItemEditCopyClick(Sender: TObject);
     procedure MenuItemEditCutClick(Sender: TObject);
     procedure MenuItemEditPasteClick(Sender: TObject);
+    procedure MenuItemEditSelectAllClick(Sender: TObject);
     procedure MenuItemHelpAboutClick(Sender: TObject);
     procedure MenuItemAddTabClick(Sender: TObject);
     procedure MenuItemEditShowCompletionClick(Sender: TObject);
@@ -153,6 +155,11 @@ begin
   vucMain.fcPaste;
 end;
 
+procedure TFormMain.MenuItemEditSelectAllClick(Sender: TObject);
+begin
+  vucMain.fcSelectAll;
+end;
+
 procedure TFormMain.FormActivate(Sender: TObject);
 begin
   if FormFindReplace <> nil then
@@ -169,7 +176,7 @@ end;
 
 procedure TFormMain.MenuItemFileNewClick(Sender: TObject);
 begin
-  vupCurrentData.fcUpdate(vupVar.vDefaultFontSize,aseLangNone,'');
+  vupCurrentData.fcUpdate(aseLangNone,'');
   vucMain.fcAddTab;
   vucMain.fcUpdate(vupCurrentData);
 end;
@@ -182,7 +189,7 @@ end;
 
 procedure TFormMain.MenuItemAddTabClick(Sender: TObject);
 begin
-  vupCurrentData.fcUpdate(vupVar.vDefaultFontSize,aseLangNone,'');
+  vupCurrentData.fcUpdate(aseLangNone,'');
   vucMain.fcAddTab;
   vucMain.fcUpdate(vupCurrentData);
 end;
@@ -316,8 +323,7 @@ end;
 
 procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
 begin
-  vupCurrentData.fcUpdate(Self.SpinEditFontSize.Value);
-  vucMain.fcUpdate(vupCurrentData);
+  vucMain.fcUpdateFontSize;
 end;
 
 end.
