@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  StdCtrls, Spin, SynHighlighterCobol, SynEdit, SynCompletion, uc_tabsheet,
-  uc_syncompletion, up_synhighlighter;
+  StdCtrls, Spin, ExtCtrls, SynHighlighterCobol, SynEdit, SynCompletion,
+  up_synhighlighter;
 
 type
 
@@ -121,7 +121,7 @@ implementation
 { TFormMain }
 
 uses
-  uc_main, uf_findreplace, uf_about, up_var, up_currentdata, up_tools;
+  uc_main, uf_findreplace, uf_about, up_var, up_currentdata, up_tools, ac_app, ac_sys;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 var
@@ -129,7 +129,7 @@ var
 begin
   vupVar := tupVar.Create(Self);
   vupCurrentData := tupCurrentData.Create(vupVar.vSynHighlighter);
-  LFileNameOnStart := string(vupTools.FcParamsInSingleText);
+  LFileNameOnStart := string(vacApp.fcGetParam);
   Self.OpenDialogMain.Filter := string(vupVar.vSynHighlighter.fcSetDefaultFilter);
   Self.SaveDialogMain.Filter := string(vupVar.vSynHighlighter.fcSetDefaultFilter);
   vucMain := tucMain.Create(Self,Self.ImageListMain,Self.PopupMenuPageControl,
@@ -260,7 +260,7 @@ end;
 
 procedure TFormMain.MenuItemSettingsAddToSysMenuClick(Sender: TObject);
 begin
-  vupTools.FcAddAppToWinExplorerContextMenu('Open with Anoa-Syntax-Editor',Application.ExeName);
+  vacSys.fcAddToWinExplorerContextMenu('Open with Anoa-Syntax-Editor',Application.ExeName);
   MessageDlg('Please check at Windows Explorer Context Menu',mtInformation,[mbOK],0);
 end;
 
