@@ -70,8 +70,8 @@ end;
 
 procedure tucMain.fcCloseTab (ACurrentData : tupCurrentData);
 begin
-  Self.vPageControl.fcCloseTab(ACurrentData,Self.vSaveDialog,
-    vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),vupVar.vImageIndexNormalFile
+  Self.vPageControl.fcCloseTab(ACurrentData,vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),
+    vupVar.vImageIndexNormalFile
   );
 end;
 
