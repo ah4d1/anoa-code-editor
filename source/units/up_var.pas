@@ -11,11 +11,12 @@ type
   tupVar = class
     vTabPrefix : string;
     vTabNo : Byte;
-    vLang : TStringList;
     vImageIndexNormalFile : Byte;
     vImageIndexModifiedFile : Byte;
     vSynHighlighter : tupSynHighlighter;
     vReservedWords : tupReserveWords;
+    vLang : TStringList;
+    vDefaultFontSize : Byte;
     constructor Create (AOwner : TComponent);
   end;
 
@@ -25,7 +26,7 @@ var
 implementation
 
 uses
-  up_lang, up_tools;
+  up_lang, up_tools, ac_string;
 
 constructor tupVar.Create (AOwner : TComponent);
 begin
@@ -35,7 +36,8 @@ begin
   Self.vImageIndexModifiedFile := 4;
   Self.vSynHighlighter := tupSynHighlighter.Create(AOwner);
   Self.vReservedWords := tupReserveWords.Create(AOwner);
-  Self.vLang := vupTools.FcStringExplode(Self.vReservedWords.vLangTxt,'|');
+  Self.vLang := vacString.fcSplit(Self.vReservedWords.vLangTxt,'|');
+  Self.vDefaultFontSize := 9;
 end;
 
 end.
