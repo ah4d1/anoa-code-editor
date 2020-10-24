@@ -27,20 +27,25 @@ MAIN FEATURES :
 - Easy adding context menu to Windows Explorer.
 
 
-DEVELOPMENT ENVIRONMENT, THANKS TO :
+DEVELOPMENT ENVIRONMENT & COMPILER, THANKS TO :
 -------------------------------------
 Lazarus IDE : https://www.lazarus-ide.org/
 Free Pascal : https://www.freepascal.org/
 
 
-MAIN COMPONENT(S), THANKS TO :
+MAIN COMPONENT(S) ALREADY IN IDE, THANKS TO :
 -------------------------------------
 SynEdit     : by Lazarus Team, SynEdit
 
 
-ADDITIONAL PACKAGE(S), THANKS TO :
+ADDITIONAL PACKAGE(S) MUST BE INSTALLED TO IDE, THANKS TO :
 -------------------------------------
 ExtraSyn    : https://github.com/mriscoc/extrasyn
+
+
+ADDITIONAL SOURCE(S) MUST BE ADDED TO PROJECT, THANKS TO :
+-------------------------------------
+Anoa-Core   : https://github.com/ah4d1/anoa-core
 
 
 LOGO, THANKS TO :
