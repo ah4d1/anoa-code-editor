@@ -23,8 +23,7 @@ type
       ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar; ASaveDialog : TSaveDialog);
     procedure fcAddTab (ACaption : string; AImageIndex : Byte);
     procedure fcAddTabThenOpen (ACurrentData : tupCurrentData; AImageIndex : Byte);
-    procedure fcCloseTab (ACurrentData : tupCurrentData; ASaveDialog : TSaveDialog;
-      ACaption : string; AImageIndex : Byte);
+    procedure fcCloseTab (ACurrentData : tupCurrentData; ACaption : string; AImageIndex : Byte);
     procedure fcUpdate (ACurrentData : tupCurrentData);
     procedure fcUpdateFontSize;
     procedure fcUndo;
@@ -80,8 +79,7 @@ begin
   Self.fcCurrentTabSheet.fcOpen(ACurrentData);
 end;
 
-procedure tucPageControl.fcCloseTab (ACurrentData : tupCurrentData; ASaveDialog : TSaveDialog;
-  ACaption : string; AImageIndex : Byte);
+procedure tucPageControl.fcCloseTab (ACurrentData : tupCurrentData; ACaption : string; AImageIndex : Byte);
 var
   LConfirmation : TModalResult;
 begin
