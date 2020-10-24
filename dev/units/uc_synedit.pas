@@ -28,7 +28,7 @@ type
 implementation
 
 uses
-  uc_tabsheet, up_var, up_tools;
+  uc_tabsheet, up_var, up_tools, ac_color;
 
 constructor tucSynEdit.Create (AOwner : TComponent);
 begin
@@ -38,7 +38,7 @@ begin
   Self.Font.Pitch := fpFixed;
   Self.Font.Quality := fqProof;
   Self.Font.Size := 9;
-  Self.LineHighlightColor.Background := $00D3BD89;
+  Self.LineHighlightColor.Background := $00EFE8D6;
   Self.OnChange := @Self.fcChange;
 end;
 
@@ -101,11 +101,11 @@ end;
 
 procedure tucSynEdit.fcSwitchColor;
 begin
-  Self.Color := vupTools.fcComplementaryColor(Self.Color);
-  Self.Font.Color := vupTools.fcComplementaryColor(Self.Font.Color);
-  Self.Gutter.Color := vupTools.fcComplementaryColor(Self.Gutter.Color);
-  Self.Gutter.Parts[1].MarkupInfo.Background := vupTools.fcComplementaryColor(Self.Gutter.Parts[1].MarkupInfo.Background);;
-  Self.LineHighlightColor.Background := vupTools.fcComplementaryColor(Self.LineHighlightColor.Background);
+  Self.Color := vacColor.fcInvert(Self.Color);
+  Self.Font.Color := vacColor.fcInvert(Self.Font.Color);
+  Self.Gutter.Color := vacColor.fcInvert(Self.Gutter.Color);
+  Self.Gutter.Parts[1].MarkupInfo.Background := vacColor.fcInvert(Self.Gutter.Parts[1].MarkupInfo.Background);;
+  Self.LineHighlightColor.Background := vacColor.fcInvert(Self.LineHighlightColor.Background);
 end;
 
 end.
