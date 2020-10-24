@@ -1,6 +1,6 @@
 Anoa-Syntax-Editor is a free and open source syntax editor.
 
-Copyright(C)2020 Ahadi Aprianto (ahadi.aprianto@gmail.com)
+Copyright(C)2020 Ahadi Aprianto
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
