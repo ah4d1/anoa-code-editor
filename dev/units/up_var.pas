@@ -26,7 +26,7 @@ var
 implementation
 
 uses
-  up_lang, up_tools;
+  up_lang, up_tools, ac_string;
 
 constructor tupVar.Create (AOwner : TComponent);
 begin
@@ -36,7 +36,7 @@ begin
   Self.vImageIndexModifiedFile := 4;
   Self.vSynHighlighter := tupSynHighlighter.Create(AOwner);
   Self.vReservedWords := tupReserveWords.Create(AOwner);
-  Self.vLang := vupTools.FcStringExplode(Self.vReservedWords.vLangTxt,'|');
+  Self.vLang := vacString.fcSplit(Self.vReservedWords.vLangTxt,'|');
   Self.vDefaultFontSize := 9;
 end;
 
