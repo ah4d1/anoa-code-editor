@@ -6,18 +6,21 @@ interface
 
 uses
   Classes, SysUtils, SynEdit, ComCtrls, Controls, Graphics, SynEditHighlighter,
-  uc_syncompletion, Dialogs;
+  up_currentdata, uc_syncompletion, Dialogs;
 
 type
   tucSynEdit = class(TSynEdit)
     constructor Create (AOwner : TComponent); override;
-    procedure fcUpdate (AHighlighter : TSynCustomHighlighter);
+    procedure fcUpdate (ACurrentData : tupCurrentData);
     procedure fcOpen (AFileName : TFileName);
     procedure fcSave (AFileName : TFileName);
     procedure fcChange (Sender: TObject);
     procedure fcUndo;
     procedure fcRedo;
-    procedure fcSetFontSize (ASize : Byte);
+    procedure fcCopy;
+    procedure fcCut;
+    procedure fcPaste;
+    procedure fcSelectAll;
     procedure fcShowCompletion (ASynCompletion : tucSynCompletion);
     procedure fcSwitchColor;
   end;
@@ -25,7 +28,7 @@ type
 implementation
 
 uses
-  uc_tabsheet, up_var, up_tools;
+  uc_tabsheet, up_var, up_tools, ac_color;
 
 constructor tucSynEdit.Create (AOwner : TComponent);
 begin
@@ -35,13 +38,13 @@ begin
   Self.Font.Pitch := fpFixed;
   Self.Font.Quality := fqProof;
   Self.Font.Size := 9;
-  Self.LineHighlightColor.Background := $00D3BD89;
+  Self.LineHighlightColor.Background := $00EFE8D6;
   Self.OnChange := @Self.fcChange;
 end;
 
-procedure tucSynEdit.fcUpdate (AHighlighter : TSynCustomHighlighter);
+procedure tucSynEdit.fcUpdate (ACurrentData : tupCurrentData);
 begin
-  Self.Highlighter := AHighlighter;
+  Self.Highlighter := ACurrentData.vHighlighter;
 end;
 
 procedure tucSynEdit.fcOpen (AFileName : TFileName);
@@ -57,6 +60,7 @@ end;
 procedure tucSynEdit.fcChange (Sender: TObject);
 begin
   (Self.Parent as tucTabSheet).ImageIndex := vupVar.vImageIndexModifiedFile;
+  (Self.Parent as tucTabSheet).vTextStatus := aseTextStatusModified;
   inherited;
 end;
 
@@ -70,9 +74,24 @@ begin
   Self.Redo;
 end;
 
-procedure tucSynEdit.fcSetFontSize (ASize : Byte);
+procedure tucSynEdit.fcCopy;
 begin
-  Self.Font.Size := ASize;
+  Self.CopyToClipboard;
+end;
+
+procedure tucSynEdit.fcCut;
+begin
+  Self.CutToClipboard;
+end;
+
+procedure tucSynEdit.fcPaste;
+begin
+  Self.PasteFromClipboard;
+end;
+
+procedure tucSynEdit.fcSelectAll;
+begin
+  Self.SelectAll;
 end;
 
 procedure tucSynEdit.fcShowCompletion (ASynCompletion : tucSynCompletion);
@@ -82,11 +101,11 @@ end;
 
 procedure tucSynEdit.fcSwitchColor;
 begin
-  Self.Color := vupTools.fcComplementaryColor(Self.Color);
-  Self.Font.Color := vupTools.fcComplementaryColor(Self.Font.Color);
-  Self.Gutter.Color := vupTools.fcComplementaryColor(Self.Gutter.Color);
-  Self.Gutter.Parts[1].MarkupInfo.Background := vupTools.fcComplementaryColor(Self.Gutter.Parts[1].MarkupInfo.Background);;
-  Self.LineHighlightColor.Background := vupTools.fcComplementaryColor(Self.LineHighlightColor.Background);
+  Self.Color := vacColor.fcInvert(Self.Color);
+  Self.Font.Color := vacColor.fcInvert(Self.Font.Color);
+  Self.Gutter.Color := vacColor.fcInvert(Self.Gutter.Color);
+  Self.Gutter.Parts[1].MarkupInfo.Background := vacColor.fcInvert(Self.Gutter.Parts[1].MarkupInfo.Background);;
+  Self.LineHighlightColor.Background := vacColor.fcInvert(Self.LineHighlightColor.Background);
 end;
 
 end.
