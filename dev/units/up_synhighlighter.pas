@@ -36,7 +36,7 @@ type
 implementation
 
 uses
-  up_tools;
+  up_tools, ac_string;
 
 constructor tupSynHighlighter.Create (AOwner : TComponent);
 begin
@@ -116,8 +116,8 @@ var
   LExts : TStringList;
   LFound : Boolean;
 begin
-  LFilters := vupTools.fcStringExplode(ADefaultFilter,'|');
-  LExts := vupTools.fcStringExplode(LFilters[1],';');
+  LFilters := vacString.fcSplit(ADefaultFilter,'|');
+  LExts := vacString.fcSplit(LFilters[1],';');
   LFound := False;
   for i := 0 to LExts.Count - 1 do
   begin
