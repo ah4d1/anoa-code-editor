@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  StdCtrls, Spin, SynHighlighterCobol, SynEdit, SynCompletion, uc_tabsheet,
-  uc_syncompletion, up_synhighlighter;
+  StdCtrls, Spin, ExtCtrls, SynHighlighterCobol, SynEdit, SynCompletion,
+  up_synhighlighter;
 
 type
 
@@ -20,6 +20,14 @@ type
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
+    MenuItem5: TMenuItem;
+    MenuItemCloseTab: TMenuItem;
+    MenuItemEditSelectAll: TMenuItem;
+    MenuItemSettingsLangCSS: TMenuItem;
+    MenuItemEditPaste: TMenuItem;
+    MenuItemEditCut: TMenuItem;
+    MenuItemEditCopy: TMenuItem;
     MenuItemHelpAbout: TMenuItem;
     MenuItemAddTab: TMenuItem;
     MenuItemSettingsLangNone: TMenuItem;
@@ -55,8 +63,23 @@ type
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
+    ToolButton4: TToolButton;
+    ToolButton5: TToolButton;
+    ToolButton6: TToolButton;
+    ToolButton7: TToolButton;
+    ToolButton8: TToolButton;
+    ToolButtonFindReplace: TToolButton;
+    ToolButtonPaste: TToolButton;
+    ToolButtonCut: TToolButton;
+    ToolButtonRedo: TToolButton;
+    ToolButtonUndo: TToolButton;
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItemCloseTabClick(Sender: TObject);
+    procedure MenuItemEditCopyClick(Sender: TObject);
+    procedure MenuItemEditCutClick(Sender: TObject);
+    procedure MenuItemEditPasteClick(Sender: TObject);
+    procedure MenuItemEditSelectAllClick(Sender: TObject);
     procedure MenuItemHelpAboutClick(Sender: TObject);
     procedure MenuItemAddTabClick(Sender: TObject);
     procedure MenuItemEditShowCompletionClick(Sender: TObject);
@@ -71,6 +94,7 @@ type
     procedure MenuItemSettingsAddToSysMenuClick(Sender: TObject);
     procedure MenuItemSettingsLangCobolClick(Sender: TObject);
     procedure MenuItemSettingsLangCSharpClick(Sender: TObject);
+    procedure MenuItemSettingsLangCSSClick(Sender: TObject);
     procedure MenuItemSettingsLangHTMLClick(Sender: TObject);
     procedure MenuItemSettingsLangJavaClick(Sender: TObject);
     procedure MenuItemSettingsLangJSONClick(Sender: TObject);
@@ -97,7 +121,7 @@ implementation
 { TFormMain }
 
 uses
-  uc_main, uf_findreplace, uf_about, up_var, up_currentdata, up_tools;
+  uc_main, uf_findreplace, uf_about, up_var, up_currentdata, up_tools, ac_app, ac_sys;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 var
@@ -105,15 +129,44 @@ var
 begin
   vupVar := tupVar.Create(Self);
   vupCurrentData := tupCurrentData.Create(vupVar.vSynHighlighter);
-  LFileNameOnStart := string(vupTools.FcParamsInSingleText);
+  LFileNameOnStart := string(vacApp.fcGetParam);
   Self.OpenDialogMain.Filter := string(vupVar.vSynHighlighter.fcSetDefaultFilter);
   Self.SaveDialogMain.Filter := string(vupVar.vSynHighlighter.fcSetDefaultFilter);
-  vucMain := tucMain.Create(Self,Self.ImageListMain,Self.PopupMenuPageControl);
+  vucMain := tucMain.Create(Self,Self.ImageListMain,Self.PopupMenuPageControl,
+    Self.SpinEditFontSize,Self.SaveDialogMain
+  );
   if Trim(LFileNameOnStart) = '' then
     vucMain.fcAddTab
   else
-    vucMain.fcAddTab(LFileNameOnStart)
-  ;
+  begin
+    vupCurrentData.fcUpdate(LFileNameOnStart);
+    vucMain.fcAddTab(vupCurrentData);
+  end;
+end;
+
+procedure TFormMain.MenuItemCloseTabClick(Sender: TObject);
+begin
+  vucMain.fcCloseTab(vupCurrentData);
+end;
+
+procedure TFormMain.MenuItemEditCopyClick(Sender: TObject);
+begin
+  vucMain.fcCopy;
+end;
+
+procedure TFormMain.MenuItemEditCutClick(Sender: TObject);
+begin
+  vucMain.fcCut;
+end;
+
+procedure TFormMain.MenuItemEditPasteClick(Sender: TObject);
+begin
+  vucMain.fcPaste;
+end;
+
+procedure TFormMain.MenuItemEditSelectAllClick(Sender: TObject);
+begin
+  vucMain.fcSelectAll;
 end;
 
 procedure TFormMain.FormActivate(Sender: TObject);
@@ -173,10 +226,11 @@ end;
 
 procedure TFormMain.MenuItemFileOpenClick(Sender: TObject);
 begin
+  Self.OpenDialogMain.FileName := '';
   if Self.OpenDialogMain.Execute then
   begin
     vupCurrentData.fcUpdate(Self.OpenDialogMain.FileName);
-    vucMain.fcAddTab(vupCurrentData.vFileName);
+    vucMain.fcAddTab(vupCurrentData);
     vucMain.fcUpdate(vupCurrentData);
   end;
 end;
@@ -206,7 +260,7 @@ end;
 
 procedure TFormMain.MenuItemSettingsAddToSysMenuClick(Sender: TObject);
 begin
-  vupTools.FcAddAppToWinExplorerContextMenu('Open with Anoa-Syntax-Editor',Application.ExeName);
+  vacSys.fcAddToWinExplorerContextMenu('Open with Anoa-Syntax-Editor',Application.ExeName);
   MessageDlg('Please check at Windows Explorer Context Menu',mtInformation,[mbOK],0);
 end;
 
@@ -218,6 +272,11 @@ end;
 procedure TFormMain.MenuItemSettingsLangCSharpClick(Sender: TObject);
 begin
   Self.SetLang(aseLangCS);
+end;
+
+procedure TFormMain.MenuItemSettingsLangCSSClick(Sender: TObject);
+begin
+  Self.SetLang(aseLangCSS);
 end;
 
 procedure TFormMain.MenuItemSettingsLangHTMLClick(Sender: TObject);
@@ -264,7 +323,6 @@ procedure TFormMain.SetLang (ALang : taseLang);
 begin
   vupCurrentData.fcUpdate(ALang);
   vucMain.fcUpdate(vupCurrentData);
-  vucMain.fcUpdate(vupCurrentData);
 end;
 
 procedure TFormMain.MenuItemSettingsSwitchColorClick(Sender: TObject);
@@ -274,7 +332,7 @@ end;
 
 procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
 begin
-  vucMain.fcSetFontSize(Self.SpinEditFontSize.Value);
+  vucMain.fcUpdateFontSize;
 end;
 
 end.
