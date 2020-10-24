@@ -5,18 +5,19 @@ unit up_synhighlighter;
 interface
 
 uses
-  Classes, SysUtils, SynEditHighlighter, SynHighlighterCobol, SynHighlighterCS, SynHighlighterHTML,
-  SynHighlighterJava, SynHighlighterJSON, SynHighlighterPas, SynHighlighterPHP, SynHighlighterPython,
-  SynHighlighterSQL;
+  Classes, SysUtils, SynEditHighlighter, SynHighlighterCobol, SynHighlighterCS, SynHighlighterCSS,
+  SynHighlighterHTML, SynHighlighterJava, SynHighlighterJSON, SynHighlighterPas, SynHighlighterPHP,
+  SynHighlighterPython, SynHighlighterSQL, Dialogs;
 
 type
-  taseLang = (aseLangNone,aseLangCobol,aseLangCS,aseLangHTML,aseLangJava,aseLangJSON,aseLangPas
+  taseLang = (aseLangNone,aseLangCobol,aseLangCS,aseLangCSS,aseLangHTML,aseLangJava,aseLangJSON,aseLangPas
     ,aseLangPHP,aseLangPython,aseLangSQL
   );
   tupSynHighlighter = class
     vNone   : TSynCustomHighLighter;
     vCobol  : TSynCobolSyn;
     vCS     : TSynCSSyn;
+    vCSS    : TSynCSSSyn;
     vHTML   : TSynHTMLSyn;
     vJava   : TSynJavaSyn;
     vJSON   : TSynJSONSyn;
@@ -28,15 +29,21 @@ type
     function fcSetDefaultFilter : WideString;
     function fcGetLang (AFileExt : string) : taseLang;
     function fcGetHighlighter (ALang : taseLang) : TSynCustomHighlighter;
+  private
+    function fcIsExt (AFileExt : string; ADefaultFilter : string) : Boolean;
   end;
 
 implementation
+
+uses
+  up_tools, ac_string;
 
 constructor tupSynHighlighter.Create (AOwner : TComponent);
 begin
   Self.vNone   := nil;
   Self.vCobol  := TSynCobolSyn.Create(AOwner);
   Self.vCS     := TSynCSSyn.Create(AOwner);
+  Self.vCSS    := TSynCSSSyn.Create(AOwner);
   Self.vHTML   := TSynHTMLSyn.Create(AOwner);
   Self.vJava   := TSynJavaSyn.Create(AOwner);
   Self.vJSON   := TSynJSONSyn.Create(AOwner);
@@ -52,6 +59,7 @@ begin
     + 'All Files (*.*)|*.*'
     + '|' + Self.vCobol.DefaultFilter
     + '|' + Self.vCS.DefaultFilter
+    + '|' + Self.vCSS.DefaultFilter
     + '|' + Self.vHTML.DefaultFilter
     + '|' + Self.vJava.DefaultFilter
     + '|' + Self.vJSOn.DefaultFilter
@@ -67,15 +75,16 @@ var
   LLang : taseLang;
 begin
   LLang := aseLangNone;
-  if Pos(AFileExt,Self.vCobol.DefaultFilter) >= 1 then LLang := aseLangCobol
-    else if Pos(AFileExt,Self.vCS.DefaultFilter) >= 1 then LLang := aseLangCS
-    else if Pos(AFileExt,Self.vHTML.DefaultFilter) >= 1 then LLang := aseLangHTML
-    else if Pos(AFileExt,Self.vJava.DefaultFilter) >= 1 then LLang := aseLangJava
-    else if Pos(AFileExt,Self.vJSON.DefaultFilter) >= 1 then LLang := aseLangJSON
-    else if Pos(AFileExt,Self.vPas.DefaultFilter) >= 1 then LLang := aseLangPas
-    else if Pos(AFileExt,Self.vPHP.DefaultFilter) >= 1 then LLang := aseLangPHP
-    else if Pos(AFileExt,Self.vPython.DefaultFilter) >= 1 then LLang := aseLangPython
-    else if Pos(AFileExt,Self.vSQL.DefaultFilter) >= 1 then LLang := aseLangSQL
+  if Self.fcIsExt(AFileExt,Self.vCobol.DefaultFilter) then LLang := aseLangCobol
+    else if Self.fcIsExt(AFileExt,Self.vCS.DefaultFilter) then LLang := aseLangCS
+    else if Self.fcIsExt(AFileExt,Self.vCSS.DefaultFilter) then LLang := aseLangCSS
+    else if Self.fcIsExt(AFileExt,Self.vHTML.DefaultFilter) then LLang := aseLangHTML
+    else if Self.fcIsExt(AFileExt,Self.vJava.DefaultFilter) then LLang := aseLangJava
+    else if Self.fcIsExt(AFileExt,Self.vJSON.DefaultFilter) then LLang := aseLangJSON
+    else if Self.fcIsExt(AFileExt,Self.vPas.DefaultFilter) then LLang := aseLangPas
+    else if Self.fcIsExt(AFileExt,Self.vPHP.DefaultFilter) then LLang := aseLangPHP
+    else if Self.fcIsExt(AFileExt,Self.vPython.DefaultFilter) then LLang := aseLangPython
+    else if Self.fcIsExt(AFileExt,Self.vSQL.DefaultFilter) then LLang := aseLangSQL
   ;
   Result := LLang;
 end;
@@ -88,6 +97,7 @@ begin
     aseLangNone   : LResult := Self.vNone;
     aseLangCobol  : LResult := Self.vCobol;
     aseLangCS     : LResult := Self.vCS;
+    aseLangCSS    : LResult := Self.vCSS;
     aseLangHTML   : LResult := Self.vHTML;
     aseLangJava   : LResult := Self.vJava;
     aseLangJSON   : LResult := Self.vJSON;
@@ -97,6 +107,27 @@ begin
     aseLangSQL    : LResult := Self.vSQL;
   end;
   Result := LResult;
+end;
+
+function tupSynHighlighter.fcIsExt (AFileExt : string; ADefaultFilter : string) : Boolean;
+var
+  i : Byte;
+  LFilters : TStringList;
+  LExts : TStringList;
+  LFound : Boolean;
+begin
+  LFilters := vacString.fcSplit(ADefaultFilter,'|');
+  LExts := vacString.fcSplit(LFilters[1],';');
+  LFound := False;
+  for i := 0 to LExts.Count - 1 do
+  begin
+    if '*' + AFileExt = LExts[i] then
+    begin
+      LFound := True;
+      Break;
+    end;
+  end;
+  Result := LFound;
 end;
 
 end.
