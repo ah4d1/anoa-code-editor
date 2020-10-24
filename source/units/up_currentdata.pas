@@ -5,7 +5,7 @@ unit up_currentdata;
 interface
 
 uses
-  Classes, SysUtils, SynEditHighlighter, up_synhighlighter;
+  Classes, SysUtils, SynEditHighlighter, up_synhighlighter, Dialogs;
 
 type
   tupCurrentData = class
