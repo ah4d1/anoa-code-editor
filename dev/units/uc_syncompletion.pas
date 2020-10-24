@@ -16,7 +16,7 @@ type
 implementation
 
 uses
-  up_var, up_tools;
+  up_var, ac_string;
 
 constructor tucSynCompletion.Create (AOwner : TComponent);
 begin
@@ -25,7 +25,7 @@ end;
 
 procedure tucSynCompletion.fcUpdate (ALang : taseLang);
 begin
-  Self.ItemList := vupTools.FcStringExplode(vupVar.vReservedWords.vReservedWords[Ord(ALang)],'|');
+  Self.ItemList := vacString.fcSplit(vupVar.vReservedWords.vReservedWords[Ord(ALang)],'|');
 end;
 
 end.
