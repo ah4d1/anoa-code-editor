@@ -5,23 +5,33 @@ unit uc_pagecontrol;
 interface
 
 uses
-  Classes, SysUtils, ComCtrls, Controls, Menus, SynEditHighlighter, up_currentdata, uc_tabsheet,
-  uc_statusbar, Dialogs;
+  Classes, SysUtils, ComCtrls, Controls, Menus, Spin, SynEditHighlighter, up_currentdata, uc_tabsheet,
+  uc_statusbar, Dialogs, UITypes;
 
 type
   tucPageControl = class(TPageControl)
   private
+    FSpinEdit : TSpinEdit;
     FStatusBar : tucStatusBar;
+    FSaveDialog : TSaveDialog;
   public
+    property vSpinEdit : TSpinEdit read FSpinEdit write FSpinEdit;
     property vStatusBar : tucStatusBar read FStatusBar write FStatusBar;
+    property vSaveDialog : TSaveDialog read FSaveDialog write FSaveDialog;
     constructor Create (AOwner : TComponent); override;
-    procedure fcInit (AImageList : TImageList; APopupMenu : TPopupMenu; AStatusBar : tucStatusBar);
+    procedure fcInit (AImageList : TImageList; APopupMenu : TPopupMenu;
+      ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar; ASaveDialog : TSaveDialog);
     procedure fcAddTab (ACaption : string; AImageIndex : Byte);
-    procedure fcAddTabThenOpen (AFileName : TFileName; AImageIndex : Byte);
+    procedure fcAddTabThenOpen (ACurrentData : tupCurrentData; AImageIndex : Byte);
+    procedure fcCloseTab (ACurrentData : tupCurrentData; ACaption : string; AImageIndex : Byte);
     procedure fcUpdate (ACurrentData : tupCurrentData);
+    procedure fcUpdateFontSize;
     procedure fcUndo;
     procedure fcRedo;
-    procedure fcSetFontSize (ASize : Byte);
+    procedure fcCopy;
+    procedure fcCut;
+    procedure fcPaste;
+    procedure fcSelectAll;
     procedure fcSetCurrentData;
     procedure fcSave (AFileName : TFileName);
     procedure Change; override;
@@ -40,12 +50,15 @@ begin
   Self.vStatusBar := tucStatusBar.Create(Self);
 end;
 
-procedure tucPageControl.fcInit (AImageList : TImageList; APopupMenu : TPopupMenu; AStatusBar : tucStatusBar);
+procedure tucPageControl.fcInit (AImageList : TImageList; APopupMenu : TPopupMenu;
+  ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar; ASaveDialog : TSaveDialog);
 begin
   Self.Images := AImageList;
   Self.ImagesWidth := 24;
   Self.PopupMenu := APopupMenu;
+  Self.vSpinEdit := ASpinEdit;
   Self.vStatusBar := AStatusBar;
+  Self.vSaveDialog := ASaveDialog;
 end;
 
 procedure tucPageControl.fcAddTab (ACaption : string; AImageIndex : Byte);
@@ -60,15 +73,55 @@ begin
   Self.fcCurrentTabSheet.fcInit;
 end;
 
-procedure tucPageControl.fcAddTabThenOpen (AFileName : TFileName; AImageIndex : Byte);
+procedure tucPageControl.fcAddTabThenOpen (ACurrentData : tupCurrentData; AImageIndex : Byte);
 begin
-  Self.fcAddTab(ExtractFileName(AFileName),AImageIndex);
-  Self.fcCurrentTabSheet.fcOpen(AFileName);
+  Self.fcAddTab(ExtractFileName(ACurrentData.vFileName),AImageIndex);
+  Self.fcCurrentTabSheet.fcOpen(ACurrentData);
+end;
+
+procedure tucPageControl.fcCloseTab (ACurrentData : tupCurrentData; ACaption : string; AImageIndex : Byte);
+var
+  LConfirmation : TModalResult;
+begin
+  if Self.fcCurrentTabSheet.vTextStatus = aseTextStatusNormal then
+    Self.fcCurrentTabSheet.Free
+  else
+  begin
+    LConfirmation := MessageDlg('Confirmation','Do you want to save before close?',
+      mtConfirmation,[mbYes,mbNo,mbCancel],0
+    );
+    case LConfirmation of
+      mrYes :
+        begin
+          if FileExists(ACurrentData.vFileName) then
+          begin
+            Self.fcSave(ACurrentData.vFileName);
+            Self.fcCurrentTabSheet.Free;
+          end
+          else
+          begin
+            if Self.vSaveDialog.Execute then
+            begin
+              Self.fcSave(Self.vSaveDialog.FileName);
+              Self.fcCurrentTabSheet.Free;
+            end;
+          end;
+        end;
+      mrNo : Self.fcCurrentTabSheet.Free;
+      mrCancel : ;
+    end;
+  end;
+  if Self.PageCount <= 0 then Self.fcAddTab(ACaption,AImageIndex);
 end;
 
 procedure tucPageControl.fcUpdate (ACurrentData : tupCurrentData);
 begin
   Self.fcCurrentTabSheet.fcUpdate(ACurrentData);
+end;
+
+procedure tucPageControl.fcUpdateFontSize;
+begin
+  Self.fcCurrentTabSheet.vSynEdit.Font.Size := Self.vSpinEdit.Value;
 end;
 
 procedure tucPageControl.fcUndo;
@@ -81,9 +134,24 @@ begin
   Self.fcCurrentTabSheet.fcRedo;
 end;
 
-procedure tucPageControl.fcSetFontSize (ASize : Byte);
+procedure tucPageControl.fcCopy;
 begin
-  Self.fcCurrentTabSheet.fcSetFontSize(ASize);
+  Self.fcCurrentTabSheet.fcCopy;
+end;
+
+procedure tucPageControl.fcCut;
+begin
+  Self.fcCurrentTabSheet.fcCut;
+end;
+
+procedure tucPageControl.fcPaste;
+begin
+  Self.fcCurrentTabSheet.fcPaste;
+end;
+
+procedure tucPageControl.fcSelectAll;
+begin
+  Self.fcCurrentTabSheet.fcSelectAll;
 end;
 
 procedure tucPageControl.fcSetCurrentData;
@@ -96,6 +164,7 @@ procedure tucPageControl.Change;
 begin
   inherited Change;
   Self.fcSetCurrentData;
+  Self.fcUpdateFontSize;
 end;
 
 procedure tucPageControl.fcSave (AFileName : TFileName);
