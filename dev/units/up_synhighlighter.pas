@@ -36,7 +36,7 @@ type
 implementation
 
 uses
-  up_tools, ac_string;
+  ac_string;
 
 constructor tupSynHighlighter.Create (AOwner : TComponent);
 begin
