@@ -80,6 +80,7 @@ type
     ToolButtonUndo: TToolButton;
     procedure ButtonCloseTabClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure MenuItemCloseAllTabsClick(Sender: TObject);
     procedure MenuItemCloseCurrentTabClick(Sender: TObject);
@@ -189,6 +190,11 @@ begin
     FormFindReplace.AlphaBlend := True;
     FormFindReplace.AlphaBlendValue := 175;
   end;
+end;
+
+procedure TFormMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  vucMain.fcCloseAllTabs(vupCurrentData);
 end;
 
 procedure TFormMain.ButtonCloseTabClick(Sender: TObject);
