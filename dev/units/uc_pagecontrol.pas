@@ -36,6 +36,8 @@ type
     procedure fcSave (AFileName : TFileName);
     procedure Change; override;
     procedure fcShowCompletion;
+    procedure fcCursorToBegin;
+    procedure fcReplaceForward (AOldPattern,ANewPattern : string);
     procedure fcSwitchEditorColor;
   private
     function fcCurrentTabSheet : tucTabSheet;
@@ -180,6 +182,16 @@ end;
 procedure tucPageControl.fcSwitchEditorColor;
 begin
   Self.fcCurrentTabSheet.fcSwitchEditorColor;
+end;
+
+procedure tucPageControl.fcCursorToBegin;
+begin
+  Self.fcCurrentTabSheet.fcCursorToBegin;
+end;
+
+procedure tucPageControl.fcReplaceForward (AOldPattern,ANewPattern : string);
+begin
+  Self.fcCurrentTabSheet.fcReplaceForward(AOldPattern,ANewPattern);
 end;
 
 function tucPageControl.fcCurrentTabSheet : tucTabSheet;
