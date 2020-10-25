@@ -38,6 +38,8 @@ type
     procedure fcSelectAll;
     procedure fcSetCurrentData;
     procedure fcShowCompletion;
+    procedure fcCursorToBegin;
+    procedure fcReplaceForward (AOldPattern,ANewPattern : string);
     procedure fcSwitchEditorColor;
   end;
 
@@ -121,6 +123,16 @@ end;
 procedure tucTabSheet.fcShowCompletion;
 begin
   Self.vSynEdit.CommandProcessor(vSynCompletion.ExecCommandID, '', nil);
+end;
+
+procedure tucTabSheet.fcCursorToBegin;
+begin
+  Self.vSynEdit.fcCursorToBegin;
+end;
+
+procedure tucTabSheet.fcReplaceForward (AOldPattern,ANewPattern : string);
+begin
+  Self.vSynEdit.fcReplaceForward(AOldPattern,ANewPattern);
 end;
 
 procedure tucTabSheet.fcSwitchEditorColor;
