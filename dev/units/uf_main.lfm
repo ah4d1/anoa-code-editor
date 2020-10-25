@@ -43,7 +43,6 @@ object FormMain: TFormMain
       ClientHeight = 38
       ClientWidth = 32
       TabOrder = 0
-      OnClick = PanelToolbarRightClick
       object ButtonCloseTab: TButton
         Left = 0
         Height = 38
