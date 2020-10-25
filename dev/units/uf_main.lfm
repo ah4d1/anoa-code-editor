@@ -9,6 +9,7 @@ object FormMain: TFormMain
   DesignTimePPI = 144
   Menu = MainMenuMain
   OnActivate = FormActivate
+  OnClose = FormClose
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
