@@ -28,7 +28,7 @@ type
 implementation
 
 uses
-  uc_tabsheet, up_var, up_tools, ac_color;
+  uc_tabsheet, up_var, ac_color;
 
 constructor tucSynEdit.Create (AOwner : TComponent);
 begin
