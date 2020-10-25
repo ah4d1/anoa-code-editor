@@ -57,7 +57,6 @@ type
     MenuItemFileSaveAs: TMenuItem;
     MenuItemFileOpen: TMenuItem;
     OpenDialogMain: TOpenDialog;
-    PageControlMain: TPageControl;
     PanelToolbarCenter: TPanel;
     PanelToolbarLeft: TPanel;
     PanelToolbarRight: TPanel;
