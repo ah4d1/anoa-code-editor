@@ -14,6 +14,7 @@ type
   { TFormMain }
 
   TFormMain = class(TForm)
+    ButtonCloseTab: TButton;
     ImageListMain: TImageList;
     LabelFontSize: TLabel;
     MainMenuMain: TMainMenu;
@@ -22,14 +23,15 @@ type
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
-    MenuItemCloseTab: TMenuItem;
+    MenuItemCloseAllTabs: TMenuItem;
+    MenuItemCloseCurrentTab: TMenuItem;
     MenuItemEditSelectAll: TMenuItem;
     MenuItemSettingsLangCSS: TMenuItem;
     MenuItemEditPaste: TMenuItem;
     MenuItemEditCut: TMenuItem;
     MenuItemEditCopy: TMenuItem;
     MenuItemHelpAbout: TMenuItem;
-    MenuItemAddTab: TMenuItem;
+    MenuItemAddNewTab: TMenuItem;
     MenuItemSettingsLangNone: TMenuItem;
     MenuItemEditShowCompletion: TMenuItem;
     MenuItemEditRedo: TMenuItem;
@@ -56,6 +58,10 @@ type
     MenuItemFileOpen: TMenuItem;
     OpenDialogMain: TOpenDialog;
     PageControlMain: TPageControl;
+    PanelToolbarCenter: TPanel;
+    PanelToolbarLeft: TPanel;
+    PanelToolbarRight: TPanel;
+    PanelToolbar: TPanel;
     PopupMenuPageControl: TPopupMenu;
     SaveDialogMain: TSaveDialog;
     SpinEditFontSize: TSpinEdit;
@@ -67,21 +73,22 @@ type
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
     ToolButton7: TToolButton;
-    ToolButton8: TToolButton;
+    ToolButtonCut: TToolButton;
     ToolButtonFindReplace: TToolButton;
     ToolButtonPaste: TToolButton;
-    ToolButtonCut: TToolButton;
     ToolButtonRedo: TToolButton;
     ToolButtonUndo: TToolButton;
+    procedure ButtonCloseTabClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure MenuItemCloseTabClick(Sender: TObject);
+    procedure MenuItemCloseAllTabsClick(Sender: TObject);
+    procedure MenuItemCloseCurrentTabClick(Sender: TObject);
     procedure MenuItemEditCopyClick(Sender: TObject);
     procedure MenuItemEditCutClick(Sender: TObject);
     procedure MenuItemEditPasteClick(Sender: TObject);
     procedure MenuItemEditSelectAllClick(Sender: TObject);
     procedure MenuItemHelpAboutClick(Sender: TObject);
-    procedure MenuItemAddTabClick(Sender: TObject);
+    procedure MenuItemAddNewTabClick(Sender: TObject);
     procedure MenuItemEditShowCompletionClick(Sender: TObject);
     procedure MenuItemEditFindReplaceClick(Sender: TObject);
     procedure MenuItemEditRedoClick(Sender: TObject);
@@ -104,6 +111,7 @@ type
     procedure MenuItemSettingsLangPythonClick(Sender: TObject);
     procedure MenuItemSettingsLangSQLClick(Sender: TObject);
     procedure MenuItemSettingsSwitchColorClick(Sender: TObject);
+    procedure PanelToolbarRightClick(Sender: TObject);
     procedure SpinEditFontSizeChange(Sender: TObject);
   private
     procedure SetLang (ALang : taseLang);
@@ -121,7 +129,7 @@ implementation
 { TFormMain }
 
 uses
-  uc_main, uf_findreplace, uf_about, up_var, up_currentdata, up_tools, ac_app, ac_sys;
+  uc_main, uf_findreplace, uf_about, up_var, up_currentdata, ac_app, ac_sys;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 var
@@ -136,17 +144,22 @@ begin
     Self.SpinEditFontSize,Self.SaveDialogMain
   );
   if Trim(LFileNameOnStart) = '' then
-    vucMain.fcAddTab
+    vucMain.fcAddNewTab
   else
   begin
     vupCurrentData.fcUpdate(LFileNameOnStart);
-    vucMain.fcAddTab(vupCurrentData);
+    vucMain.fcAddNewTab(vupCurrentData);
   end;
 end;
 
-procedure TFormMain.MenuItemCloseTabClick(Sender: TObject);
+procedure TFormMain.MenuItemCloseAllTabsClick(Sender: TObject);
 begin
-  vucMain.fcCloseTab(vupCurrentData);
+  vucMain.fcCloseAllTabs(vupCurrentData);
+end;
+
+procedure TFormMain.MenuItemCloseCurrentTabClick(Sender: TObject);
+begin
+  vucMain.fcCloseCurrentTab(vupCurrentData);
 end;
 
 procedure TFormMain.MenuItemEditCopyClick(Sender: TObject);
@@ -178,6 +191,11 @@ begin
   end;
 end;
 
+procedure TFormMain.ButtonCloseTabClick(Sender: TObject);
+begin
+  vucMain.fcCloseCurrentTab(vupCurrentData);
+end;
+
 procedure TFormMain.MenuItemFileExitClick(Sender: TObject);
 begin
   Application.Terminate;
@@ -186,7 +204,7 @@ end;
 procedure TFormMain.MenuItemFileNewClick(Sender: TObject);
 begin
   vupCurrentData.fcUpdate(aseLangNone,'');
-  vucMain.fcAddTab;
+  vucMain.fcAddNewTab;
   vucMain.fcUpdate(vupCurrentData);
 end;
 
@@ -196,10 +214,10 @@ begin
   FormAbout.ShowModal;
 end;
 
-procedure TFormMain.MenuItemAddTabClick(Sender: TObject);
+procedure TFormMain.MenuItemAddNewTabClick(Sender: TObject);
 begin
   vupCurrentData.fcUpdate(aseLangNone,'');
-  vucMain.fcAddTab;
+  vucMain.fcAddNewTab;
   vucMain.fcUpdate(vupCurrentData);
 end;
 
@@ -225,13 +243,19 @@ begin
 end;
 
 procedure TFormMain.MenuItemFileOpenClick(Sender: TObject);
+var
+  i : Byte;
 begin
   Self.OpenDialogMain.FileName := '';
   if Self.OpenDialogMain.Execute then
   begin
-    vupCurrentData.fcUpdate(Self.OpenDialogMain.FileName);
-    vucMain.fcAddTab(vupCurrentData);
-    vucMain.fcUpdate(vupCurrentData);
+    for i := 1 to Self.OpenDialogMain.Files.Count do
+    begin
+      vupCurrentData.fcUpdate(Self.OpenDialogMain.Files[i-1]);
+      vucMain.fcAddNewTab(vupCurrentData);
+      vucMain.fcUpdate(vupCurrentData);
+      vucMain.fcUpdateFontSize;
+    end;
   end;
 end;
 
@@ -328,6 +352,11 @@ end;
 procedure TFormMain.MenuItemSettingsSwitchColorClick(Sender: TObject);
 begin
   vucMain.fcSwitchEditorColor;
+end;
+
+procedure TFormMain.PanelToolbarRightClick(Sender: TObject);
+begin
+
 end;
 
 procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
