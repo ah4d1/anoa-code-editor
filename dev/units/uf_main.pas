@@ -112,8 +112,9 @@ type
     procedure MenuItemSettingsLangPythonClick(Sender: TObject);
     procedure MenuItemSettingsLangSQLClick(Sender: TObject);
     procedure MenuItemSettingsSwitchColorClick(Sender: TObject);
-    procedure PanelToolbarRightClick(Sender: TObject);
     procedure SpinEditFontSizeChange(Sender: TObject);
+    procedure fcReplaceForward (AOldPattern,ANewPattern : string);
+    procedure fcReplaceAll (AOldPattern,ANewPattern : string);
   private
     procedure SetLang (ALang : taseLang);
   public
@@ -238,6 +239,17 @@ begin
   FormFindReplace.Show;
 end;
 
+procedure TFormMain.fcReplaceForward (AOldPattern,ANewPattern : string);
+begin
+  vucMain.fcReplaceForward(AOldPattern,ANewPattern);
+end;
+
+procedure TFormMain.fcReplaceAll (AOldPattern,ANewPattern : string);
+begin
+  vucMain.fcCursorToBegin;
+  vucMain.fcReplaceForward(AOldPattern,ANewPattern);
+end;
+
 procedure TFormMain.MenuItemEditRedoClick(Sender: TObject);
 begin
   vucMain.fcRedo;
@@ -358,11 +370,6 @@ end;
 procedure TFormMain.MenuItemSettingsSwitchColorClick(Sender: TObject);
 begin
   vucMain.fcSwitchEditorColor;
-end;
-
-procedure TFormMain.PanelToolbarRightClick(Sender: TObject);
-begin
-
 end;
 
 procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
