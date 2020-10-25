@@ -22,9 +22,10 @@ type
     property vSaveDialog : TSaveDialog read FSaveDialog write FSaveDialog;
     constructor Create (AOwner : TWinControl; AImageList : TImageList; APopupMenu : TPopupMenu;
       ASpinEdit : TSpinEdit; ASaveDialog : TSaveDialog); overload;
-    procedure fcAddTab; overload;
-    procedure fcAddTab (ACurrentData : tupCurrentData); overload;
-    procedure fcCloseTab (ACurrentData : tupCurrentData);
+    procedure fcAddNewTab; overload;
+    procedure fcAddNewTab (ACurrentData : tupCurrentData); overload;
+    procedure fcCloseCurrentTab (ACurrentData : tupCurrentData);
+    procedure fcCloseAllTabs (ACurrentData : tupCurrentData);
     procedure fcUpdate (ACurrentData : tupCurrentData);
     procedure fcUpdateFontSize;
     procedure fcUndo;
@@ -55,24 +56,38 @@ begin
   Self.vPageControl.fcInit(AImageList,APopupMenu,Self.vSpinEdit,Self.vStatusBar,Self.vSaveDialog);
 end;
 
-procedure tucMain.fcAddTab;
+procedure tucMain.fcAddNewTab;
 begin
   vupVar.vTabNo := vupVar.vTabNo + 1;
-  Self.vPageControl.fcAddTab(vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),vupVar.vImageIndexNormalFile);
+  Self.vPageControl.fcAddNewTab(vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),vupVar.vImageIndexNormalFile);
 end;
 
-procedure tucMain.fcAddTab (ACurrentData : tupCurrentData);
+procedure tucMain.fcAddNewTab (ACurrentData : tupCurrentData);
 begin
   vupVar.vTabNo := vupVar.vTabNo + 1;
-  Self.vPageControl.fcAddTabThenOpen(ACurrentData,vupVar.vImageIndexNormalFile);
+  Self.vPageControl.fcAddNewTabThenOpen(ACurrentData,vupVar.vImageIndexNormalFile);
   Self.vStatusBar.fcUpdate(ACurrentData);
 end;
 
-procedure tucMain.fcCloseTab (ACurrentData : tupCurrentData);
+procedure tucMain.fcCloseCurrentTab (ACurrentData : tupCurrentData);
 begin
-  Self.vPageControl.fcCloseTab(ACurrentData,vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),
+  Self.vPageControl.fcCloseCurrentTab(ACurrentData,vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),
     vupVar.vImageIndexNormalFile
   );
+  Self.vPageControl.Change;
+end;
+
+procedure tucMain.fcCloseAllTabs (ACurrentData : tupCurrentData);
+var
+  i : Byte;
+begin
+  for i := 1 to Self.vPageControl.PageCount do
+  begin
+    Self.vPageControl.fcCloseCurrentTab(ACurrentData,vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),
+      vupVar.vImageIndexNormalFile
+    );
+    Self.vPageControl.Change;
+  end;
 end;
 
 procedure tucMain.fcUpdate (ACurrentData : tupCurrentData);
