@@ -26,7 +26,7 @@ var
 implementation
 
 uses
-  up_lang, up_tools, ac_string;
+  up_lang, ac_string;
 
 constructor tupVar.Create (AOwner : TComponent);
 begin
