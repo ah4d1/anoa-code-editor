@@ -37,6 +37,8 @@ type
     procedure fcSave (AFileName : TFileName);
     procedure fcShowCompletion;
     procedure fcSwitchEditorColor;
+    procedure fcCursorToBegin;
+    procedure fcReplaceForward (AOldPattern,ANewPattern : string);
   end;
 
 var
@@ -144,6 +146,16 @@ end;
 procedure tucMain.fcSwitchEditorColor;
 begin
   Self.vPageControl.fcSwitchEditorColor;
+end;
+
+procedure tucMain.fcCursorToBegin;
+begin
+  Self.vPageControl.fcCursorToBegin;
+end;
+
+procedure tucMain.fcReplaceForward (AOldPattern,ANewPattern : string);
+begin
+  Self.vPageControl.fcReplaceForward(AOldPattern,ANewPattern);
 end;
 
 end.
