@@ -21,9 +21,9 @@ type
     constructor Create (AOwner : TComponent); override;
     procedure fcInit (AImageList : TImageList; APopupMenu : TPopupMenu;
       ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar; ASaveDialog : TSaveDialog);
-    procedure fcAddTab (ACaption : string; AImageIndex : Byte);
-    procedure fcAddTabThenOpen (ACurrentData : tupCurrentData; AImageIndex : Byte);
-    procedure fcCloseTab (ACurrentData : tupCurrentData; ACaption : string; AImageIndex : Byte);
+    procedure fcAddNewTab (ACaption : string; AImageIndex : Byte);
+    procedure fcAddNewTabThenOpen (ACurrentData : tupCurrentData; AImageIndex : Byte);
+    procedure fcCloseCurrentTab (ACurrentData : tupCurrentData; ACaption : string; AImageIndex : Byte);
     procedure fcUpdate (ACurrentData : tupCurrentData);
     procedure fcUpdateFontSize;
     procedure fcUndo;
@@ -36,6 +36,8 @@ type
     procedure fcSave (AFileName : TFileName);
     procedure Change; override;
     procedure fcShowCompletion;
+    procedure fcCursorToBegin;
+    procedure fcReplaceForward (AOldPattern,ANewPattern : string);
     procedure fcSwitchEditorColor;
   private
     function fcCurrentTabSheet : tucTabSheet;
@@ -61,7 +63,7 @@ begin
   Self.vSaveDialog := ASaveDialog;
 end;
 
-procedure tucPageControl.fcAddTab (ACaption : string; AImageIndex : Byte);
+procedure tucPageControl.fcAddNewTab (ACaption : string; AImageIndex : Byte);
 begin
   with tucTabSheet.Create(Self) do
   begin
@@ -73,13 +75,13 @@ begin
   Self.fcCurrentTabSheet.fcInit;
 end;
 
-procedure tucPageControl.fcAddTabThenOpen (ACurrentData : tupCurrentData; AImageIndex : Byte);
+procedure tucPageControl.fcAddNewTabThenOpen (ACurrentData : tupCurrentData; AImageIndex : Byte);
 begin
-  Self.fcAddTab(ExtractFileName(ACurrentData.vFileName),AImageIndex);
+  Self.fcAddNewTab(ExtractFileName(ACurrentData.vFileName),AImageIndex);
   Self.fcCurrentTabSheet.fcOpen(ACurrentData);
 end;
 
-procedure tucPageControl.fcCloseTab (ACurrentData : tupCurrentData; ACaption : string; AImageIndex : Byte);
+procedure tucPageControl.fcCloseCurrentTab (ACurrentData : tupCurrentData; ACaption : string; AImageIndex : Byte);
 var
   LConfirmation : TModalResult;
 begin
@@ -111,7 +113,7 @@ begin
       mrCancel : ;
     end;
   end;
-  if Self.PageCount <= 0 then Self.fcAddTab(ACaption,AImageIndex);
+  if Self.PageCount <= 0 then Self.fcAddNewTab(ACaption,AImageIndex);
 end;
 
 procedure tucPageControl.fcUpdate (ACurrentData : tupCurrentData);
@@ -180,6 +182,16 @@ end;
 procedure tucPageControl.fcSwitchEditorColor;
 begin
   Self.fcCurrentTabSheet.fcSwitchEditorColor;
+end;
+
+procedure tucPageControl.fcCursorToBegin;
+begin
+  Self.fcCurrentTabSheet.fcCursorToBegin;
+end;
+
+procedure tucPageControl.fcReplaceForward (AOldPattern,ANewPattern : string);
+begin
+  Self.fcCurrentTabSheet.fcReplaceForward(AOldPattern,ANewPattern);
 end;
 
 function tucPageControl.fcCurrentTabSheet : tucTabSheet;
