@@ -1,8 +1,9 @@
-v.1.0.2.1 : (Work in progress)
+v.1.0.2.1 : (Released 26th Oct 2020)
 ----------------------------------------------------------
 Added  : Close current tab button.
 Added  : Open multiple files.
-Added  : Close multiple tabs. 
+Added  : Close multiple tabs.
+Added  : Search from beginning.
 Fixed  : Updating status bar after delete tab.
 Update : Code refactoring & other minor updates.
 
