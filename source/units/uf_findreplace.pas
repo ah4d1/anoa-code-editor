@@ -12,7 +12,7 @@ type
   { TFormFindReplace }
 
   TFormFindReplace = class(TForm)
-    ButtonReplaceAll: TButton;
+    ButtonReplace: TButton;
     ComboBoxDirection: TComboBox;
     EditFind: TEdit;
     EditReplaceWith: TEdit;
@@ -20,7 +20,7 @@ type
     LabelFind: TLabel;
     LabelReplaceWith: TLabel;
     LabelDirection: TLabel;
-    procedure ButtonReplaceAllClick(Sender: TObject);
+    procedure ButtonReplaceClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
   private
@@ -39,13 +39,15 @@ implementation
 { TFormFindReplace }
 
 uses
-  uf_main, uc_tabsheet;
+  uf_main;
 
-procedure TFormFindReplace.ButtonReplaceAllClick(Sender: TObject);
+procedure TFormFindReplace.ButtonReplaceClick(Sender: TObject);
 begin
-  ((FormMain.PageControlMain.ActivePage) as tucTabSheet).vSynEdit.SearchReplace(
-    Self.EditFind.Text,Self.EditReplaceWith.Text,[ssoReplaceAll]
-  );
+  if Self.ComboBoxDirection.Text = 'Replace All' then
+    FormMain.fcReplaceAll(Self.EditFind.Text,Self.EditReplaceWith.Text)
+  else if Self.ComboBoxDirection.Text = 'Forward' then
+    FormMain.fcReplaceForward(Self.EditFind.Text,Self.EditReplaceWith.Text)
+  ;
 end;
 
 procedure TFormFindReplace.FormActivate(Sender: TObject);
