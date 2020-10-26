@@ -6,10 +6,10 @@ interface
 
 uses
   Classes, SysUtils, ComCtrls, Controls, Menus, Spin, SynEditHighlighter, up_currentdata, uc_tabsheet,
-  uc_statusbar, Dialogs, UITypes;
+  uc_statusbar, Dialogs, UITypes, ExtendedNotebook, SynEditTypes;
 
 type
-  tucPageControl = class(TPageControl)
+  tucPageControl = class(TExtendedNotebook)
   private
     FSpinEdit : TSpinEdit;
     FStatusBar : tucStatusBar;
@@ -36,8 +36,7 @@ type
     procedure fcSave (AFileName : TFileName);
     procedure Change; override;
     procedure fcShowCompletion;
-    procedure fcCursorToBegin;
-    procedure fcReplaceForward (AOldPattern,ANewPattern : string);
+    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
     procedure fcSwitchEditorColor;
   private
     function fcCurrentTabSheet : tucTabSheet;
@@ -49,6 +48,8 @@ constructor tucPageControl.Create (AOwner : TComponent);
 begin
   inherited Create(AOwner);
   Self.Align := alClient;
+  Self.TabDragMode := dmAutomatic;
+  Self.TabDragAcceptMode := dmAutomatic;
   Self.vStatusBar := tucStatusBar.Create(Self);
 end;
 
@@ -184,14 +185,9 @@ begin
   Self.fcCurrentTabSheet.fcSwitchEditorColor;
 end;
 
-procedure tucPageControl.fcCursorToBegin;
+procedure tucPageControl.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
 begin
-  Self.fcCurrentTabSheet.fcCursorToBegin;
-end;
-
-procedure tucPageControl.fcReplaceForward (AOldPattern,ANewPattern : string);
-begin
-  Self.fcCurrentTabSheet.fcReplaceForward(AOldPattern,ANewPattern);
+  Self.fcCurrentTabSheet.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions);
 end;
 
 function tucPageControl.fcCurrentTabSheet : tucTabSheet;
