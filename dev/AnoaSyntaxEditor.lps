@@ -63,7 +63,6 @@
         <ComponentName Value="FormFindReplace"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <TopLine Value="79"/>
         <CursorPos X="42" Y="96"/>
@@ -77,9 +76,12 @@
         <ComponentName Value="FormAbout"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="6"/>
         <CursorPos X="38" Y="26"/>
         <UsageCount Value="160"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit7>
       <Unit8>
         <Filename Value="units\uc_pagecontrol.pas"/>
@@ -308,7 +310,7 @@
       <Unit37>
         <Filename Value="C:\lazarus\components\synedit\synedittypes.pp"/>
         <UnitName Value="SynEditTypes"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="80"/>
         <CursorPos X="33" Y="83"/>
         <UsageCount Value="11"/>
