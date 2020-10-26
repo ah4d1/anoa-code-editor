@@ -9,141 +9,176 @@ object FormMain: TFormMain
   DesignTimePPI = 144
   Menu = MainMenuMain
   OnActivate = FormActivate
+  OnClose = FormClose
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
-  object PageControlMain: TPageControl
+  object PanelToolbar: TPanel
     Left = 0
-    Height = 717
-    Top = 39
-    Width = 1201
-    Align = alClient
-    Images = ImageListMain
-    ImagesWidth = 24
-    PopupMenu = PopupMenuPageControl
-    TabOrder = 0
-  end
-  object ToolBarMain: TToolBar
-    Left = 0
-    Height = 39
+    Height = 40
     Top = 0
     Width = 1201
-    Caption = 'ToolBarMain'
-    Images = ImageListMain
-    ImagesWidth = 24
-    TabOrder = 1
-    object ToolButton1: TToolButton
-      Left = 36
-      Top = 2
-      Caption = '&Open ...'
-      ImageIndex = 0
-      MenuItem = MenuItemFileOpen
-    end
-    object ToolButton2: TToolButton
-      Left = 71
-      Top = 2
-      Caption = '&Save'
-      ImageIndex = 1
-      MenuItem = MenuItemFileSave
-    end
-    object LabelFontSize: TLabel
-      Left = 351
-      Height = 25
-      Top = 7
-      Width = 82
-      Align = alLeft
-      Caption = ' Font Size '
-      ParentColor = False
-    end
-    object SpinEditFontSize: TSpinEdit
-      Left = 436
-      Height = 33
-      Top = 4
-      Width = 57
-      Align = alLeft
-      Alignment = taRightJustify
-      MaxValue = 28
-      MinValue = 6
-      OnChange = SpinEditFontSizeChange
+    Align = alTop
+    ClientHeight = 40
+    ClientWidth = 1201
+    TabOrder = 0
+    object PanelToolbarRight: TPanel
+      Left = 1168
+      Height = 38
+      Top = 1
+      Width = 32
+      Align = alRight
+      BevelOuter = bvNone
+      ClientHeight = 38
+      ClientWidth = 32
       TabOrder = 0
-      Value = 9
+      object ButtonCloseTab: TButton
+        Left = 0
+        Height = 38
+        Top = 0
+        Width = 32
+        Align = alClient
+        Caption = 'X'
+        OnClick = ButtonCloseTabClick
+        TabOrder = 0
+      end
     end
-    object ToolButton4: TToolButton
+    object PanelToolbarLeft: TPanel
       Left = 1
-      Top = 2
-      Caption = '&New'
-      ImageIndex = 8
-      MenuItem = MenuItemFileNew
+      Height = 38
+      Top = 1
+      Width = 340
+      Align = alLeft
+      AutoSize = True
+      BevelOuter = bvNone
+      ClientHeight = 38
+      ClientWidth = 340
+      TabOrder = 1
+      object ToolBarMain: TToolBar
+        Left = 0
+        Height = 35
+        Top = 0
+        Width = 340
+        Caption = 'ToolBarMain'
+        Images = ImageListMain
+        ImagesWidth = 24
+        TabOrder = 0
+        object ToolButton1: TToolButton
+          Left = 36
+          Top = 2
+          Caption = '&Open ...'
+          ImageIndex = 0
+          MenuItem = MenuItemFileOpen
+        end
+        object ToolButton2: TToolButton
+          Left = 71
+          Top = 2
+          Caption = '&Save'
+          ImageIndex = 1
+          MenuItem = MenuItemFileSave
+        end
+        object ToolButton4: TToolButton
+          Left = 1
+          Top = 2
+          Caption = '&New'
+          ImageIndex = 8
+          MenuItem = MenuItemFileNew
+        end
+        object ToolButton3: TToolButton
+          Left = 106
+          Height = 33
+          Top = 2
+          Caption = 'ToolButton3'
+          Style = tbsSeparator
+        end
+        object ToolButtonUndo: TToolButton
+          Left = 114
+          Top = 2
+          Caption = '&Undo'
+          ImageIndex = 5
+          MenuItem = MenuItemEditUndo
+        end
+        object ToolButtonRedo: TToolButton
+          Left = 149
+          Top = 2
+          Caption = '&Redo'
+          ImageIndex = 6
+          MenuItem = MenuItemEditRedo
+        end
+        object ToolButton5: TToolButton
+          Left = 184
+          Height = 33
+          Top = 2
+          Caption = 'ToolButton5'
+          Style = tbsSeparator
+        end
+        object ToolButton6: TToolButton
+          Left = 192
+          Top = 2
+          Caption = '&Copy'
+          ImageIndex = 11
+          MenuItem = MenuItemEditCopy
+        end
+        object ToolButtonCut: TToolButton
+          Left = 227
+          Top = 2
+          Caption = 'Cu&t'
+          ImageIndex = 7
+          MenuItem = MenuItemEditCut
+        end
+        object ToolButtonPaste: TToolButton
+          Left = 262
+          Top = 2
+          Caption = '&Paste'
+          ImageIndex = 9
+          MenuItem = MenuItemEditPaste
+        end
+        object ToolButton7: TToolButton
+          Left = 297
+          Height = 33
+          Top = 2
+          Caption = 'ToolButton7'
+          Style = tbsSeparator
+        end
+        object ToolButtonFindReplace: TToolButton
+          Left = 305
+          Top = 2
+          Caption = '&Find / Replace ...'
+          ImageIndex = 10
+          MenuItem = MenuItemEditFindReplace
+        end
+      end
     end
-    object ToolButton3: TToolButton
-      Left = 106
-      Height = 33
-      Top = 2
-      Caption = 'ToolButton3'
-      Style = tbsSeparator
-    end
-    object ToolButtonUndo: TToolButton
-      Left = 114
-      Top = 2
-      Caption = '&Undo'
-      ImageIndex = 5
-      MenuItem = MenuItemEditUndo
-    end
-    object ToolButtonRedo: TToolButton
-      Left = 149
-      Top = 2
-      Caption = '&Redo'
-      ImageIndex = 6
-      MenuItem = MenuItemEditRedo
-    end
-    object ToolButton5: TToolButton
-      Left = 184
-      Height = 33
-      Top = 2
-      Caption = 'ToolButton5'
-      Style = tbsSeparator
-    end
-    object ToolButton6: TToolButton
-      Left = 192
-      Top = 2
-      Caption = '&Copy'
-      ImageIndex = 11
-      MenuItem = MenuItemEditCopy
-    end
-    object ToolButtonCut: TToolButton
-      Left = 227
-      Top = 2
-      Caption = 'Cu&t'
-      ImageIndex = 7
-      MenuItem = MenuItemEditCut
-    end
-    object ToolButtonPaste: TToolButton
-      Left = 262
-      Top = 2
-      Caption = '&Paste'
-      ImageIndex = 9
-      MenuItem = MenuItemEditPaste
-    end
-    object ToolButton7: TToolButton
-      Left = 297
-      Height = 33
-      Top = 2
-      Caption = 'ToolButton7'
-      Style = tbsSeparator
-    end
-    object ToolButtonFindReplace: TToolButton
-      Left = 305
-      Top = 2
-      Caption = '&Find / Replace ...'
-      ImageIndex = 10
-      MenuItem = MenuItemEditFindReplace
-    end
-    object ToolButton8: TToolButton
-      Left = 340
-      Height = 33
-      Top = 2
-      Caption = 'ToolButton8'
-      Style = tbsSeparator
+    object PanelToolbarCenter: TPanel
+      Left = 341
+      Height = 38
+      Top = 1
+      Width = 827
+      Align = alClient
+      BevelOuter = bvNone
+      ClientHeight = 38
+      ClientWidth = 827
+      TabOrder = 2
+      object LabelFontSize: TLabel
+        Left = 8
+        Height = 25
+        Top = 5
+        Width = 72
+        Caption = 'Font Size'
+        ParentColor = False
+      end
+      object SpinEditFontSize: TSpinEdit
+        Left = 84
+        Height = 33
+        Top = 2
+        Width = 57
+        Alignment = taRightJustify
+        MaxValue = 28
+        MinValue = 6
+        OnChange = SpinEditFontSizeChange
+        TabOrder = 0
+        Value = 9
+      end
     end
   end
   object MainMenuMain: TMainMenu
@@ -305,6 +340,7 @@ object FormMain: TFormMain
     end
   end
   object OpenDialogMain: TOpenDialog
+    Options = [ofAllowMultiSelect, ofEnableSizing, ofViewDetail]
     left = 389
     top = 156
   end
@@ -873,13 +909,17 @@ object FormMain: TFormMain
   object PopupMenuPageControl: TPopupMenu
     left = 581
     top = 56
-    object MenuItemAddTab: TMenuItem
-      Caption = 'Add Tab'
-      OnClick = MenuItemAddTabClick
+    object MenuItemAddNewTab: TMenuItem
+      Caption = 'Add New Tab'
+      OnClick = MenuItemAddNewTabClick
     end
-    object MenuItemCloseTab: TMenuItem
-      Caption = 'Close Tab'
-      OnClick = MenuItemCloseTabClick
+    object MenuItemCloseCurrentTab: TMenuItem
+      Caption = 'Close Current Tab'
+      OnClick = MenuItemCloseCurrentTabClick
+    end
+    object MenuItemCloseAllTabs: TMenuItem
+      Caption = 'Close All Tabs'
+      OnClick = MenuItemCloseAllTabsClick
     end
   end
 end
