@@ -2,6 +2,7 @@ v.1.0.3.0 : (Work in progress)
 ----------------------------------------------------------
 Update : Change tab container from TPageControl to TExtendedNotebook
 Added  : Various options in find & replace function.
+Update : Find / Replace Form is now resizeable.
 Update : Code refactoring & other major updates.
 
 v.1.0.2.1 : (Released 26th Oct 2020)
