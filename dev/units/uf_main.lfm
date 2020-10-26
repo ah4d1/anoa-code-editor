@@ -155,6 +155,7 @@ object FormMain: TFormMain
       Top = 1
       Width = 827
       Align = alClient
+      BevelInner = bvLowered
       BevelOuter = bvNone
       ClientHeight = 38
       ClientWidth = 827
