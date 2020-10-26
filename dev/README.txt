@@ -1,7 +1,7 @@
 
 Anoa-Syntax-Editor
 
-Copyright(c)2020 Ahadi Aprianto
+Copyright(c)2020 Ahadi Aprianto, Randu Hidayat, Rizchi Supriyanto
 License     : GNU General Public License version 2
 
 
