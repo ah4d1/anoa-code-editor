@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, SynEdit, ComCtrls, Controls, Graphics, SynEditHighlighter,
-  up_currentdata, uc_syncompletion, Dialogs;
+  up_currentdata, uc_syncompletion, Dialogs, SynEditTypes;
 
 type
   tucSynEdit = class(TSynEdit)
@@ -22,13 +22,15 @@ type
     procedure fcPaste;
     procedure fcSelectAll;
     procedure fcShowCompletion (ASynCompletion : tucSynCompletion);
+    procedure fcCursorToBegin;
+    procedure fcReplaceForward (AOldPattern,ANewPattern : string);
     procedure fcSwitchColor;
   end;
 
 implementation
 
 uses
-  uc_tabsheet, up_var, up_tools, ac_color;
+  uc_tabsheet, up_var, ac_color;
 
 constructor tucSynEdit.Create (AOwner : TComponent);
 begin
@@ -97,6 +99,17 @@ end;
 procedure tucSynEdit.fcShowCompletion (ASynCompletion : tucSynCompletion);
 begin
   Self.CommandProcessor(ASynCompletion.ExecCommandID, '', nil);
+end;
+
+procedure tucSynEdit.fcCursorToBegin;
+begin
+  Self.CaretX := 0;
+  Self.CaretY := 0;
+end;
+
+procedure tucSynEdit.fcReplaceForward (AOldPattern,ANewPattern : string);
+begin
+  Self.SearchReplace(AOldPattern,ANewPattern,[ssoReplaceAll]);
 end;
 
 procedure tucSynEdit.fcSwitchColor;
