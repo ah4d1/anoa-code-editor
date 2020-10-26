@@ -3,7 +3,7 @@ object FormFindReplace: TFormFindReplace
   Height = 393
   Top = 267
   Width = 620
-  BorderStyle = bsDialog
+  BorderIcons = [biSystemMenu]
   Caption = 'Find / Replace'
   ClientHeight = 393
   ClientWidth = 620
@@ -18,6 +18,7 @@ object FormFindReplace: TFormFindReplace
     Height = 208
     Top = 112
     Width = 568
+    Anchors = [akTop, akLeft, akRight]
     Caption = '   Options   '
     ClientHeight = 178
     ClientWidth = 564
@@ -92,6 +93,7 @@ object FormFindReplace: TFormFindReplace
     Height = 38
     Top = 336
     Width = 113
+    Anchors = [akTop, akRight]
     Caption = 'Find'
     OnClick = ButtonFindClick
     TabOrder = 1
@@ -101,6 +103,7 @@ object FormFindReplace: TFormFindReplace
     Height = 33
     Top = 17
     Width = 426
+    Anchors = [akTop, akLeft, akRight]
     TabOrder = 2
   end
   object LabelFind: TLabel
@@ -117,6 +120,7 @@ object FormFindReplace: TFormFindReplace
     Height = 33
     Top = 59
     Width = 426
+    Anchors = [akTop, akLeft, akRight]
     Enabled = False
     TabOrder = 3
   end
