@@ -71,20 +71,21 @@ object FormFindReplace: TFormFindReplace
       ItemHeight = 25
       ItemIndex = 0
       Items.Strings = (
+        'Replace All'
         'Forward'
       )
       Style = csDropDownList
       TabOrder = 2
-      Text = 'Forward'
+      Text = 'Replace All'
     end
   end
-  object ButtonReplaceAll: TButton
+  object ButtonReplace: TButton
     Left = 501
     Height = 38
     Top = 200
     Width = 113
-    Caption = 'Replace All'
-    OnClick = ButtonReplaceAllClick
+    Caption = 'Replace'
+    OnClick = ButtonReplaceClick
     TabOrder = 1
   end
 end
