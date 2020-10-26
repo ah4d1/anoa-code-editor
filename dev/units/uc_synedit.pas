@@ -22,8 +22,7 @@ type
     procedure fcPaste;
     procedure fcSelectAll;
     procedure fcShowCompletion (ASynCompletion : tucSynCompletion);
-    procedure fcCursorToBegin;
-    procedure fcReplaceForward (AOldPattern,ANewPattern : string);
+    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
     procedure fcSwitchColor;
   end;
 
@@ -101,15 +100,9 @@ begin
   Self.CommandProcessor(ASynCompletion.ExecCommandID, '', nil);
 end;
 
-procedure tucSynEdit.fcCursorToBegin;
+procedure tucSynEdit.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
 begin
-  Self.CaretX := 0;
-  Self.CaretY := 0;
-end;
-
-procedure tucSynEdit.fcReplaceForward (AOldPattern,ANewPattern : string);
-begin
-  Self.SearchReplace(AOldPattern,ANewPattern,[ssoReplaceAll]);
+  Self.SearchReplace(AOldPattern,ANewPattern,ASynSearchOptions);
 end;
 
 procedure tucSynEdit.fcSwitchColor;
