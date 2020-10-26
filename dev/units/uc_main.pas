@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Controls, Menus, Spin, SynEditHighlighter, up_var, up_currentdata,
-  uc_pagecontrol, uc_statusbar, Dialogs;
+  uc_pagecontrol, uc_statusbar, Dialogs, SynEditTypes;
 
 type
   tucMain = class(TComponent)
@@ -37,8 +37,7 @@ type
     procedure fcSave (AFileName : TFileName);
     procedure fcShowCompletion;
     procedure fcSwitchEditorColor;
-    procedure fcCursorToBegin;
-    procedure fcReplaceForward (AOldPattern,ANewPattern : string);
+    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
   end;
 
 var
@@ -148,14 +147,9 @@ begin
   Self.vPageControl.fcSwitchEditorColor;
 end;
 
-procedure tucMain.fcCursorToBegin;
+procedure tucMain.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
 begin
-  Self.vPageControl.fcCursorToBegin;
-end;
-
-procedure tucMain.fcReplaceForward (AOldPattern,ANewPattern : string);
-begin
-  Self.vPageControl.fcReplaceForward(AOldPattern,ANewPattern);
+  Self.vPageControl.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions);
 end;
 
 end.
