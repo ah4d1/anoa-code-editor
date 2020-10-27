@@ -22,10 +22,10 @@ type
     property vSaveDialog : TSaveDialog read FSaveDialog write FSaveDialog;
     constructor Create (AOwner : TWinControl; AImageList : TImageList; APopupMenu : TPopupMenu;
       ASpinEdit : TSpinEdit; ASaveDialog : TSaveDialog); overload;
-    procedure fcAddNewTab; overload;
-    procedure fcAddNewTab (ACurrentData : tupCurrentData); overload;
-    procedure fcCloseCurrentTab (ACurrentData : tupCurrentData);
-    procedure fcCloseAllTabs (ACurrentData : tupCurrentData);
+    procedure fcAddNewTab (APopupMenu : TPopupMenu); overload;
+    procedure fcAddNewTab (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu); overload;
+    procedure fcCloseCurrentTab (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
+    procedure fcCloseAllTabs (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
     procedure fcUpdate (ACurrentData : tupCurrentData);
     procedure fcUpdateFontSize;
     procedure fcUndo;
@@ -38,6 +38,7 @@ type
     procedure fcShowCompletion;
     procedure fcSwitchEditorColor;
     procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+    procedure fcRunCommand;
   end;
 
 var
@@ -57,35 +58,37 @@ begin
   Self.vPageControl.fcInit(AImageList,APopupMenu,Self.vSpinEdit,Self.vStatusBar,Self.vSaveDialog);
 end;
 
-procedure tucMain.fcAddNewTab;
+procedure tucMain.fcAddNewTab (APopupMenu : TPopupMenu);
 begin
   vupVar.vTabNo := vupVar.vTabNo + 1;
-  Self.vPageControl.fcAddNewTab(vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),vupVar.vImageIndexNormalFile);
+  Self.vPageControl.fcAddNewTab(vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),
+    vupVar.vImageIndexNormalFile,APopupMenu
+  );
 end;
 
-procedure tucMain.fcAddNewTab (ACurrentData : tupCurrentData);
+procedure tucMain.fcAddNewTab (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
 begin
   vupVar.vTabNo := vupVar.vTabNo + 1;
-  Self.vPageControl.fcAddNewTabThenOpen(ACurrentData,vupVar.vImageIndexNormalFile);
+  Self.vPageControl.fcAddNewTabThenOpen(ACurrentData,vupVar.vImageIndexNormalFile,APopupMenu);
   Self.vStatusBar.fcUpdate(ACurrentData);
 end;
 
-procedure tucMain.fcCloseCurrentTab (ACurrentData : tupCurrentData);
+procedure tucMain.fcCloseCurrentTab (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
 begin
   Self.vPageControl.fcCloseCurrentTab(ACurrentData,vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),
-    vupVar.vImageIndexNormalFile
+    vupVar.vImageIndexNormalFile,APopupMenu
   );
   Self.vPageControl.Change;
 end;
 
-procedure tucMain.fcCloseAllTabs (ACurrentData : tupCurrentData);
+procedure tucMain.fcCloseAllTabs (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
 var
   i : Byte;
 begin
   for i := 1 to Self.vPageControl.PageCount do
   begin
     Self.vPageControl.fcCloseCurrentTab(ACurrentData,vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),
-      vupVar.vImageIndexNormalFile
+      vupVar.vImageIndexNormalFile, APopupMenu
     );
     Self.vPageControl.Change;
   end;
@@ -150,6 +153,11 @@ end;
 procedure tucMain.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
 begin
   Self.vPageControl.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions);
+end;
+
+procedure tucMain.fcRunCommand;
+begin
+  Self.vPageControl.fcRunCommand;
 end;
 
 end.
