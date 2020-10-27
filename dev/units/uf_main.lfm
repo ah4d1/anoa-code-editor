@@ -326,10 +326,6 @@ object FormMain: TFormMain
         Caption = 'Switch Editor Color'
         OnClick = MenuItemSettingsSwitchColorClick
       end
-      object MenuItemSettingsAddToSysMenu: TMenuItem
-        Caption = 'Add to Win Explorer Menu'
-        OnClick = MenuItemSettingsAddToSysMenuClick
-      end
     end
     object MenuItem3: TMenuItem
       Caption = '&Help'
