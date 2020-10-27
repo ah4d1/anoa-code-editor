@@ -1,12 +1,12 @@
 object FormFindReplace: TFormFindReplace
-  Left = 496
-  Height = 253
-  Top = 216
-  Width = 626
-  BorderStyle = bsDialog
+  Left = 705
+  Height = 393
+  Top = 267
+  Width = 620
+  BorderIcons = [biSystemMenu]
   Caption = 'Find / Replace'
-  ClientHeight = 253
-  ClientWidth = 626
+  ClientHeight = 393
+  ClientWidth = 620
   DesignTimePPI = 144
   FormStyle = fsStayOnTop
   OnActivate = FormActivate
@@ -14,78 +14,123 @@ object FormFindReplace: TFormFindReplace
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
   object GroupBoxOptions: TGroupBox
-    Left = 8
-    Height = 177
-    Top = 7
-    Width = 606
+    Left = 26
+    Height = 208
+    Top = 112
+    Width = 568
+    Anchors = [akTop, akLeft, akRight]
     Caption = '   Options   '
-    ClientHeight = 147
-    ClientWidth = 602
+    ClientHeight = 178
+    ClientWidth = 564
     TabOrder = 0
-    object LabelFind: TLabel
-      Left = 80
-      Height = 25
-      Top = 8
-      Width = 43
-      Alignment = taRightJustify
-      Caption = 'Find :'
-      ParentColor = False
-    end
-    object EditFind: TEdit
-      Left = 136
-      Height = 33
-      Top = 7
-      Width = 448
+    object CheckBoxBackwards: TCheckBox
+      Left = 24
+      Height = 29
+      Top = 46
+      Width = 113
+      Caption = 'Backwards'
       TabOrder = 0
     end
-    object LabelReplaceWith: TLabel
-      Left = 16
-      Height = 25
-      Top = 50
-      Width = 107
-      Alignment = taRightJustify
-      Caption = 'Replace with :'
-      ParentColor = False
-    end
-    object EditReplaceWith: TEdit
-      Left = 136
-      Height = 33
-      Top = 49
-      Width = 448
+    object CheckBoxEntireScope: TCheckBox
+      Left = 24
+      Height = 29
+      Top = 86
+      Width = 128
+      Caption = 'Entire Scope'
+      Enabled = False
+      OnChange = CheckBoxEntireScopeChange
       TabOrder = 1
     end
-    object LabelDirection: TLabel
-      Left = 43
-      Height = 25
-      Top = 93
-      Width = 80
-      Alignment = taRightJustify
-      Caption = 'Direction :'
-      ParentColor = False
-    end
-    object ComboBoxDirection: TComboBox
-      Left = 136
-      Height = 33
-      Top = 92
-      Width = 118
-      ItemHeight = 25
-      ItemIndex = 0
-      Items.Strings = (
-        'Replace All'
-        'Forward'
-      )
-      Style = csDropDownList
+    object CheckBoxSelectedOnly: TCheckBox
+      Left = 216
+      Height = 29
+      Top = 86
+      Width = 138
+      Caption = 'Selected Only'
+      Enabled = False
+      OnChange = CheckBoxSelectedOnlyChange
       TabOrder = 2
-      Text = 'Replace All'
+    end
+    object CheckBoxReplace: TCheckBox
+      Left = 24
+      Height = 29
+      Top = 126
+      Width = 91
+      Caption = 'Replace'
+      Enabled = False
+      OnChange = CheckBoxReplaceChange
+      TabOrder = 3
+    end
+    object CheckBoxReplaceAll: TCheckBox
+      Left = 216
+      Height = 29
+      Top = 126
+      Width = 116
+      Caption = 'Replace All'
+      Enabled = False
+      OnChange = CheckBoxReplaceAllChange
+      TabOrder = 4
+    end
+    object CheckBoxWholeWord: TCheckBox
+      Left = 216
+      Height = 29
+      Top = 8
+      Width = 131
+      Caption = 'Whole Word'
+      TabOrder = 5
+    end
+    object CheckBoxMatchCase: TCheckBox
+      Left = 24
+      Height = 29
+      Top = 8
+      Width = 121
+      Caption = 'Match Case'
+      TabOrder = 6
     end
   end
-  object ButtonReplace: TButton
-    Left = 501
+  object ButtonFind: TButton
+    Left = 481
     Height = 38
-    Top = 200
+    Top = 336
     Width = 113
-    Caption = 'Replace'
-    OnClick = ButtonReplaceClick
+    Anchors = [akTop, akRight]
+    Caption = 'Find'
+    OnClick = ButtonFindClick
     TabOrder = 1
+  end
+  object EditFind: TEdit
+    Left = 168
+    Height = 33
+    Top = 17
+    Width = 426
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 2
+  end
+  object LabelFind: TLabel
+    Left = 119
+    Height = 25
+    Top = 18
+    Width = 43
+    Alignment = taRightJustify
+    Caption = 'Find :'
+    ParentColor = False
+  end
+  object EditReplaceWith: TEdit
+    Left = 168
+    Height = 33
+    Top = 59
+    Width = 426
+    Anchors = [akTop, akLeft, akRight]
+    Enabled = False
+    TabOrder = 3
+  end
+  object CheckBoxReplaceWith: TCheckBox
+    Left = 26
+    Height = 29
+    Top = 60
+    Width = 142
+    Caption = 'Replace With :'
+    OnChange = CheckBoxReplaceWithChange
+    TabOrder = 4
   end
 end
