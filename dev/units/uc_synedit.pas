@@ -6,11 +6,12 @@ interface
 
 uses
   Classes, SysUtils, SynEdit, ComCtrls, Controls, Graphics, SynEditHighlighter,
-  up_currentdata, uc_syncompletion, Dialogs, SynEditTypes;
+  up_currentdata, uc_syncompletion, Dialogs, SynEditTypes, Menus;
 
 type
   tucSynEdit = class(TSynEdit)
     constructor Create (AOwner : TComponent); override;
+    procedure fcInit (APopupMenu : TPopupMenu);
     procedure fcUpdate (ACurrentData : tupCurrentData);
     procedure fcOpen (AFileName : TFileName);
     procedure fcSave (AFileName : TFileName);
@@ -41,6 +42,11 @@ begin
   Self.Font.Size := 9;
   Self.LineHighlightColor.Background := $00EFE8D6;
   Self.OnChange := @Self.fcChange;
+end;
+
+procedure tucSynEdit.fcInit (APopupMenu : TPopupMenu);
+begin
+  Self.PopupMenu := APopupMenu;
 end;
 
 procedure tucSynEdit.fcUpdate (ACurrentData : tupCurrentData);
