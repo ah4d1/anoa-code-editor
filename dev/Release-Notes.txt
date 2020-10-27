@@ -1,3 +1,9 @@
+v.1.0.3.1 : (Work in progress)
+----------------------------------------------------------
+Added   : Run Command function & menu.
+Added   : Result for running command (python).
+Update  : Code refactoring & other minor updates.
+
 v.1.0.3.0 : (Released 27th Oct 2020)
 ----------------------------------------------------------
 Update  : Change tab container from TPageControl to TExtendedNotebook
