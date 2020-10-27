@@ -155,6 +155,7 @@ object FormMain: TFormMain
       Top = 1
       Width = 827
       Align = alClient
+      BevelInner = bvLowered
       BevelOuter = bvNone
       ClientHeight = 38
       ClientWidth = 827
@@ -324,10 +325,6 @@ object FormMain: TFormMain
       object MenuItemSettingsSwitchColor: TMenuItem
         Caption = 'Switch Editor Color'
         OnClick = MenuItemSettingsSwitchColorClick
-      end
-      object MenuItemSettingsAddToSysMenu: TMenuItem
-        Caption = 'Add to Win Explorer Menu'
-        OnClick = MenuItemSettingsAddToSysMenuClick
       end
     end
     object MenuItem3: TMenuItem
