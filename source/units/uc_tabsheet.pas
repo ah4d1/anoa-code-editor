@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, ComCtrls, SynEditHighlighter, Spin, up_var, up_currentdata, uc_synedit,
-  uc_syncompletion, up_synhighlighter, Dialogs;
+  uc_syncompletion, up_synhighlighter, Dialogs, SynEditTypes;
 
 type
   taseTextStatus = (aseTextStatusNormal,aseTextStatusModified);
@@ -38,8 +38,7 @@ type
     procedure fcSelectAll;
     procedure fcSetCurrentData;
     procedure fcShowCompletion;
-    procedure fcCursorToBegin;
-    procedure fcReplaceForward (AOldPattern,ANewPattern : string);
+    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
     procedure fcSwitchEditorColor;
   end;
 
@@ -125,14 +124,9 @@ begin
   Self.vSynEdit.CommandProcessor(vSynCompletion.ExecCommandID, '', nil);
 end;
 
-procedure tucTabSheet.fcCursorToBegin;
+procedure tucTabSheet.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
 begin
-  Self.vSynEdit.fcCursorToBegin;
-end;
-
-procedure tucTabSheet.fcReplaceForward (AOldPattern,ANewPattern : string);
-begin
-  Self.vSynEdit.fcReplaceForward(AOldPattern,ANewPattern);
+  Self.vSynEdit.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions);
 end;
 
 procedure tucTabSheet.fcSwitchEditorColor;
