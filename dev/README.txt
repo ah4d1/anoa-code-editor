@@ -65,6 +65,7 @@ Icon "editor.png" made by "Freepik" (http://www.freepik.com/) from "Flaticon" (h
 Icon "file.png" made by "Vitaly Gorbachev" (https://www.flaticon.com/authors/vitaly-gorbachev) from "Flaticon" (https://www.flaticon.com/)
 Icon "folder.png" made by "Freepik" (https://www.flaticon.com/authors/freepik) from "Flaticon" (https://www.flaticon.com/)
 Icon "paste.png" made by "Vitaly Gorbachev" (https://www.flaticon.com/authors/vitaly-gorbachev) from "Flaticon" (https://www.flaticon.com/)
+Icon "play.png" made by "Roundicons" (https://roundicons.com/) from "Flaticon" (https://www.flaticon.com/)
 Icon "redo.png" made by "Pixel perfect" (https://www.flaticon.com/authors/pixel-perfect) from "Flaticon" (https://www.flaticon.com/)
 Icon "save.png" made by "Smashicons" (https://smashicons.com/) from "Flaticon" (https://www.flaticon.com/)
 Icon "search.png" made by "Dimitry Miroliubov" (https://www.flaticon.com/authors/dimitry-miroliubov) from "Flaticon" (https://www.flaticon.com/)
