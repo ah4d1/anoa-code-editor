@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
   StdCtrls, Spin, ExtCtrls, SynHighlighterCobol, SynEdit, SynCompletion,
-  up_synhighlighter;
+  up_synhighlighter, SynEditTypes;
 
 type
 
@@ -44,7 +44,6 @@ type
     MenuItemSettingsLangCSharp: TMenuItem;
     MenuItemSettingsLangJSON: TMenuItem;
     MenuItemSettingsLangPython: TMenuItem;
-    MenuItemSettingsAddToSysMenu: TMenuItem;
     MenuItemFileNew: TMenuItem;
     MenuItemSettingsLangPHP: TMenuItem;
     MenuItemSettingsLangHTML: TMenuItem;
@@ -98,7 +97,6 @@ type
     procedure MenuItemFileOpenClick(Sender: TObject);
     procedure MenuItemFileSaveAsClick(Sender: TObject);
     procedure MenuItemFileSaveClick(Sender: TObject);
-    procedure MenuItemSettingsAddToSysMenuClick(Sender: TObject);
     procedure MenuItemSettingsLangCobolClick(Sender: TObject);
     procedure MenuItemSettingsLangCSharpClick(Sender: TObject);
     procedure MenuItemSettingsLangCSSClick(Sender: TObject);
@@ -112,8 +110,7 @@ type
     procedure MenuItemSettingsLangSQLClick(Sender: TObject);
     procedure MenuItemSettingsSwitchColorClick(Sender: TObject);
     procedure SpinEditFontSizeChange(Sender: TObject);
-    procedure fcReplaceForward (AOldPattern,ANewPattern : string);
-    procedure fcReplaceAll (AOldPattern,ANewPattern : string);
+    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
   private
     procedure SetLang (ALang : taseLang);
   public
@@ -238,15 +235,9 @@ begin
   FormFindReplace.Show;
 end;
 
-procedure TFormMain.fcReplaceForward (AOldPattern,ANewPattern : string);
+procedure TFormMain.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
 begin
-  vucMain.fcReplaceForward(AOldPattern,ANewPattern);
-end;
-
-procedure TFormMain.fcReplaceAll (AOldPattern,ANewPattern : string);
-begin
-  vucMain.fcCursorToBegin;
-  vucMain.fcReplaceForward(AOldPattern,ANewPattern);
+  vucMain.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions);
 end;
 
 procedure TFormMain.MenuItemEditRedoClick(Sender: TObject);
@@ -297,12 +288,6 @@ begin
   else
     Self.MenuItemFileSaveAsClick(Sender)
   ;
-end;
-
-procedure TFormMain.MenuItemSettingsAddToSysMenuClick(Sender: TObject);
-begin
-  vacSys.fcAddToWinExplorerContextMenu('Open with Anoa-Syntax-Editor',Application.ExeName);
-  MessageDlg('Please check at Windows Explorer Context Menu',mtInformation,[mbOK],0);
 end;
 
 procedure TFormMain.MenuItemSettingsLangCobolClick(Sender: TObject);
