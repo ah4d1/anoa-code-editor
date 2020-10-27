@@ -44,7 +44,6 @@ type
     MenuItemSettingsLangCSharp: TMenuItem;
     MenuItemSettingsLangJSON: TMenuItem;
     MenuItemSettingsLangPython: TMenuItem;
-    MenuItemSettingsAddToSysMenu: TMenuItem;
     MenuItemFileNew: TMenuItem;
     MenuItemSettingsLangPHP: TMenuItem;
     MenuItemSettingsLangHTML: TMenuItem;
@@ -98,7 +97,6 @@ type
     procedure MenuItemFileOpenClick(Sender: TObject);
     procedure MenuItemFileSaveAsClick(Sender: TObject);
     procedure MenuItemFileSaveClick(Sender: TObject);
-    procedure MenuItemSettingsAddToSysMenuClick(Sender: TObject);
     procedure MenuItemSettingsLangCobolClick(Sender: TObject);
     procedure MenuItemSettingsLangCSharpClick(Sender: TObject);
     procedure MenuItemSettingsLangCSSClick(Sender: TObject);
@@ -290,12 +288,6 @@ begin
   else
     Self.MenuItemFileSaveAsClick(Sender)
   ;
-end;
-
-procedure TFormMain.MenuItemSettingsAddToSysMenuClick(Sender: TObject);
-begin
-  vacSys.fcAddToWinExplorerContextMenu('Open with Anoa-Syntax-Editor',Application.ExeName);
-  MessageDlg('Please check at Windows Explorer Context Menu',mtInformation,[mbOK],0);
 end;
 
 procedure TFormMain.MenuItemSettingsLangCobolClick(Sender: TObject);
