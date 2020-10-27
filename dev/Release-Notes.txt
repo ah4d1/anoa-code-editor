@@ -1,9 +1,10 @@
-v.1.0.3.0 : (Work in progress)
+v.1.0.3.0 : (Released 27th Oct 2020)
 ----------------------------------------------------------
-Update : Change tab container from TPageControl to TExtendedNotebook
-Added  : Various options in find & replace function.
-Update : Find / Replace Form is now resizeable.
-Update : Code refactoring & other major updates.
+Update  : Change tab container from TPageControl to TExtendedNotebook
+Added   : Various options in find & replace function.
+Update  : Find / Replace Form is now resizeable.
+Removed : Add to Win Explorer Context Menu was removed since it will be set while installing the app.
+Update  : Code refactoring & other major updates.
 
 v.1.0.2.1 : (Released 26th Oct 2020)
 ----------------------------------------------------------
