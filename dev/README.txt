@@ -16,7 +16,8 @@ Source Code : https://github.com/ah4d1/anoa-syntax-editor
 
 MAIN FEATURES :
 -------------------------------------
-- Open & save file.
+- Open single or multiple files.
+- Save file.
 - Easy-to-use editor.
 - Edit files in multiple tabs.
 - Syntax highlighting.
@@ -24,7 +25,6 @@ MAIN FEATURES :
 - Support many popular languages.
 - Find & replace capability.
 - Switch editor color.
-- Easy adding context menu to Windows Explorer.
 
 
 DEVELOPMENT ENVIRONMENT & COMPILER, THANKS TO :
@@ -33,17 +33,18 @@ Lazarus IDE : https://www.lazarus-ide.org/
 Free Pascal : https://www.freepascal.org/
 
 
-MAIN COMPONENT(S) ALREADY IN IDE, THANKS TO :
+MAIN COMPONENT(S), ALREADY IN IDE, THANKS TO :
 -------------------------------------
-SynEdit     : by Lazarus Team, SynEdit
+ExtendedNotebook : by Lazarus Team
+SynEdit          : by Lazarus Team, SynEdit
 
 
-ADDITIONAL PACKAGE(S) MUST BE INSTALLED TO IDE, THANKS TO :
+ADDITIONAL PACKAGE(S), MUST BE INSTALLED TO IDE, THANKS TO :
 -------------------------------------
 ExtraSyn    : https://github.com/mriscoc/extrasyn
 
 
-ADDITIONAL SOURCE(S) MUST BE ADDED TO PROJECT, THANKS TO :
+ADDITIONAL SOURCE(S), MUST BE ADDED TO PROJECT, THANKS TO :
 -------------------------------------
 Anoa-Core   : https://github.com/ah4d1/anoa-core
 
