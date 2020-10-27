@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
   StdCtrls, Spin, ExtCtrls, SynHighlighterCobol, SynEdit, SynCompletion,
-  up_synhighlighter, SynEditTypes;
+  up_synhighlighter, SynEditTypes, Process;
 
 type
 
@@ -23,6 +23,10 @@ type
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
+    MenuItem6: TMenuItem;
+    MenuItemExit: TMenuItem;
+    MenuItemFileRun: TMenuItem;
+    MenuItemRun: TMenuItem;
     MenuItemCloseAllTabs: TMenuItem;
     MenuItemCloseCurrentTab: TMenuItem;
     MenuItemEditSelectAll: TMenuItem;
@@ -60,6 +64,7 @@ type
     PanelToolbarLeft: TPanel;
     PanelToolbarRight: TPanel;
     PanelToolbar: TPanel;
+    PopupMenuSynEdit: TPopupMenu;
     PopupMenuPageControl: TPopupMenu;
     SaveDialogMain: TSaveDialog;
     SpinEditFontSize: TSpinEdit;
@@ -71,6 +76,8 @@ type
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
     ToolButton7: TToolButton;
+    ToolButtonRun: TToolButton;
+    ToolButton9: TToolButton;
     ToolButtonCut: TToolButton;
     ToolButtonFindReplace: TToolButton;
     ToolButtonPaste: TToolButton;
@@ -97,6 +104,8 @@ type
     procedure MenuItemFileOpenClick(Sender: TObject);
     procedure MenuItemFileSaveAsClick(Sender: TObject);
     procedure MenuItemFileSaveClick(Sender: TObject);
+    procedure MenuItemFileRunClick(Sender: TObject);
+    procedure MenuItemRunClick(Sender: TObject);
     procedure MenuItemSettingsLangCobolClick(Sender: TObject);
     procedure MenuItemSettingsLangCSharpClick(Sender: TObject);
     procedure MenuItemSettingsLangCSSClick(Sender: TObject);
@@ -142,22 +151,22 @@ begin
     Self.SpinEditFontSize,Self.SaveDialogMain
   );
   if Trim(LFileNameOnStart) = '' then
-    vucMain.fcAddNewTab
+    vucMain.fcAddNewTab(Self.PopupMenuSynEdit)
   else
   begin
     vupCurrentData.fcUpdate(LFileNameOnStart);
-    vucMain.fcAddNewTab(vupCurrentData);
+    vucMain.fcAddNewTab(vupCurrentData,Self.PopupMenuSynEdit);
   end;
 end;
 
 procedure TFormMain.MenuItemCloseAllTabsClick(Sender: TObject);
 begin
-  vucMain.fcCloseAllTabs(vupCurrentData);
+  vucMain.fcCloseAllTabs(vupCurrentData,Self.PopupMenuSynEdit);
 end;
 
 procedure TFormMain.MenuItemCloseCurrentTabClick(Sender: TObject);
 begin
-  vucMain.fcCloseCurrentTab(vupCurrentData);
+  vucMain.fcCloseCurrentTab(vupCurrentData,Self.PopupMenuSynEdit);
 end;
 
 procedure TFormMain.MenuItemEditCopyClick(Sender: TObject);
@@ -191,12 +200,12 @@ end;
 
 procedure TFormMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  vucMain.fcCloseAllTabs(vupCurrentData);
+  vucMain.fcCloseAllTabs(vupCurrentData,Self.PopupMenuSynEdit);
 end;
 
 procedure TFormMain.ButtonCloseTabClick(Sender: TObject);
 begin
-  vucMain.fcCloseCurrentTab(vupCurrentData);
+  vucMain.fcCloseCurrentTab(vupCurrentData,Self.PopupMenuSynEdit);
 end;
 
 procedure TFormMain.MenuItemFileExitClick(Sender: TObject);
@@ -207,7 +216,7 @@ end;
 procedure TFormMain.MenuItemFileNewClick(Sender: TObject);
 begin
   vupCurrentData.fcUpdate(aseLangNone,'');
-  vucMain.fcAddNewTab;
+  vucMain.fcAddNewTab(Self.PopupMenuSynEdit);
   vucMain.fcUpdate(vupCurrentData);
 end;
 
@@ -220,7 +229,7 @@ end;
 procedure TFormMain.MenuItemAddNewTabClick(Sender: TObject);
 begin
   vupCurrentData.fcUpdate(aseLangNone,'');
-  vucMain.fcAddNewTab;
+  vucMain.fcAddNewTab(Self.PopupMenuSynEdit);
   vucMain.fcUpdate(vupCurrentData);
 end;
 
@@ -260,7 +269,7 @@ begin
     for i := 1 to Self.OpenDialogMain.Files.Count do
     begin
       vupCurrentData.fcUpdate(Self.OpenDialogMain.Files[i-1]);
-      vucMain.fcAddNewTab(vupCurrentData);
+      vucMain.fcAddNewTab(vupCurrentData,Self.PopupMenuSynEdit);
       vucMain.fcUpdate(vupCurrentData);
       vucMain.fcUpdateFontSize;
     end;
@@ -288,6 +297,16 @@ begin
   else
     Self.MenuItemFileSaveAsClick(Sender)
   ;
+end;
+
+procedure TFormMain.MenuItemFileRunClick(Sender: TObject);
+begin
+  vucMain.fcRunCommand;
+end;
+
+procedure TFormMain.MenuItemRunClick(Sender: TObject);
+begin
+  vucMain.fcRunCommand;
 end;
 
 procedure TFormMain.MenuItemSettingsLangCobolClick(Sender: TObject);
