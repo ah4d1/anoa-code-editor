@@ -27,7 +27,7 @@ MAIN FEATURES :
 - Code folding.
 - Line numbering.
 - Support many popular languages.
-- Run code directly for selected languages.
+- Run code directly (for selected languages).
 - Switch editor color.
 
 
@@ -63,11 +63,13 @@ ICONS, THANKS TO :
 -------------------------------------
 Icon "add-file.png" made by "Smashicons" (https://www.flaticon.com/authors/smashicons) from "Flaticon" (https://www.flaticon.com/)
 Icon "cut.png" made by "Smashicons" (https://www.flaticon.com/authors/smashicons) from "Flaticon" (https://www.flaticon.com/)
+Icon "document.png" made by "Becris" (https://www.flaticon.com/authors/becris) from "Flaticon" (https://www.flaticon.com/)
 Icon "edit.png" made by "itim2101" (https://www.flaticon.com/free-icon/edit_1218493?term=edit%20file&page=2&position=55) from "Flaticon" (https://www.flaticon.com/)
 Icon "edit-2.png" (original filename is "edit.png") made by "itim2101" (https://www.flaticon.com/free-icon/edit_1218456) from "Flaticon" (https://www.flaticon.com/)
 Icon "editor.png" made by "Freepik" (http://www.freepik.com/) from "Flaticon" (https://www.flaticon.com/)
 Icon "file.png" made by "Vitaly Gorbachev" (https://www.flaticon.com/authors/vitaly-gorbachev) from "Flaticon" (https://www.flaticon.com/)
-Icon "folder.png" made by "Freepik" (https://www.flaticon.com/authors/freepik) from "Flaticon" (https://www.flaticon.com/)
+Icon "folder.png" made by "Freepik" (http://www.freepik.com/) from "Flaticon" (https://www.flaticon.com/)
+Icon "folder-2.png" (original filename is "folder.png") made by "DinosoftLabs" (https://www.flaticon.com/authors/dinosoftlabs) from "Flaticon" (https://www.flaticon.com/)
 Icon "paste.png" made by "Vitaly Gorbachev" (https://www.flaticon.com/authors/vitaly-gorbachev) from "Flaticon" (https://www.flaticon.com/)
 Icon "play.png" made by "Roundicons" (https://roundicons.com/) from "Flaticon" (https://www.flaticon.com/)
 Icon "redo.png" made by "Pixel perfect" (https://www.flaticon.com/authors/pixel-perfect) from "Flaticon" (https://www.flaticon.com/)
