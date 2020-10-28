@@ -51,7 +51,7 @@ type
 implementation
 
 uses
-  ac_exe, ac_filedir;
+  up_runcommand;
 
 constructor tucTabSheet.Create (AOwner : TComponent);
 begin
@@ -151,44 +151,8 @@ begin
 end;
 
 procedure tucTabSheet.fcRunCommand;
-var
-  LResults : TStringList;
-  i : Integer;
-  LCommand : string;
-  LFileName : TFileName;
-  LFileTmp : Boolean;
 begin
-  case Self.vLang of
-    // aseLangJava : LCommand := 'javac|java';
-    aseLangPython : LCommand := 'python';
-  end;
-  if Trim(LCommand) <> '' then
-  begin
-    if Trim(Self.vFileName) <> '' then
-    begin
-      LFileName := Self.vFileName;
-      LFileTmp := False;
-    end
-    else
-    begin
-      LFileName := vacFileDir.fcGetTempFileName;
-      LFileTmp := True;
-    end;
-    Self.vSynEdit.Lines.SaveToFile(LFileName);
-    LResults := vacExe.fcRunCommand(LCommand,LFileName);
-    Self.vMemoResult.Lines.Add('[' + DateTimeToStr(Now()) + ']');
-    for i := 1 to LResults.Count do
-    begin
-      Self.vMemoResult.Lines.Add(LResults[i-1]);
-    end;
-    if Self.vMemoResult.Height = 0 then Self.vMemoResult.Height := Round(Self.Height / 4);
-  end
-  else
-    MessageDlg('Not Available','Run command is currently not available for ' + Self.vLangTxt,
-      mtInformation,[mbOK],0
-    )
-  ;
-  if LFileTmp then vacFileDir.fcDeleteFile(LFileName);
+  vupRunCommand.fcRun(Self.vLang,Self.vFileName,Self.vSynEdit,Self.vMemoResult,Self);
 end;
 
 end.
