@@ -5,7 +5,7 @@ unit up_runcommand;
 interface
 
 uses
-  Classes, SysUtils, Controls, up_synhighlighter, uc_synedit, uc_memoresult;
+  Classes, SysUtils, Controls, Dialogs, up_synhighlighter, uc_synedit, uc_memoresult;
 
 type
   tupRunCommand = object
@@ -13,6 +13,7 @@ type
     procedure fcRun (ALang : taseLang; AFileName : TFileName; ASynEdit : tucSynEdit;
       AMemoResult : tucMemoResult; AParent : TWinControl);
   private
+    function fcJava (AFileName : TFileName) : TStringList;
     function fcPython (AFileName : TFileName) : TStringList;
   end;
 
@@ -36,6 +37,7 @@ begin
   ASynEdit.Lines.SaveToFile(LFileName);
   LContinue := True;
   case ALang of
+    aseLangJava : LResults := Self.fcJava(LFileName);
     aseLangPython : LResults := Self.fcPython(LFileName);
     else
     begin
@@ -50,6 +52,15 @@ begin
     if AMemoResult.Height = 0 then AMemoResult.Height := Round(AParent.Height / 4);
     if LTmpFile then vacFileDir.fcDeleteFile(LFileName);
   end;
+end;
+
+function tupRunCommand.fcJava (AFileName : TFileName) : TStringList;
+begin
+  vacExe.fcRun('javac',AFileName);
+  Result := vacExe.fcRun('java','-cp '
+    + '"' + Copy(ExtractFilePath(AFileName),1,Length(ExtractFilePath(AFileName))-1) + '"' + ' '
+    + Copy(ExtractFileName(AFileName),1,Length(ExtractFileName(AFileName))-Length('.java'))
+  );
 end;
 
 function tupRunCommand.fcPython (AFileName : TFileName) : TStringList;
