@@ -13,7 +13,7 @@ uses
 type
   tacExe = object
   public
-    function fcRunCommand (AExeName : string; ACommand : string) : TStringList;
+    function fcRun (AExeName : string; ACommand : string) : TStringList;
   end;
 
 var
@@ -25,7 +25,7 @@ uses
   ac_string;
 
 {One command & No Console}
-function tacExe.fcRunCommand (AExeName : string; ACommand : string) : TStringList;
+function tacExe.fcRun (AExeName : string; ACommand : string) : TStringList;
 var
   LOutputString : string;
   LOutputStrings : TStringList;
