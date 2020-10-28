@@ -3,6 +3,7 @@ object FormFindReplace: TFormFindReplace
   Height = 393
   Top = 267
   Width = 620
+  ActiveControl = ButtonFind
   BorderIcons = [biSystemMenu]
   Caption = 'Find / Replace'
   ClientHeight = 393
@@ -22,14 +23,14 @@ object FormFindReplace: TFormFindReplace
     Caption = '   Options   '
     ClientHeight = 178
     ClientWidth = 564
-    TabOrder = 0
+    TabOrder = 4
     object CheckBoxBackwards: TCheckBox
       Left = 24
       Height = 29
       Top = 46
       Width = 113
       Caption = 'Backwards'
-      TabOrder = 0
+      TabOrder = 2
     end
     object CheckBoxEntireScope: TCheckBox
       Left = 24
@@ -39,7 +40,7 @@ object FormFindReplace: TFormFindReplace
       Caption = 'Entire Scope'
       Enabled = False
       OnChange = CheckBoxEntireScopeChange
-      TabOrder = 1
+      TabOrder = 3
     end
     object CheckBoxSelectedOnly: TCheckBox
       Left = 216
@@ -49,7 +50,7 @@ object FormFindReplace: TFormFindReplace
       Caption = 'Selected Only'
       Enabled = False
       OnChange = CheckBoxSelectedOnlyChange
-      TabOrder = 2
+      TabOrder = 4
     end
     object CheckBoxReplace: TCheckBox
       Left = 24
@@ -59,7 +60,7 @@ object FormFindReplace: TFormFindReplace
       Caption = 'Replace'
       Enabled = False
       OnChange = CheckBoxReplaceChange
-      TabOrder = 3
+      TabOrder = 5
     end
     object CheckBoxReplaceAll: TCheckBox
       Left = 216
@@ -69,7 +70,7 @@ object FormFindReplace: TFormFindReplace
       Caption = 'Replace All'
       Enabled = False
       OnChange = CheckBoxReplaceAllChange
-      TabOrder = 4
+      TabOrder = 6
     end
     object CheckBoxWholeWord: TCheckBox
       Left = 216
@@ -77,7 +78,7 @@ object FormFindReplace: TFormFindReplace
       Top = 8
       Width = 131
       Caption = 'Whole Word'
-      TabOrder = 5
+      TabOrder = 1
     end
     object CheckBoxMatchCase: TCheckBox
       Left = 24
@@ -85,7 +86,7 @@ object FormFindReplace: TFormFindReplace
       Top = 8
       Width = 121
       Caption = 'Match Case'
-      TabOrder = 6
+      TabOrder = 0
     end
   end
   object ButtonFind: TButton
@@ -96,7 +97,7 @@ object FormFindReplace: TFormFindReplace
     Anchors = [akTop, akRight]
     Caption = 'Find'
     OnClick = ButtonFindClick
-    TabOrder = 1
+    TabOrder = 0
   end
   object EditFind: TEdit
     Left = 168
@@ -104,7 +105,8 @@ object FormFindReplace: TFormFindReplace
     Top = 17
     Width = 426
     Anchors = [akTop, akLeft, akRight]
-    TabOrder = 2
+    OnKeyPress = EditFindKeyPress
+    TabOrder = 1
   end
   object LabelFind: TLabel
     Left = 119
@@ -131,6 +133,6 @@ object FormFindReplace: TFormFindReplace
     Width = 142
     Caption = 'Replace With :'
     OnChange = CheckBoxReplaceWithChange
-    TabOrder = 4
+    TabOrder = 2
   end
 end
