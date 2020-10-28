@@ -25,6 +25,7 @@ uses
   ac_string;
 
 {One command & No Console}
+{Example : fcRun('python','C:/myfile.py')}
 function tacExe.fcRun (AExeName : string; ACommand : string) : TStringList;
 var
   LOutputString : string;
