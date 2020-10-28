@@ -15,7 +15,7 @@ type
   public
     procedure fcCreateFile (AFileName : TFileName; AText : WideString);
     procedure fcDeleteFile (AFileName : TFileName);
-    function fcGetTempFileName : TFileName;
+    function fcTmpFileName : TFileName;
   end;
 
 var
@@ -38,7 +38,7 @@ begin
   if FileExists(AFileName) then DeleteFile(AFileName);
 end;
 
-function tacFileDir.fcGetTempFileName : TFileName;
+function tacFileDir.fcTmpFileName : TFileName;
 begin
   Result := GetTempFileName;
 end;
