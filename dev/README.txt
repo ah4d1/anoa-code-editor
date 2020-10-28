@@ -20,10 +20,14 @@ MAIN FEATURES :
 - Save file.
 - Easy-to-use editor.
 - Edit files in multiple tabs.
+- Reordering tabs easily using drag and drop.
 - Syntax highlighting.
-- Syntax completion (use Ctrl + Space).
-- Support many popular languages.
+- Syntax completion.
 - Find & replace capability.
+- Code folding.
+- Line numbering.
+- Support many popular languages.
+- Run code directly for selected languages.
 - Switch editor color.
 
 
