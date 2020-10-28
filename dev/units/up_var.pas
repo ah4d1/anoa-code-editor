@@ -18,7 +18,7 @@ type
     vLang : TStringList;
     vDefaultFontSize : Byte;
     constructor Create (AOwner : TComponent);
-    function fcFileName (AFileName : TFileName; var ATmpFile : Boolean) : TFileName;
+    function fcFileName (AFileName : TFileName; var ATmpFile : Boolean) : TFileName; overload;
   end;
 
 var
@@ -41,6 +41,7 @@ begin
   Self.vDefaultFontSize := 9;
 end;
 
+{if AFileName exists then use AFileName, else use TmpFile}
 function tupVar.fcFileName (AFileName : TFileName; var ATmpFile : Boolean) : TFileName;
 var
   LFileName : TFileName;
