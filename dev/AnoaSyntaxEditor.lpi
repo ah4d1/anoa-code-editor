@@ -40,7 +40,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="18">
+    <Units Count="19">
       <Unit0>
         <Filename Value="AnoaSyntaxEditor.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -122,6 +122,10 @@
         <Filename Value="units\uc_memoresult.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit17>
+      <Unit18>
+        <Filename Value="units\up_runcommand.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit18>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
