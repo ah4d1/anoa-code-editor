@@ -32,6 +32,7 @@ type
     procedure CheckBoxReplaceChange(Sender: TObject);
     procedure CheckBoxReplaceWithChange(Sender: TObject);
     procedure CheckBoxSelectedOnlyChange(Sender: TObject);
+    procedure EditFindKeyPress(Sender: TObject; var Key: char);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
   private
@@ -129,6 +130,11 @@ end;
 procedure TFormFindReplace.CheckBoxSelectedOnlyChange(Sender: TObject);
 begin
   if Self.CheckBoxSelectedOnly.Checked then Self.CheckBoxEntireScope.Checked := False;
+end;
+
+procedure TFormFindReplace.EditFindKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then Self.ButtonFindClick(Sender);
 end;
 
 procedure TFormFindReplace.FormActivate(Sender: TObject);
