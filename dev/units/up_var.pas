@@ -18,6 +18,7 @@ type
     vLang : TStringList;
     vDefaultFontSize : Byte;
     constructor Create (AOwner : TComponent);
+    function fcFileName (AFileName : TFileName; var ATmpFile : Boolean) : TFileName;
   end;
 
 var
@@ -26,7 +27,7 @@ var
 implementation
 
 uses
-  up_lang, ac_string;
+  up_lang, ac_string, ac_filedir;
 
 constructor tupVar.Create (AOwner : TComponent);
 begin
@@ -38,6 +39,25 @@ begin
   Self.vReservedWords := tupReserveWords.Create(AOwner);
   Self.vLang := vacString.fcSplit(Self.vReservedWords.vLangTxt,'|');
   Self.vDefaultFontSize := 9;
+end;
+
+function tupVar.fcFileName (AFileName : TFileName; var ATmpFile : Boolean) : TFileName;
+var
+  LFileName : TFileName;
+  LTmpFile : Boolean;
+begin
+  if Trim(AFileName) <> '' then
+  begin
+    LFileName := AFileName;
+    LTmpFile := False;
+  end
+  else
+  begin
+    LFileName := vacFileDir.fcTmpFileName;
+    LTmpFile := True;
+  end;
+  ATmpFile := LTmpFile;
+  Result := LFileName;
 end;
 
 end.
