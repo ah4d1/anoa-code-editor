@@ -5,7 +5,7 @@ unit up_synhighlighter;
 interface
 
 uses
-  Classes, SysUtils, SynEditHighlighter, SynHighlighterCobol, SynHighlighterCS, SynHighlighterCSS,
+  Classes, SysUtils, Graphics, SynEditHighlighter, SynHighlighterCobol, SynHighlighterCS, SynHighlighterCSS,
   SynHighlighterHTML, SynHighlighterJava, SynHighlighterJSON, SynHighlighterPas, SynHighlighterPHP,
   SynHighlighterPython, SynHighlighterSQL, Dialogs;
 
@@ -14,6 +14,9 @@ type
     ,aseLangPHP,aseLangPython,aseLangSQL
   );
   tupSynHighlighter = class
+    vCommentAttriColor : TColor;
+    vKeyAttriColor : TColor;
+    {}
     vNone   : TSynCustomHighLighter;
     vCobol  : TSynCobolSyn;
     vCS     : TSynCSSyn;
@@ -36,10 +39,13 @@ type
 implementation
 
 uses
-  ac_string;
+  ac_string, ac_color;
 
 constructor tupSynHighlighter.Create (AOwner : TComponent);
 begin
+  Self.vCommentAttriColor := clRed;
+  Self.vKeyAttriColor := clBlue;
+  {}
   Self.vNone   := nil;
   Self.vCobol  := TSynCobolSyn.Create(AOwner);
   Self.vCS     := TSynCSSyn.Create(AOwner);
@@ -51,6 +57,27 @@ begin
   Self.vPHP    := TSynPHPSyn.Create(AOwner);
   Self.vPython := TSynPythonSyn.Create(AOwner);
   Self.vSQL    := TSynSQLSyn.Create(AOwner);
+  {}
+  Self.vCobol.CommentAttri.Foreground := Self.vCommentAttriColor;
+  Self.vCobol.KeyAttri.Foreground := Self.vKeyAttriColor;
+  Self.vCS.CommentAttri.Foreground := Self.vCommentAttriColor;
+  Self.vCS.KeyAttri.Foreground := Self.vKeyAttriColor;
+  Self.vCSS.CommentAttri.Foreground := Self.vCommentAttriColor;
+  Self.vCSS.KeyAttri.Foreground := Self.vKeyAttriColor;
+  Self.vHTML.CommentAttri.Foreground := Self.vCommentAttriColor;
+  Self.vHTML.KeyAttri.Foreground := Self.vKeyAttriColor;
+  Self.vJava.CommentAttri.Foreground := Self.vCommentAttriColor;
+  Self.vJava.KeyAttri.Foreground := Self.vKeyAttriColor;
+  // Self.vJSON.CommentAttri.Foreground := Self.vCommentAttriColor;
+  Self.vJSON.KeyAttri.Foreground := Self.vKeyAttriColor;
+  Self.vPas.CommentAttri.Foreground := Self.vCommentAttriColor;
+  Self.vPas.KeyAttri.Foreground := Self.vKeyAttriColor;
+  Self.vPHP.CommentAttri.Foreground := Self.vCommentAttriColor;
+  Self.vPHP.KeyAttri.Foreground := Self.vKeyAttriColor;
+  Self.vPython.CommentAttri.Foreground := Self.vCommentAttriColor;
+  Self.vPython.KeyAttri.Foreground := Self.vKeyAttriColor;
+  Self.vSQL.CommentAttri.Foreground := Self.vCommentAttriColor;
+  Self.vSQL.KeyAttri.Foreground := Self.vKeyAttriColor;
 end;
 
 function tupSynHighlighter.fcSetDefaultFilter : WideString;
