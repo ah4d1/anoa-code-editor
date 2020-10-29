@@ -1,3 +1,9 @@
+v.1.0.4.1 : (Work in progress)
+----------------------------------------------------------
+Added   : Menu "Controls"
+Added   : Search and replace with special character (\n,\t)
+Update  : Code refactoring & other minor updates.
+
 v.1.0.4.0 : (Released 29th Oct 2020)
 ----------------------------------------------------------
 Added   : Run Command function & menu.
