@@ -12,6 +12,7 @@ object FormFindReplace: TFormFindReplace
   FormStyle = fsStayOnTop
   OnActivate = FormActivate
   OnClose = FormClose
+  OnShow = FormShow
   Position = poOwnerFormCenter
   LCLVersion = '2.0.0.4'
   object GroupBoxOptions: TGroupBox
@@ -134,5 +135,15 @@ object FormFindReplace: TFormFindReplace
     Caption = 'Replace With :'
     OnChange = CheckBoxReplaceWithChange
     TabOrder = 2
+  end
+  object ButtonClose: TButton
+    Left = 26
+    Height = 38
+    Top = 336
+    Width = 113
+    Cancel = True
+    Caption = 'Close'
+    OnClick = ButtonCloseClick
+    TabOrder = 5
   end
 end
