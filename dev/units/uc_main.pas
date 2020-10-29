@@ -37,7 +37,8 @@ type
     procedure fcSelectAll;
     procedure fcSave (AFileName : TFileName);
     procedure fcShowCompletion;
-    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+      AIsSpecialChar : Boolean; ASpecialChar : string);
     procedure fcFindNext;
     procedure fcRunCommand;
   end;
@@ -161,9 +162,10 @@ begin
   Self.vPageControl.fcShowCompletion;
 end;
 
-procedure tucMain.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+procedure tucMain.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+  AIsSpecialChar : Boolean; ASpecialChar : string);
 begin
-  Self.vPageControl.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions);
+  Self.vPageControl.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions,AIsSpecialChar,ASpecialChar);
 end;
 
 procedure tucMain.fcFindNext;
