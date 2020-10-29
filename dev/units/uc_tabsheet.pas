@@ -44,7 +44,8 @@ type
     procedure fcSelectAll;
     procedure fcSetCurrentData;
     procedure fcShowCompletion;
-    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+      AIsSpecialChar : Boolean; ASpecialChar : string);
     procedure fcFindNext;
     procedure fcRunCommand;
   end;
@@ -145,9 +146,10 @@ begin
   Self.vSynEdit.CommandProcessor(vSynCompletion.ExecCommandID, '', nil);
 end;
 
-procedure tucTabSheet.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+procedure tucTabSheet.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+  AIsSpecialChar : Boolean; ASpecialChar : string);
 begin
-  Self.vSynEdit.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions);
+  Self.vSynEdit.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions,AIsSpecialChar,ASpecialChar);
 end;
 
 procedure tucTabSheet.fcFindNext;
