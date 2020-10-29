@@ -26,8 +26,9 @@ type
     procedure fcAddNewTab (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu); overload;
     procedure fcCloseCurrentTab (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
     procedure fcCloseAllTabs (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
-    procedure fcUpdate (ACurrentData : tupCurrentData);
-    procedure fcUpdateFontSize;
+    procedure fcCloseAllOtherTabs (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
+    procedure fcUpdate (AVar : tupVar); overload;
+    procedure fcUpdate (ACurrentData : tupCurrentData); overload;
     procedure fcUndo;
     procedure fcRedo;
     procedure fcCopy;
@@ -36,8 +37,8 @@ type
     procedure fcSelectAll;
     procedure fcSave (AFileName : TFileName);
     procedure fcShowCompletion;
-    procedure fcSwitchEditorColor;
     procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+    procedure fcFindNext;
     procedure fcRunCommand;
   end;
 
@@ -94,15 +95,30 @@ begin
   end;
 end;
 
+procedure tucMain.fcCloseAllOtherTabs (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
+var
+  i : Byte;
+begin
+  Self.vPageControl.fcCurrentTabSheet.PageIndex := Self.vPageControl.PageCount-1;
+  for i := 1 to Self.vPageControl.PageCount-1 do
+  begin
+    Self.vPageControl.PageIndex := 0;
+    Self.vPageControl.fcCloseCurrentTab(ACurrentData,vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),
+      vupVar.vImageIndexNormalFile, APopupMenu
+    );
+    Self.vPageControl.Change;
+  end;
+end;
+
+procedure tucMain.fcUpdate (AVar : tupVar);
+begin
+  Self.vPageControl.fcUpdate(AVar);
+end;
+
 procedure tucMain.fcUpdate (ACurrentData : tupCurrentData);
 begin
   Self.vPageControl.fcUpdate(ACurrentData);
   Self.vStatusBar.fcUpdate(ACurrentData);
-end;
-
-procedure tucMain.fcUpdateFontSize;
-begin
-  Self.vPageControl.fcUpdateFontSize;
 end;
 
 procedure tucMain.fcUndo;
@@ -145,14 +161,14 @@ begin
   Self.vPageControl.fcShowCompletion;
 end;
 
-procedure tucMain.fcSwitchEditorColor;
-begin
-  Self.vPageControl.fcSwitchEditorColor;
-end;
-
 procedure tucMain.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
 begin
   Self.vPageControl.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions);
+end;
+
+procedure tucMain.fcFindNext;
+begin
+  Self.vPageControl.fcFindNext;
 end;
 
 procedure tucMain.fcRunCommand;
