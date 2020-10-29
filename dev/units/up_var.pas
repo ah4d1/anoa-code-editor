@@ -10,6 +10,7 @@ uses
 type
   taseTheme = (aseThemeLight,aseThemeDark);
   tupVar = class
+    vAppDir : string;
     vTabPrefix : string;
     vTabNo : Byte;
     vImageIndexNormalFile : Byte;
@@ -26,6 +27,7 @@ type
     vGutterMarkupColor : TColor;
     vLineHighlightColor : TColor;
     constructor Create (AOwner : TComponent);
+    procedure fcInit (AOwner : TComponent);
     function fcFileName (AFileName : TFileName; var ATmpFile : Boolean) : TFileName; overload;
     procedure fcUpdate (AFontSize : Byte); overload;
     procedure fcUpdate (AFontSize : Byte; ATheme : taseTheme); overload;
@@ -45,9 +47,7 @@ begin
   Self.vTabNo := 0;
   Self.vImageIndexNormalFile := 3;
   Self.vImageIndexModifiedFile := 4;
-  Self.vSynHighlighter := tupSynHighlighter.Create(AOwner);
-  Self.vReservedWords := tupReserveWords.Create(AOwner);
-  Self.vLang := vacString.fcSplit(Self.vReservedWords.vLangTxt,'|');
+  {}
   Self.vFontSize := 9;
   Self.vCurrentFindKeyword := '';
   Self.vCurrentTheme := aseThemeLight;
@@ -56,6 +56,13 @@ begin
   Self.vGutterColor := clBtnFace;
   Self.vGutterMarkupColor := clBtnFace;
   Self.vLineHighlightColor := $00EFE8D6;
+end;
+
+procedure tupVar.fcInit (AOwner : TComponent);
+begin
+  Self.vReservedWords := tupReserveWords.Create;
+  Self.vSynHighlighter := tupSynHighlighter.Create(AOwner);
+  Self.vLang := vacString.fcSplit(Self.vReservedWords.vLangTxt,'|');
 end;
 
 {if AFileName exists then use AFileName, else use TmpFile}
