@@ -34,7 +34,8 @@ type
     procedure fcInit (APopupMenu : TPopupMenu);
     procedure fcOpen (ACurrentData : tupCurrentData);
     procedure fcSave (AFileName : TFileName);
-    procedure fcUpdate (ACurrentData : tupCurrentData);
+    procedure fcUpdate (AVar : tupVar); overload;
+    procedure fcUpdate (ACurrentData : tupCurrentData); overload;
     procedure fcUndo;
     procedure fcRedo;
     procedure fcCopy;
@@ -44,14 +45,14 @@ type
     procedure fcSetCurrentData;
     procedure fcShowCompletion;
     procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
-    procedure fcSwitchEditorColor;
+    procedure fcFindNext;
     procedure fcRunCommand;
   end;
 
 implementation
 
 uses
-  up_runcommand;
+  up_runcommand, ac_dialog;
 
 constructor tucTabSheet.Create (AOwner : TComponent);
 begin
@@ -88,6 +89,11 @@ begin
   Self.ImageIndex := vupVar.vImageIndexNormalFile;
   Self.vTextStatus := aseTextStatusNormal;
   Self.vSynEdit.fcSave(AFileName);
+end;
+
+procedure tucTabSheet.fcUpdate (AVar : tupVar);
+begin
+  Self.vSynEdit.fcUpdate(AVar);
 end;
 
 procedure tucTabSheet.fcUpdate (ACurrentData : tupCurrentData);
@@ -131,8 +137,7 @@ end;
 
 procedure tucTabSheet.fcSetCurrentData;
 begin
-  vupCurrentData.vLangTxt := Self.vLangTxt;
-  vupCurrentData.vFileName := Self.vFileName;
+  vupCurrentData.fcUpdate(Self.vLang,Self.vFileName);
 end;
 
 procedure tucTabSheet.fcShowCompletion;
@@ -145,14 +150,17 @@ begin
   Self.vSynEdit.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions);
 end;
 
-procedure tucTabSheet.fcSwitchEditorColor;
+procedure tucTabSheet.fcFindNext;
 begin
-  Self.vSynEdit.fcSwitchColor;
+  Self.vSynEdit.fcFindNext;
 end;
 
 procedure tucTabSheet.fcRunCommand;
 begin
-  vupRunCommand.fcRun(Self.vLang,Self.vFileName,Self.vSynEdit,Self.vMemoResult,Self);
+  case Self.vTextStatus of
+    aseTextStatusNormal : vupRunCommand.fcRun(Self.vLang,Self.vFileName,Self.vSynEdit,Self.vMemoResult,Self);
+    aseTextStatusModified : vacDialog.fcInfo('Save your work before run.');
+  end;
 end;
 
 end.
