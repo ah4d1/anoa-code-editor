@@ -13,6 +13,7 @@ type
   { TFormFindReplace }
 
   TFormFindReplace = class(TForm)
+    ButtonClose: TButton;
     ButtonFind: TButton;
     CheckBoxReplaceWith: TCheckBox;
     CheckBoxBackwards: TCheckBox;
@@ -26,6 +27,7 @@ type
     EditReplaceWith: TEdit;
     GroupBoxOptions: TGroupBox;
     LabelFind: TLabel;
+    procedure ButtonCloseClick(Sender: TObject);
     procedure ButtonFindClick(Sender: TObject);
     procedure CheckBoxEntireScopeChange(Sender: TObject);
     procedure CheckBoxReplaceAllChange(Sender: TObject);
@@ -35,6 +37,7 @@ type
     procedure EditFindKeyPress(Sender: TObject; var Key: char);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormShow(Sender: TObject);
   private
 
   public
@@ -51,7 +54,7 @@ implementation
 { TFormFindReplace }
 
 uses
-  uf_main;
+  uf_main, up_var;
 
 procedure TFormFindReplace.ButtonFindClick(Sender: TObject);
 var
@@ -65,7 +68,13 @@ begin
   if Self.CheckBoxSelectedOnly.Checked then LSynSearchOptions := LSynSearchOptions + [ssoSelectedOnly];
   if Self.CheckBoxReplace.Checked then LSynSearchOptions := LSynSearchOptions + [ssoReplace];
   if Self.CheckBoxReplaceAll.Checked then LSynSearchOptions := LSynSearchOptions + [ssoReplaceAll];
+  vupVar.vCurrentFindKeyword := Self.EditFind.Text;
   FormMain.fcReplace(Self.EditFind.Text,Self.EditReplaceWith.Text,LSynSearchOptions);
+end;
+
+procedure TFormFindReplace.ButtonCloseClick(Sender: TObject);
+begin
+  Self.Release;
 end;
 
 procedure TFormFindReplace.CheckBoxEntireScopeChange(Sender: TObject);
@@ -147,6 +156,11 @@ procedure TFormFindReplace.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
   Self.Release;
+end;
+
+procedure TFormFindReplace.FormShow(Sender: TObject);
+begin
+  Self.ActiveControl := Self.EditFind;
 end;
 
 end.
