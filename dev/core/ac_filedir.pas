@@ -15,6 +15,7 @@ type
   public
     procedure fcCreateFile (AFileName : TFileName; AText : WideString);
     procedure fcDeleteFile (AFileName : TFileName);
+    function fcFileToStringList (AFileName : TFileName) : TStringList;
     function fcTmpFileName : TFileName;
   end;
 
@@ -36,6 +37,23 @@ end;
 procedure tacFileDir.fcDeleteFile (AFileName : TFileName);
 begin
   if FileExists(AFileName) then DeleteFile(AFileName);
+end;
+
+function tacFileDir.fcFileToStringList (AFileName : TFileName) : TStringList;
+var
+  LStringList : TStringList;
+  LFile : TextFile;
+  LLine : WideString;
+begin
+  LStringList := TStringList.Create;
+  AssignFile(LFile,AFileName);
+  Reset(LFile);
+  repeat
+    Readln(LFile,LLine);
+    LStringList.Add(string(LLine));
+  until EOF(LFile);
+  CloseFile(LFile);
+  Result := LStringList;
 end;
 
 function tacFileDir.fcTmpFileName : TFileName;
