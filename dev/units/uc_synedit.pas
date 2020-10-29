@@ -24,10 +24,12 @@ type
     procedure fcPaste;
     procedure fcSelectAll;
     procedure fcShowCompletion (ASynCompletion : tucSynCompletion);
-    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+      AIsSpecialChar : Boolean; ASpecialChar : string);
     procedure fcFindNext;
   private
     procedure fcSwitchColor;
+    procedure fcSetColor (ALang : TSynCustomHighlighter; ACommentAttriColor,AKeyAttriColor : TColor);
   end;
 
 implementation
@@ -115,9 +117,17 @@ begin
   Self.CommandProcessor(ASynCompletion.ExecCommandID, '', nil);
 end;
 
-procedure tucSynEdit.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+procedure tucSynEdit.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+  AIsSpecialChar : Boolean; ASpecialChar : string);
 begin
-  Self.SearchReplace(AOldPattern,ANewPattern,ASynSearchOptions);
+  if not(AIsSpecialChar) then
+    Self.SearchReplace(AOldPattern,ANewPattern,ASynSearchOptions)
+  else
+  begin
+    if ASpecialChar = '\n' then Self.SearchReplace(AOldPattern,#13,ASynSearchOptions)
+    else if ASpecialChar = '\t' then Self.SearchReplace(AOldPattern,#9,ASynSearchOptions)
+  ;
+  end;
 end;
 
 procedure tucSynEdit.fcFindNext;
@@ -160,26 +170,25 @@ begin
   Self.Gutter.Color := LGutterColor;
   Self.Gutter.Parts[1].MarkupInfo.Background := LGutterMarkupColor;
   Self.LineHighlightColor.Background := LLineHighlightColor;
-  vupVar.vSynHighlighter.vCobol.CommentAttri.Foreground := LCommentAttriColor;
-  vupVar.vSynHighlighter.vCobol.KeyAttri.Foreground := LKeyAttriColor;
-  vupVar.vSynHighlighter.vCS.CommentAttri.Foreground := LCommentAttriColor;
-  vupVar.vSynHighlighter.vCS.KeyAttri.Foreground := LKeyAttriColor;
-  vupVar.vSynHighlighter.vCSS.CommentAttri.Foreground := LCommentAttriColor;
-  vupVar.vSynHighlighter.vCSS.KeyAttri.Foreground := LKeyAttriColor;
-  vupVar.vSynHighlighter.vHTML.CommentAttri.Foreground := LCommentAttriColor;
-  vupVar.vSynHighlighter.vHTML.KeyAttri.Foreground := LKeyAttriColor;
-  vupVar.vSynHighlighter.vJava.CommentAttri.Foreground := LCommentAttriColor;
-  vupVar.vSynHighlighter.vJava.KeyAttri.Foreground := LKeyAttriColor;
+
+  Self.fcSetColor(vupVar.vSynHighlighter.vCobol,LCommentAttriColor,LKeyAttriColor);
+  Self.fcSetColor(vupVar.vSynHighlighter.vCS,LCommentAttriColor,LKeyAttriColor);
+  Self.fcSetColor(vupVar.vSynHighlighter.vCSS,LCommentAttriColor,LKeyAttriColor);
+  Self.fcSetColor(vupVar.vSynHighlighter.vHTML,LCommentAttriColor,LKeyAttriColor);
+  Self.fcSetColor(vupVar.vSynHighlighter.vJava,LCommentAttriColor,LKeyAttriColor);
+  Self.fcSetColor(vupVar.vSynHighlighter.vPas,LCommentAttriColor,LKeyAttriColor);
+  Self.fcSetColor(vupVar.vSynHighlighter.vPHP,LCommentAttriColor,LKeyAttriColor);
+  Self.fcSetColor(vupVar.vSynHighlighter.vPython,LCommentAttriColor,LKeyAttriColor);
+  Self.fcSetColor(vupVar.vSynHighlighter.vSQL,LCommentAttriColor,LKeyAttriColor);
+
   // vupVar.vSynHighlighter.vJSON.CommentAttri.Foreground := LCommentAttriColor;
   vupVar.vSynHighlighter.vJSON.KeyAttri.Foreground := LKeyAttriColor;
-  vupVar.vSynHighlighter.vPas.CommentAttri.Foreground := LCommentAttriColor;
-  vupVar.vSynHighlighter.vPas.KeyAttri.Foreground := LKeyAttriColor;
-  vupVar.vSynHighlighter.vPHP.CommentAttri.Foreground := LCommentAttriColor;
-  vupVar.vSynHighlighter.vPHP.KeyAttri.Foreground := LKeyAttriColor;
-  vupVar.vSynHighlighter.vPython.CommentAttri.Foreground := LCommentAttriColor;
-  vupVar.vSynHighlighter.vPython.KeyAttri.Foreground := LKeyAttriColor;
-  vupVar.vSynHighlighter.vSQL.CommentAttri.Foreground := LCommentAttriColor;
-  vupVar.vSynHighlighter.vSQL.KeyAttri.Foreground := LKeyAttriColor;
+end;
+
+procedure tucSynEdit.fcSetColor (ALang : TSynCustomHighlighter; ACommentAttriColor,AKeyAttriColor : TColor);
+begin
+  ALang.CommentAttribute.Foreground := ACommentAttriColor;
+  ALang.KeywordAttribute.Foreground := AKeyAttriColor;
 end;
 
 end.
