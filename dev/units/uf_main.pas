@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
   StdCtrls, Spin, ExtCtrls, ShellCtrls, SynHighlighterCobol, SynEdit,
-  SynCompletion, up_synhighlighter, SynEditTypes;
+  SynCompletion, up_synhighlighter, SynEditTypes, SynHighlighterPas;
 
 type
 
@@ -24,6 +24,8 @@ type
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
+    MenuItemCloseAllOtherTabs: TMenuItem;
+    MenuItemEditFindNext: TMenuItem;
     MenuItemOpen: TMenuItem;
     MenuItemExit: TMenuItem;
     MenuItemFileRun: TMenuItem;
@@ -72,6 +74,7 @@ type
     ShellTreeViewMain: TShellTreeView;
     SpinEditFontSize: TSpinEdit;
     SplitterMain: TSplitter;
+    SynEdit1: TSynEdit;
     ToolBarMain: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
@@ -91,10 +94,12 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItemCloseAllOtherTabsClick(Sender: TObject);
     procedure MenuItemCloseAllTabsClick(Sender: TObject);
     procedure MenuItemCloseCurrentTabClick(Sender: TObject);
     procedure MenuItemEditCopyClick(Sender: TObject);
     procedure MenuItemEditCutClick(Sender: TObject);
+    procedure MenuItemEditFindNextClick(Sender: TObject);
     procedure MenuItemEditPasteClick(Sender: TObject);
     procedure MenuItemEditSelectAllClick(Sender: TObject);
     procedure MenuItemHelpAboutClick(Sender: TObject);
@@ -171,6 +176,11 @@ begin
 
 end;
 
+procedure TFormMain.MenuItemCloseAllOtherTabsClick(Sender: TObject);
+begin
+  vucMain.fcCloseAllOtherTabs(vupCurrentData,Self.PopupMenuSynEdit);
+end;
+
 procedure TFormMain.UpdateShellTreeViewImages;
 var
   i : Integer;
@@ -209,6 +219,11 @@ end;
 procedure TFormMain.MenuItemEditCutClick(Sender: TObject);
 begin
   vucMain.fcCut;
+end;
+
+procedure TFormMain.MenuItemEditFindNextClick(Sender: TObject);
+begin
+  vucMain.fcFindNext;
 end;
 
 procedure TFormMain.MenuItemEditPasteClick(Sender: TObject);
@@ -300,10 +315,10 @@ begin
   begin
     for i := 1 to Self.OpenDialogMain.Files.Count do
     begin
+      vupVar.fcUpdate(Self.SpinEditFontSize.Value);
       vupCurrentData.fcUpdate(Self.OpenDialogMain.Files[i-1]);
       vucMain.fcAddNewTab(vupCurrentData,Self.PopupMenuSynEdit);
       vucMain.fcUpdate(vupCurrentData);
-      vucMain.fcUpdateFontSize;
     end;
   end;
 end;
@@ -312,6 +327,7 @@ procedure TFormMain.MenuItemFileSaveAsClick(Sender: TObject);
 begin
   if Self.SaveDialogMain.Execute then
   begin
+    vupVar.fcUpdate(Self.SpinEditFontSize.Value);
     vupCurrentData.fcUpdate(Self.SaveDialogMain.FileName);
     vucMain.fcSave(vupCurrentData.vFileName);
     vucMain.fcUpdate(vupCurrentData);
@@ -322,6 +338,7 @@ procedure TFormMain.MenuItemFileSaveClick(Sender: TObject);
 begin
   if FileExists(vupCurrentData.vFileName) then
   begin
+    vupVar.fcUpdate(Self.SpinEditFontSize.Value);
     vupCurrentData.fcUpdate(vupCurrentData.vFileName);
     vucMain.fcSave(vupCurrentData.vFileName);
     vucMain.fcUpdate(vupCurrentData);
@@ -342,10 +359,10 @@ var
 begin
   for i := 1 to Self.ShellTreeViewMain.SelectionCount do
   begin
+    vupVar.fcUpdate(Self.SpinEditFontSize.Value);
     vupCurrentData.fcUpdate(Self.ShellTreeViewMain.Selections[i-1].GetTextPath);
     vucMain.fcAddNewTab(vupCurrentData,Self.PopupMenuSynEdit);
     vucMain.fcUpdate(vupCurrentData);
-    vucMain.fcUpdateFontSize;
   end;
 end;
 
@@ -417,7 +434,11 @@ end;
 
 procedure TFormMain.MenuItemSettingsSwitchColorClick(Sender: TObject);
 begin
-  vucMain.fcSwitchEditorColor;
+  case vupVar.vCurrentTheme of
+    aseThemeLight : vupVar.vCurrentTheme := aseThemeDark;
+    aseThemeDark : vupVar.vCurrentTheme := aseThemeLight;
+  end;
+  vucMain.fcUpdate(vupVar);
 end;
 
 procedure TFormMain.ShellTreeViewMainCollapsed(Sender: TObject; Node: TTreeNode);
@@ -429,21 +450,22 @@ procedure TFormMain.ShellTreeViewMainDblClick(Sender: TObject);
 begin
   if FileExists(Self.ShellTreeViewMain.Selected.GetTextPath) then
     begin
+      vupVar.fcUpdate(Self.SpinEditFontSize.Value);
       vupCurrentData.fcUpdate(Self.ShellTreeViewMain.Selected.GetTextPath);
       vucMain.fcAddNewTab(vupCurrentData,Self.PopupMenuSynEdit);
       vucMain.fcUpdate(vupCurrentData);
-      vucMain.fcUpdateFontSize;
     end;
 end;
 
 procedure TFormMain.ShellTreeViewMainExpanded(Sender: TObject; Node: TTreeNode);
 begin
-  Self.UpdateShellTreeViewImages
+  Self.UpdateShellTreeViewImages;
 end;
 
 procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
 begin
-  vucMain.fcUpdateFontSize;
+  vupVar.fcUpdate(Self.SpinEditFontSize.Value);
+  vucMain.fcUpdate(vupVar);
 end;
 
 end.
