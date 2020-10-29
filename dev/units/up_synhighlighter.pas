@@ -34,12 +34,14 @@ type
     function fcGetHighlighter (ALang : taseLang) : TSynCustomHighlighter;
   private
     function fcIsExt (AFileExt : string; ADefaultFilter : string) : Boolean;
+    procedure fcSetColor (ALang : TSynCustomHighlighter); overload;
+    procedure fcSetColor (ALang : TSynCustomHighlighter; AComment : Boolean); overload;
   end;
 
 implementation
 
 uses
-  ac_string, ac_color;
+  ac_string;
 
 constructor tupSynHighlighter.Create (AOwner : TComponent);
 begin
@@ -57,27 +59,29 @@ begin
   Self.vPHP    := TSynPHPSyn.Create(AOwner);
   Self.vPython := TSynPythonSyn.Create(AOwner);
   Self.vSQL    := TSynSQLSyn.Create(AOwner);
-  {}
-  Self.vCobol.CommentAttri.Foreground := Self.vCommentAttriColor;
-  Self.vCobol.KeyAttri.Foreground := Self.vKeyAttriColor;
-  Self.vCS.CommentAttri.Foreground := Self.vCommentAttriColor;
-  Self.vCS.KeyAttri.Foreground := Self.vKeyAttriColor;
-  Self.vCSS.CommentAttri.Foreground := Self.vCommentAttriColor;
-  Self.vCSS.KeyAttri.Foreground := Self.vKeyAttriColor;
-  Self.vHTML.CommentAttri.Foreground := Self.vCommentAttriColor;
-  Self.vHTML.KeyAttri.Foreground := Self.vKeyAttriColor;
-  Self.vJava.CommentAttri.Foreground := Self.vCommentAttriColor;
-  Self.vJava.KeyAttri.Foreground := Self.vKeyAttriColor;
-  // Self.vJSON.CommentAttri.Foreground := Self.vCommentAttriColor;
-  Self.vJSON.KeyAttri.Foreground := Self.vKeyAttriColor;
-  Self.vPas.CommentAttri.Foreground := Self.vCommentAttriColor;
-  Self.vPas.KeyAttri.Foreground := Self.vKeyAttriColor;
-  Self.vPHP.CommentAttri.Foreground := Self.vCommentAttriColor;
-  Self.vPHP.KeyAttri.Foreground := Self.vKeyAttriColor;
-  Self.vPython.CommentAttri.Foreground := Self.vCommentAttriColor;
-  Self.vPython.KeyAttri.Foreground := Self.vKeyAttriColor;
-  Self.vSQL.CommentAttri.Foreground := Self.vCommentAttriColor;
-  Self.vSQL.KeyAttri.Foreground := Self.vKeyAttriColor;
+  {Set Color}
+  Self.fcSetColor(Self.vCobol);
+  Self.fcSetColor(Self.vCS);
+  Self.fcSetColor(Self.vCSS);
+  Self.fcSetColor(Self.vHTML);
+  Self.fcSetColor(Self.vJava);
+  Self.fcSetColor(Self.vJSON,False);
+  Self.fcSetColor(Self.vPas);
+  Self.fcSetColor(Self.vPHP);
+  Self.fcSetColor(Self.vPython);
+  Self.fcSetColor(Self.vSQL);
+end;
+
+procedure tupSynHighlighter.fcSetColor (ALang : TSynCustomHighlighter);
+begin
+  ALang.CommentAttribute.Foreground := Self.vCommentAttriColor;
+  ALang.KeywordAttribute.Foreground := Self.vKeyAttriColor;
+end;
+
+procedure tupSynHighlighter.fcSetColor (ALang : TSynCustomHighlighter; AComment : Boolean);
+begin
+  if AComment then ALang.CommentAttribute.Foreground := Self.vCommentAttriColor;
+  ALang.KeywordAttribute.Foreground := Self.vKeyAttriColor;
 end;
 
 function tupSynHighlighter.fcSetDefaultFilter : WideString;
