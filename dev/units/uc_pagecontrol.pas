@@ -38,7 +38,8 @@ type
     procedure fcSave (AFileName : TFileName);
     procedure Change; override;
     procedure fcShowCompletion;
-    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+      AIsSpecialChar : Boolean; ASpecialChar : string);
     procedure fcFindNext;
     procedure fcRunCommand;
     function fcCurrentTabSheet : tucTabSheet;
@@ -186,9 +187,10 @@ begin
   Self.fcCurrentTabSheet.fcShowCompletion;
 end;
 
-procedure tucPageControl.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+procedure tucPageControl.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+  AIsSpecialChar : Boolean; ASpecialChar : string);
 begin
-  Self.fcCurrentTabSheet.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions);
+  Self.fcCurrentTabSheet.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions,AIsSpecialChar,ASpecialChar);
 end;
 
 procedure tucPageControl.fcFindNext;
