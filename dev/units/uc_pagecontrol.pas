@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, ComCtrls, Controls, Menus, Spin, SynEditHighlighter, up_currentdata, uc_tabsheet,
-  uc_statusbar, Dialogs, UITypes, ExtendedNotebook, SynEditTypes, Process;
+  uc_statusbar, Dialogs, UITypes, ExtendedNotebook, SynEditTypes, Process, up_var;
 
 type
   tucPageControl = class(TExtendedNotebook)
@@ -22,12 +22,12 @@ type
     procedure fcInit (AImageList : TImageList; APopupMenu : TPopupMenu;
       ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar; ASaveDialog : TSaveDialog);
     procedure fcAddNewTab (ACaption : string; AImageIndex : Byte; APopupMenu : TPopupMenu);
-    procedure fcAddNewTabThenOpen (ACurrentData : tupCurrentData; AImageIndex : Byte;
-      APopupMenu : TPopupMenu);
+    procedure fcAddNewTabThenOpen (ACurrentData : tupCurrentData;
+      AImageIndex : Byte; APopupMenu : TPopupMenu);
     procedure fcCloseCurrentTab (ACurrentData : tupCurrentData; ACaption : string;
       AImageIndex : Byte; APopupMenu : TPopupMenu);
-    procedure fcUpdate (ACurrentData : tupCurrentData);
-    procedure fcUpdateFontSize;
+    procedure fcUpdate (AVar : tupVar); overload;
+    procedure fcUpdate (ACurrentData : tupCurrentData); overload;
     procedure fcUndo;
     procedure fcRedo;
     procedure fcCopy;
@@ -39,9 +39,8 @@ type
     procedure Change; override;
     procedure fcShowCompletion;
     procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
-    procedure fcSwitchEditorColor;
+    procedure fcFindNext;
     procedure fcRunCommand;
-  private
     function fcCurrentTabSheet : tucTabSheet;
   end;
 
@@ -80,8 +79,8 @@ begin
   Self.fcCurrentTabSheet.fcInit(APopupMenu);
 end;
 
-procedure tucPageControl.fcAddNewTabThenOpen (ACurrentData : tupCurrentData; AImageIndex : Byte;
-  APopupMenu : TPopupMenu);
+procedure tucPageControl.fcAddNewTabThenOpen (ACurrentData : tupCurrentData;
+  AImageIndex : Byte; APopupMenu : TPopupMenu);
 begin
   Self.fcAddNewTab(ExtractFileName(ACurrentData.vFileName),AImageIndex,APopupMenu);
   Self.fcCurrentTabSheet.fcOpen(ACurrentData);
@@ -123,14 +122,14 @@ begin
   if Self.PageCount <= 0 then Self.fcAddNewTab(ACaption,AImageIndex,APopupMenu);
 end;
 
+procedure tucPageControl.fcUpdate (AVar : tupVar);
+begin
+  Self.fcCurrentTabSheet.fcUpdate(AVar);
+end;
+
 procedure tucPageControl.fcUpdate (ACurrentData : tupCurrentData);
 begin
   Self.fcCurrentTabSheet.fcUpdate(ACurrentData);
-end;
-
-procedure tucPageControl.fcUpdateFontSize;
-begin
-  Self.fcCurrentTabSheet.vSynEdit.Font.Size := Self.vSpinEdit.Value;
 end;
 
 procedure tucPageControl.fcUndo;
@@ -173,7 +172,8 @@ procedure tucPageControl.Change;
 begin
   inherited Change;
   Self.fcSetCurrentData;
-  Self.fcUpdateFontSize;
+  Self.fcUpdate(vupVar);
+  Self.fcUpdate(vupCurrentData);
 end;
 
 procedure tucPageControl.fcSave (AFileName : TFileName);
@@ -186,14 +186,14 @@ begin
   Self.fcCurrentTabSheet.fcShowCompletion;
 end;
 
-procedure tucPageControl.fcSwitchEditorColor;
-begin
-  Self.fcCurrentTabSheet.fcSwitchEditorColor;
-end;
-
 procedure tucPageControl.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
 begin
   Self.fcCurrentTabSheet.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions);
+end;
+
+procedure tucPageControl.fcFindNext;
+begin
+  Self.fcCurrentTabSheet.fcFindNext;
 end;
 
 function tucPageControl.fcCurrentTabSheet : tucTabSheet;
