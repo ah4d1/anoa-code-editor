@@ -5,9 +5,10 @@ unit up_var;
 interface
 
 uses
-  Classes, SysUtils, SynEditHighlighter, up_synhighlighter, up_reservewords;
+  Classes, SysUtils, Graphics, SynEditHighlighter, up_synhighlighter, up_reservewords;
 
 type
+  taseTheme = (aseThemeLight,aseThemeDark);
   tupVar = class
     vTabPrefix : string;
     vTabNo : Byte;
@@ -16,9 +17,18 @@ type
     vSynHighlighter : tupSynHighlighter;
     vReservedWords : tupReserveWords;
     vLang : TStringList;
-    vDefaultFontSize : Byte;
+    vFontSize : Byte;
+    vCurrentFindKeyword : string;
+    vCurrentTheme : taseTheme;
+    vSynEditColor : TColor;
+    vSynEditFontColor : TColor;
+    vGutterColor : TColor;
+    vGutterMarkupColor : TColor;
+    vLineHighlightColor : TColor;
     constructor Create (AOwner : TComponent);
     function fcFileName (AFileName : TFileName; var ATmpFile : Boolean) : TFileName; overload;
+    procedure fcUpdate (AFontSize : Byte); overload;
+    procedure fcUpdate (AFontSize : Byte; ATheme : taseTheme); overload;
   end;
 
 var
@@ -27,7 +37,7 @@ var
 implementation
 
 uses
-  up_lang, ac_string, ac_filedir;
+  ac_string, ac_filedir;
 
 constructor tupVar.Create (AOwner : TComponent);
 begin
@@ -38,7 +48,14 @@ begin
   Self.vSynHighlighter := tupSynHighlighter.Create(AOwner);
   Self.vReservedWords := tupReserveWords.Create(AOwner);
   Self.vLang := vacString.fcSplit(Self.vReservedWords.vLangTxt,'|');
-  Self.vDefaultFontSize := 9;
+  Self.vFontSize := 9;
+  Self.vCurrentFindKeyword := '';
+  Self.vCurrentTheme := aseThemeLight;
+  Self.vSynEditColor := clWhite;
+  Self.vSynEditFontColor := clBlack;
+  Self.vGutterColor := clBtnFace;
+  Self.vGutterMarkupColor := clBtnFace;
+  Self.vLineHighlightColor := $00EFE8D6;
 end;
 
 {if AFileName exists then use AFileName, else use TmpFile}
@@ -59,6 +76,17 @@ begin
   end;
   ATmpFile := LTmpFile;
   Result := LFileName;
+end;
+
+procedure tupVar.fcUpdate (AFontSize : Byte);
+begin
+  Self.fcUpdate(AFontSize,Self.vCurrentTheme);
+end;
+
+procedure tupVar.fcUpdate (AFontSize : Byte; ATheme : taseTheme);
+begin
+  Self.vFontSize := AFontSize;
+  Self.vCurrentTheme := ATheme;
 end;
 
 end.
