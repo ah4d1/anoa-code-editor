@@ -31,7 +31,9 @@ var
   LOutputString : string;
   LOutputStrings : TStringList;
 begin
-  RunCommand(AExeName,[ACommand],LOutputString,[poNoConsole]);
+  {poNoConsole : no cmd window}
+  {poStderrToOutPut : get error output}
+  RunCommand(AExeName,[ACommand],LOutputString,[poNoConsole,poStderrToOutPut]);
   LOutputStrings := vacString.fcSplit(LOutputString,#13);
   Result := LOutputStrings;
 end;
