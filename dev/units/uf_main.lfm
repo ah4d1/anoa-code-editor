@@ -3,7 +3,7 @@ object FormMain: TFormMain
   Height = 786
   Top = 160
   Width = 1201
-  Caption = 'Anoa-Syntax-Editor'
+  Caption = 'Anoa-Code-Editor'
   ClientHeight = 756
   ClientWidth = 1201
   DesignTimePPI = 144
@@ -80,8 +80,8 @@ object FormMain: TFormMain
         object ToolButton4: TToolButton
           Left = 1
           Top = 2
-          Caption = '&New'
-          ImageIndex = 8
+          Action = ActionTabAddNew
+          Caption = 'New'
           MenuItem = MenuItemFileNew
         end
         object ToolButton3: TToolButton
