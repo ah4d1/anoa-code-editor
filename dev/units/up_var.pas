@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Graphics, SynEditHighlighter, up_synhighlighter, up_reservewords;
 
 type
-  taseTheme = (aseThemeLight,aseThemeDark);
+  taseTheme = (aseThemeNormal,aseThemeDark);
   tupVar = class
     vAppDir : string;
     vTabPrefix : string;
@@ -50,7 +50,7 @@ begin
   {}
   Self.vFontSize := 9;
   Self.vCurrentFindKeyword := '';
-  Self.vCurrentTheme := aseThemeLight;
+  Self.vCurrentTheme := aseThemeNormal;
   Self.vSynEditColor := clWhite;
   Self.vSynEditFontColor := clBlack;
   Self.vGutterColor := clBtnFace;
