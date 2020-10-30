@@ -1,7 +1,7 @@
 
 Anoa-Code-Editor
 
-Anoa-Code-Editor is a free and open source syntax editor.
+Anoa-Code-Editor is a free and open source code editor.
 
 Copyright(c)2020 Ahadi Aprianto, Randu Hidayat, Rizchi Supriyanto
 License     : GNU General Public License version 2
@@ -10,8 +10,8 @@ License     : GNU General Public License version 2
 PROJECT DETAILS :
 -------------------------------------
 Started     : 13th October 2020
-Binary      : https://anoa-syntax-editor.sourceforge.io
-Source Code : https://github.com/ah4d1/anoa-syntax-editor
+Binary      : https://anoa-code-editor.sourceforge.io
+Source Code : https://github.com/ah4d1/anoa-code-editor
   - dev     : Code of on-going development.
   - source  : Code of the latest release version.
 
