@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
   StdCtrls, Spin, ExtCtrls, ShellCtrls, ActnList, SynHighlighterCobol, SynEdit,
-  SynCompletion, up_synhighlighter, SynEditTypes, SynHighlighterPas;
+  SynCompletion, up_synhighlighter, SynEditTypes, SynHighlighterPas, Windows;
 
 type
 
@@ -167,7 +167,7 @@ implementation
 { TFormMain }
 
 uses
-  uc_main, uf_findreplace, uf_about, up_var, up_currentdata, ac_app;
+  uc_main, uf_findreplace, uf_about, up_var, up_currentdata, ac_app, ac_system, ac_dialog;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 var
