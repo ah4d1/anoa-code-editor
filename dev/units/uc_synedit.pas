@@ -34,7 +34,7 @@ type
 implementation
 
 uses
-  uc_tabsheet, up_theme, ac_color;
+  uc_tabsheet, up_theme;
 
 constructor tucSynEdit.Create (AOwner : TComponent);
 begin
