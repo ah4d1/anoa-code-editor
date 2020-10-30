@@ -23,6 +23,9 @@ type
     ImageListMain: TImageList;
     LabelFontSize: TLabel;
     MainMenuMain: TMainMenu;
+    MenuItemSettingsThemeDark: TMenuItem;
+    MenuItemSettingsThemeNormal: TMenuItem;
+    MenuItemSettingsTheme: TMenuItem;
     MenuItemFile: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
@@ -55,7 +58,6 @@ type
     MenuItemEditUndo: TMenuItem;
     MenuItemEditFindReplace: TMenuItem;
     MenuItemEdit: TMenuItem;
-    MenuItemSettingsSwitchColor: TMenuItem;
     MenuItemSettingsLangCobol: TMenuItem;
     MenuItemSettingsLangSQL: TMenuItem;
     MenuItemSettingsLangCSharp: TMenuItem;
@@ -135,7 +137,8 @@ type
     procedure MenuItemSettingsLangPHPClick(Sender: TObject);
     procedure MenuItemSettingsLangPythonClick(Sender: TObject);
     procedure MenuItemSettingsLangSQLClick(Sender: TObject);
-    procedure MenuItemSettingsSwitchColorClick(Sender: TObject);
+    procedure MenuItemSettingsThemeDarkClick(Sender: TObject);
+    procedure MenuItemSettingsThemeNormalClick(Sender: TObject);
     procedure ShellTreeViewMainCollapsed(Sender: TObject; Node: TTreeNode);
     procedure ShellTreeViewMainDblClick(Sender: TObject);
     procedure ShellTreeViewMainExpanded(Sender: TObject; Node: TTreeNode);
@@ -442,13 +445,16 @@ begin
   vucMain.fcUpdate(vupCurrentData);
 end;
 
-procedure TFormMain.MenuItemSettingsSwitchColorClick(Sender: TObject);
+procedure TFormMain.MenuItemSettingsThemeDarkClick(Sender: TObject);
 begin
-  case vupVar.vCurrentTheme of
-    aseThemeLight : vupVar.vCurrentTheme := aseThemeDark;
-    aseThemeDark : vupVar.vCurrentTheme := aseThemeLight;
-  end;
-  vucMain.fcUpdate(vupVar);
+  vupVar.vCurrentTheme := aseThemeDark;
+  vucMain.fcUpdate;
+end;
+
+procedure TFormMain.MenuItemSettingsThemeNormalClick(Sender: TObject);
+begin
+  vupVar.vCurrentTheme := aseThemeNormal;
+  vucMain.fcUpdate;
 end;
 
 procedure TFormMain.ShellTreeViewMainCollapsed(Sender: TObject; Node: TTreeNode);
@@ -475,7 +481,7 @@ end;
 procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
 begin
   vupVar.fcUpdate(Self.SpinEditFontSize.Value);
-  vucMain.fcUpdate(vupVar);
+  vucMain.fcUpdate;
 end;
 
 end.
