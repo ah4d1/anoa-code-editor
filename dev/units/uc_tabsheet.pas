@@ -34,7 +34,7 @@ type
     procedure fcInit (APopupMenu : TPopupMenu);
     procedure fcOpen (ACurrentData : tupCurrentData);
     procedure fcSave (AFileName : TFileName);
-    procedure fcUpdate (AVar : tupVar); overload;
+    procedure fcUpdate; overload;
     procedure fcUpdate (ACurrentData : tupCurrentData); overload;
     procedure fcUndo;
     procedure fcRedo;
@@ -92,9 +92,9 @@ begin
   Self.vSynEdit.fcSave(AFileName);
 end;
 
-procedure tucTabSheet.fcUpdate (AVar : tupVar);
+procedure tucTabSheet.fcUpdate;
 begin
-  Self.vSynEdit.fcUpdate(AVar);
+  Self.vSynEdit.fcUpdate;
 end;
 
 procedure tucTabSheet.fcUpdate (ACurrentData : tupCurrentData);
