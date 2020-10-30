@@ -16,7 +16,7 @@ uses
 
 begin
   RequireDerivedFormResource:=True;
-  Application.Title:='AnoaSyntaxEditor';
+  Application.Title:='Anoa-Code-Editor';
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TFormMain, FormMain);
