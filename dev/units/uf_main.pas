@@ -23,6 +23,9 @@ type
     ImageListMain: TImageList;
     LabelFontSize: TLabel;
     MainMenuMain: TMainMenu;
+    MenuItemSettingsSpecialCharsHide: TMenuItem;
+    MenuItemSettingsSpecialCharsShow: TMenuItem;
+    MenuItemSettingsSpecialChars: TMenuItem;
     MenuItemSettingsThemeDark: TMenuItem;
     MenuItemSettingsThemeNormal: TMenuItem;
     MenuItemSettingsTheme: TMenuItem;
@@ -137,6 +140,8 @@ type
     procedure MenuItemSettingsLangPHPClick(Sender: TObject);
     procedure MenuItemSettingsLangPythonClick(Sender: TObject);
     procedure MenuItemSettingsLangSQLClick(Sender: TObject);
+    procedure MenuItemSettingsSpecialCharsHideClick(Sender: TObject);
+    procedure MenuItemSettingsSpecialCharsShowClick(Sender: TObject);
     procedure MenuItemSettingsThemeDarkClick(Sender: TObject);
     procedure MenuItemSettingsThemeNormalClick(Sender: TObject);
     procedure ShellTreeViewMainCollapsed(Sender: TObject; Node: TTreeNode);
@@ -437,6 +442,18 @@ end;
 procedure TFormMain.MenuItemSettingsLangSQLClick(Sender: TObject);
 begin
   Self.SetLang(aseLangSQL);
+end;
+
+procedure TFormMain.MenuItemSettingsSpecialCharsHideClick(Sender: TObject);
+begin
+  vupVar.vShowSpecialChars := False;
+  vucMain.fcUpdate;
+end;
+
+procedure TFormMain.MenuItemSettingsSpecialCharsShowClick(Sender: TObject);
+begin
+  vupVar.vShowSpecialChars := True;
+  vucMain.fcUpdate;
 end;
 
 procedure TFormMain.SetLang (ALang : taseLang);
