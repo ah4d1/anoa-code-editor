@@ -26,6 +26,7 @@ type
     vGutterColor : TColor;
     vGutterMarkupColor : TColor;
     vLineHighlightColor : TColor;
+    vShowSpecialChars : Boolean;
     constructor Create (AOwner : TComponent);
     procedure fcInit (AOwner : TComponent);
     function fcFileName (AFileName : TFileName; var ATmpFile : Boolean) : TFileName; overload;
@@ -56,6 +57,7 @@ begin
   Self.vGutterColor := clBtnFace;
   Self.vGutterMarkupColor := clBtnFace;
   Self.vLineHighlightColor := $00EFE8D6;
+  Self.vShowSpecialChars := False;
 end;
 
 procedure tupVar.fcInit (AOwner : TComponent);
