@@ -45,7 +45,7 @@ begin
   Self.Font.Quality := fqProof;
   Self.Font.Size := vupVar.vFontSize;
   Self.LineHighlightColor.Background := vupVar.vLineHighlightColor;
-  Self.Options := Self.Options - [eoShowSpecialChars];
+  Self.Options := Self.Options - [eoShowSpecialChars,eoTabsToSpaces];
   Self.VisibleSpecialChars := [vscSpace,vscTabAtFirst,vscTabAtLast];
   Self.OnChange := @Self.fcChange;
 end;
