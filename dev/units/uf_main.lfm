@@ -398,6 +398,17 @@ object FormMain: TFormMain
           OnClick = MenuItemSettingsThemeDarkClick
         end
       end
+      object MenuItemSettingsSpecialChars: TMenuItem
+        Caption = 'Special Characters'
+        object MenuItemSettingsSpecialCharsShow: TMenuItem
+          Caption = 'Show'
+          OnClick = MenuItemSettingsSpecialCharsShowClick
+        end
+        object MenuItemSettingsSpecialCharsHide: TMenuItem
+          Caption = 'Hide'
+          OnClick = MenuItemSettingsSpecialCharsHideClick
+        end
+      end
     end
     object MenuItem3: TMenuItem
       Caption = '&Help'
