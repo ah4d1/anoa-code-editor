@@ -45,6 +45,8 @@ begin
   Self.Font.Quality := fqProof;
   Self.Font.Size := vupVar.vFontSize;
   Self.LineHighlightColor.Background := vupVar.vLineHighlightColor;
+  Self.Options := Self.Options - [eoShowSpecialChars];
+  Self.VisibleSpecialChars := [vscSpace,vscTabAtFirst,vscTabAtLast];
   Self.OnChange := @Self.fcChange;
 end;
 
@@ -58,6 +60,11 @@ procedure tucSynEdit.fcUpdate;
 begin
   Self.fcSwitchColor;
   Self.Font.Size := vupVar.vFontSize;
+  if vupVar.vShowSpecialChars then
+    Self.Options := Self.Options + [eoShowSpecialChars]
+  else
+  Self.Options := Self.Options - [eoShowSpecialChars]
+  ;
 end;
 
 procedure tucSynEdit.fcUpdate (ACurrentData : tupCurrentData);
