@@ -14,7 +14,6 @@ type
   tacColor = object
   public
     function fcInvert (AColor: TColor): TColor;
-    function fcColorize (AColor: TColor; ABaseColor : TColor): TColor;
   end;
 
 var
@@ -26,11 +25,6 @@ function tacColor.fcInvert (AColor: TColor): TColor;
 begin
   Result := clWhite - ColorToRGB(AColor);
     // OR : RGBToColor(255 - Red(AColor), 255- Green(AColor), 255 - Blue(AColor));
-end;
-
-function tacColor.fcColorize (AColor: TColor; ABaseColor : TColor): TColor;
-begin
-  Result := ABaseColor - ColorToRGB(AColor);
 end;
 
 end.
