@@ -1,5 +1,10 @@
 unit up_reservewords;
 
+{
+HOW TO ADD NEW RESERVED WORD :
+1. Add reserve word list *.rw in directory addon/resword
+}
+
 {$mode objfpc}{$H+}
 
 interface
