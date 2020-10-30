@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="20">
+    <Units Count="21">
       <Unit0>
         <Filename Value="AnoaCodeEditor.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -30,6 +30,7 @@
       <Unit3>
         <Filename Value="units\up_var.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <TopLine Value="48"/>
         <CursorPos X="35" Y="60"/>
@@ -74,10 +75,9 @@
       <Unit9>
         <Filename Value="units\uc_synedit.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="129"/>
-        <CursorPos Y="68"/>
+        <TopLine Value="36"/>
+        <CursorPos X="68" Y="48"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit9>
@@ -139,8 +139,16 @@
         <IsPartOfProject Value="True"/>
         <UsageCount Value="20"/>
       </Unit19>
+      <Unit20>
+        <Filename Value="C:\lazarus\components\synedit\synedit.pp"/>
+        <UnitName Value="SynEdit"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="190"/>
+        <CursorPos X="19" Y="253"/>
+        <UsageCount Value="10"/>
+      </Unit20>
     </Units>
-    <JumpHistory Count="7" HistoryIndex="6">
+    <JumpHistory Count="8" HistoryIndex="7">
       <Position1>
         <Filename Value="units\uf_main.pas"/>
       </Position1>
@@ -168,6 +176,10 @@
         <Filename Value="units\uc_tabsheet.pas"/>
         <Caret Line="37" Column="15" TopLine="86"/>
       </Position7>
+      <Position8>
+        <Filename Value="units\uc_synedit.pas"/>
+        <Caret Line="50" Column="55" TopLine="36"/>
+      </Position8>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
