@@ -12,7 +12,7 @@ type
   tucSynEdit = class(TSynEdit)
     constructor Create (AOwner : TComponent); override;
     procedure fcInit (APopupMenu : TPopupMenu);
-    procedure fcUpdate (AVar : tupVar); overload;
+    procedure fcUpdate; overload;
     procedure fcUpdate (ACurrentData : tupCurrentData); overload;
     procedure fcOpen (AFileName : TFileName);
     procedure fcSave (AFileName : TFileName);
@@ -29,13 +29,12 @@ type
     procedure fcFindNext;
   private
     procedure fcSwitchColor;
-    procedure fcSetColor (ALang : TSynCustomHighlighter; ACommentAttriColor,AKeyAttriColor : TColor);
   end;
 
 implementation
 
 uses
-  uc_tabsheet, ac_color;
+  uc_tabsheet, up_theme, ac_color;
 
 constructor tucSynEdit.Create (AOwner : TComponent);
 begin
@@ -51,13 +50,14 @@ end;
 
 procedure tucSynEdit.fcInit (APopupMenu : TPopupMenu);
 begin
+  Self.fcUpdate;
   Self.PopupMenu := APopupMenu;
 end;
 
-procedure tucSynEdit.fcUpdate (AVar : tupVar);
+procedure tucSynEdit.fcUpdate;
 begin
   Self.fcSwitchColor;
-  Self.Font.Size := AVar.vFontSize;
+  Self.Font.Size := vupVar.vFontSize;
 end;
 
 procedure tucSynEdit.fcUpdate (ACurrentData : tupCurrentData);
@@ -136,59 +136,8 @@ begin
 end;
 
 procedure tucSynEdit.fcSwitchColor;
-var
-  LSynEditColor : TColor;
-  LSynEditFontColor : TColor;
-  LGutterColor : TColor;
-  LGutterMarkupColor : TColor;
-  LLineHighlightColor : TColor;
-  LCommentAttriColor : TColor;
-  LKeyAttriColor : TColor;
 begin
-  if vupVar.vCurrentTheme = aseThemeLight then
-  begin
-    LSynEditColor := vupVar.vSynEditColor;
-    LSynEditFontColor := vupVar.vSynEditFontColor;
-    LGutterColor := vupVar.vGutterColor;
-    LGutterMarkupColor := vupVar.vGutterMarkupColor;
-    LLineHighlightColor := vupVar.vLineHighlightColor;
-    LCommentAttriColor := vupVar.vSynHighlighter.vCommentAttriColor;
-    LKeyAttriColor := vupVar.vSynHighlighter.vKeyAttriColor;
-  end
-  else if vupVar.vCurrentTheme = aseThemeDark then
-  begin
-    LSynEditColor := vacColor.fcInvert(vupVar.vSynEditColor);
-    LSynEditFontColor := vacColor.fcInvert(vupVar.vSynEditFontColor);
-    LGutterColor := vacColor.fcInvert(vupVar.vGutterColor);
-    LGutterMarkupColor := vacColor.fcInvert(vupVar.vGutterMarkupColor);
-    LLineHighlightColor := vacColor.fcInvert(vupVar.vLineHighlightColor);
-    LCommentAttriColor := vacColor.fcInvert(vupVar.vSynHighlighter.vCommentAttriColor);
-    LKeyAttriColor := vacColor.fcInvert(vupVar.vSynHighlighter.vKeyAttriColor);
-  end;
-  Self.Color := LSynEditColor;
-  Self.Font.Color := LSynEditFontColor;
-  Self.Gutter.Color := LGutterColor;
-  Self.Gutter.Parts[1].MarkupInfo.Background := LGutterMarkupColor;
-  Self.LineHighlightColor.Background := LLineHighlightColor;
-
-  Self.fcSetColor(vupVar.vSynHighlighter.vCobol,LCommentAttriColor,LKeyAttriColor);
-  Self.fcSetColor(vupVar.vSynHighlighter.vCS,LCommentAttriColor,LKeyAttriColor);
-  Self.fcSetColor(vupVar.vSynHighlighter.vCSS,LCommentAttriColor,LKeyAttriColor);
-  Self.fcSetColor(vupVar.vSynHighlighter.vHTML,LCommentAttriColor,LKeyAttriColor);
-  Self.fcSetColor(vupVar.vSynHighlighter.vJava,LCommentAttriColor,LKeyAttriColor);
-  Self.fcSetColor(vupVar.vSynHighlighter.vPas,LCommentAttriColor,LKeyAttriColor);
-  Self.fcSetColor(vupVar.vSynHighlighter.vPHP,LCommentAttriColor,LKeyAttriColor);
-  Self.fcSetColor(vupVar.vSynHighlighter.vPython,LCommentAttriColor,LKeyAttriColor);
-  Self.fcSetColor(vupVar.vSynHighlighter.vSQL,LCommentAttriColor,LKeyAttriColor);
-
-  // vupVar.vSynHighlighter.vJSON.CommentAttri.Foreground := LCommentAttriColor;
-  vupVar.vSynHighlighter.vJSON.KeyAttri.Foreground := LKeyAttriColor;
-end;
-
-procedure tucSynEdit.fcSetColor (ALang : TSynCustomHighlighter; ACommentAttriColor,AKeyAttriColor : TColor);
-begin
-  ALang.CommentAttribute.Foreground := ACommentAttriColor;
-  ALang.KeywordAttribute.Foreground := AKeyAttriColor;
+  vupTheme.fcSetThemeColor(Self,vupVar);
 end;
 
 end.
