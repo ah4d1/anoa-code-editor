@@ -387,9 +387,16 @@ object FormMain: TFormMain
           OnClick = MenuItemSettingsLangSQLClick
         end
       end
-      object MenuItemSettingsSwitchColor: TMenuItem
-        Caption = 'Switch Editor Color'
-        OnClick = MenuItemSettingsSwitchColorClick
+      object MenuItemSettingsTheme: TMenuItem
+        Caption = 'Theme'
+        object MenuItemSettingsThemeNormal: TMenuItem
+          Caption = 'Normal'
+          OnClick = MenuItemSettingsThemeNormalClick
+        end
+        object MenuItemSettingsThemeDark: TMenuItem
+          Caption = 'Dark'
+          OnClick = MenuItemSettingsThemeDarkClick
+        end
       end
     end
     object MenuItem3: TMenuItem
