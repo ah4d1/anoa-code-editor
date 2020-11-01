@@ -5,10 +5,11 @@ unit up_var;
 interface
 
 uses
-  Classes, SysUtils, Graphics, SynEditHighlighter, up_synhighlighter, up_reservewords;
+  Classes, SysUtils, Graphics, SynEditHighlighter, up_synhighlighter, up_reservewords,
+  ac_synedit;
 
 type
-  taseTheme = (aseThemeNormal,aseThemeDark);
+  // taseTheme = (aseThemeNormal,aseThemeDark);
   tupVar = class
     vAppDir : string;
     vTabPrefix : string;
@@ -20,7 +21,7 @@ type
     vLang : TStringList;
     vFontSize : Byte;
     vCurrentFindKeyword : string;
-    vCurrentTheme : taseTheme;
+    vCurrentTheme : tseTheme;
     vSynEditColor : TColor;
     vSynEditFontColor : TColor;
     vGutterColor : TColor;
@@ -31,7 +32,7 @@ type
     procedure fcInit (AOwner : TComponent);
     function fcFileName (AFileName : TFileName; var ATmpFile : Boolean) : TFileName; overload;
     procedure fcUpdate (AFontSize : Byte); overload;
-    procedure fcUpdate (AFontSize : Byte; ATheme : taseTheme); overload;
+    procedure fcUpdate (AFontSize : Byte; ATheme : tseTheme); overload;
   end;
 
 var
@@ -51,7 +52,7 @@ begin
   {}
   Self.vFontSize := 9;
   Self.vCurrentFindKeyword := '';
-  Self.vCurrentTheme := aseThemeNormal;
+  Self.vCurrentTheme := seThemeNormal;
   Self.vSynEditColor := clWhite;
   Self.vSynEditFontColor := clBlack;
   Self.vGutterColor := clBtnFace;
@@ -92,7 +93,7 @@ begin
   Self.fcUpdate(AFontSize,Self.vCurrentTheme);
 end;
 
-procedure tupVar.fcUpdate (AFontSize : Byte; ATheme : taseTheme);
+procedure tupVar.fcUpdate (AFontSize : Byte; ATheme : tseTheme);
 begin
   Self.vFontSize := AFontSize;
   Self.vCurrentTheme := ATheme;
