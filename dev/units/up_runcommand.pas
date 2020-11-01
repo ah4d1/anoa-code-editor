@@ -5,12 +5,12 @@ unit up_runcommand;
 interface
 
 uses
-  Classes, SysUtils, Controls, Dialogs, ac_synhighlighter, uc_synedit, uc_memoresult;
+  Classes, SysUtils, Controls, Dialogs, ace_synhighlighter, uc_synedit, uc_memoresult;
 
 type
   tupRunCommand = object
   public
-    procedure fcRun (ALang : TShLang; AFileName : TFileName; ASynEdit : tucSynEdit;
+    procedure fcRun (ALang : TAceShLang; AFileName : TFileName; ASynEdit : tucSynEdit;
       AMemoResult : tucMemoResult; AParent : TWinControl);
   private
     function fcJava (AFileName : TFileName) : TStringList;
@@ -25,7 +25,7 @@ implementation
 uses
   up_var, ac_exe, ac_memo, ac_dialog, ac_filedir;
 
-procedure tupRunCommand.fcRun (ALang : TShLang; AFileName : TFileName; ASynEdit : tucSynEdit;
+procedure tupRunCommand.fcRun (ALang : TAceShLang; AFileName : TFileName; ASynEdit : tucSynEdit;
   AMemoResult : tucMemoResult; AParent : TWinControl);
 var
   LResults : TStringList;
@@ -37,8 +37,8 @@ begin
   ASynEdit.Lines.SaveToFile(LFileName);
   LContinue := True;
   case ALang of
-    shLangJava : LResults := Self.fcJava(LFileName);
-    shLangPython : LResults := Self.fcPython(LFileName);
+    aceShLangJava : LResults := Self.fcJava(LFileName);
+    aceShLangPython : LResults := Self.fcPython(LFileName);
     else
     begin
       vacDialog.fcInfo('Not Available','Run command is currently not available.');
