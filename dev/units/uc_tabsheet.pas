@@ -6,14 +6,14 @@ interface
 
 uses
   Classes, SysUtils, ComCtrls, SynEditHighlighter, up_var, up_currentdata, uc_synedit,
-  uc_syncompletion, up_synhighlighter, Dialogs, SynEditTypes, Menus, uc_memoresult, ExtCtrls,
+  uc_syncompletion, ac_synhighlighter, Dialogs, SynEditTypes, Menus, uc_memoresult, ExtCtrls,
   Controls;
 
 type
   taseTextStatus = (aseTextStatusNormal,aseTextStatusModified);
   tucTabSheet = class(TTabSheet)
   private
-    FLang : taseLang;
+    FLang : TShLang;
     FLangTxt : string;
     FFileName : TFileName;
     FSynEdit : tucSynEdit;
@@ -22,7 +22,7 @@ type
     FSynCompletion : tucSynCompletion;
     FTextStatus : taseTextStatus;
   public
-    property vLang : taseLang read FLang write FLang;
+    property vLang : TShLang read FLang write FLang;
     property vLangTxt : string read FLangTxt write FLangTxt;
     property vFileName : TFileName read FFileName write FFileName;
     property vSynEdit : tucSynEdit read FSynEdit write FSynEdit;
@@ -71,7 +71,7 @@ end;
 
 procedure tucTabSheet.fcInit (APopupMenu : TPopupMenu);
 begin
-  Self.vLang := aseLangNone;
+  Self.vLang := shLangNone;
   Self.vLangTxt := '';
   Self.vFileName := '';
   Self.vTextStatus := aseTextStatusNormal;
