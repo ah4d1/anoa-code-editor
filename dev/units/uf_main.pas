@@ -7,8 +7,8 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
   StdCtrls, Spin, ExtCtrls, ShellCtrls, ActnList, SynHighlighterCobol, SynEdit,
-  SynCompletion, up_synhighlighter, SynEditTypes, SynHighlighterPas, ac_app,
-  ac_synedit;
+  SynCompletion, SynEditTypes, SynHighlighterPas, ac_app,
+  ac_synedit, ac_synhighlighter;
 
 type
 
@@ -153,7 +153,7 @@ type
       AIsSpecialChar : Boolean; ASpecialChar : string);
   private
     procedure UpdateShellTreeViewImages;
-    procedure SetLang (ALang : taseLang);
+    procedure SetLang (ALang : TShLang);
   public
 
   end;
@@ -179,8 +179,8 @@ begin
   vupVar.fcInit(Self);
   vupCurrentData := tupCurrentData.Create(vupVar.vSynHighlighter);
   LFileNameOnStart := string(vacApp.fcGetParam);
-  Self.OpenDialogMain.Filter := string(vupVar.vSynHighlighter.fcSetDefaultFilter);
-  Self.SaveDialogMain.Filter := string(vupVar.vSynHighlighter.fcSetDefaultFilter);
+  Self.OpenDialogMain.Filter := string(vupVar.vSynHighlighter.vDefaultFilter);
+  Self.SaveDialogMain.Filter := string(vupVar.vSynHighlighter.vDefaultFilter);
   vucMain := tucMain.Create(Self,Self.ImageListMain,Self.PopupMenuPageControl,
     Self.SpinEditFontSize,Self.SaveDialogMain
   );
@@ -273,7 +273,7 @@ end;
 
 procedure TFormMain.ActionTabAddNewExecute(Sender: TObject);
 begin
-  vupCurrentData.fcUpdate(aseLangNone,'');
+  vupCurrentData.fcUpdate(shLangNone,'');
   vucMain.fcAddNewTab(Self.PopupMenuSynEdit);
   vucMain.fcUpdate(vupCurrentData);
   Self.ActiveControl := vucMain.vPageControl.fcCurrentTabSheet.vSynEdit;
@@ -392,57 +392,57 @@ end;
 
 procedure TFormMain.MenuItemSettingsLangCobolClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangCobol);
+  Self.SetLang(shLangCobol);
 end;
 
 procedure TFormMain.MenuItemSettingsLangCSharpClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangCS);
+  Self.SetLang(shLangCS);
 end;
 
 procedure TFormMain.MenuItemSettingsLangCSSClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangCSS);
+  Self.SetLang(shLangCSS);
 end;
 
 procedure TFormMain.MenuItemSettingsLangHTMLClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangHTML);
+  Self.SetLang(shLangHTML);
 end;
 
 procedure TFormMain.MenuItemSettingsLangJavaClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangJava);
+  Self.SetLang(shLangJava);
 end;
 
 procedure TFormMain.MenuItemSettingsLangJSONClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangJSON);
+  Self.SetLang(shLangJSON);
 end;
 
 procedure TFormMain.MenuItemSettingsLangNoneClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangNone);
+  Self.SetLang(shLangNone);
 end;
 
 procedure TFormMain.MenuItemSettingsLangPascalClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangPas);
+  Self.SetLang(shLangPas);
 end;
 
 procedure TFormMain.MenuItemSettingsLangPHPClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangPHP);
+  Self.SetLang(shLangPHP);
 end;
 
 procedure TFormMain.MenuItemSettingsLangPythonClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangPython);
+  Self.SetLang(shLangPython);
 end;
 
 procedure TFormMain.MenuItemSettingsLangSQLClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangSQL);
+  Self.SetLang(shLangSQL);
 end;
 
 procedure TFormMain.MenuItemSettingsSpecialCharsHideClick(Sender: TObject);
@@ -457,7 +457,7 @@ begin
   vucMain.fcUpdate;
 end;
 
-procedure TFormMain.SetLang (ALang : taseLang);
+procedure TFormMain.SetLang (ALang : TShLang);
 begin
   vupCurrentData.fcUpdate(ALang);
   vucMain.fcUpdate(vupCurrentData);
