@@ -5,7 +5,7 @@ unit up_var;
 interface
 
 uses
-  Classes, SysUtils, Graphics, SynEditHighlighter, up_synhighlighter, up_reservewords,
+  Classes, SysUtils, Graphics, SynEditHighlighter, ac_synhighlighter, up_reservewords,
   ac_synedit;
 
 type
@@ -16,7 +16,7 @@ type
     vTabNo : Byte;
     vImageIndexNormalFile : Byte;
     vImageIndexModifiedFile : Byte;
-    vSynHighlighter : tupSynHighlighter;
+    vSynHighlighter : TAcSynHighlighter;
     vReservedWords : tupReserveWords;
     vLang : TStringList;
     vFontSize : Byte;
@@ -64,7 +64,7 @@ end;
 procedure tupVar.fcInit (AOwner : TComponent);
 begin
   Self.vReservedWords := tupReserveWords.Create;
-  Self.vSynHighlighter := tupSynHighlighter.Create(AOwner);
+  Self.vSynHighlighter := TAcSynHighlighter.Create(AOwner);
   Self.vLang := vacString.fcSplit(Self.vReservedWords.vLangTxt,'|');
 end;
 
