@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
   StdCtrls, Spin, ExtCtrls, ShellCtrls, ActnList, SynHighlighterCobol, SynEdit,
-  SynCompletion, up_synhighlighter, SynEditTypes, SynHighlighterPas, ac_app;
+  SynCompletion, up_synhighlighter, SynEditTypes, SynHighlighterPas, ac_app,
+  ac_synedit;
 
 type
 
@@ -464,13 +465,13 @@ end;
 
 procedure TFormMain.MenuItemSettingsThemeDarkClick(Sender: TObject);
 begin
-  vupVar.vCurrentTheme := aseThemeDark;
+  vupVar.vCurrentTheme := seThemeDark;
   vucMain.fcUpdate;
 end;
 
 procedure TFormMain.MenuItemSettingsThemeNormalClick(Sender: TObject);
 begin
-  vupVar.vCurrentTheme := aseThemeNormal;
+  vupVar.vCurrentTheme := seThemeNormal;
   vucMain.fcUpdate;
 end;
 
