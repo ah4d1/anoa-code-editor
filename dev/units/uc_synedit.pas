@@ -6,10 +6,10 @@ interface
 
 uses
   Classes, SysUtils, SynEdit, ComCtrls, Controls, Graphics, SynEditHighlighter,
-  up_currentdata, uc_syncompletion, Dialogs, SynEditTypes, Menus, up_var;
+  up_currentdata, uc_syncompletion, Dialogs, SynEditTypes, Menus, up_var, ac_synedit;
 
 type
-  tucSynEdit = class(TSynEdit)
+  tucSynEdit = class(tacSynEdit)
     constructor Create (AOwner : TComponent); override;
     procedure fcInit (APopupMenu : TPopupMenu);
     procedure fcUpdate; overload;
@@ -17,18 +17,10 @@ type
     procedure fcOpen (AFileName : TFileName);
     procedure fcSave (AFileName : TFileName);
     procedure fcChange (Sender: TObject);
-    procedure fcUndo;
-    procedure fcRedo;
-    procedure fcCopy;
-    procedure fcCut;
-    procedure fcPaste;
-    procedure fcSelectAll;
     procedure fcShowCompletion (ASynCompletion : tucSynCompletion);
     procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
       AIsSpecialChar : Boolean; ASpecialChar : string);
     procedure fcFindNext;
-  private
-    procedure fcSwitchColor;
   end;
 
 implementation
@@ -58,7 +50,8 @@ end;
 
 procedure tucSynEdit.fcUpdate;
 begin
-  Self.fcSwitchColor;
+  vupTheme.fcSetThemeColor(vupVar);
+  Self.vTheme := vupVar.vCurrentTheme;
   Self.Font.Size := vupVar.vFontSize;
   if vupVar.vShowSpecialChars then
     Self.Options := Self.Options + [eoShowSpecialChars]
@@ -89,36 +82,6 @@ begin
   inherited;
 end;
 
-procedure tucSynEdit.fcUndo;
-begin
-  Self.Undo;
-end;
-
-procedure tucSynEdit.fcRedo;
-begin
-  Self.Redo;
-end;
-
-procedure tucSynEdit.fcCopy;
-begin
-  Self.CopyToClipboard;
-end;
-
-procedure tucSynEdit.fcCut;
-begin
-  Self.CutToClipboard;
-end;
-
-procedure tucSynEdit.fcPaste;
-begin
-  Self.PasteFromClipboard;
-end;
-
-procedure tucSynEdit.fcSelectAll;
-begin
-  Self.SelectAll;
-end;
-
 procedure tucSynEdit.fcShowCompletion (ASynCompletion : tucSynCompletion);
 begin
   Self.CommandProcessor(ASynCompletion.ExecCommandID, '', nil);
@@ -140,11 +103,6 @@ end;
 procedure tucSynEdit.fcFindNext;
 begin
   Self.SearchReplace(vupVar.vCurrentFindKeyword,'',[]);
-end;
-
-procedure tucSynEdit.fcSwitchColor;
-begin
-  vupTheme.fcSetThemeColor(Self,vupVar);
 end;
 
 end.
