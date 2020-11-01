@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Graphics, SynEditHighlighter, ac_synhighlighter, up_reservewords,
-  ac_synedit;
+  ace_synedit;
 
 type
   // taseTheme = (aseThemeNormal,aseThemeDark);
@@ -21,7 +21,7 @@ type
     vLang : TStringList;
     vFontSize : Byte;
     vCurrentFindKeyword : string;
-    vCurrentTheme : tseTheme;
+    vCurrentTheme : TAceSeTheme;
     vSynEditColor : TColor;
     vSynEditFontColor : TColor;
     vGutterColor : TColor;
@@ -32,7 +32,7 @@ type
     procedure fcInit (AOwner : TComponent);
     function fcFileName (AFileName : TFileName; var ATmpFile : Boolean) : TFileName; overload;
     procedure fcUpdate (AFontSize : Byte); overload;
-    procedure fcUpdate (AFontSize : Byte; ATheme : tseTheme); overload;
+    procedure fcUpdate (AFontSize : Byte; ATheme : TAceSeTheme); overload;
   end;
 
 var
@@ -52,7 +52,7 @@ begin
   {}
   Self.vFontSize := 9;
   Self.vCurrentFindKeyword := '';
-  Self.vCurrentTheme := seThemeNormal;
+  Self.vCurrentTheme := aceSeThemeNormal;
   Self.vSynEditColor := clWhite;
   Self.vSynEditFontColor := clBlack;
   Self.vGutterColor := clBtnFace;
@@ -93,7 +93,7 @@ begin
   Self.fcUpdate(AFontSize,Self.vCurrentTheme);
 end;
 
-procedure tupVar.fcUpdate (AFontSize : Byte; ATheme : tseTheme);
+procedure tupVar.fcUpdate (AFontSize : Byte; ATheme : TAceSeTheme);
 begin
   Self.vFontSize := AFontSize;
   Self.vCurrentTheme := ATheme;
