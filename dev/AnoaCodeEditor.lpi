@@ -26,21 +26,24 @@
       <FormatVersion Value="2"/>
       <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages Count="4">
+    <RequiredPackages Count="5">
       <Item1>
-        <PackageName Value="LazControls"/>
+        <PackageName Value="pkg_anoacore"/>
       </Item1>
       <Item2>
-        <PackageName Value="ExtraHighlighters"/>
+        <PackageName Value="LazControls"/>
       </Item2>
       <Item3>
-        <PackageName Value="SynEdit"/>
+        <PackageName Value="ExtraHighlighters"/>
       </Item3>
       <Item4>
-        <PackageName Value="LCL"/>
+        <PackageName Value="SynEdit"/>
       </Item4>
+      <Item5>
+        <PackageName Value="LCL"/>
+      </Item5>
     </RequiredPackages>
-    <Units Count="20">
+    <Units Count="18">
       <Unit0>
         <Filename Value="AnoaCodeEditor.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -111,25 +114,17 @@
         <IsPartOfProject Value="True"/>
       </Unit14>
       <Unit15>
-        <Filename Value="core\ac_string.pas"/>
+        <Filename Value="units\uc_memoresult.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit15>
       <Unit16>
-        <Filename Value="core\ac_registry.pas"/>
+        <Filename Value="units\up_runcommand.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit16>
       <Unit17>
-        <Filename Value="units\uc_memoresult.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit17>
-      <Unit18>
-        <Filename Value="units\up_runcommand.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit18>
-      <Unit19>
         <Filename Value="units\up_theme.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit19>
+      </Unit17>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -140,7 +135,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="units;core"/>
+      <OtherUnitFiles Value="units"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
