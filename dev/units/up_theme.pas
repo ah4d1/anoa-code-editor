@@ -5,7 +5,7 @@ unit up_theme;
 interface
 
 uses
-  Classes, SysUtils, SynEditHighlighter, Graphics, up_var, ac_synedit;
+  Classes, SysUtils, SynEditHighlighter, Graphics, up_var, ace_synedit;
 
 type
   tupTheme = object
@@ -40,12 +40,12 @@ end;
 
 procedure tupTheme.fcSetVarColor (AVar : tupVar);
 begin
-  if vupVar.vCurrentTheme = seThemeNormal then
+  if vupVar.vCurrentTheme = aceSeThemeNormal then
   begin
     Self.vCommentAttriColor := AVar.vSynHighlighter.vCommentAttriColor;
     Self.vKeyAttriColor := AVar.vSynHighlighter.vKeyAttriColor;
   end
-  else if vupVar.vCurrentTheme = seThemeDark then
+  else if vupVar.vCurrentTheme = aceSeThemeDark then
   begin
     Self.vCommentAttriColor := vacColor.fcInvert(AVar.vSynHighlighter.vCommentAttriColor);
     Self.vKeyAttriColor := vacColor.fcInvert(AVar.vSynHighlighter.vKeyAttriColor);
