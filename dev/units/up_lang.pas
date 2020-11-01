@@ -5,12 +5,12 @@ unit up_lang;
 interface
 
 uses
-  Classes, SysUtils, ac_synhighlighter;
+  Classes, SysUtils, ace_synhighlighter;
 
 type
   tupLang = object
-    function fcGetLang (AFileExt : string) : TShLang;
-    function fcGetLangTxt (ALang : TShLang) : string;
+    function fcGetLang (AFileExt : string) : TAceShLang;
+    function fcGetLangTxt (ALang : TAceShLang) : string;
   end;
 
 var
@@ -21,14 +21,14 @@ implementation
 uses
   up_var;
 
-function tupLang.fcGetLang (AFileExt : string) : TShLang;
+function tupLang.fcGetLang (AFileExt : string) : TAceShLang;
 begin
   vupVar.vSynHighlighter.vExt := AFileExt;
   Result := vupVar.vSynHighlighter.vLang;
   // Result := vupVar.vSynHighlighter.fcGetLang(AFileExt);
 end;
 
-function tupLang.fcGetLangTxt (ALang : TShLang) : string;
+function tupLang.fcGetLangTxt (ALang : TAceShLang) : string;
 begin
   Result := vupVar.vLang[Ord(ALang)];
 end;
