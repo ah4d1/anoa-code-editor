@@ -5,7 +5,7 @@ unit uc_syncompletion;
 interface
 
 uses
-  Classes, SysUtils, SynCompletion, up_synhighlighter;
+  Classes, SysUtils, SynCompletion, up_synhighlighter, ac_string;
 
 type
   tucSynCompletion = class(TSynCompletion)
@@ -16,7 +16,7 @@ type
 implementation
 
 uses
-  up_var, ac_string;
+  up_var;
 
 constructor tucSynCompletion.Create (AOwner : TComponent);
 begin
