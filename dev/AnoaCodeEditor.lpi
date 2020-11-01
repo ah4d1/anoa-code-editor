@@ -43,7 +43,7 @@
         <PackageName Value="LCL"/>
       </Item5>
     </RequiredPackages>
-    <Units Count="18">
+    <Units Count="17">
       <Unit0>
         <Filename Value="AnoaCodeEditor.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -64,67 +64,63 @@
         <IsPartOfProject Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="units\up_synhighlighter.pas"/>
+        <Filename Value="units\up_reservewords.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit4>
       <Unit5>
-        <Filename Value="units\up_reservewords.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit5>
-      <Unit6>
         <Filename Value="units\uf_findreplace.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormFindReplace"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit6>
-      <Unit7>
+      </Unit5>
+      <Unit6>
         <Filename Value="units\uf_about.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormAbout"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="units\uc_pagecontrol.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit7>
       <Unit8>
-        <Filename Value="units\uc_pagecontrol.pas"/>
+        <Filename Value="units\uc_synedit.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit8>
       <Unit9>
-        <Filename Value="units\uc_synedit.pas"/>
+        <Filename Value="units\uc_tabsheet.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit9>
       <Unit10>
-        <Filename Value="units\uc_tabsheet.pas"/>
+        <Filename Value="units\uc_syncompletion.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit10>
       <Unit11>
-        <Filename Value="units\uc_syncompletion.pas"/>
+        <Filename Value="units\uc_statusbar.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit11>
       <Unit12>
-        <Filename Value="units\uc_statusbar.pas"/>
+        <Filename Value="units\uc_main.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit12>
       <Unit13>
-        <Filename Value="units\uc_main.pas"/>
+        <Filename Value="units\up_currentdata.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit13>
       <Unit14>
-        <Filename Value="units\up_currentdata.pas"/>
+        <Filename Value="units\uc_memoresult.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit14>
       <Unit15>
-        <Filename Value="units\uc_memoresult.pas"/>
+        <Filename Value="units\up_runcommand.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit15>
       <Unit16>
-        <Filename Value="units\up_runcommand.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit16>
-      <Unit17>
         <Filename Value="units\up_theme.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit17>
+      </Unit16>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
