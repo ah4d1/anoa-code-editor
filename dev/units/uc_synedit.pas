@@ -6,10 +6,10 @@ interface
 
 uses
   Classes, SysUtils, SynEdit, ComCtrls, Controls, Graphics, SynEditHighlighter,
-  up_currentdata, uc_syncompletion, Dialogs, SynEditTypes, Menus, up_var, ac_synedit;
+  up_currentdata, uc_syncompletion, Dialogs, SynEditTypes, Menus, up_var, ace_synedit;
 
 type
-  tucSynEdit = class(tacSynEdit)
+  tucSynEdit = class(TAceSynEdit)
     constructor Create (AOwner : TComponent); override;
     procedure fcInit (APopupMenu : TPopupMenu);
     procedure fcUpdate; overload;
