@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Graphics, SynEditHighlighter, SynHighlighterCobol, SynHighlighterCS, SynHighlighterCSS,
   SynHighlighterHTML, SynHighlighterJava, SynHighlighterJSON, SynHighlighterPas, SynHighlighterPHP,
-  SynHighlighterPython, SynHighlighterSQL, Dialogs;
+  SynHighlighterPython, SynHighlighterSQL, Dialogs, ac_string;
 
 type
   taseLang = (aseLangNone,aseLangCobol,aseLangCS,aseLangCSS,aseLangHTML,aseLangJava,aseLangJSON,aseLangPas
@@ -39,9 +39,6 @@ type
   end;
 
 implementation
-
-uses
-  ac_string;
 
 constructor tupSynHighlighter.Create (AOwner : TComponent);
 begin
