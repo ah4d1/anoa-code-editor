@@ -47,13 +47,14 @@ SynEdit          : by Lazarus Team, SynEdit
 
 ADDITIONAL PACKAGE(S), MUST BE INSTALLED TO IDE, THANKS TO :
 -------------------------------------
-ExtraSyn    : https://github.com/mriscoc/extrasyn
-AnoaCore    : https://github.com/ah4d1/anoa-core
+ExtraSyn       : https://github.com/mriscoc/extrasyn
+AnoaCore       : https://github.com/ah4d1/anoa-core
+AnoaCoreEditor : https://github.com/ah4d1/anoa-core-editor
 
 
 ADDITIONAL SOURCE(S), MUST BE ADDED TO PROJECT, THANKS TO :
 -------------------------------------
-Anoa-Core   : https://github.com/ah4d1/anoa-core
+-
 
 
 LOGO, THANKS TO :
