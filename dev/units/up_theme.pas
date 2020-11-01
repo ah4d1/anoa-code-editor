@@ -5,7 +5,7 @@ unit up_theme;
 interface
 
 uses
-  Classes, SysUtils, SynEditHighlighter, Graphics, SynEdit, up_var;
+  Classes, SysUtils, SynEditHighlighter, Graphics, up_var, ac_synedit;
 
 type
   tupTheme = object
@@ -16,10 +16,8 @@ type
     vLineHighlightColor : TColor;
     vCommentAttriColor : TColor;
     vKeyAttriColor : TColor;
-    procedure fcSetThemeColor (ASynEdit : TSynEdit; AVar : tupVar);
+    procedure fcSetThemeColor (AVar : tupVar);
     procedure fcSetVarColor (AVar : tupVar);
-    procedure fcSetSynEditColor (ASynEdit : TSynEdit; ASynEditColor,ASynEditFontColor,
-      AGutterColor,AGutterMarkupColor,ALineHighlightColor : TColor);
     procedure fcSetAttriColor (ACommentAttriColor,AKeyAttriColor : TColor);
   private
     procedure fcSetColorDetail (ALang : TSynCustomHighlighter; ACommentAttriColor,AKeyAttriColor : TColor);
@@ -34,47 +32,24 @@ implementation
 uses
   ac_color;
 
-procedure tupTheme.fcSetThemeColor (ASynEdit : TSynEdit; AVar : tupVar);
+procedure tupTheme.fcSetThemeColor (AVar : tupVar);
 begin
   Self.fcSetVarColor(AVar);
-  Self.fcSetSynEditColor(ASynEdit,Self.vSynEditColor,Self.vSynEditFontColor,Self.vGutterColor,
-    Self.vGutterMarkupColor,Self.vLineHighlightColor
-  );
   Self.fcSetAttriColor(Self.vCommentAttriColor,Self.vKeyAttriColor);
 end;
 
 procedure tupTheme.fcSetVarColor (AVar : tupVar);
 begin
-  if vupVar.vCurrentTheme = aseThemeNormal then
+  if vupVar.vCurrentTheme = seThemeNormal then
   begin
-    Self.vSynEditColor := AVar.vSynEditColor;
-    Self.vSynEditFontColor := AVar.vSynEditFontColor;
-    Self.vGutterColor := AVar.vGutterColor;
-    Self.vGutterMarkupColor := AVar.vGutterMarkupColor;
-    Self.vLineHighlightColor := AVar.vLineHighlightColor;
     Self.vCommentAttriColor := AVar.vSynHighlighter.vCommentAttriColor;
     Self.vKeyAttriColor := AVar.vSynHighlighter.vKeyAttriColor;
   end
-  else if vupVar.vCurrentTheme = aseThemeDark then
+  else if vupVar.vCurrentTheme = seThemeDark then
   begin
-    Self.vSynEditColor := vacColor.fcInvert(AVar.vSynEditColor);
-    Self.vSynEditFontColor := vacColor.fcInvert(AVar.vSynEditFontColor);
-    Self.vGutterColor := vacColor.fcInvert(AVar.vGutterColor);
-    Self.vGutterMarkupColor := vacColor.fcInvert(AVar.vGutterMarkupColor);
-    Self.vLineHighlightColor := vacColor.fcInvert(AVar.vLineHighlightColor);
     Self.vCommentAttriColor := vacColor.fcInvert(AVar.vSynHighlighter.vCommentAttriColor);
     Self.vKeyAttriColor := vacColor.fcInvert(AVar.vSynHighlighter.vKeyAttriColor);
   end;
-end;
-
-procedure tupTheme.fcSetSynEditColor (ASynEdit : TSynEdit; ASynEditColor,ASynEditFontColor,
-  AGutterColor,AGutterMarkupColor,ALineHighlightColor : TColor);
-begin
-  ASynEdit.Color := ASynEditColor;
-  ASynEdit.Font.Color := ASynEditFontColor;
-  ASynEdit.Gutter.Color := AGutterColor;
-  ASynEdit.Gutter.Parts[1].MarkupInfo.Background := AGutterMarkupColor;
-  ASynEdit.LineHighlightColor.Background := ALineHighlightColor;
 end;
 
 procedure tupTheme.fcSetAttriColor (ACommentAttriColor,AKeyAttriColor : TColor);
