@@ -5,19 +5,19 @@ unit up_currentdata;
 interface
 
 uses
-  Classes, SysUtils, SynEditHighlighter, ac_synhighlighter, Dialogs;
+  Classes, SysUtils, SynEditHighlighter, ace_synhighlighter, Dialogs;
 
 type
   tupCurrentData = class
-    vLang : TShLang;
+    vLang : TAceShLang;
     vLangTxt : string;
-    vSynHighlighter : TAcSynHighlighter;
+    vSynHighlighter : TAceSynHighlighter;
     vHighlighter : TSynCustomHighlighter;
     vFileName : TFileName;
-    constructor Create (AHighlighter : TAcSynHighlighter);
-    procedure fcUpdate (ALang : TShLang); overload;
+    constructor Create (AHighlighter : TAceSynHighlighter);
+    procedure fcUpdate (ALang : TAceShLang); overload;
     procedure fcUpdate (AFileName : TFileName); overload;
-    procedure fcUpdate (ALang : TShLang; AFileName : TFileName); overload;
+    procedure fcUpdate (ALang : TAceShLang; AFileName : TFileName); overload;
   end;
 
 var
@@ -28,16 +28,16 @@ implementation
 uses
   up_lang, up_var;
 
-constructor tupCurrentData.Create (AHighlighter : TAcSynHighlighter);
+constructor tupCurrentData.Create (AHighlighter : TAceSynHighlighter);
 begin
-  Self.vLang := shLangNone;
+  Self.vLang := aceShLangNone;
   Self.vLangTxt := '';
   Self.vSynHighlighter := AHighlighter;
   Self.vHighlighter := AHighlighter.vNone;
   Self.vFileName := '';
 end;
 
-procedure tupCurrentData.fcUpdate (ALang : TShLang);
+procedure tupCurrentData.fcUpdate (ALang : TAceShLang);
 begin
   Self.fcUpdate(ALang,Self.vFileName);
 end;
@@ -48,7 +48,7 @@ begin
   Self.fcUpdate(Self.vLang,AFileName);
 end;
 
-procedure tupCurrentData.fcUpdate (ALang : TShLang; AFileName : TFileName);
+procedure tupCurrentData.fcUpdate (ALang : TAceShLang; AFileName : TFileName);
 begin
   Self.vLang := ALang;
   Self.vLangTxt := vupLang.fcGetLangTxt(Self.vLang);
