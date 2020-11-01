@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, ComCtrls, Controls, Menus, Spin, SynEditHighlighter, up_currentdata, uc_tabsheet,
-  uc_statusbar, Dialogs, UITypes, ExtendedNotebook, SynEditTypes, Process, up_var;
+  uc_statusbar, Dialogs, UITypes, ExtendedNotebook, SynEditTypes, up_var;
 
 type
   tucPageControl = class(TExtendedNotebook)
