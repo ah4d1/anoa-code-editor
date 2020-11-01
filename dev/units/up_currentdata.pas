@@ -5,19 +5,19 @@ unit up_currentdata;
 interface
 
 uses
-  Classes, SysUtils, SynEditHighlighter, up_synhighlighter, Dialogs;
+  Classes, SysUtils, SynEditHighlighter, ac_synhighlighter, Dialogs;
 
 type
   tupCurrentData = class
-    vLang : taseLang;
+    vLang : TShLang;
     vLangTxt : string;
-    vSynHighlighter : tupSynHighlighter;
+    vSynHighlighter : TAcSynHighlighter;
     vHighlighter : TSynCustomHighlighter;
     vFileName : TFileName;
-    constructor Create (AHighlighter : tupSynHighlighter);
-    procedure fcUpdate (ALang : taseLang); overload;
+    constructor Create (AHighlighter : TAcSynHighlighter);
+    procedure fcUpdate (ALang : TShLang); overload;
     procedure fcUpdate (AFileName : TFileName); overload;
-    procedure fcUpdate (ALang : taseLang; AFileName : TFileName); overload;
+    procedure fcUpdate (ALang : TShLang; AFileName : TFileName); overload;
   end;
 
 var
@@ -26,18 +26,18 @@ var
 implementation
 
 uses
-  up_lang;
+  up_lang, up_var;
 
-constructor tupCurrentData.Create (AHighlighter : tupSynHighlighter);
+constructor tupCurrentData.Create (AHighlighter : TAcSynHighlighter);
 begin
-  Self.vLang := aseLangNone;
+  Self.vLang := shLangNone;
   Self.vLangTxt := '';
   Self.vSynHighlighter := AHighlighter;
   Self.vHighlighter := AHighlighter.vNone;
   Self.vFileName := '';
 end;
 
-procedure tupCurrentData.fcUpdate (ALang : taseLang);
+procedure tupCurrentData.fcUpdate (ALang : TShLang);
 begin
   Self.fcUpdate(ALang,Self.vFileName);
 end;
@@ -48,11 +48,13 @@ begin
   Self.fcUpdate(Self.vLang,AFileName);
 end;
 
-procedure tupCurrentData.fcUpdate (ALang : taseLang; AFileName : TFileName);
+procedure tupCurrentData.fcUpdate (ALang : TShLang; AFileName : TFileName);
 begin
   Self.vLang := ALang;
   Self.vLangTxt := vupLang.fcGetLangTxt(Self.vLang);
-  Self.vHighlighter := Self.vSynHighlighter.fcGetHighlighter(Self.vLang);
+  vupVar.vSynHighlighter.vLang := Self.vLang;
+  Self.vHighlighter := vupVar.vSynHighlighter.vHighlighter;
+  // Self.vHighlighter := Self.vSynHighlighter.fcGetHighlighter(Self.vLang);
   Self.vFileName := AFileName;
 end;
 
