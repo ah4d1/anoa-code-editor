@@ -5,7 +5,7 @@ unit uc_statusbar;
 interface
 
 uses
-  Classes, SysUtils, ComCtrls, up_currentdata, up_synhighlighter, Dialogs;
+  Classes, SysUtils, ComCtrls, up_currentdata, Dialogs;
 
 type
   tucStatusBar = class(TStatusBar)
