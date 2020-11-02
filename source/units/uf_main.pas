@@ -6,24 +6,41 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  StdCtrls, Spin, ExtCtrls, ShellCtrls, SynHighlighterCobol, SynEdit,
-  SynCompletion, up_synhighlighter, SynEditTypes, SynHighlighterPas;
+  StdCtrls, Spin, ExtCtrls, ShellCtrls, ActnList, SynHighlighterCobol, SynEdit,
+  SynCompletion, SynEditTypes, SynHighlighterPas, ac_app,
+  ace_synedit, ace_synhighlighter;
 
 type
 
   { TFormMain }
 
   TFormMain = class(TForm)
+    ActionTabCloseCurrent: TAction;
+    ActionTabAddNew: TAction;
+    ActionTabCloseOthers: TAction;
+    ActionTabCloseAll: TAction;
+    ActionListMain: TActionList;
     ButtonCloseTab: TButton;
     ImageListMain: TImageList;
     LabelFontSize: TLabel;
     MainMenuMain: TMainMenu;
-    MenuItem1: TMenuItem;
+    MenuItemSettingsSpecialCharsHide: TMenuItem;
+    MenuItemSettingsSpecialCharsShow: TMenuItem;
+    MenuItemSettingsSpecialChars: TMenuItem;
+    MenuItemSettingsThemeDark: TMenuItem;
+    MenuItemSettingsThemeNormal: TMenuItem;
+    MenuItemSettingsTheme: TMenuItem;
+    MenuItemFile: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
+    MenuItemControlsCloseAllOtherTabs: TMenuItem;
+    MenuItemControlsCloseAllTabs: TMenuItem;
+    MenuItemControlsCloseCurrentTab: TMenuItem;
+    MenuItemControlsAddNewTab: TMenuItem;
+    MenuItemControls: TMenuItem;
     MenuItemCloseAllOtherTabs: TMenuItem;
     MenuItemEditFindNext: TMenuItem;
     MenuItemOpen: TMenuItem;
@@ -45,7 +62,6 @@ type
     MenuItemEditUndo: TMenuItem;
     MenuItemEditFindReplace: TMenuItem;
     MenuItemEdit: TMenuItem;
-    MenuItemSettingsSwitchColor: TMenuItem;
     MenuItemSettingsLangCobol: TMenuItem;
     MenuItemSettingsLangSQL: TMenuItem;
     MenuItemSettingsLangCSharp: TMenuItem;
@@ -74,7 +90,6 @@ type
     ShellTreeViewMain: TShellTreeView;
     SpinEditFontSize: TSpinEdit;
     SplitterMain: TSplitter;
-    SynEdit1: TSynEdit;
     ToolBarMain: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
@@ -90,26 +105,25 @@ type
     ToolButtonPaste: TToolButton;
     ToolButtonRedo: TToolButton;
     ToolButtonUndo: TToolButton;
+    procedure ActionTabAddNewExecute(Sender: TObject);
+    procedure ActionTabCloseAllExecute(Sender: TObject);
+    procedure ActionTabCloseCurrentExecute(Sender: TObject);
+    procedure ActionTabCloseOthersExecute(Sender: TObject);
     procedure ButtonCloseTabClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
-    procedure MenuItemCloseAllOtherTabsClick(Sender: TObject);
-    procedure MenuItemCloseAllTabsClick(Sender: TObject);
-    procedure MenuItemCloseCurrentTabClick(Sender: TObject);
     procedure MenuItemEditCopyClick(Sender: TObject);
     procedure MenuItemEditCutClick(Sender: TObject);
     procedure MenuItemEditFindNextClick(Sender: TObject);
     procedure MenuItemEditPasteClick(Sender: TObject);
     procedure MenuItemEditSelectAllClick(Sender: TObject);
     procedure MenuItemHelpAboutClick(Sender: TObject);
-    procedure MenuItemAddNewTabClick(Sender: TObject);
     procedure MenuItemEditShowCompletionClick(Sender: TObject);
     procedure MenuItemEditFindReplaceClick(Sender: TObject);
     procedure MenuItemEditRedoClick(Sender: TObject);
     procedure MenuItemEditUndoClick(Sender: TObject);
     procedure MenuItemFileExitClick(Sender: TObject);
-    procedure MenuItemFileNewClick(Sender: TObject);
     procedure MenuItemFileOpenClick(Sender: TObject);
     procedure MenuItemFileSaveAsClick(Sender: TObject);
     procedure MenuItemFileSaveClick(Sender: TObject);
@@ -127,15 +141,19 @@ type
     procedure MenuItemSettingsLangPHPClick(Sender: TObject);
     procedure MenuItemSettingsLangPythonClick(Sender: TObject);
     procedure MenuItemSettingsLangSQLClick(Sender: TObject);
-    procedure MenuItemSettingsSwitchColorClick(Sender: TObject);
+    procedure MenuItemSettingsSpecialCharsHideClick(Sender: TObject);
+    procedure MenuItemSettingsSpecialCharsShowClick(Sender: TObject);
+    procedure MenuItemSettingsThemeDarkClick(Sender: TObject);
+    procedure MenuItemSettingsThemeNormalClick(Sender: TObject);
     procedure ShellTreeViewMainCollapsed(Sender: TObject; Node: TTreeNode);
     procedure ShellTreeViewMainDblClick(Sender: TObject);
     procedure ShellTreeViewMainExpanded(Sender: TObject; Node: TTreeNode);
     procedure SpinEditFontSizeChange(Sender: TObject);
-    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+      AIsSpecialChar : Boolean; ASpecialChar : string);
   private
     procedure UpdateShellTreeViewImages;
-    procedure SetLang (ALang : taseLang);
+    procedure SetLang (ALang : TAceShLang);
   public
 
   end;
@@ -150,17 +168,19 @@ implementation
 { TFormMain }
 
 uses
-  uc_main, uf_findreplace, uf_about, up_var, up_currentdata, ac_app;
+  uc_main, uf_findreplace, uf_about, up_var, up_currentdata;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 var
   LFileNameOnStart : TFileName;
 begin
   vupVar := tupVar.Create(Self);
+  vupVar.vAppDir := ExtractFilePath(Application.ExeName);
+  vupVar.fcInit(Self);
   vupCurrentData := tupCurrentData.Create(vupVar.vSynHighlighter);
   LFileNameOnStart := string(vacApp.fcGetParam);
-  Self.OpenDialogMain.Filter := string(vupVar.vSynHighlighter.fcSetDefaultFilter);
-  Self.SaveDialogMain.Filter := string(vupVar.vSynHighlighter.fcSetDefaultFilter);
+  Self.OpenDialogMain.Filter := string(vupVar.vSynHighlighter.vDefaultFilter);
+  Self.SaveDialogMain.Filter := string(vupVar.vSynHighlighter.vDefaultFilter);
   vucMain := tucMain.Create(Self,Self.ImageListMain,Self.PopupMenuPageControl,
     Self.SpinEditFontSize,Self.SaveDialogMain
   );
@@ -171,14 +191,8 @@ begin
     vupCurrentData.fcUpdate(LFileNameOnStart);
     vucMain.fcAddNewTab(vupCurrentData,Self.PopupMenuSynEdit);
   end;
-
   Self.UpdateShellTreeViewImages;
-
-end;
-
-procedure TFormMain.MenuItemCloseAllOtherTabsClick(Sender: TObject);
-begin
-  vucMain.fcCloseAllOtherTabs(vupCurrentData,Self.PopupMenuSynEdit);
+  Self.ActiveControl := vucMain.vPageControl.fcCurrentTabSheet.vSynEdit;
 end;
 
 procedure TFormMain.UpdateShellTreeViewImages;
@@ -199,16 +213,6 @@ begin
       Self.ShellTreeViewMain.Items[i].ImageIndex := 14
     ;
   end;
-end;
-
-procedure TFormMain.MenuItemCloseAllTabsClick(Sender: TObject);
-begin
-  vucMain.fcCloseAllTabs(vupCurrentData,Self.PopupMenuSynEdit);
-end;
-
-procedure TFormMain.MenuItemCloseCurrentTabClick(Sender: TObject);
-begin
-  vucMain.fcCloseCurrentTab(vupCurrentData,Self.PopupMenuSynEdit);
 end;
 
 procedure TFormMain.MenuItemEditCopyClick(Sender: TObject);
@@ -255,29 +259,41 @@ begin
   vucMain.fcCloseCurrentTab(vupCurrentData,Self.PopupMenuSynEdit);
 end;
 
+procedure TFormMain.ActionTabCloseAllExecute(Sender: TObject);
+begin
+  vucMain.fcCloseAllTabs(vupCurrentData,Self.PopupMenuSynEdit);
+  Self.ActiveControl := vucMain.vPageControl.fcCurrentTabSheet.vSynEdit;
+end;
+
+procedure TFormMain.ActionTabCloseCurrentExecute(Sender: TObject);
+begin
+  vucMain.fcCloseCurrentTab(vupCurrentData,Self.PopupMenuSynEdit);
+  Self.ActiveControl := vucMain.vPageControl.fcCurrentTabSheet.vSynEdit;
+end;
+
+procedure TFormMain.ActionTabAddNewExecute(Sender: TObject);
+begin
+  vupCurrentData.fcUpdate(aceShLangNone,'');
+  vucMain.fcAddNewTab(Self.PopupMenuSynEdit);
+  vucMain.fcUpdate(vupCurrentData);
+  Self.ActiveControl := vucMain.vPageControl.fcCurrentTabSheet.vSynEdit;
+end;
+
+procedure TFormMain.ActionTabCloseOthersExecute(Sender: TObject);
+begin
+  vucMain.fcCloseAllOtherTabs(vupCurrentData,Self.PopupMenuSynEdit);
+  Self.ActiveControl := vucMain.vPageControl.fcCurrentTabSheet.vSynEdit;
+end;
+
 procedure TFormMain.MenuItemFileExitClick(Sender: TObject);
 begin
   Application.Terminate;
-end;
-
-procedure TFormMain.MenuItemFileNewClick(Sender: TObject);
-begin
-  vupCurrentData.fcUpdate(aseLangNone,'');
-  vucMain.fcAddNewTab(Self.PopupMenuSynEdit);
-  vucMain.fcUpdate(vupCurrentData);
 end;
 
 procedure TFormMain.MenuItemHelpAboutClick(Sender: TObject);
 begin
   FormAbout := TFormAbout.Create(Self);
   FormAbout.ShowModal;
-end;
-
-procedure TFormMain.MenuItemAddNewTabClick(Sender: TObject);
-begin
-  vupCurrentData.fcUpdate(aseLangNone,'');
-  vucMain.fcAddNewTab(Self.PopupMenuSynEdit);
-  vucMain.fcUpdate(vupCurrentData);
 end;
 
 procedure TFormMain.MenuItemEditShowCompletionClick(Sender: TObject);
@@ -291,9 +307,10 @@ begin
   FormFindReplace.Show;
 end;
 
-procedure TFormMain.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+procedure TFormMain.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+  AIsSpecialChar : Boolean; ASpecialChar : string);
 begin
-  vucMain.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions);
+  vucMain.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions,AIsSpecialChar,ASpecialChar);
 end;
 
 procedure TFormMain.MenuItemEditRedoClick(Sender: TObject);
@@ -325,6 +342,7 @@ end;
 
 procedure TFormMain.MenuItemFileSaveAsClick(Sender: TObject);
 begin
+  Self.SaveDialogMain.FileName := '';
   if Self.SaveDialogMain.Execute then
   begin
     vupVar.fcUpdate(Self.SpinEditFontSize.Value);
@@ -336,6 +354,7 @@ end;
 
 procedure TFormMain.MenuItemFileSaveClick(Sender: TObject);
 begin
+  Self.SaveDialogMain.FileName := '';
   if FileExists(vupCurrentData.vFileName) then
   begin
     vupVar.fcUpdate(Self.SpinEditFontSize.Value);
@@ -373,72 +392,87 @@ end;
 
 procedure TFormMain.MenuItemSettingsLangCobolClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangCobol);
+  Self.SetLang(aceShLangCobol);
 end;
 
 procedure TFormMain.MenuItemSettingsLangCSharpClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangCS);
+  Self.SetLang(aceShLangCSharp);
 end;
 
 procedure TFormMain.MenuItemSettingsLangCSSClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangCSS);
+  Self.SetLang(aceShLangCSS);
 end;
 
 procedure TFormMain.MenuItemSettingsLangHTMLClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangHTML);
+  Self.SetLang(aceShLangHTML);
 end;
 
 procedure TFormMain.MenuItemSettingsLangJavaClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangJava);
+  Self.SetLang(aceShLangJava);
 end;
 
 procedure TFormMain.MenuItemSettingsLangJSONClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangJSON);
+  Self.SetLang(aceShLangJSON);
 end;
 
 procedure TFormMain.MenuItemSettingsLangNoneClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangNone);
+  Self.SetLang(aceShLangNone);
 end;
 
 procedure TFormMain.MenuItemSettingsLangPascalClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangPas);
+  Self.SetLang(aceShLangPascal);
 end;
 
 procedure TFormMain.MenuItemSettingsLangPHPClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangPHP);
+  Self.SetLang(aceShLangPHP);
 end;
 
 procedure TFormMain.MenuItemSettingsLangPythonClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangPython);
+  Self.SetLang(aceShLangPython);
 end;
 
 procedure TFormMain.MenuItemSettingsLangSQLClick(Sender: TObject);
 begin
-  Self.SetLang(aseLangSQL);
+  Self.SetLang(aceShLangSQL);
 end;
 
-procedure TFormMain.SetLang (ALang : taseLang);
+procedure TFormMain.MenuItemSettingsSpecialCharsHideClick(Sender: TObject);
+begin
+  vupVar.vShowSpecialChars := False;
+  vucMain.fcUpdate;
+end;
+
+procedure TFormMain.MenuItemSettingsSpecialCharsShowClick(Sender: TObject);
+begin
+  vupVar.vShowSpecialChars := True;
+  vucMain.fcUpdate;
+end;
+
+procedure TFormMain.SetLang (ALang : TAceShLang);
 begin
   vupCurrentData.fcUpdate(ALang);
   vucMain.fcUpdate(vupCurrentData);
 end;
 
-procedure TFormMain.MenuItemSettingsSwitchColorClick(Sender: TObject);
+procedure TFormMain.MenuItemSettingsThemeDarkClick(Sender: TObject);
 begin
-  case vupVar.vCurrentTheme of
-    aseThemeLight : vupVar.vCurrentTheme := aseThemeDark;
-    aseThemeDark : vupVar.vCurrentTheme := aseThemeLight;
-  end;
-  vucMain.fcUpdate(vupVar);
+  vupVar.vCurrentTheme := aceSeThemeDark;
+  vucMain.fcUpdate;
+end;
+
+procedure TFormMain.MenuItemSettingsThemeNormalClick(Sender: TObject);
+begin
+  vupVar.vCurrentTheme := aceSeThemeNormal;
+  vucMain.fcUpdate;
 end;
 
 procedure TFormMain.ShellTreeViewMainCollapsed(Sender: TObject; Node: TTreeNode);
@@ -465,7 +499,7 @@ end;
 procedure TFormMain.SpinEditFontSizeChange(Sender: TObject);
 begin
   vupVar.fcUpdate(Self.SpinEditFontSize.Value);
-  vucMain.fcUpdate(vupVar);
+  vucMain.fcUpdate;
 end;
 
 end.
