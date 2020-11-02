@@ -6,14 +6,14 @@ interface
 
 uses
   Classes, SysUtils, ComCtrls, SynEditHighlighter, up_var, up_currentdata, uc_synedit,
-  uc_syncompletion, up_synhighlighter, Dialogs, SynEditTypes, Menus, uc_memoresult, ExtCtrls,
+  uc_syncompletion, ace_synhighlighter, Dialogs, SynEditTypes, Menus, uc_memoresult, ExtCtrls,
   Controls;
 
 type
   taseTextStatus = (aseTextStatusNormal,aseTextStatusModified);
   tucTabSheet = class(TTabSheet)
   private
-    FLang : taseLang;
+    FLang : TAceShLang;
     FLangTxt : string;
     FFileName : TFileName;
     FSynEdit : tucSynEdit;
@@ -22,7 +22,7 @@ type
     FSynCompletion : tucSynCompletion;
     FTextStatus : taseTextStatus;
   public
-    property vLang : taseLang read FLang write FLang;
+    property vLang : TAceShLang read FLang write FLang;
     property vLangTxt : string read FLangTxt write FLangTxt;
     property vFileName : TFileName read FFileName write FFileName;
     property vSynEdit : tucSynEdit read FSynEdit write FSynEdit;
@@ -34,7 +34,7 @@ type
     procedure fcInit (APopupMenu : TPopupMenu);
     procedure fcOpen (ACurrentData : tupCurrentData);
     procedure fcSave (AFileName : TFileName);
-    procedure fcUpdate (AVar : tupVar); overload;
+    procedure fcUpdate; overload;
     procedure fcUpdate (ACurrentData : tupCurrentData); overload;
     procedure fcUndo;
     procedure fcRedo;
@@ -44,7 +44,8 @@ type
     procedure fcSelectAll;
     procedure fcSetCurrentData;
     procedure fcShowCompletion;
-    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+      AIsSpecialChar : Boolean; ASpecialChar : string);
     procedure fcFindNext;
     procedure fcRunCommand;
   end;
@@ -70,7 +71,7 @@ end;
 
 procedure tucTabSheet.fcInit (APopupMenu : TPopupMenu);
 begin
-  Self.vLang := aseLangNone;
+  Self.vLang := aceShLangNone;
   Self.vLangTxt := '';
   Self.vFileName := '';
   Self.vTextStatus := aseTextStatusNormal;
@@ -91,9 +92,9 @@ begin
   Self.vSynEdit.fcSave(AFileName);
 end;
 
-procedure tucTabSheet.fcUpdate (AVar : tupVar);
+procedure tucTabSheet.fcUpdate;
 begin
-  Self.vSynEdit.fcUpdate(AVar);
+  Self.vSynEdit.fcUpdate;
 end;
 
 procedure tucTabSheet.fcUpdate (ACurrentData : tupCurrentData);
@@ -145,9 +146,10 @@ begin
   Self.vSynEdit.CommandProcessor(vSynCompletion.ExecCommandID, '', nil);
 end;
 
-procedure tucTabSheet.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+procedure tucTabSheet.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+  AIsSpecialChar : Boolean; ASpecialChar : string);
 begin
-  Self.vSynEdit.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions);
+  Self.vSynEdit.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions,AIsSpecialChar,ASpecialChar);
 end;
 
 procedure tucTabSheet.fcFindNext;
