@@ -5,30 +5,34 @@ unit up_var;
 interface
 
 uses
-  Classes, SysUtils, Graphics, SynEditHighlighter, up_synhighlighter, up_reservewords;
+  Classes, SysUtils, Graphics, SynEditHighlighter, ace_synhighlighter, up_reservewords,
+  ace_synedit;
 
 type
-  taseTheme = (aseThemeLight,aseThemeDark);
+  // taseTheme = (aseThemeNormal,aseThemeDark);
   tupVar = class
+    vAppDir : string;
     vTabPrefix : string;
     vTabNo : Byte;
     vImageIndexNormalFile : Byte;
     vImageIndexModifiedFile : Byte;
-    vSynHighlighter : tupSynHighlighter;
+    vSynHighlighter : TAceSynHighlighter;
     vReservedWords : tupReserveWords;
     vLang : TStringList;
     vFontSize : Byte;
     vCurrentFindKeyword : string;
-    vCurrentTheme : taseTheme;
+    vCurrentTheme : TAceSeTheme;
     vSynEditColor : TColor;
     vSynEditFontColor : TColor;
     vGutterColor : TColor;
     vGutterMarkupColor : TColor;
     vLineHighlightColor : TColor;
+    vShowSpecialChars : Boolean;
     constructor Create (AOwner : TComponent);
+    procedure fcInit (AOwner : TComponent);
     function fcFileName (AFileName : TFileName; var ATmpFile : Boolean) : TFileName; overload;
     procedure fcUpdate (AFontSize : Byte); overload;
-    procedure fcUpdate (AFontSize : Byte; ATheme : taseTheme); overload;
+    procedure fcUpdate (AFontSize : Byte; ATheme : TAceSeTheme); overload;
   end;
 
 var
@@ -45,17 +49,23 @@ begin
   Self.vTabNo := 0;
   Self.vImageIndexNormalFile := 3;
   Self.vImageIndexModifiedFile := 4;
-  Self.vSynHighlighter := tupSynHighlighter.Create(AOwner);
-  Self.vReservedWords := tupReserveWords.Create(AOwner);
-  Self.vLang := vacString.fcSplit(Self.vReservedWords.vLangTxt,'|');
+  {}
   Self.vFontSize := 9;
   Self.vCurrentFindKeyword := '';
-  Self.vCurrentTheme := aseThemeLight;
+  Self.vCurrentTheme := aceSeThemeNormal;
   Self.vSynEditColor := clWhite;
   Self.vSynEditFontColor := clBlack;
   Self.vGutterColor := clBtnFace;
   Self.vGutterMarkupColor := clBtnFace;
   Self.vLineHighlightColor := $00EFE8D6;
+  Self.vShowSpecialChars := False;
+end;
+
+procedure tupVar.fcInit (AOwner : TComponent);
+begin
+  Self.vReservedWords := tupReserveWords.Create;
+  Self.vSynHighlighter := TAceSynHighlighter.Create(AOwner);
+  Self.vLang := vacString.fcSplit(Self.vReservedWords.vLangTxt,'|');
 end;
 
 {if AFileName exists then use AFileName, else use TmpFile}
@@ -83,7 +93,7 @@ begin
   Self.fcUpdate(AFontSize,Self.vCurrentTheme);
 end;
 
-procedure tupVar.fcUpdate (AFontSize : Byte; ATheme : taseTheme);
+procedure tupVar.fcUpdate (AFontSize : Byte; ATheme : TAceSeTheme);
 begin
   Self.vFontSize := AFontSize;
   Self.vCurrentTheme := ATheme;
