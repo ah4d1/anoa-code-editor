@@ -5,25 +5,25 @@ unit uc_syncompletion;
 interface
 
 uses
-  Classes, SysUtils, SynCompletion, up_synhighlighter;
+  Classes, SysUtils, SynCompletion, ace_synhighlighter, ac_string;
 
 type
   tucSynCompletion = class(TSynCompletion)
     constructor Create (AOwner : TComponent); override;
-    procedure fcUpdate (ALang : taseLang);
+    procedure fcUpdate (ALang : TAceShLang);
   end;
 
 implementation
 
 uses
-  up_var, ac_string;
+  up_var;
 
 constructor tucSynCompletion.Create (AOwner : TComponent);
 begin
   inherited Create(AOwner);
 end;
 
-procedure tucSynCompletion.fcUpdate (ALang : taseLang);
+procedure tucSynCompletion.fcUpdate (ALang : TAceShLang);
 begin
   Self.ItemList := vacString.fcSplit(vupVar.vReservedWords.vReservedWords[Ord(ALang)],'|');
 end;
