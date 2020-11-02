@@ -1,12 +1,12 @@
 object FormFindReplace: TFormFindReplace
   Left = 705
-  Height = 393
+  Height = 410
   Top = 267
   Width = 620
   ActiveControl = ButtonFind
   BorderIcons = [biSystemMenu]
   Caption = 'Find / Replace'
-  ClientHeight = 393
+  ClientHeight = 410
   ClientWidth = 620
   DesignTimePPI = 144
   FormStyle = fsStayOnTop
@@ -17,12 +17,12 @@ object FormFindReplace: TFormFindReplace
   LCLVersion = '2.0.0.4'
   object GroupBoxOptions: TGroupBox
     Left = 26
-    Height = 208
-    Top = 112
+    Height = 202
+    Top = 131
     Width = 568
     Anchors = [akTop, akLeft, akRight]
     Caption = '   Options   '
-    ClientHeight = 178
+    ClientHeight = 172
     ClientWidth = 564
     TabOrder = 4
     object CheckBoxBackwards: TCheckBox
@@ -92,13 +92,13 @@ object FormFindReplace: TFormFindReplace
   end
   object ButtonFind: TButton
     Left = 481
-    Height = 38
-    Top = 336
+    Height = 43
+    Top = 348
     Width = 113
     Anchors = [akTop, akRight]
     Caption = 'Find'
     OnClick = ButtonFindClick
-    TabOrder = 0
+    TabOrder = 5
   end
   object EditFind: TEdit
     Left = 168
@@ -107,7 +107,7 @@ object FormFindReplace: TFormFindReplace
     Width = 426
     Anchors = [akTop, akLeft, akRight]
     OnKeyPress = EditFindKeyPress
-    TabOrder = 1
+    TabOrder = 0
   end
   object LabelFind: TLabel
     Left = 119
@@ -118,15 +118,6 @@ object FormFindReplace: TFormFindReplace
     Caption = 'Find :'
     ParentColor = False
   end
-  object EditReplaceWith: TEdit
-    Left = 168
-    Height = 33
-    Top = 59
-    Width = 426
-    Anchors = [akTop, akLeft, akRight]
-    Enabled = False
-    TabOrder = 3
-  end
   object CheckBoxReplaceWith: TCheckBox
     Left = 26
     Height = 29
@@ -134,16 +125,35 @@ object FormFindReplace: TFormFindReplace
     Width = 142
     Caption = 'Replace With :'
     OnChange = CheckBoxReplaceWithChange
-    TabOrder = 2
+    TabOrder = 1
   end
   object ButtonClose: TButton
     Left = 26
-    Height = 38
-    Top = 336
+    Height = 43
+    Top = 348
     Width = 113
     Cancel = True
     Caption = 'Close'
     OnClick = ButtonCloseClick
-    TabOrder = 5
+    TabOrder = 6
+  end
+  object ComboBoxReplaceWith: TComboBox
+    Left = 168
+    Height = 33
+    Top = 56
+    Width = 426
+    Enabled = False
+    ItemHeight = 25
+    TabOrder = 2
+  end
+  object CheckBoxSpecialChar: TCheckBox
+    Left = 168
+    Height = 29
+    Top = 100
+    Width = 164
+    Caption = 'Special Character'
+    Enabled = False
+    OnChange = CheckBoxSpecialCharChange
+    TabOrder = 3
   end
 end
