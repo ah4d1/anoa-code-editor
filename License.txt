@@ -1,4 +1,4 @@
-Anoa-Syntax-Editor is a free and open source syntax editor.
+Anoa-Code-Editor is a free and open source code editor.
 
 Copyright(C)2020 Ahadi Aprianto, Randu Hidayat, Rizchi Supriyanto
 
