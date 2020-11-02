@@ -55,12 +55,12 @@ end;
 procedure tupTheme.fcSetAttriColor (ACommentAttriColor,AKeyAttriColor : TColor);
 begin
   Self.fcSetColorDetail(vupVar.vSynHighlighter.vCobol,ACommentAttriColor,AKeyAttriColor);
-  Self.fcSetColorDetail(vupVar.vSynHighlighter.vCS,ACommentAttriColor,AKeyAttriColor);
+  Self.fcSetColorDetail(vupVar.vSynHighlighter.vCSharp,ACommentAttriColor,AKeyAttriColor);
   Self.fcSetColorDetail(vupVar.vSynHighlighter.vCSS,ACommentAttriColor,AKeyAttriColor);
   Self.fcSetColorDetail(vupVar.vSynHighlighter.vHTML,ACommentAttriColor,AKeyAttriColor);
   Self.fcSetColorDetail(vupVar.vSynHighlighter.vJava,ACommentAttriColor,AKeyAttriColor);
   Self.fcSetColorDetail(vupVar.vSynHighlighter.vJSON,AKeyAttriColor);
-  Self.fcSetColorDetail(vupVar.vSynHighlighter.vPas,ACommentAttriColor,AKeyAttriColor);
+  Self.fcSetColorDetail(vupVar.vSynHighlighter.vPascal,ACommentAttriColor,AKeyAttriColor);
   Self.fcSetColorDetail(vupVar.vSynHighlighter.vPHP,ACommentAttriColor,AKeyAttriColor);
   Self.fcSetColorDetail(vupVar.vSynHighlighter.vPython,ACommentAttriColor,AKeyAttriColor);
   Self.fcSetColorDetail(vupVar.vSynHighlighter.vSQL,ACommentAttriColor,AKeyAttriColor);
