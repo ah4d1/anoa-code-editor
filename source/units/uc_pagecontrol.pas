@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, ComCtrls, Controls, Menus, Spin, SynEditHighlighter, up_currentdata, uc_tabsheet,
-  uc_statusbar, Dialogs, UITypes, ExtendedNotebook, SynEditTypes, Process, up_var;
+  uc_statusbar, Dialogs, UITypes, ExtendedNotebook, SynEditTypes, up_var;
 
 type
   tucPageControl = class(TExtendedNotebook)
@@ -21,12 +21,14 @@ type
     constructor Create (AOwner : TComponent); override;
     procedure fcInit (AImageList : TImageList; APopupMenu : TPopupMenu;
       ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar; ASaveDialog : TSaveDialog);
-    procedure fcAddNewTab (ACaption : string; AImageIndex : Byte; APopupMenu : TPopupMenu);
+    procedure fcAddNewTab (APopupMenu : TPopupMenu);
     procedure fcAddNewTabThenOpen (ACurrentData : tupCurrentData;
-      AImageIndex : Byte; APopupMenu : TPopupMenu);
+      APopupMenu : TPopupMenu);
+    procedure fcNewTab (ACaption : string; AImageIndex : Byte;
+      APopupMenu : TPopupMenu);
     procedure fcCloseCurrentTab (ACurrentData : tupCurrentData; ACaption : string;
       AImageIndex : Byte; APopupMenu : TPopupMenu);
-    procedure fcUpdate (AVar : tupVar); overload;
+    procedure fcUpdate; overload;
     procedure fcUpdate (ACurrentData : tupCurrentData); overload;
     procedure fcUndo;
     procedure fcRedo;
@@ -38,7 +40,8 @@ type
     procedure fcSave (AFileName : TFileName);
     procedure Change; override;
     procedure fcShowCompletion;
-    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+    procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+      AIsSpecialChar : Boolean; ASpecialChar : string);
     procedure fcFindNext;
     procedure fcRunCommand;
     function fcCurrentTabSheet : tucTabSheet;
@@ -66,8 +69,20 @@ begin
   Self.vSaveDialog := ASaveDialog;
 end;
 
-procedure tucPageControl.fcAddNewTab (ACaption : string; AImageIndex : Byte;
+procedure tucPageControl.fcAddNewTab (APopupMenu : TPopupMenu);
+begin
+  vupVar.vTabNo := vupVar.vTabNo + 1;
+  Self.fcNewTab(vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),vupVar.vImageIndexNormalFile,APopupMenu);
+end;
+
+procedure tucPageControl.fcAddNewTabThenOpen (ACurrentData : tupCurrentData;
   APopupMenu : TPopupMenu);
+begin
+  Self.fcNewTab(ExtractFileName(ACurrentData.vFileName),vupVar.vImageIndexNormalFile,APopupMenu);
+  Self.fcCurrentTabSheet.fcOpen(ACurrentData);
+end;
+
+procedure tucPageControl.fcNewTab (ACaption : string; AImageIndex : Byte; APopupMenu : TPopupMenu);
 begin
   with tucTabSheet.Create(Self) do
   begin
@@ -77,13 +92,6 @@ begin
   end;
   Self.TabIndex := Self.PageCount - 1;
   Self.fcCurrentTabSheet.fcInit(APopupMenu);
-end;
-
-procedure tucPageControl.fcAddNewTabThenOpen (ACurrentData : tupCurrentData;
-  AImageIndex : Byte; APopupMenu : TPopupMenu);
-begin
-  Self.fcAddNewTab(ExtractFileName(ACurrentData.vFileName),AImageIndex,APopupMenu);
-  Self.fcCurrentTabSheet.fcOpen(ACurrentData);
 end;
 
 procedure tucPageControl.fcCloseCurrentTab (ACurrentData : tupCurrentData; ACaption : string;
@@ -119,12 +127,16 @@ begin
       mrCancel : ;
     end;
   end;
-  if Self.PageCount <= 0 then Self.fcAddNewTab(ACaption,AImageIndex,APopupMenu);
+  if Self.PageCount <= 0 then Self.fcAddNewTab(APopupMenu);
 end;
 
-procedure tucPageControl.fcUpdate (AVar : tupVar);
+procedure tucPageControl.fcUpdate;
+var
+  i : Integer;
 begin
-  Self.fcCurrentTabSheet.fcUpdate(AVar);
+  for i := 0 to Self.PageCount - 1 do
+    (Self.Pages[i] as tucTabSheet).fcUpdate
+  ;
 end;
 
 procedure tucPageControl.fcUpdate (ACurrentData : tupCurrentData);
@@ -172,7 +184,6 @@ procedure tucPageControl.Change;
 begin
   inherited Change;
   Self.fcSetCurrentData;
-  Self.fcUpdate(vupVar);
   Self.fcUpdate(vupCurrentData);
 end;
 
@@ -186,9 +197,10 @@ begin
   Self.fcCurrentTabSheet.fcShowCompletion;
 end;
 
-procedure tucPageControl.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions);
+procedure tucPageControl.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+  AIsSpecialChar : Boolean; ASpecialChar : string);
 begin
-  Self.fcCurrentTabSheet.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions);
+  Self.fcCurrentTabSheet.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions,AIsSpecialChar,ASpecialChar);
 end;
 
 procedure tucPageControl.fcFindNext;
