@@ -21,10 +21,11 @@ type
     CheckBoxMatchCase: TCheckBox;
     CheckBoxReplace: TCheckBox;
     CheckBoxReplaceAll: TCheckBox;
+    CheckBoxSpecialChar: TCheckBox;
     CheckBoxSelectedOnly: TCheckBox;
     CheckBoxWholeWord: TCheckBox;
+    ComboBoxReplaceWith: TComboBox;
     EditFind: TEdit;
-    EditReplaceWith: TEdit;
     GroupBoxOptions: TGroupBox;
     LabelFind: TLabel;
     procedure ButtonCloseClick(Sender: TObject);
@@ -34,6 +35,7 @@ type
     procedure CheckBoxReplaceChange(Sender: TObject);
     procedure CheckBoxReplaceWithChange(Sender: TObject);
     procedure CheckBoxSelectedOnlyChange(Sender: TObject);
+    procedure CheckBoxSpecialCharChange(Sender: TObject);
     procedure EditFindKeyPress(Sender: TObject; var Key: char);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -69,7 +71,9 @@ begin
   if Self.CheckBoxReplace.Checked then LSynSearchOptions := LSynSearchOptions + [ssoReplace];
   if Self.CheckBoxReplaceAll.Checked then LSynSearchOptions := LSynSearchOptions + [ssoReplaceAll];
   vupVar.vCurrentFindKeyword := Self.EditFind.Text;
-  FormMain.fcReplace(Self.EditFind.Text,Self.EditReplaceWith.Text,LSynSearchOptions);
+  FormMain.fcReplace(Self.EditFind.Text,Self.ComboBoxReplaceWith.Text,LSynSearchOptions,
+    Self.CheckBoxSpecialChar.Checked,Self.ComboBoxReplaceWith.Text
+  );
 end;
 
 procedure TFormFindReplace.ButtonCloseClick(Sender: TObject);
@@ -110,7 +114,8 @@ procedure TFormFindReplace.CheckBoxReplaceWithChange(Sender: TObject);
 begin
   if Self.CheckBoxReplaceWith.Checked then
   begin
-    Self.EditReplaceWith.Enabled := True;
+    Self.ComboBoxReplaceWith.Enabled := True;
+    Self.CheckBoxSpecialChar.Enabled := True;
     {Enabled}
     Self.CheckBoxEntireScope.Enabled := True;
     Self.CheckBoxSelectedOnly.Enabled := True;
@@ -122,7 +127,8 @@ begin
   end
   else
   begin
-    Self.EditReplaceWith.Enabled := False;
+    Self.ComboBoxReplaceWith.Enabled := False;
+    Self.CheckBoxSpecialChar.Enabled := False;
     {Checked}
     Self.CheckBoxEntireScope.Checked := False;
     Self.CheckBoxSelectedOnly.Checked := False;
@@ -139,6 +145,23 @@ end;
 procedure TFormFindReplace.CheckBoxSelectedOnlyChange(Sender: TObject);
 begin
   if Self.CheckBoxSelectedOnly.Checked then Self.CheckBoxEntireScope.Checked := False;
+end;
+
+procedure TFormFindReplace.CheckBoxSpecialCharChange(Sender: TObject);
+begin
+  case Self.CheckBoxSpecialChar.Checked of
+    True :
+      begin
+        Self.ComboBoxReplaceWith.Style := csDropDownList;
+        Self.ComboBoxReplaceWith.Items.Add('\n');
+        Self.ComboBoxReplaceWith.Items.Add('\t');
+      end;
+    False :
+      begin
+        Self.ComboBoxReplaceWith.Style := csDropDown;
+        Self.ComboBoxReplaceWith.Items.Clear;
+      end;
+  end;
 end;
 
 procedure TFormFindReplace.EditFindKeyPress(Sender: TObject; var Key: char);
