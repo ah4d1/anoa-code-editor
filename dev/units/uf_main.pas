@@ -397,7 +397,7 @@ end;
 
 procedure TFormMain.MenuItemSettingsLangCSharpClick(Sender: TObject);
 begin
-  Self.SetLang(aceShLangCS);
+  Self.SetLang(aceShLangCSharp);
 end;
 
 procedure TFormMain.MenuItemSettingsLangCSSClick(Sender: TObject);
@@ -427,7 +427,7 @@ end;
 
 procedure TFormMain.MenuItemSettingsLangPascalClick(Sender: TObject);
 begin
-  Self.SetLang(aceShLangPas);
+  Self.SetLang(aceShLangPascal);
 end;
 
 procedure TFormMain.MenuItemSettingsLangPHPClick(Sender: TObject);
