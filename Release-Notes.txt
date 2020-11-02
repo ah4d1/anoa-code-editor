@@ -1,0 +1,130 @@
+v.1.0.5.0 : (Released 2nd Nov 2020)
+----------------------------------------------------------
+Update  : Project was renamed to Anoa-Code-Editor
+Added   : Menu "Controls" (Add New, Close Current, Close All, Close All Others)
+Added   : Search and replace with special character (\n,\t)
+Added   : Themes : Normal & Dark
+Added   : Show or hide special characters.
+Update  : Directory "core" was removed, the app now use AnoaCore package.
+Added   : App use AnoaCoreEditor package.
+Update  : Code refactoring & other minor updates.
+
+v.1.0.4.0 : (Released 29th Oct 2020)
+----------------------------------------------------------
+Added   : Run Command function & menu.
+Added   : Running command directly from app (java, python).
+Added   : File / directory explorer.
+Fixed   : Set active control and reordering tab order for Find / Replace Form.
+Added   : Close button and exit with pressing Esc for Find / Replace Form.
+Added   : Close All Other Tabs function.
+Update  : Color for comment and key attributes.
+Update  : Code refactoring & other minor updates.
+
+v.1.0.3.0 : (Released 27th Oct 2020)
+----------------------------------------------------------
+Update  : Change tab container from TPageControl to TExtendedNotebook
+Added   : Various options in find & replace function.
+Update  : Find / Replace Form is now resizeable.
+Removed : Add to Win Explorer Context Menu was removed since it will be set while installing the app.
+Update  : Code refactoring & other major updates.
+
+v.1.0.2.1 : (Released 26th Oct 2020)
+----------------------------------------------------------
+Added  : Close current tab button.
+Added  : Open multiple files.
+Added  : Close multiple tabs.
+Added  : Search from beginning.
+Fixed  : Updating status bar after delete tab.
+Update : Code refactoring & other minor updates.
+
+v.1.0.2.0 : (Released 24th Oct 2020)
+----------------------------------------------------------
+Added  : Copy, Cut, Paste, & Select All functions
+Added  : CSS Langugage
+Added  : More icons and toolbar buttons
+Added  : Close tab function (in popup menu of the page control)
+Added  : Use Anoa-Core as "Core" directory.
+Fixed  : Font size changing for all tabs.
+Update : Code refactoring & other major updates
+
+v.1.0.1.0 : (Released 22nd Oct 2020)
+----------------------------------------------------------
+Added  : Multitabs
+Fixed  : Fixing bugs
+Update : Code refactoring & major updates
+
+v.1.0.0.7 : (Released 20th Oct 2020)
+----------------------------------------------------------
+Added  : Save dialog default filter
+Fixed  : Update language type and file name info at status bar while saving file.
+Fixed  : Fixing bugs
+Update : Code refactoring & other minor updates
+
+v.1.0.0.6 : (Released 20th Oct 2020)
+----------------------------------------------------------
+Added : Language : COBOL (Main Menu : Settings | Language | COBOL)
+Added : Syntax completion (use Ctrl+Space) : COBOL
+Added : Switch editor color (Main Menu : Settings | Switch Editor Color)
+Added : Undo (Main Menu : Edit | Undo)
+Added : Redo (Main Menu : Edit | Redo)
+Added : Find / Replace (Main Menu : Edit | Find / Replace)
+Added : Form About (Main Menu : Help | About)
+Added : Show Completion Main Menu (Main Menu : Edit | Show Completion)
+Fixed : Open file while extension is not in the list
+Update : Code refactoring & other minor updates
+
+v.1.0.0.5 : (Released 19th Oct 2020)
+----------------------------------------------------------
+Added : Language information at Status Bar
+Added : Language : Python (Main Menu : Settings | Language | Python)
+Added : Language : JSON (Main Menu : Settings | Language | JSON)
+Added : Language : C# (Main Menu : Settings | Language | C#)
+Added : Language : SQL (Main Menu : Settings | Language | SQL)
+Added : Syntax completion (use Ctrl+Space) : Python
+Added : Syntax completion (use Ctrl+Space) : C#
+Added : Syntax completion (use Ctrl+Space) : SQL
+Update : Code refactoring & other minor updates
+
+v.1.0.0.3 : (Released 17th Oct 2020)
+----------------------------------------------------------
+Added : Language Auto-detection while opening file
+Added : Set Icon for TabSheet (Normal & Modified Status)
+Added : New (Main Menu : File | New)
+Added : Add to Sys-Menu (Main Menu : Settings | Add to Sys-Menu) : Windows Explorer Context Menu "Open with Anoa-Syntax-Editor"
+Added : Open File on Start (Right click a file on Windows Explorer and select "Open with Anoa-Syntax-Editor")
+Added : Syntax completion (use Ctrl+Space) : HTML
+Added : Syntax completion (use Ctrl+Space) : Java
+Added : Syntax completion (use Ctrl+Space) : Pascal
+Added : Syntax completion (use Ctrl+Space) : PHP
+Update : Set Font Quality of the Editor 
+Update : Add Alt F | A to Main Menu File | Save As
+Update : Code refactoring & other minor updates
+
+v.1.0.0.2 : (Released 16th Oct 2020)
+----------------------------------------------------------
+Added : Language : Java (Main Menu : Settings | Language | Java)
+Added : Language : HTML (Main Menu : Settings | Language | HTML)
+Added : Language : PHP (Main Menu : Settings | Language | PHP)
+Added : Default Filter for Open Dialog
+Added : Font Size Options
+Update : Active Page Caption set to File Name
+
+v.1.0.0.1 : (Released 13th Oct 2020)
+----------------------------------------------------------
+Added : Open File (Main Menu : File | Open File)
+Added : Save As (Main Menu : File | Save As)
+Added : Save (Main Menu : File | Save)
+Added : Language : Pascal (Main Menu : Settings | Language | Pascal)
+Added : About Info (Main Menu : Help | About).
+Added : Line Highlight Color.
+Added : Toolbar : Open (Main Menu : File | Open File)
+Added : Toolbar : Save(Main Menu : File | Save)
+Update : Main Form created at Screen Center.
+
+v.1.0.0.0 : (Released 13th Oct 2020)
+----------------------------------------------------------
+RELEASE NEW APPLICATION.
+Added : Exit App (Main Menu File | Exit).
+Added : Editor.
+Added : Status Bar.
+
