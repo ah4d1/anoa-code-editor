@@ -1,3 +1,14 @@
+v.1.0.5.0 : (Released 2nd Nov 2020)
+----------------------------------------------------------
+Update  : Project was renamed to Anoa-Code-Editor
+Added   : Menu "Controls" (Add New, Close Current, Close All, Close All Others)
+Added   : Search and replace with special character (\n,\t)
+Added   : Themes : Normal & Dark
+Added   : Show or hide special characters.
+Update  : Directory "core" was removed, the app now use AnoaCore package.
+Added   : App use AnoaCoreEditor package.
+Update  : Code refactoring & other minor updates.
+
 v.1.0.4.0 : (Released 29th Oct 2020)
 ----------------------------------------------------------
 Added   : Run Command function & menu.
