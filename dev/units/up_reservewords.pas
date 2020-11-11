@@ -10,13 +10,12 @@ HOW TO ADD NEW RESERVED WORD :
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, ace_synhighlighter;
 
 type
   tupReserveWords = class
-    vLangTxt          : WideString;
     vReservedWords    : array[0..10] of WideString; // always check size of the array
-    constructor Create;
+    constructor Create (ASynHighlighter : TAceSynHighlighter);
   private
     procedure fcResWordToArr (ALang : Widestring);
     function fcResWord (ALangTxt : string) : WideString;
@@ -30,10 +29,9 @@ implementation
 uses
   up_var, ac_filedir, ac_string, ac_stringlist;
 
-constructor tupReserveWords.Create;
+constructor tupReserveWords.Create (ASynHighlighter : TAceSynHighlighter);
 begin
-  Self.vLangTxt := '|COBOL|C#|CSS|HTML|Java|JSON|Pascal|PHP|Python|SQL';
-  Self.fcResWordToArr('none|cobol|cs|css|html|java|json|pascal|php|python|sql');
+  Self.fcResWordToArr(ASynHighlighter.vLangResWordFile);
 end;
 
 procedure tupReserveWords.fcResWordToArr (ALang : Widestring);
