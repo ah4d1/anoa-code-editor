@@ -9,7 +9,6 @@ uses
   ace_synedit;
 
 type
-  // taseTheme = (aseThemeNormal,aseThemeDark);
   tupVar = class
     vAppDir : string;
     vTabPrefix : string;
@@ -63,9 +62,9 @@ end;
 
 procedure tupVar.fcInit (AOwner : TComponent);
 begin
-  Self.vReservedWords := tupReserveWords.Create;
   Self.vSynHighlighter := TAceSynHighlighter.Create(AOwner);
-  Self.vLang := vacString.fcSplit(Self.vReservedWords.vLangTxt,'|');
+  Self.vReservedWords := tupReserveWords.Create(Self.vSynHighlighter);
+  Self.vLang := vacString.fcSplit(Self.vSynHighlighter.vLangTxt,'|');
 end;
 
 {if AFileName exists then use AFileName, else use TmpFile}
