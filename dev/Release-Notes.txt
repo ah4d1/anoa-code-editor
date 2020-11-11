@@ -1,3 +1,7 @@
+v.1.0.6.0 : (Work in progress)
+----------------------------------------------------------
+Update  : Code refactoring & other minor updates.
+
 v.1.0.5.0 : (Released 2nd Nov 2020)
 ----------------------------------------------------------
 Update  : Project was renamed to Anoa-Code-Editor
