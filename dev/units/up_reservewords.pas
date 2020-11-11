@@ -1,23 +1,17 @@
 unit up_reservewords;
 
-{
-HOW TO ADD NEW RESERVED WORD :
-1. Add reserve word list *.rw in directory addon/resword
-}
-
 {$mode objfpc}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils, ace_synhighlighter;
+  Classes, SysUtils, ace_synhighlighter, Dialogs;
 
 type
   tupReserveWords = class
-    vReservedWords    : array[0..10] of WideString; // always check size of the array
     constructor Create (ASynHighlighter : TAceSynHighlighter);
   private
-    procedure fcResWordToArr (ALang : Widestring);
+    procedure fcResWordToArr (ASynHighlighter : TAceSynHighlighter);
     function fcResWord (ALangTxt : string) : WideString;
   end;
 
@@ -31,18 +25,19 @@ uses
 
 constructor tupReserveWords.Create (ASynHighlighter : TAceSynHighlighter);
 begin
-  Self.fcResWordToArr(ASynHighlighter.vLangResWordFile);
+  Self.fcResWordToArr(ASynHighlighter);
 end;
 
-procedure tupReserveWords.fcResWordToArr (ALang : Widestring);
+procedure tupReserveWords.fcResWordToArr (ASynHighlighter : TAceSynHighlighter);
 var
   i : Integer;
   LLangs : TStringList;
 begin
-  LLangs := vacString.fcSplit(string(ALang),Char('|'));
+  LLangs := ASynHighlighter.vLangs;
   for i := 0 to LLangs.Count - 1 do
-    Self.vReservedWords[i] := Self.fcResWord(LLangs[i])
-  ;
+  begin
+    ASynHighlighter.vReservedWords.Add(string(Self.fcResWord(LLangs[i])));
+  end;
 end;
 
 function tupReserveWords.fcResWord (ALangTxt : string) : WideString;
