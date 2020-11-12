@@ -41,6 +41,9 @@ type
       AIsSpecialChar : Boolean; ASpecialChar : string);
     procedure fcFindNext;
     procedure fcRunCommand;
+    procedure fcMacroStartRecording;
+    procedure fcMacroStopRecording;
+    procedure fcMacroPlayback;
   end;
 
 var
@@ -173,6 +176,21 @@ end;
 procedure tucMain.fcRunCommand;
 begin
   Self.vPageControl.fcRunCommand;
+end;
+
+procedure tucMain.fcMacroStartRecording;
+begin
+  Self.vPageControl.fcMacroStartRecording;
+end;
+
+procedure tucMain.fcMacroStopRecording;
+begin
+  Self.vPageControl.fcMacroStopRecording;
+end;
+
+procedure tucMain.fcMacroPlayback;
+begin
+  Self.vPageControl.fcMacroPlayback;
 end;
 
 end.
