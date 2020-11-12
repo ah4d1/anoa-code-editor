@@ -1,5 +1,10 @@
 v.1.0.6.0 : (Work in progress)
 ----------------------------------------------------------
+Added : Batch Lang/Format
+Added : Ini Lang/Format
+Added : JavaScript Lang/Format
+Added : Ruby Lang/Format
+Added : XML Lang/Format
 Update  : Code refactoring & other minor updates.
 
 v.1.0.5.0 : (Released 2nd Nov 2020)
