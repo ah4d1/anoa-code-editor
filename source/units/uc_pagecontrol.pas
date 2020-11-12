@@ -45,6 +45,9 @@ type
     procedure fcFindNext;
     procedure fcRunCommand;
     function fcCurrentTabSheet : tucTabSheet;
+    procedure fcMacroStartRecording;
+    procedure fcMacroStopRecording;
+    procedure fcMacroPlayback;
   end;
 
 implementation
@@ -216,6 +219,21 @@ end;
 procedure tucPageControl.fcRunCommand;
 begin
   Self.fcCurrentTabSheet.fcRunCommand;
+end;
+
+procedure tucPageControl.fcMacroStartRecording;
+begin
+  Self.fcCurrentTabSheet.fcMacroStartRecording;
+end;
+
+procedure tucPageControl.fcMacroStopRecording;
+begin
+  Self.fcCurrentTabSheet.fcMacroStopRecording;
+end;
+
+procedure tucPageControl.fcMacroPlayback;
+begin
+  Self.fcCurrentTabSheet.fcMacroPlayback;
 end;
 
 end.
