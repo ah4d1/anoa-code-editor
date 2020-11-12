@@ -48,6 +48,9 @@ type
       AIsSpecialChar : Boolean; ASpecialChar : string);
     procedure fcFindNext;
     procedure fcRunCommand;
+    procedure fcMacroStartRecording;
+    procedure fcMacroStopRecording;
+    procedure fcMacroPlayback;
   end;
 
 implementation
@@ -163,6 +166,21 @@ begin
     aseTextStatusNormal : vupRunCommand.fcRun(Self.vLang,Self.vFileName,Self.vSynEdit,Self.vMemoResult,Self);
     aseTextStatusModified : vacDialog.fcInfo('Save your work before run.');
   end;
+end;
+
+procedure tucTabSheet.fcMacroStartRecording;
+begin
+  Self.vSynEdit.fcMacroStartRecording;
+end;
+
+procedure tucTabSheet.fcMacroStopRecording;
+begin
+  Self.vSynEdit.fcMacroStopRecording;
+end;
+
+procedure tucTabSheet.fcMacroPlayback;
+begin
+  Self.vSynEdit.fcMacroPlayback;
 end;
 
 end.
