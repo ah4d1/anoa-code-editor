@@ -47,7 +47,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="6"/>
         <TopLine Value="7"/>
-        <CursorPos X="9" Y="21"/>
+        <CursorPos X="33" Y="25"/>
         <UsageCount Value="50"/>
         <Loaded Value="True"/>
       </Unit4>
@@ -326,7 +326,7 @@
         <Filename Value="..\..\anoa-core-editor\ace_synhighlighter.pas"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="109"/>
+        <TopLine Value="155"/>
         <CursorPos Y="121"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
