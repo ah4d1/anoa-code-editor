@@ -346,6 +346,10 @@ object FormMain: TFormMain
           Caption = 'None'
           OnClick = MenuItemSettingsLangNoneClick
         end
+        object MenuItemSettingsLangBatch: TMenuItem
+          Caption = 'Batch'
+          OnClick = MenuItemSettingsLangBatchClick
+        end
         object MenuItemSettingsLangCobol: TMenuItem
           Caption = 'COBOL'
           OnClick = MenuItemSettingsLangCobolClick
@@ -362,9 +366,17 @@ object FormMain: TFormMain
           Caption = 'HTML'
           OnClick = MenuItemSettingsLangHTMLClick
         end
+        object MenuItemSettingsLangIni: TMenuItem
+          Caption = 'Ini'
+          OnClick = MenuItemSettingsLangIniClick
+        end
         object MenuItemSettingsLangJava: TMenuItem
           Caption = 'Java'
           OnClick = MenuItemSettingsLangJavaClick
+        end
+        object MenuItemSettingsLangJavaScript: TMenuItem
+          Caption = 'JavaScript'
+          OnClick = MenuItemSettingsLangJavaScriptClick
         end
         object MenuItemSettingsLangJSON: TMenuItem
           Caption = 'JSON'
@@ -382,9 +394,17 @@ object FormMain: TFormMain
           Caption = 'Python'
           OnClick = MenuItemSettingsLangPythonClick
         end
+        object MenuItemSettingsLangRuby: TMenuItem
+          Caption = 'Ruby'
+          OnClick = MenuItemSettingsLangRubyClick
+        end
         object MenuItemSettingsLangSQL: TMenuItem
           Caption = 'SQL'
           OnClick = MenuItemSettingsLangSQLClick
+        end
+        object MenuItemSettingsLangXML: TMenuItem
+          Caption = 'XML'
+          OnClick = MenuItemSettingsLangXMLClick
         end
       end
       object MenuItemSettingsTheme: TMenuItem
