@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
   StdCtrls, Spin, ExtCtrls, ShellCtrls, ActnList, SynHighlighterCobol,
   SynHighlighterRuby, SynEdit, SynCompletion, SynEditTypes, SynHighlighterPas,
-  ac_app, ace_synedit, ace_synhighlighter;
+  SynMacroRecorder, ac_app, ace_synedit, ace_synhighlighter;
 
 type
 
@@ -24,6 +24,10 @@ type
     ImageListMain: TImageList;
     LabelFontSize: TLabel;
     MainMenuMain: TMainMenu;
+    MenuItemMacroPlayback: TMenuItem;
+    MenuItemMacroStopRecording: TMenuItem;
+    MenuItemMacroStartRecording: TMenuItem;
+    MenuItemMacro: TMenuItem;
     MenuItemSettingsLangJavaScript: TMenuItem;
     MenuItemSettingsLangBatch: TMenuItem;
     MenuItemSettingsLangXML: TMenuItem;
@@ -92,9 +96,12 @@ type
     PopupMenuSynEdit: TPopupMenu;
     PopupMenuPageControl: TPopupMenu;
     SaveDialogMain: TSaveDialog;
+    ShapeMacro: TShape;
     ShellTreeViewMain: TShellTreeView;
     SpinEditFontSize: TSpinEdit;
     SplitterMain: TSplitter;
+    SynMacroRecorderMain: TSynMacroRecorder;
+    TimerMacro: TTimer;
     ToolBarMain: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
@@ -118,6 +125,9 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItemMacroPlaybackClick(Sender: TObject);
+    procedure MenuItemMacroStartRecordingClick(Sender: TObject);
+    procedure MenuItemMacroStopRecordingClick(Sender: TObject);
     procedure MenuItemSettingsLangBatchClick(Sender: TObject);
     procedure MenuItemSettingsLangIniClick(Sender: TObject);
     procedure MenuItemSettingsLangJavaScriptClick(Sender: TObject);
@@ -161,6 +171,7 @@ type
     procedure SpinEditFontSizeChange(Sender: TObject);
     procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
       AIsSpecialChar : Boolean; ASpecialChar : string);
+    procedure TimerMacroTimer(Sender: TObject);
   private
     procedure UpdateShellTreeViewImages;
     procedure SetLang (ALang : TAceShLang);
@@ -186,7 +197,7 @@ var
 begin
   vupVar := tupVar.Create(Self);
   vupVar.vAppDir := ExtractFilePath(Application.ExeName);
-  vupVar.fcInit(Self);
+  vupVar.fcInit(Self,Self.SynMacroRecorderMain);
   vupCurrentData := tupCurrentData.Create(vupVar.vSynHighlighter);
   LFileNameOnStart := string(vacApp.fcGetParam);
   Self.OpenDialogMain.Filter := string(vupVar.vSynHighlighter.vDefaultFilter);
@@ -203,6 +214,24 @@ begin
   end;
   Self.UpdateShellTreeViewImages;
   Self.ActiveControl := vucMain.vPageControl.fcCurrentTabSheet.vSynEdit;
+end;
+
+procedure TFormMain.MenuItemMacroPlaybackClick(Sender: TObject);
+begin
+  vucMain.fcMacroPlayback;
+end;
+
+procedure TFormMain.MenuItemMacroStartRecordingClick(Sender: TObject);
+begin
+  Self.TimerMacro.Enabled := True;
+  vucMain.fcMacroStartRecording;
+end;
+
+procedure TFormMain.MenuItemMacroStopRecordingClick(Sender: TObject);
+begin
+  vucMain.fcMacroStopRecording;
+  Self.TimerMacro.Enabled := False;
+  Self.ShapeMacro.Visible := False;
 end;
 
 procedure TFormMain.MenuItemSettingsLangBatchClick(Sender: TObject);
@@ -341,6 +370,11 @@ procedure TFormMain.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptio
   AIsSpecialChar : Boolean; ASpecialChar : string);
 begin
   vucMain.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions,AIsSpecialChar,ASpecialChar);
+end;
+
+procedure TFormMain.TimerMacroTimer(Sender: TObject);
+begin
+  Self.ShapeMacro.Visible := not(Self.ShapeMacro.Visible);
 end;
 
 procedure TFormMain.MenuItemEditRedoClick(Sender: TObject);
