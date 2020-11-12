@@ -5,7 +5,7 @@ Added : Ini Lang/Format
 Added : JavaScript Lang/Format
 Added : Ruby Lang/Format
 Added : XML Lang/Format
-Update  : Code refactoring & other minor updates.
+Update  : Code refactoring & other updates.
 
 v.1.0.5.0 : (Released 2nd Nov 2020)
 ----------------------------------------------------------
