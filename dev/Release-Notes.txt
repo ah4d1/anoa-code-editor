@@ -1,4 +1,4 @@
-v.1.0.6.0 : (Work in progress)
+v.1.0.6.0 : (Released 13th Nov 2020)
 ----------------------------------------------------------
 Added : Batch Lang/Format
 Added : Ini Lang/Format
