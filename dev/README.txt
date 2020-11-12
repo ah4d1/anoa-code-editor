@@ -54,9 +54,9 @@ AnoaCore       : https://github.com/ah4d1/anoa-core
 AnoaCoreEditor : https://github.com/ah4d1/anoa-core-editor
 
 
-ADDITIONAL SOURCE(S), MUST BE ADDED TO PROJECT, THANKS TO :
+ADDITIONAL SOURCE(S), MUST BE ADDED TO PROJECT :
 -------------------------------------
--
+Resword        : see documentation of AnoaCoreEditor package
 
 
 LOGO, THANKS TO :
