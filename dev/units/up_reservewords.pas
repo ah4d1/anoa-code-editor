@@ -22,7 +22,7 @@ uses
 
 constructor tupReserveWords.Create (ASynHighlighter : TAceSynHighlighter);
 begin
-  ASynHighlighter.fcReserveWords(vupVar.vAppDir + '/addon/resword/');
+  ASynHighlighter.fcReserveWords(vupVar.vAppDir + '/resword/');
 end;
 
 end.
