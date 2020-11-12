@@ -194,6 +194,17 @@ object FormMain: TFormMain
         TabOrder = 0
         Value = 9
       end
+      object ShapeMacro: TShape
+        Left = 151
+        Height = 31
+        Top = 3
+        Width = 25
+        Brush.Color = clRed
+        Pen.Color = clMaroon
+        Pen.Width = 4
+        Shape = stCircle
+        Visible = False
+      end
     end
   end
   object ShellTreeViewMain: TShellTreeView
@@ -346,6 +357,10 @@ object FormMain: TFormMain
           Caption = 'None'
           OnClick = MenuItemSettingsLangNoneClick
         end
+        object MenuItemSettingsLangBatch: TMenuItem
+          Caption = 'Batch'
+          OnClick = MenuItemSettingsLangBatchClick
+        end
         object MenuItemSettingsLangCobol: TMenuItem
           Caption = 'COBOL'
           OnClick = MenuItemSettingsLangCobolClick
@@ -362,9 +377,17 @@ object FormMain: TFormMain
           Caption = 'HTML'
           OnClick = MenuItemSettingsLangHTMLClick
         end
+        object MenuItemSettingsLangIni: TMenuItem
+          Caption = 'Ini'
+          OnClick = MenuItemSettingsLangIniClick
+        end
         object MenuItemSettingsLangJava: TMenuItem
           Caption = 'Java'
           OnClick = MenuItemSettingsLangJavaClick
+        end
+        object MenuItemSettingsLangJavaScript: TMenuItem
+          Caption = 'JavaScript'
+          OnClick = MenuItemSettingsLangJavaScriptClick
         end
         object MenuItemSettingsLangJSON: TMenuItem
           Caption = 'JSON'
@@ -382,9 +405,17 @@ object FormMain: TFormMain
           Caption = 'Python'
           OnClick = MenuItemSettingsLangPythonClick
         end
+        object MenuItemSettingsLangRuby: TMenuItem
+          Caption = 'Ruby'
+          OnClick = MenuItemSettingsLangRubyClick
+        end
         object MenuItemSettingsLangSQL: TMenuItem
           Caption = 'SQL'
           OnClick = MenuItemSettingsLangSQLClick
+        end
+        object MenuItemSettingsLangXML: TMenuItem
+          Caption = 'XML'
+          OnClick = MenuItemSettingsLangXMLClick
         end
       end
       object MenuItemSettingsTheme: TMenuItem
@@ -408,6 +439,22 @@ object FormMain: TFormMain
           Caption = 'Hide'
           OnClick = MenuItemSettingsSpecialCharsHideClick
         end
+      end
+    end
+    object MenuItemMacro: TMenuItem
+      Caption = 'Macro'
+      object MenuItemMacroStartRecording: TMenuItem
+        Caption = 'Start Recording'
+        OnClick = MenuItemMacroStartRecordingClick
+      end
+      object MenuItemMacroStopRecording: TMenuItem
+        Caption = 'Stop Recording'
+        OnClick = MenuItemMacroStopRecordingClick
+      end
+      object MenuItemMacroPlayback: TMenuItem
+        Caption = 'Playback'
+        ShortCut = 24656
+        OnClick = MenuItemMacroPlaybackClick
       end
     end
     object MenuItem3: TMenuItem
@@ -1125,7 +1172,7 @@ object FormMain: TFormMain
     Images = ImageListMain
     ImagesWidth = 24
     left = 584
-    top = 152
+    top = 160
     object MenuItemRun: TMenuItem
       Caption = 'Run'
       ImageIndex = 12
@@ -1169,5 +1216,17 @@ object FormMain: TFormMain
       OnExecute = ActionTabCloseOthersExecute
       ShortCut = 49341
     end
+  end
+  object SynMacroRecorderMain: TSynMacroRecorder
+    RecordShortCut = 24658
+    PlaybackShortCut = 24656
+    left = 588
+    top = 256
+  end
+  object TimerMacro: TTimer
+    Enabled = False
+    OnTimer = TimerMacroTimer
+    left = 592
+    top = 349
   end
 end
