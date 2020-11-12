@@ -25,7 +25,7 @@ end;
 
 procedure tucSynCompletion.fcUpdate (ALang : TAceShLang);
 begin
-  Self.ItemList := vacString.fcSplit(vupVar.vReservedWords.vReservedWords[Ord(ALang)],'|');
+  Self.ItemList := vacString.fcSplit(vupVar.vSynHighlighter.vReservedWords[Ord(ALang)],'|');
 end;
 
 end.
