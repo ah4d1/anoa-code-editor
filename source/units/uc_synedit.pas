@@ -21,6 +21,9 @@ type
     procedure fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
       AIsSpecialChar : Boolean; ASpecialChar : string);
     procedure fcFindNext;
+    procedure fcMacroStartRecording;
+    procedure fcMacroStopRecording;
+    procedure fcMacroPlayback;
   end;
 
 implementation
@@ -46,6 +49,7 @@ procedure tucSynEdit.fcInit (APopupMenu : TPopupMenu);
 begin
   Self.fcUpdate;
   Self.PopupMenu := APopupMenu;
+  vupVar.vSynMacroRecorder.Editor := Self;
 end;
 
 procedure tucSynEdit.fcUpdate;
@@ -56,8 +60,9 @@ begin
   if vupVar.vShowSpecialChars then
     Self.Options := Self.Options + [eoShowSpecialChars]
   else
-  Self.Options := Self.Options - [eoShowSpecialChars]
-  ;
+  Self.Options := Self.Options - [eoShowSpecialChars];
+  {TEST}
+  vupVar.vSynMacroRecorder.Editor := Self;
 end;
 
 procedure tucSynEdit.fcUpdate (ACurrentData : tupCurrentData);
@@ -103,6 +108,21 @@ end;
 procedure tucSynEdit.fcFindNext;
 begin
   Self.SearchReplace(vupVar.vCurrentFindKeyword,'',[]);
+end;
+
+procedure tucSynEdit.fcMacroStartRecording;
+begin
+  vupVar.vSynMacroRecorder.RecordMacro(Self);
+end;
+
+procedure tucSynEdit.fcMacroStopRecording;
+begin
+  vupVar.vSynMacroRecorder.Stop;
+end;
+
+procedure tucSynEdit.fcMacroPlayback;
+begin
+  vupVar.vSynMacroRecorder.PlaybackMacro(Self);
 end;
 
 end.
