@@ -5,8 +5,8 @@ unit up_var;
 interface
 
 uses
-  Classes, SysUtils, Graphics, SynEditHighlighter, ace_synhighlighter, up_reservewords,
-  ace_synedit;
+  Classes, SysUtils, Graphics, SynEditHighlighter, SynMacroRecorder,
+  ace_synhighlighter, up_reservewords, ace_synedit;
 
 type
   tupVar = class
@@ -16,6 +16,7 @@ type
     vImageIndexNormalFile : Byte;
     vImageIndexModifiedFile : Byte;
     vSynHighlighter : TAceSynHighlighter;
+    vSynMacroRecorder : TSynMacroRecorder;
     vReservedWords : tupReserveWords;
     vLang : TStringList;
     vFontSize : Byte;
@@ -28,7 +29,7 @@ type
     vLineHighlightColor : TColor;
     vShowSpecialChars : Boolean;
     constructor Create (AOwner : TComponent);
-    procedure fcInit (AOwner : TComponent);
+    procedure fcInit (AOwner : TComponent; ASynMacroRecorder : TSynMacroRecorder);
     function fcFileName (AFileName : TFileName; var ATmpFile : Boolean) : TFileName; overload;
     procedure fcUpdate (AFontSize : Byte); overload;
     procedure fcUpdate (AFontSize : Byte; ATheme : TAceSeTheme); overload;
@@ -60,9 +61,10 @@ begin
   Self.vShowSpecialChars := False;
 end;
 
-procedure tupVar.fcInit (AOwner : TComponent);
+procedure tupVar.fcInit (AOwner : TComponent; ASynMacroRecorder : TSynMacroRecorder);
 begin
   Self.vSynHighlighter := TAceSynHighlighter.Create(AOwner);
+  Self.vSynMacroRecorder := ASynMacroRecorder;
   Self.vReservedWords := tupReserveWords.Create(Self.vSynHighlighter);
   Self.vLang := vacString.fcSplit(Self.vSynHighlighter.vLangTxt,'|');
 end;
