@@ -10,6 +10,7 @@ License     : GNU General Public License version 2
 PROJECT DETAILS :
 -------------------------------------
 Started     : 13th October 2020
+Website     : http://anoa-projects.com
 Binary      : https://anoa-code-editor.sourceforge.io
 Source Code : https://github.com/ah4d1/anoa-code-editor
   - dev     : Code of on-going development.
@@ -30,7 +31,8 @@ MAIN FEATURES :
 - Line numbering.
 - Support many popular languages.
 - Run code directly (for selected languages).
-- Switch editor color.
+- Theme options.
+- Macro recording & playback.
 
 
 DEVELOPMENT ENVIRONMENT & COMPILER, THANKS TO :
