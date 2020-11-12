@@ -6,9 +6,9 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
-  StdCtrls, Spin, ExtCtrls, ShellCtrls, ActnList, SynHighlighterCobol, SynEdit,
-  SynCompletion, SynEditTypes, SynHighlighterPas, ac_app,
-  ace_synedit, ace_synhighlighter;
+  StdCtrls, Spin, ExtCtrls, ShellCtrls, ActnList, SynHighlighterCobol,
+  SynHighlighterRuby, SynEdit, SynCompletion, SynEditTypes, SynHighlighterPas,
+  ac_app, ace_synedit, ace_synhighlighter;
 
 type
 
@@ -24,6 +24,11 @@ type
     ImageListMain: TImageList;
     LabelFontSize: TLabel;
     MainMenuMain: TMainMenu;
+    MenuItemSettingsLangJavaScript: TMenuItem;
+    MenuItemSettingsLangBatch: TMenuItem;
+    MenuItemSettingsLangXML: TMenuItem;
+    MenuItemSettingsLangIni: TMenuItem;
+    MenuItemSettingsLangRuby: TMenuItem;
     MenuItemSettingsSpecialCharsHide: TMenuItem;
     MenuItemSettingsSpecialCharsShow: TMenuItem;
     MenuItemSettingsSpecialChars: TMenuItem;
@@ -113,6 +118,10 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItemSettingsLangBatchClick(Sender: TObject);
+    procedure MenuItemSettingsLangIniClick(Sender: TObject);
+    procedure MenuItemSettingsLangJavaScriptClick(Sender: TObject);
+    procedure MenuItemSettingsLangRubyClick(Sender: TObject);
     procedure MenuItemEditCopyClick(Sender: TObject);
     procedure MenuItemEditCutClick(Sender: TObject);
     procedure MenuItemEditFindNextClick(Sender: TObject);
@@ -141,6 +150,7 @@ type
     procedure MenuItemSettingsLangPHPClick(Sender: TObject);
     procedure MenuItemSettingsLangPythonClick(Sender: TObject);
     procedure MenuItemSettingsLangSQLClick(Sender: TObject);
+    procedure MenuItemSettingsLangXMLClick(Sender: TObject);
     procedure MenuItemSettingsSpecialCharsHideClick(Sender: TObject);
     procedure MenuItemSettingsSpecialCharsShowClick(Sender: TObject);
     procedure MenuItemSettingsThemeDarkClick(Sender: TObject);
@@ -193,6 +203,26 @@ begin
   end;
   Self.UpdateShellTreeViewImages;
   Self.ActiveControl := vucMain.vPageControl.fcCurrentTabSheet.vSynEdit;
+end;
+
+procedure TFormMain.MenuItemSettingsLangBatchClick(Sender: TObject);
+begin
+  Self.SetLang(aceShLangBatch);
+end;
+
+procedure TFormMain.MenuItemSettingsLangIniClick(Sender: TObject);
+begin
+  Self.SetLang(aceShLangIni);
+end;
+
+procedure TFormMain.MenuItemSettingsLangJavaScriptClick(Sender: TObject);
+begin
+  Self.SetLang(aceShLangJavaScript);
+end;
+
+procedure TFormMain.MenuItemSettingsLangRubyClick(Sender: TObject);
+begin
+  Self.SetLang(aceShLangRuby);
 end;
 
 procedure TFormMain.UpdateShellTreeViewImages;
@@ -443,6 +473,11 @@ end;
 procedure TFormMain.MenuItemSettingsLangSQLClick(Sender: TObject);
 begin
   Self.SetLang(aceShLangSQL);
+end;
+
+procedure TFormMain.MenuItemSettingsLangXMLClick(Sender: TObject);
+begin
+  Self.SetLang(aceShLangXML);
 end;
 
 procedure TFormMain.MenuItemSettingsSpecialCharsHideClick(Sender: TObject);
