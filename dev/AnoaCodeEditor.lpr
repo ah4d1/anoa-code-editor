@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, lazcontrols, uf_main, up_lang, up_var,
-  up_reservewords, uf_findreplace, uf_about, uc_pagecontrol,
+  uf_findreplace, uf_about, uc_pagecontrol,
   uc_tabsheet, uc_syncompletion, uc_statusbar, uc_main, up_currentdata,
   uc_memoresult, up_runcommand, up_theme;
 
