@@ -5,7 +5,7 @@ unit up_lang;
 interface
 
 uses
-  Classes, SysUtils, ace_synhighlighter;
+  Classes, SysUtils, Dialogs, ace_synhighlighter;
 
 type
   tupLang = object
@@ -25,7 +25,6 @@ function tupLang.fcGetLang (AFileExt : string) : TAceShLang;
 begin
   vupVar.vSynHighlighter.vExt := AFileExt;
   Result := vupVar.vSynHighlighter.vLang;
-  // Result := vupVar.vSynHighlighter.fcGetLang(AFileExt);
 end;
 
 function tupLang.fcGetLangTxt (ALang : TAceShLang) : string;
