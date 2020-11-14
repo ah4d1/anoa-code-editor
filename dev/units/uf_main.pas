@@ -24,6 +24,7 @@ type
     ImageListMain: TImageList;
     LabelFontSize: TLabel;
     MainMenuMain: TMainMenu;
+    MenuItemSettingsLangR: TMenuItem;
     MenuItemMacroPlayback: TMenuItem;
     MenuItemMacroStopRecording: TMenuItem;
     MenuItemMacroStartRecording: TMenuItem;
@@ -131,6 +132,7 @@ type
     procedure MenuItemSettingsLangBatchClick(Sender: TObject);
     procedure MenuItemSettingsLangIniClick(Sender: TObject);
     procedure MenuItemSettingsLangJavaScriptClick(Sender: TObject);
+    procedure MenuItemSettingsLangRClick(Sender: TObject);
     procedure MenuItemSettingsLangRubyClick(Sender: TObject);
     procedure MenuItemEditCopyClick(Sender: TObject);
     procedure MenuItemEditCutClick(Sender: TObject);
@@ -247,6 +249,11 @@ end;
 procedure TFormMain.MenuItemSettingsLangJavaScriptClick(Sender: TObject);
 begin
   Self.SetLang(aceShLangJavaScript);
+end;
+
+procedure TFormMain.MenuItemSettingsLangRClick(Sender: TObject);
+begin
+  Self.SetLang(aceShLangR);
 end;
 
 procedure TFormMain.MenuItemSettingsLangRubyClick(Sender: TObject);
