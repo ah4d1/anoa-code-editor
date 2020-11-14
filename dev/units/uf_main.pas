@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls,
   StdCtrls, Spin, ExtCtrls, ShellCtrls, ActnList, SynHighlighterCobol,
   SynHighlighterRuby, SynEdit, SynCompletion, SynEditTypes, SynHighlighterPas,
-  SynMacroRecorder, ac_app, ace_synedit, ace_synhighlighter;
+  SynMacroRecorder, lclintf, ac_app, ace_synedit, ace_synhighlighter;
 
 type
 
@@ -24,6 +24,8 @@ type
     ImageListMain: TImageList;
     LabelFontSize: TLabel;
     MainMenuMain: TMainMenu;
+    MenuItemHelpVisitWebsite: TMenuItem;
+    MenuItemViewAllDirs: TMenuItem;
     MenuItemSettingsLangR: TMenuItem;
     MenuItemMacroPlayback: TMenuItem;
     MenuItemMacroStopRecording: TMenuItem;
@@ -126,6 +128,7 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItemHelpVisitWebsiteClick(Sender: TObject);
     procedure MenuItemMacroPlaybackClick(Sender: TObject);
     procedure MenuItemMacroStartRecordingClick(Sender: TObject);
     procedure MenuItemMacroStopRecordingClick(Sender: TObject);
@@ -167,6 +170,7 @@ type
     procedure MenuItemSettingsSpecialCharsShowClick(Sender: TObject);
     procedure MenuItemSettingsThemeDarkClick(Sender: TObject);
     procedure MenuItemSettingsThemeNormalClick(Sender: TObject);
+    procedure MenuItemViewAllDirsClick(Sender: TObject);
     procedure ShellTreeViewMainCollapsed(Sender: TObject; Node: TTreeNode);
     procedure ShellTreeViewMainDblClick(Sender: TObject);
     procedure ShellTreeViewMainExpanded(Sender: TObject; Node: TTreeNode);
@@ -205,7 +209,7 @@ begin
   Self.OpenDialogMain.Filter := string(vupVar.vSynHighlighter.vDefaultFilter);
   Self.SaveDialogMain.Filter := string(vupVar.vSynHighlighter.vDefaultFilter);
   vucMain := tucMain.Create(Self,Self.ImageListMain,Self.PopupMenuPageControl,
-    Self.SpinEditFontSize,Self.SaveDialogMain
+    Self.ShellTreeViewMain,Self.SpinEditFontSize,Self.SaveDialogMain
   );
   if Trim(LFileNameOnStart) = '' then
     vucMain.fcAddNewTab(Self.PopupMenuSynEdit)
@@ -216,6 +220,11 @@ begin
   end;
   Self.UpdateShellTreeViewImages;
   Self.ActiveControl := vucMain.vPageControl.fcCurrentTabSheet.vSynEdit;
+end;
+
+procedure TFormMain.MenuItemHelpVisitWebsiteClick(Sender: TObject);
+begin
+  OpenURL('http://anoa-projects.com/anoa-code-editor');
 end;
 
 procedure TFormMain.MenuItemMacroPlaybackClick(Sender: TObject);
@@ -549,6 +558,11 @@ procedure TFormMain.MenuItemSettingsThemeNormalClick(Sender: TObject);
 begin
   vupVar.vCurrentTheme := aceShThemeNormal;
   vucMain.fcUpdate;
+end;
+
+procedure TFormMain.MenuItemViewAllDirsClick(Sender: TObject);
+begin
+  Self.ShellTreeViewMain.Root := '';
 end;
 
 procedure TFormMain.ShellTreeViewMainCollapsed(Sender: TObject; Node: TTreeNode);
