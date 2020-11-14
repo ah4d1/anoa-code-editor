@@ -5,7 +5,7 @@ unit uc_syncompletion;
 interface
 
 uses
-  Classes, SysUtils, SynCompletion, ace_synhighlighter, ac_string;
+  Classes, SysUtils, Dialogs, SynCompletion, ace_synhighlighter, ac_string;
 
 type
   tucSynCompletion = class(TSynCompletion)
