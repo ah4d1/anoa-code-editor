@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Graphics, SynEditHighlighter, SynMacroRecorder,
-  ace_synhighlighter, ace_synedit;
+  ace_synhighlighter;
 
 type
   tupVar = class
@@ -20,18 +20,13 @@ type
     vLang : TStringList;
     vFontSize : Byte;
     vCurrentFindKeyword : string;
-    vCurrentTheme : TAceSeTheme;
-    vSynEditColor : TColor;
-    vSynEditFontColor : TColor;
-    vGutterColor : TColor;
-    vGutterMarkupColor : TColor;
-    vLineHighlightColor : TColor;
+    vCurrentTheme : TAceShTheme;
     vShowSpecialChars : Boolean;
     constructor Create (AOwner : TComponent);
     procedure fcInit (AOwner : TComponent; ASynMacroRecorder : TSynMacroRecorder);
     function fcFileName (AFileName : TFileName; var ATmpFile : Boolean) : TFileName; overload;
     procedure fcUpdate (AFontSize : Byte); overload;
-    procedure fcUpdate (AFontSize : Byte; ATheme : TAceSeTheme); overload;
+    procedure fcUpdate (AFontSize : Byte; ATheme : TAceShTheme); overload;
   end;
 
 var
@@ -51,12 +46,7 @@ begin
   {}
   Self.vFontSize := 9;
   Self.vCurrentFindKeyword := '';
-  Self.vCurrentTheme := aceSeThemeNormal;
-  Self.vSynEditColor := clWhite;
-  Self.vSynEditFontColor := clBlack;
-  Self.vGutterColor := clBtnFace;
-  Self.vGutterMarkupColor := clBtnFace;
-  Self.vLineHighlightColor := $00EFE8D6;
+  Self.vCurrentTheme := aceShThemeNormal;
   Self.vShowSpecialChars := False;
 end;
 
@@ -94,7 +84,7 @@ begin
   Self.fcUpdate(AFontSize,Self.vCurrentTheme);
 end;
 
-procedure tupVar.fcUpdate (AFontSize : Byte; ATheme : TAceSeTheme);
+procedure tupVar.fcUpdate (AFontSize : Byte; ATheme : TAceShTheme);
 begin
   Self.vFontSize := AFontSize;
   Self.vCurrentTheme := ATheme;
