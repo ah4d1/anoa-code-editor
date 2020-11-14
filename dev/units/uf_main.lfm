@@ -405,6 +405,10 @@ object FormMain: TFormMain
           Caption = 'Python'
           OnClick = MenuItemSettingsLangPythonClick
         end
+        object MenuItemSettingsLangR: TMenuItem
+          Caption = 'R'
+          OnClick = MenuItemSettingsLangRClick
+        end
         object MenuItemSettingsLangRuby: TMenuItem
           Caption = 'Ruby'
           OnClick = MenuItemSettingsLangRubyClick
