@@ -6,21 +6,24 @@ interface
 
 uses
   Classes, SysUtils, ComCtrls, Controls, Menus, Spin, SynEditHighlighter, up_currentdata, uc_tabsheet,
-  uc_statusbar, Dialogs, UITypes, ExtendedNotebook, SynEditTypes, up_var;
+  uc_statusbar, Dialogs, UITypes, ExtendedNotebook, SynEditTypes, ShellCtrls, up_var;
 
 type
-  tucPageControl = class(TExtendedNotebook)
+  TUcPageControl = class(TExtendedNotebook)
   private
     FSpinEdit : TSpinEdit;
+    FShellTreeView : TShellTreeView;
     FStatusBar : tucStatusBar;
     FSaveDialog : TSaveDialog;
   public
     property vSpinEdit : TSpinEdit read FSpinEdit write FSpinEdit;
+    property vShellTreeView : TShellTreeView read FShellTreeView write FShellTreeView;
     property vStatusBar : tucStatusBar read FStatusBar write FStatusBar;
     property vSaveDialog : TSaveDialog read FSaveDialog write FSaveDialog;
     constructor Create (AOwner : TComponent); override;
     procedure fcInit (AImageList : TImageList; APopupMenu : TPopupMenu;
-      ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar; ASaveDialog : TSaveDialog);
+      AShellTreeView : TShellTreeView; ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar;
+      ASaveDialog : TSaveDialog);
     procedure fcAddNewTab (APopupMenu : TPopupMenu);
     procedure fcAddNewTabThenOpen (ACurrentData : tupCurrentData;
       APopupMenu : TPopupMenu);
@@ -52,7 +55,7 @@ type
 
 implementation
 
-constructor tucPageControl.Create (AOwner : TComponent);
+constructor TUcPageControl.Create (AOwner : TComponent);
 begin
   inherited Create(AOwner);
   Self.Align := alClient;
@@ -61,31 +64,33 @@ begin
   Self.vStatusBar := tucStatusBar.Create(Self);
 end;
 
-procedure tucPageControl.fcInit (AImageList : TImageList; APopupMenu : TPopupMenu;
-  ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar; ASaveDialog : TSaveDialog);
+procedure TUcPageControl.fcInit (AImageList : TImageList; APopupMenu : TPopupMenu;
+  AShellTreeView : TShellTreeView; ASpinEdit : TSpinEdit; AStatusBar : tucStatusBar;
+  ASaveDialog : TSaveDialog);
 begin
   Self.Images := AImageList;
   Self.ImagesWidth := 24;
   Self.PopupMenu := APopupMenu;
+  Self.vShellTreeView := AShellTreeView;
   Self.vSpinEdit := ASpinEdit;
   Self.vStatusBar := AStatusBar;
   Self.vSaveDialog := ASaveDialog;
 end;
 
-procedure tucPageControl.fcAddNewTab (APopupMenu : TPopupMenu);
+procedure TUcPageControl.fcAddNewTab (APopupMenu : TPopupMenu);
 begin
   vupVar.vTabNo := vupVar.vTabNo + 1;
   Self.fcNewTab(vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),vupVar.vImageIndexNormalFile,APopupMenu);
 end;
 
-procedure tucPageControl.fcAddNewTabThenOpen (ACurrentData : tupCurrentData;
+procedure TUcPageControl.fcAddNewTabThenOpen (ACurrentData : tupCurrentData;
   APopupMenu : TPopupMenu);
 begin
   Self.fcNewTab(ExtractFileName(ACurrentData.vFileName),vupVar.vImageIndexNormalFile,APopupMenu);
   Self.fcCurrentTabSheet.fcOpen(ACurrentData);
 end;
 
-procedure tucPageControl.fcNewTab (ACaption : string; AImageIndex : Byte; APopupMenu : TPopupMenu);
+procedure TUcPageControl.fcNewTab (ACaption : string; AImageIndex : Byte; APopupMenu : TPopupMenu);
 begin
   with tucTabSheet.Create(Self) do
   begin
@@ -97,7 +102,7 @@ begin
   Self.fcCurrentTabSheet.fcInit(APopupMenu);
 end;
 
-procedure tucPageControl.fcCloseCurrentTab (ACurrentData : tupCurrentData; ACaption : string;
+procedure TUcPageControl.fcCloseCurrentTab (ACurrentData : tupCurrentData; ACaption : string;
   AImageIndex : Byte; APopupMenu : TPopupMenu);
 var
   LConfirmation : TModalResult;
@@ -133,7 +138,7 @@ begin
   if Self.PageCount <= 0 then Self.fcAddNewTab(APopupMenu);
 end;
 
-procedure tucPageControl.fcUpdate;
+procedure TUcPageControl.fcUpdate;
 var
   i : Integer;
 begin
@@ -142,96 +147,97 @@ begin
   ;
 end;
 
-procedure tucPageControl.fcUpdate (ACurrentData : tupCurrentData);
+procedure TUcPageControl.fcUpdate (ACurrentData : TUpCurrentData);
 begin
   Self.fcCurrentTabSheet.fcUpdate(ACurrentData);
+  Self.vShellTreeView.Root := ExtractFilePath(ACurrentData.vFileName);
 end;
 
-procedure tucPageControl.fcUndo;
+procedure TUcPageControl.fcUndo;
 begin
   Self.fcCurrentTabSheet.fcUndo;
 end;
 
-procedure tucPageControl.fcRedo;
+procedure TUcPageControl.fcRedo;
 begin
   Self.fcCurrentTabSheet.fcRedo;
 end;
 
-procedure tucPageControl.fcCopy;
+procedure TUcPageControl.fcCopy;
 begin
   Self.fcCurrentTabSheet.fcCopy;
 end;
 
-procedure tucPageControl.fcCut;
+procedure TUcPageControl.fcCut;
 begin
   Self.fcCurrentTabSheet.fcCut;
 end;
 
-procedure tucPageControl.fcPaste;
+procedure TUcPageControl.fcPaste;
 begin
   Self.fcCurrentTabSheet.fcPaste;
 end;
 
-procedure tucPageControl.fcSelectAll;
+procedure TUcPageControl.fcSelectAll;
 begin
   Self.fcCurrentTabSheet.fcSelectAll;
 end;
 
-procedure tucPageControl.fcSetCurrentData;
+procedure TUcPageControl.fcSetCurrentData;
 begin
   Self.fcCurrentTabSheet.fcSetCurrentData;
   Self.vStatusBar.fcUpdate(vupCurrentData);
 end;
 
-procedure tucPageControl.Change;
+procedure TUcPageControl.Change;
 begin
   inherited Change;
   Self.fcSetCurrentData;
   Self.fcUpdate(vupCurrentData);
 end;
 
-procedure tucPageControl.fcSave (AFileName : TFileName);
+procedure TUcPageControl.fcSave (AFileName : TFileName);
 begin
   Self.fcCurrentTabSheet.fcSave(AFileName);
 end;
 
-procedure tucPageControl.fcShowCompletion;
+procedure TUcPageControl.fcShowCompletion;
 begin
   Self.fcCurrentTabSheet.fcShowCompletion;
 end;
 
-procedure tucPageControl.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+procedure TUcPageControl.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
   AIsSpecialChar : Boolean; ASpecialChar : string);
 begin
   Self.fcCurrentTabSheet.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions,AIsSpecialChar,ASpecialChar);
 end;
 
-procedure tucPageControl.fcFindNext;
+procedure TUcPageControl.fcFindNext;
 begin
   Self.fcCurrentTabSheet.fcFindNext;
 end;
 
-function tucPageControl.fcCurrentTabSheet : tucTabSheet;
+function TUcPageControl.fcCurrentTabSheet : tucTabSheet;
 begin
   Result := (Self.ActivePage as tucTabSheet);
 end;
 
-procedure tucPageControl.fcRunCommand;
+procedure TUcPageControl.fcRunCommand;
 begin
   Self.fcCurrentTabSheet.fcRunCommand;
 end;
 
-procedure tucPageControl.fcMacroStartRecording;
+procedure TUcPageControl.fcMacroStartRecording;
 begin
   Self.fcCurrentTabSheet.fcMacroStartRecording;
 end;
 
-procedure tucPageControl.fcMacroStopRecording;
+procedure TUcPageControl.fcMacroStopRecording;
 begin
   Self.fcCurrentTabSheet.fcMacroStopRecording;
 end;
 
-procedure tucPageControl.fcMacroPlayback;
+procedure TUcPageControl.fcMacroPlayback;
 begin
   Self.fcCurrentTabSheet.fcMacroPlayback;
 end;
