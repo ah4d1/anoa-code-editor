@@ -6,22 +6,22 @@ interface
 
 uses
   Classes, SysUtils, Controls, Menus, Spin, SynEditHighlighter, up_var, up_currentdata,
-  uc_pagecontrol, uc_statusbar, Dialogs, SynEditTypes;
+  uc_pagecontrol, uc_statusbar, Dialogs, SynEditTypes, ShellCtrls;
 
 type
-  tucMain = class(TComponent)
+  TUcMain = class(TComponent)
   private
-    FSpinEdit : TSpinEdit;
+    FShellTreeView : TShellTreeView;
     FPageControl : tucPageControl;
     FStatusBar : tucStatusBar;
     FSaveDialog : TSaveDialog;
   public
-    property vSpinEdit : TSpinEdit read FSpinEdit write FSpinEdit;
+    property vShellTreeView : TShellTreeView read FShellTreeView write FShellTreeView;
     property vPageControl : tucPageControl read FPageControl write FPageControl;
     property vStatusBar : tucStatusBar read FStatusBar write FStatusBar;
     property vSaveDialog : TSaveDialog read FSaveDialog write FSaveDialog;
     constructor Create (AOwner : TWinControl; AImageList : TImageList; APopupMenu : TPopupMenu;
-      ASpinEdit : TSpinEdit; ASaveDialog : TSaveDialog); overload;
+      AShellTreeView : TShellTreeView; ASpinEdit : TSpinEdit; ASaveDialog : TSaveDialog); overload;
     procedure fcAddNewTab (APopupMenu : TPopupMenu);
     procedure fcAddNewTab (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu); overload;
     procedure fcCloseCurrentTab (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
@@ -51,31 +51,32 @@ var
 
 implementation
 
-constructor tucMain.Create (AOwner : TWinControl; AImageList : TImageList; APopupMenu : TPopupMenu;
-  ASpinEdit : TSpinEdit; ASaveDialog : TSaveDialog); overload;
+constructor TUcMain.Create (AOwner : TWinControl; AImageList : TImageList; APopupMenu : TPopupMenu;
+  AShellTreeView : TShellTreeView; ASpinEdit : TSpinEdit; ASaveDialog : TSaveDialog); overload;
 begin
-  Self.vSpinEdit := ASpinEdit;
   Self.vSaveDialog := ASaveDialog;
   Self.vStatusBar := tucStatusBar.Create(AOwner);
   Self.vStatusBar.Parent := AOwner;
   Self.vPageControl := tucPageControl.Create(AOwner);
   Self.vPageControl.Parent := AOwner;
-  Self.vPageControl.fcInit(AImageList,APopupMenu,Self.vSpinEdit,Self.vStatusBar,Self.vSaveDialog);
+  Self.vPageControl.fcInit(AImageList,APopupMenu,AShellTreeView,ASpinEdit,
+    Self.vStatusBar,Self.vSaveDialog
+  );
 end;
 
-procedure tucMain.fcAddNewTab (APopupMenu : TPopupMenu);
+procedure TUcMain.fcAddNewTab (APopupMenu : TPopupMenu);
 begin
   Self.vPageControl.fcAddNewTab(APopupMenu);
 end;
 
-procedure tucMain.fcAddNewTab (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
+procedure TUcMain.fcAddNewTab (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
 begin
   vupVar.vTabNo := vupVar.vTabNo + 1;
   Self.vPageControl.fcAddNewTabThenOpen(ACurrentData,APopupMenu);
   Self.vStatusBar.fcUpdate(ACurrentData);
 end;
 
-procedure tucMain.fcCloseCurrentTab (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
+procedure TUcMain.fcCloseCurrentTab (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
 begin
   Self.vPageControl.fcCloseCurrentTab(ACurrentData,vupVar.vTabPrefix + IntToStr(vupVar.vTabNo),
     vupVar.vImageIndexNormalFile,APopupMenu
@@ -83,7 +84,7 @@ begin
   Self.vPageControl.Change;
 end;
 
-procedure tucMain.fcCloseAllTabs (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
+procedure TUcMain.fcCloseAllTabs (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
 var
   i : Byte;
 begin
@@ -96,7 +97,7 @@ begin
   end;
 end;
 
-procedure tucMain.fcCloseAllOtherTabs (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
+procedure TUcMain.fcCloseAllOtherTabs (ACurrentData : tupCurrentData; APopupMenu : TPopupMenu);
 var
   i : Byte;
 begin
@@ -111,84 +112,84 @@ begin
   end;
 end;
 
-procedure tucMain.fcUpdate;
+procedure TUcMain.fcUpdate;
 begin
   Self.vPageControl.fcUpdate;
 end;
 
-procedure tucMain.fcUpdate (ACurrentData : tupCurrentData);
+procedure TUcMain.fcUpdate (ACurrentData : tupCurrentData);
 begin
   Self.vPageControl.fcUpdate(ACurrentData);
   Self.vStatusBar.fcUpdate(ACurrentData);
 end;
 
-procedure tucMain.fcUndo;
+procedure TUcMain.fcUndo;
 begin
   Self.vPageControl.fcUndo;
 end;
 
-procedure tucMain.fcRedo;
+procedure TUcMain.fcRedo;
 begin
   Self.vPageControl.fcRedo;
 end;
 
-procedure tucMain.fcCopy;
+procedure TUcMain.fcCopy;
 begin
   Self.vPageControl.fcCopy;
 end;
 
-procedure tucMain.fcCut;
+procedure TUcMain.fcCut;
 begin
   Self.vPageControl.fcCut;
 end;
 
-procedure tucMain.fcPaste;
+procedure TUcMain.fcPaste;
 begin
   Self.vPageControl.fcPaste;
 end;
 
-procedure tucMain.fcSelectAll;
+procedure TUcMain.fcSelectAll;
 begin
   Self.vPageControl.fcSelectAll;
 end;
 
-procedure tucMain.fcSave (AFileName : TFileName);
+procedure TUcMain.fcSave (AFileName : TFileName);
 begin
   Self.vPageControl.fcSave(AFileName);
 end;
 
-procedure tucMain.fcShowCompletion;
+procedure TUcMain.fcShowCompletion;
 begin
   Self.vPageControl.fcShowCompletion;
 end;
 
-procedure tucMain.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+procedure TUcMain.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
   AIsSpecialChar : Boolean; ASpecialChar : string);
 begin
   Self.vPageControl.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions,AIsSpecialChar,ASpecialChar);
 end;
 
-procedure tucMain.fcFindNext;
+procedure TUcMain.fcFindNext;
 begin
   Self.vPageControl.fcFindNext;
 end;
 
-procedure tucMain.fcRunCommand;
+procedure TUcMain.fcRunCommand;
 begin
   Self.vPageControl.fcRunCommand;
 end;
 
-procedure tucMain.fcMacroStartRecording;
+procedure TUcMain.fcMacroStartRecording;
 begin
   Self.vPageControl.fcMacroStartRecording;
 end;
 
-procedure tucMain.fcMacroStopRecording;
+procedure TUcMain.fcMacroStopRecording;
 begin
   Self.vPageControl.fcMacroStopRecording;
 end;
 
-procedure tucMain.fcMacroPlayback;
+procedure TUcMain.fcMacroPlayback;
 begin
   Self.vPageControl.fcMacroPlayback;
 end;
