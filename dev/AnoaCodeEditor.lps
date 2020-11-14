@@ -37,9 +37,8 @@
       <Unit3>
         <Filename Value="units\up_var.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="52"/>
+        <TopLine Value="32"/>
         <CursorPos Y="50"/>
         <UsageCount Value="69"/>
         <Loaded Value="True"/>
@@ -139,7 +138,7 @@
         <Filename Value="units\up_theme.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="46"/>
+        <TopLine Value="58"/>
         <CursorPos Y="47"/>
         <UsageCount Value="69"/>
         <Loaded Value="True"/>
@@ -325,9 +324,10 @@
       </Unit41>
       <Unit42>
         <Filename Value="..\..\anoa-core-editor\ace_synhighlighter.pas"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="10"/>
         <TopLine Value="294"/>
-        <CursorPos X="23" Y="306"/>
+        <CursorPos X="5" Y="306"/>
         <UsageCount Value="18"/>
         <Loaded Value="True"/>
       </Unit42>
