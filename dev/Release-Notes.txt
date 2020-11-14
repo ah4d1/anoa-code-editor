@@ -1,6 +1,9 @@
 v.1.0.7.0 : (Work in progress)
 ----------------------------------------------------------
 Added   : R Lang/Format
+Added   : "Visit Website" main menu.
+Update  : Shell Tree View now only show the directory of the selected file
+          To show all directory, select "View All Directory" on the popup menu of Shell Tree View
 Update  : Code refactoring & other minor updates.
 
 v.1.0.6.0 : (Released 13th Nov 2020)
