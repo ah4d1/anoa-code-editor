@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Graphics, SynEditHighlighter, SynMacroRecorder,
-  ace_synhighlighter, up_reservewords, ace_synedit;
+  ace_synhighlighter, ace_synedit;
 
 type
   tupVar = class
@@ -17,7 +17,6 @@ type
     vImageIndexModifiedFile : Byte;
     vSynHighlighter : TAceSynHighlighter;
     vSynMacroRecorder : TSynMacroRecorder;
-    vReservedWords : tupReserveWords;
     vLang : TStringList;
     vFontSize : Byte;
     vCurrentFindKeyword : string;
@@ -64,8 +63,9 @@ end;
 procedure tupVar.fcInit (AOwner : TComponent; ASynMacroRecorder : TSynMacroRecorder);
 begin
   Self.vSynHighlighter := TAceSynHighlighter.Create(AOwner);
+  Self.vSynHighlighter.fcInit(Self.vAppDir + '/addon/resword/');
+  Self.vSynHighlighter.vAddOnHLDir := Self.vAppDir + '/addon/synfacilhighlighter/';
   Self.vSynMacroRecorder := ASynMacroRecorder;
-  Self.vReservedWords := tupReserveWords.Create(Self.vSynHighlighter);
   Self.vLang := vacString.fcSplit(Self.vSynHighlighter.vLangTxt,'|');
 end;
 
