@@ -1,7 +1,7 @@
 object FormMain: TFormMain
-  Left = 372
+  Left = 641
   Height = 786
-  Top = 160
+  Top = 123
   Width = 1201
   Caption = 'Anoa-Code-Editor'
   ClientHeight = 756
@@ -467,6 +467,10 @@ object FormMain: TFormMain
         Caption = '&About ...'
         ImageIndex = 2
         OnClick = MenuItemHelpAboutClick
+      end
+      object MenuItemHelpVisitWebsite: TMenuItem
+        Caption = 'Visit Website ...'
+        OnClick = MenuItemHelpVisitWebsiteClick
       end
     end
   end
@@ -1189,6 +1193,10 @@ object FormMain: TFormMain
     object MenuItemOpen: TMenuItem
       Caption = 'Open'
       OnClick = MenuItemOpenClick
+    end
+    object MenuItemViewAllDirs: TMenuItem
+      Caption = 'View All Directories'
+      OnClick = MenuItemViewAllDirsClick
     end
   end
   object ActionListMain: TActionList
