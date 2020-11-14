@@ -4,14 +4,14 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="44">
+    <Units Count="46">
       <Unit0>
         <Filename Value="AnoaCodeEditor.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos X="41" Y="13"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="71"/>
       </Unit0>
       <Unit1>
         <Filename Value="units\uf_main.pas"/>
@@ -19,9 +19,10 @@
         <ComponentName Value="FormMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="192"/>
-        <CursorPos X="3" Y="544"/>
-        <UsageCount Value="69"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="98"/>
+        <CursorPos X="30" Y="11"/>
+        <UsageCount Value="71"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -31,7 +32,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="14"/>
         <CursorPos Y="27"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="71"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -40,24 +41,18 @@
         <EditorIndex Value="6"/>
         <TopLine Value="32"/>
         <CursorPos Y="50"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="71"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="units\up_reservewords.pas"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="68" Y="26"/>
-        <UsageCount Value="65"/>
-      </Unit4>
-      <Unit5>
         <Filename Value="units\uf_findreplace.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormFindReplace"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UsageCount Value="69"/>
-      </Unit5>
-      <Unit6>
+        <UsageCount Value="71"/>
+      </Unit4>
+      <Unit5>
         <Filename Value="units\uf_about.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormAbout"/>
@@ -65,92 +60,97 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
-        <UsageCount Value="69"/>
-      </Unit6>
-      <Unit7>
+        <UsageCount Value="71"/>
+      </Unit5>
+      <Unit6>
         <Filename Value="units\uc_pagecontrol.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="53"/>
-        <CursorPos X="29" Y="147"/>
-        <UsageCount Value="69"/>
+        <TopLine Value="143"/>
+        <CursorPos Y="154"/>
+        <UsageCount Value="71"/>
         <Loaded Value="True"/>
-      </Unit7>
-      <Unit8>
+      </Unit6>
+      <Unit7>
         <Filename Value="units\uc_tabsheet.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="59"/>
         <CursorPos X="15" Y="38"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="71"/>
         <Loaded Value="True"/>
-      </Unit8>
-      <Unit9>
+      </Unit7>
+      <Unit8>
         <Filename Value="units\uc_syncompletion.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos Y="28"/>
-        <UsageCount Value="69"/>
-      </Unit9>
-      <Unit10>
+        <UsageCount Value="71"/>
+      </Unit8>
+      <Unit9>
         <Filename Value="units\uc_statusbar.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="48" Y="8"/>
-        <UsageCount Value="69"/>
-      </Unit10>
-      <Unit11>
+        <UsageCount Value="71"/>
+      </Unit9>
+      <Unit10>
         <Filename Value="units\uc_main.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="55"/>
-        <CursorPos X="15" Y="30"/>
-        <UsageCount Value="69"/>
+        <TopLine Value="49"/>
+        <CursorPos Y="54"/>
+        <UsageCount Value="71"/>
         <Loaded Value="True"/>
-      </Unit11>
-      <Unit12>
+      </Unit10>
+      <Unit11>
         <Filename Value="units\up_currentdata.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="40"/>
-        <CursorPos Y="48"/>
-        <UsageCount Value="69"/>
+        <TopLine Value="39"/>
+        <CursorPos Y="57"/>
+        <UsageCount Value="71"/>
         <Loaded Value="True"/>
-      </Unit12>
-      <Unit13>
+      </Unit11>
+      <Unit12>
         <Filename Value="units\uc_memoresult.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="9"/>
         <CursorPos X="55" Y="17"/>
-        <UsageCount Value="69"/>
-      </Unit13>
-      <Unit14>
+        <UsageCount Value="71"/>
+      </Unit12>
+      <Unit13>
         <Filename Value="units\up_runcommand.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="8"/>
         <CursorPos X="61" Y="8"/>
-        <UsageCount Value="69"/>
-      </Unit14>
-      <Unit15>
+        <UsageCount Value="71"/>
+      </Unit13>
+      <Unit14>
         <Filename Value="units\up_theme.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="8"/>
         <TopLine Value="58"/>
         <CursorPos Y="47"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="71"/>
         <Loaded Value="True"/>
-      </Unit15>
-      <Unit16>
+      </Unit14>
+      <Unit15>
         <Filename Value="units\uc_synedit.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="7"/>
         <TopLine Value="51"/>
         <CursorPos X="13" Y="62"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="45"/>
         <Loaded Value="True"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="units\up_reservewords.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="68" Y="26"/>
+        <UsageCount Value="65"/>
       </Unit16>
       <Unit17>
         <Filename Value="units\up_synhighlighter.pas"/>
@@ -319,16 +319,15 @@
       <Unit41>
         <Filename Value="..\..\anoa-core-editor\ace_synedit.pas"/>
         <EditorIndex Value="9"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
       </Unit41>
       <Unit42>
         <Filename Value="..\..\anoa-core-editor\ace_synhighlighter.pas"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="10"/>
         <TopLine Value="294"/>
         <CursorPos X="5" Y="306"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="19"/>
         <Loaded Value="True"/>
       </Unit42>
       <Unit43>
@@ -339,126 +338,140 @@
         <CursorPos X="30" Y="46"/>
         <UsageCount Value="11"/>
       </Unit43>
+      <Unit44>
+        <Filename Value="units\up_shelltreeview.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="15" Y="12"/>
+        <UsageCount Value="20"/>
+      </Unit44>
+      <Unit45>
+        <Filename Value="C:\lazarus\lcl\shellctrls.pas"/>
+        <UnitName Value="ShellCtrls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1075"/>
+        <CursorPos X="19" Y="1024"/>
+        <UsageCount Value="10"/>
+      </Unit45>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="..\..\anoa-core-editor\ace_synedit.pas"/>
-        <Caret Line="27" Column="40" TopLine="17"/>
+        <Caret Line="99" Column="50" TopLine="89"/>
       </Position1>
       <Position2>
-        <Filename Value="..\..\anoa-core-editor\ace_synhighlighter.pas"/>
-        <Caret Line="18" Column="40" TopLine="4"/>
+        <Filename Value="units\up_var.pas"/>
+        <Caret Line="60" Column="6" TopLine="45"/>
       </Position2>
       <Position3>
-        <Filename Value="..\..\anoa-core-editor\ace_synedit.pas"/>
-        <Caret Line="83" Column="25" TopLine="64"/>
+        <Filename Value="units\up_var.pas"/>
+        <Caret Line="55" Column="35" TopLine="45"/>
       </Position3>
       <Position4>
-        <Filename Value="units\up_var.pas"/>
-        <Caret Line="23" Column="27" TopLine="11"/>
+        <Filename Value="units\uc_pagecontrol.pas"/>
+        <Caret Line="15" Column="23" TopLine="12"/>
       </Position4>
       <Position5>
-        <Filename Value="units\up_var.pas"/>
-        <Caret Line="34" Column="58" TopLine="24"/>
+        <Filename Value="units\uf_main.pas"/>
+        <Caret Line="544" Column="3" TopLine="44"/>
       </Position5>
       <Position6>
-        <Filename Value="units\up_var.pas"/>
-        <Caret Line="54" Column="30" TopLine="43"/>
+        <Filename Value="units\uf_main.pas"/>
+        <Caret Line="554" Column="26" TopLine="535"/>
       </Position6>
       <Position7>
-        <Filename Value="units\up_var.pas"/>
-        <Caret Line="97" Column="61" TopLine="82"/>
+        <Filename Value="units\uf_main.pas"/>
       </Position7>
       <Position8>
-        <Filename Value="units\up_theme.pas"/>
-        <Caret Line="48" Column="39" TopLine="32"/>
+        <Filename Value="units\uc_pagecontrol.pas"/>
+        <Caret Line="69" TopLine="56"/>
       </Position8>
       <Position9>
-        <Filename Value="units\up_theme.pas"/>
-        <Caret Line="43" Column="29" TopLine="32"/>
+        <Filename Value="units\uf_main.pas"/>
+        <Caret Line="12" Column="23"/>
       </Position9>
       <Position10>
-        <Filename Value="units\up_theme.pas"/>
-        <Caret Line="8" Column="91"/>
+        <Filename Value="units\uc_main.pas"/>
+        <Caret Line="55" Column="50" TopLine="52"/>
       </Position10>
       <Position11>
-        <Filename Value="units\uf_main.pas"/>
-        <Caret Line="550" Column="32" TopLine="533"/>
+        <Filename Value="units\uc_main.pas"/>
+        <Caret Line="58" TopLine="50"/>
       </Position11>
       <Position12>
-        <Filename Value="units\uf_main.pas"/>
-        <Caret Line="544" Column="3" TopLine="533"/>
+        <Filename Value="units\uc_main.pas"/>
+        <Caret Line="194" Column="18" TopLine="178"/>
       </Position12>
       <Position13>
         <Filename Value="units\uc_main.pas"/>
-        <Caret Line="30" Column="15" TopLine="108"/>
+        <Caret Line="67" Column="66" TopLine="51"/>
       </Position13>
       <Position14>
-        <Filename Value="units\uc_pagecontrol.pas"/>
-        <Caret Line="147" Column="29" TopLine="133"/>
+        <Filename Value="units\uc_main.pas"/>
+        <Caret Line="62" Column="21" TopLine="51"/>
       </Position14>
       <Position15>
-        <Filename Value="units\uc_tabsheet.pas"/>
-        <Caret Line="38" Column="15" TopLine="95"/>
+        <Filename Value="units\uc_main.pas"/>
+        <Caret Line="21" Column="8" TopLine="12"/>
       </Position15>
       <Position16>
-        <Filename Value="units\uc_synedit.pas"/>
-        <Caret Line="59" Column="5" TopLine="53"/>
+        <Filename Value="units\uc_main.pas"/>
+        <Caret Line="61" Column="6" TopLine="49"/>
       </Position16>
       <Position17>
-        <Filename Value="..\..\anoa-core-editor\ace_synhighlighter.pas"/>
-        <Caret Line="314" TopLine="299"/>
+        <Filename Value="units\uc_main.pas"/>
+        <Caret Line="68" Column="6" TopLine="56"/>
       </Position17>
       <Position18>
-        <Filename Value="units\up_var.pas"/>
-        <Caret Line="24" Column="8" TopLine="20"/>
+        <Filename Value="units\uc_main.pas"/>
+        <Caret Line="57" TopLine="50"/>
       </Position18>
       <Position19>
-        <Filename Value="units\up_var.pas"/>
-        <Caret Line="56" Column="20" TopLine="44"/>
+        <Filename Value="units\uc_main.pas"/>
+        <Caret Line="20" Column="5"/>
       </Position19>
       <Position20>
-        <Filename Value="units\up_var.pas"/>
-        <Caret Line="25" Column="8" TopLine="17"/>
+        <Filename Value="units\uf_main.pas"/>
+        <Caret Line="208" Column="28" TopLine="199"/>
       </Position20>
       <Position21>
-        <Filename Value="units\up_var.pas"/>
-        <Caret Line="60" Column="6" TopLine="45"/>
+        <Filename Value="units\uf_main.pas"/>
+        <Caret Line="401" Column="3" TopLine="396"/>
       </Position21>
       <Position22>
-        <Filename Value="..\..\anoa-core-editor\ace_synedit.pas"/>
-        <Caret Line="91" Column="53" TopLine="79"/>
+        <Filename Value="units\uc_main.pas"/>
+        <Caret Line="121" Column="23" TopLine="112"/>
       </Position22>
       <Position23>
-        <Filename Value="..\..\anoa-core-editor\ace_synedit.pas"/>
+        <Filename Value="units\uc_pagecontrol.pas"/>
+        <Caret Line="34" Column="15" TopLine="137"/>
       </Position23>
       <Position24>
-        <Filename Value="..\..\anoa-core-editor\ace_synedit.pas"/>
-        <Caret Line="20" Column="24"/>
+        <Filename Value="units\uc_pagecontrol.pas"/>
+        <Caret Line="154" TopLine="137"/>
       </Position24>
       <Position25>
-        <Filename Value="..\..\anoa-core-editor\ace_synedit.pas"/>
-        <Caret Line="97" Column="27" TopLine="78"/>
+        <Filename Value="units\uc_pagecontrol.pas"/>
+        <Caret Line="148" TopLine="192"/>
       </Position25>
       <Position26>
-        <Filename Value="..\..\anoa-core-editor\ace_synedit.pas"/>
-        <Caret Line="108" Column="26" TopLine="89"/>
+        <Filename Value="units\uf_main.pas"/>
+        <Caret Line="401" Column="3" TopLine="396"/>
       </Position26>
       <Position27>
-        <Filename Value="units\uc_synedit.pas"/>
-        <Caret Line="42" Column="6" TopLine="31"/>
+        <Filename Value="units\uf_main.pas"/>
+        <Caret Line="403" Column="3" TopLine="398"/>
       </Position27>
       <Position28>
-        <Filename Value="..\..\anoa-core-editor\ace_synedit.pas"/>
-        <Caret Line="99" Column="50" TopLine="89"/>
+        <Filename Value="units\uc_pagecontrol.pas"/>
+        <Caret Line="154" Column="57" TopLine="138"/>
       </Position28>
       <Position29>
-        <Filename Value="units\up_var.pas"/>
-        <Caret Line="60" Column="6" TopLine="45"/>
+        <Filename Value="units\uf_main.pas"/>
+        <Caret Line="571" Column="22" TopLine="556"/>
       </Position29>
       <Position30>
-        <Filename Value="units\up_var.pas"/>
-        <Caret Line="55" Column="35" TopLine="45"/>
+        <Filename Value="units\uf_main.pas"/>
+        <Caret Line="578" Column="22" TopLine="563"/>
       </Position30>
     </JumpHistory>
     <RunParams>
