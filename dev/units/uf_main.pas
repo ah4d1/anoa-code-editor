@@ -541,13 +541,13 @@ end;
 
 procedure TFormMain.MenuItemSettingsThemeDarkClick(Sender: TObject);
 begin
-  vupVar.vCurrentTheme := aceSeThemeDark;
+  vupVar.vCurrentTheme := aceShThemeDark;
   vucMain.fcUpdate;
 end;
 
 procedure TFormMain.MenuItemSettingsThemeNormalClick(Sender: TObject);
 begin
-  vupVar.vCurrentTheme := aceSeThemeNormal;
+  vupVar.vCurrentTheme := aceShThemeNormal;
   vucMain.fcUpdate;
 end;
 
