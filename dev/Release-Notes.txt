@@ -1,11 +1,16 @@
+v.1.0.7.0 : (Work in progress)
+----------------------------------------------------------
+Added   : R Lang/Format
+Update  : Code refactoring & other minor updates.
+
 v.1.0.6.0 : (Released 13th Nov 2020)
 ----------------------------------------------------------
-Added : Batch Lang/Format
-Added : Ini Lang/Format
-Added : JavaScript Lang/Format
-Added : Ruby Lang/Format
-Added : XML Lang/Format
-Added : Macro Recording & Playback
+Added   : Batch Lang/Format
+Added   : Ini Lang/Format
+Added   : JavaScript Lang/Format
+Added   : Ruby Lang/Format
+Added   : XML Lang/Format
+Added   : Macro Recording & Playback
 Update  : Code refactoring & other updates.
 
 v.1.0.5.0 : (Released 2nd Nov 2020)
