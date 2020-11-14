@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, SynEditHighlighter, ace_synhighlighter, Dialogs;
 
 type
-  tupCurrentData = class
+  TUpCurrentData = class
     vLang : TAceShLang;
     vLangTxt : string;
     vSynHighlighter : TAceSynHighlighter;
@@ -54,7 +54,6 @@ begin
   Self.vLangTxt := vupLang.fcGetLangTxt(Self.vLang);
   vupVar.vSynHighlighter.vLang := Self.vLang;
   Self.vHighlighter := vupVar.vSynHighlighter.vHighlighter;
-  // Self.vHighlighter := Self.vSynHighlighter.fcGetHighlighter(Self.vLang);
   Self.vFileName := AFileName;
 end;
 
