@@ -39,7 +39,7 @@ begin
   Self.Font.Pitch := fpFixed;
   Self.Font.Quality := fqProof;
   Self.Font.Size := vupVar.vFontSize;
-  Self.LineHighlightColor.Background := vupVar.vLineHighlightColor;
+  // Self.LineHighlightColor.Background := vupVar.vLineHighlightColor;
   Self.Options := Self.Options - [eoShowSpecialChars,eoTabsToSpaces];
   Self.VisibleSpecialChars := [vscSpace,vscTabAtFirst,vscTabAtLast];
   Self.OnChange := @Self.fcChange;
@@ -54,14 +54,15 @@ end;
 
 procedure tucSynEdit.fcUpdate;
 begin
+  {TRY TO UPDATE HERE}
   vupTheme.fcSetThemeColor(vupVar);
+  {}
   Self.vTheme := vupVar.vCurrentTheme;
   Self.Font.Size := vupVar.vFontSize;
   if vupVar.vShowSpecialChars then
     Self.Options := Self.Options + [eoShowSpecialChars]
   else
   Self.Options := Self.Options - [eoShowSpecialChars];
-  {TEST}
   vupVar.vSynMacroRecorder.Editor := Self;
 end;
 
