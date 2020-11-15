@@ -8,26 +8,26 @@ uses
   Classes, SysUtils, Dialogs, ace_synhighlighter;
 
 type
-  tupLang = object
+  TUpLang = object
     function fcGetLang (AFileExt : string) : TAceShLang;
     function fcGetLangTxt (ALang : TAceShLang) : string;
   end;
 
 var
-  vupLang : tupLang;
+  vupLang : TUpLang;
 
 implementation
 
 uses
   up_var;
 
-function tupLang.fcGetLang (AFileExt : string) : TAceShLang;
+function TUpLang.fcGetLang (AFileExt : string) : TAceShLang;
 begin
   vupVar.vSynHighlighter.vExt := AFileExt;
   Result := vupVar.vSynHighlighter.vLang;
 end;
 
-function tupLang.fcGetLangTxt (ALang : TAceShLang) : string;
+function TUpLang.fcGetLangTxt (ALang : TAceShLang) : string;
 begin
   Result := vupVar.vLang[Ord(ALang)];
 end;
