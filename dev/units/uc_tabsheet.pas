@@ -11,7 +11,7 @@ uses
 
 type
   taseTextStatus = (aseTextStatusNormal,aseTextStatusModified);
-  tucTabSheet = class(TTabSheet)
+  TUcTabSheet = class(TTabSheet)
   private
     FLang : TAceShLang;
     FLangTxt : string;
@@ -58,7 +58,7 @@ implementation
 uses
   up_runcommand, ac_dialog;
 
-constructor tucTabSheet.Create (AOwner : TComponent);
+constructor TUcTabSheet.Create (AOwner : TComponent);
 begin
   inherited Create(AOwner);
   Self.vMemoResult := tucMemoResult.Create(AOwner);
@@ -72,7 +72,7 @@ begin
   Self.vSynCompletion.Editor := Self.vSynEdit;
 end;
 
-procedure tucTabSheet.fcInit (APopupMenu : TPopupMenu);
+procedure TUcTabSheet.fcInit (APopupMenu : TPopupMenu);
 begin
   Self.vLang := aceShLangNone;
   Self.vLangTxt := '';
@@ -81,13 +81,13 @@ begin
   Self.vSynEdit.fcInit(APopupMenu);
 end;
 
-procedure tucTabSheet.fcOpen (ACurrentData : tupCurrentData);
+procedure TUcTabSheet.fcOpen (ACurrentData : tupCurrentData);
 begin
   Self.vSynEdit.fcOpen(ACurrentData.vFileName);
   Self.fcUpdate(ACurrentData);
 end;
 
-procedure tucTabSheet.fcSave (AFileName : TFileName);
+procedure TUcTabSheet.fcSave (AFileName : TFileName);
 begin
   Self.Caption := ExtractFileName(AFileName);
   Self.ImageIndex := vupVar.vImageIndexNormalFile;
@@ -95,12 +95,12 @@ begin
   Self.vSynEdit.fcSave(AFileName);
 end;
 
-procedure tucTabSheet.fcUpdate;
+procedure TUcTabSheet.fcUpdate;
 begin
   Self.vSynEdit.fcUpdate;
 end;
 
-procedure tucTabSheet.fcUpdate (ACurrentData : tupCurrentData);
+procedure TUcTabSheet.fcUpdate (ACurrentData : tupCurrentData);
 begin
   Self.vSynEdit.fcUpdate(ACurrentData);
   Self.vSynCompletion.fcUpdate(ACurrentData.vLang);
@@ -109,58 +109,58 @@ begin
   Self.vFileName := ACurrentData.vFileName;
 end;
 
-procedure tucTabSheet.fcUndo;
+procedure TUcTabSheet.fcUndo;
 begin
   Self.vSynEdit.fcUndo;
 end;
 
-procedure tucTabSheet.fcRedo;
+procedure TUcTabSheet.fcRedo;
 begin
   Self.vSynEdit.fcRedo;
 end;
 
-procedure tucTabSheet.fcCopy;
+procedure TUcTabSheet.fcCopy;
 begin
   Self.vSynEdit.fcCopy;
 end;
 
-procedure tucTabSheet.fcCut;
+procedure TUcTabSheet.fcCut;
 begin
   Self.vSynEdit.fcCut;
 end;
 
-procedure tucTabSheet.fcPaste;
+procedure TUcTabSheet.fcPaste;
 begin
   Self.vSynEdit.fcPaste;
 end;
 
-procedure tucTabSheet.fcSelectAll;
+procedure TUcTabSheet.fcSelectAll;
 begin
   Self.vSynEdit.fcSelectAll;
 end;
 
-procedure tucTabSheet.fcSetCurrentData;
+procedure TUcTabSheet.fcSetCurrentData;
 begin
   vupCurrentData.fcUpdate(Self.vLang,Self.vFileName);
 end;
 
-procedure tucTabSheet.fcShowCompletion;
+procedure TUcTabSheet.fcShowCompletion;
 begin
   Self.vSynEdit.CommandProcessor(vSynCompletion.ExecCommandID, '', nil);
 end;
 
-procedure tucTabSheet.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+procedure TUcTabSheet.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
   AIsSpecialChar : Boolean; ASpecialChar : string);
 begin
   Self.vSynEdit.fcReplace(AOldPattern,ANewPattern,ASynSearchOptions,AIsSpecialChar,ASpecialChar);
 end;
 
-procedure tucTabSheet.fcFindNext;
+procedure TUcTabSheet.fcFindNext;
 begin
   Self.vSynEdit.fcFindNext;
 end;
 
-procedure tucTabSheet.fcRunCommand;
+procedure TUcTabSheet.fcRunCommand;
 begin
   case Self.vTextStatus of
     aseTextStatusNormal : vupRunCommand.fcRun(Self.vLang,Self.vFileName,Self.vSynEdit,Self.vMemoResult,Self);
@@ -168,17 +168,17 @@ begin
   end;
 end;
 
-procedure tucTabSheet.fcMacroStartRecording;
+procedure TUcTabSheet.fcMacroStartRecording;
 begin
   Self.vSynEdit.fcMacroStartRecording;
 end;
 
-procedure tucTabSheet.fcMacroStopRecording;
+procedure TUcTabSheet.fcMacroStopRecording;
 begin
   Self.vSynEdit.fcMacroStopRecording;
 end;
 
-procedure tucTabSheet.fcMacroPlayback;
+procedure TUcTabSheet.fcMacroPlayback;
 begin
   Self.vSynEdit.fcMacroPlayback;
 end;
