@@ -21,14 +21,14 @@ type
   end;
 
 var
-  vupCurrentData : tupCurrentData;
+  vupCurrentData : TUpCurrentData;
 
 implementation
 
 uses
   up_lang, up_var;
 
-constructor tupCurrentData.Create (AHighlighter : TAceSynHighlighter);
+constructor TUpCurrentData.Create (AHighlighter : TAceSynHighlighter);
 begin
   Self.vLang := aceShLangNone;
   Self.vLangTxt := '';
@@ -37,18 +37,18 @@ begin
   Self.vFileName := '';
 end;
 
-procedure tupCurrentData.fcUpdate (ALang : TAceShLang);
+procedure TUpCurrentData.fcUpdate (ALang : TAceShLang);
 begin
   Self.fcUpdate(ALang,Self.vFileName);
 end;
 
-procedure tupCurrentData.fcUpdate (AFileName : TFileName);
+procedure TUpCurrentData.fcUpdate (AFileName : TFileName);
 begin
   Self.vLang := vupLang.fcGetLang(ExtractFileExt(AFileName));
   Self.fcUpdate(Self.vLang,AFileName);
 end;
 
-procedure tupCurrentData.fcUpdate (ALang : TAceShLang; AFileName : TFileName);
+procedure TUpCurrentData.fcUpdate (ALang : TAceShLang; AFileName : TFileName);
 begin
   Self.vLang := ALang;
   Self.vLangTxt := vupLang.fcGetLangTxt(Self.vLang);
