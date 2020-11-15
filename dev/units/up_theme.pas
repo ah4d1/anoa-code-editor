@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, SynEditHighlighter, Graphics, up_var, ace_synedit, ace_synhighlighter;
 
 type
-  tupTheme = object
+  TUpTheme = object
     vSynEditColor : TColor;
     vSynEditFontColor : TColor;
     vGutterColor : TColor;
@@ -25,20 +25,20 @@ type
   end;
 
 var
-  vupTheme : tupTheme;
+  vupTheme : TUpTheme;
 
 implementation
 
 uses
   ac_color;
 
-procedure tupTheme.fcSetThemeColor (AVar : tupVar);
+procedure TUpTheme.fcSetThemeColor (AVar : tupVar);
 begin
   Self.fcSetVarColor(AVar);
   Self.fcSetAttriColor(Self.vCommentAttriColor,Self.vKeyAttriColor);
 end;
 
-procedure tupTheme.fcSetVarColor (AVar : tupVar);
+procedure TUpTheme.fcSetVarColor (AVar : tupVar);
 begin
   if vupVar.vCurrentTheme = aceShThemeNormal then
   begin
@@ -52,7 +52,7 @@ begin
   end;
 end;
 
-procedure tupTheme.fcSetAttriColor (ACommentAttriColor,AKeyAttriColor : TColor);
+procedure TUpTheme.fcSetAttriColor (ACommentAttriColor,AKeyAttriColor : TColor);
 begin
   Self.fcSetColorDetail(vupVar.vSynHighlighter.vCobol,ACommentAttriColor,AKeyAttriColor);
   Self.fcSetColorDetail(vupVar.vSynHighlighter.vCSharp,ACommentAttriColor,AKeyAttriColor);
@@ -66,13 +66,13 @@ begin
   Self.fcSetColorDetail(vupVar.vSynHighlighter.vSQL,ACommentAttriColor,AKeyAttriColor);
 end;
 
-procedure tupTheme.fcSetColorDetail (ALang : TSynCustomHighlighter; ACommentAttriColor,AKeyAttriColor : TColor);
+procedure TUpTheme.fcSetColorDetail (ALang : TSynCustomHighlighter; ACommentAttriColor,AKeyAttriColor : TColor);
 begin
   ALang.CommentAttribute.Foreground := ACommentAttriColor;
   ALang.KeywordAttribute.Foreground := AKeyAttriColor;
 end;
 
-procedure tupTheme.fcSetColorDetail (ALang : TSynCustomHighlighter; AKeyAttriColor : TColor);
+procedure TUpTheme.fcSetColorDetail (ALang : TSynCustomHighlighter; AKeyAttriColor : TColor);
 begin
   ALang.KeywordAttribute.Foreground := AKeyAttriColor;
 end;
