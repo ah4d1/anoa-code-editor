@@ -62,7 +62,8 @@ begin
   if vupVar.vShowSpecialChars then
     Self.Options := Self.Options + [eoShowSpecialChars]
   else
-  Self.Options := Self.Options - [eoShowSpecialChars];
+    Self.Options := Self.Options - [eoShowSpecialChars]
+  ;
   vupVar.vSynMacroRecorder.Editor := Self;
 end;
 
