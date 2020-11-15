@@ -9,7 +9,7 @@ uses
   up_currentdata, uc_syncompletion, Dialogs, SynEditTypes, Menus, up_var, ace_synedit;
 
 type
-  tucSynEdit = class(TAceSynEdit)
+  TUcSynEdit = class(TAceSynEdit)
     constructor Create (AOwner : TComponent); override;
     procedure fcInit (APopupMenu : TPopupMenu);
     procedure fcUpdate; overload;
@@ -31,7 +31,7 @@ implementation
 uses
   uc_tabsheet, up_theme;
 
-constructor tucSynEdit.Create (AOwner : TComponent);
+constructor TUcSynEdit.Create (AOwner : TComponent);
 begin
   inherited Create(AOwner);
   Self.Align := alClient;
@@ -45,14 +45,14 @@ begin
   Self.OnChange := @Self.fcChange;
 end;
 
-procedure tucSynEdit.fcInit (APopupMenu : TPopupMenu);
+procedure TUcSynEdit.fcInit (APopupMenu : TPopupMenu);
 begin
   Self.fcUpdate;
   Self.PopupMenu := APopupMenu;
   vupVar.vSynMacroRecorder.Editor := Self;
 end;
 
-procedure tucSynEdit.fcUpdate;
+procedure TUcSynEdit.fcUpdate;
 begin
   {TRY TO UPDATE HERE}
   vupTheme.fcSetThemeColor(vupVar);
@@ -67,34 +67,34 @@ begin
   vupVar.vSynMacroRecorder.Editor := Self;
 end;
 
-procedure tucSynEdit.fcUpdate (ACurrentData : tupCurrentData);
+procedure TUcSynEdit.fcUpdate (ACurrentData : tupCurrentData);
 begin
   Self.Highlighter := ACurrentData.vHighlighter;
 end;
 
-procedure tucSynEdit.fcOpen (AFileName : TFileName);
+procedure TUcSynEdit.fcOpen (AFileName : TFileName);
 begin
   Self.Lines.LoadFromFile(AFileName);
 end;
 
-procedure tucSynEdit.fcSave (AFileName : TFileName);
+procedure TUcSynEdit.fcSave (AFileName : TFileName);
 begin
   Self.Lines.SaveToFile(AFileName);
 end;
 
-procedure tucSynEdit.fcChange (Sender: TObject);
+procedure TUcSynEdit.fcChange (Sender: TObject);
 begin
   (Self.Parent as tucTabSheet).ImageIndex := vupVar.vImageIndexModifiedFile;
   (Self.Parent as tucTabSheet).vTextStatus := aseTextStatusModified;
   inherited;
 end;
 
-procedure tucSynEdit.fcShowCompletion (ASynCompletion : tucSynCompletion);
+procedure TUcSynEdit.fcShowCompletion (ASynCompletion : tucSynCompletion);
 begin
   Self.CommandProcessor(ASynCompletion.ExecCommandID, '', nil);
 end;
 
-procedure tucSynEdit.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
+procedure TUcSynEdit.fcReplace (AOldPattern,ANewPattern : string; ASynSearchOptions : TSynSearchOptions;
   AIsSpecialChar : Boolean; ASpecialChar : string);
 begin
   if not(AIsSpecialChar) then
@@ -107,22 +107,22 @@ begin
   end;
 end;
 
-procedure tucSynEdit.fcFindNext;
+procedure TUcSynEdit.fcFindNext;
 begin
   Self.SearchReplace(vupVar.vCurrentFindKeyword,'',[]);
 end;
 
-procedure tucSynEdit.fcMacroStartRecording;
+procedure TUcSynEdit.fcMacroStartRecording;
 begin
   vupVar.vSynMacroRecorder.RecordMacro(Self);
 end;
 
-procedure tucSynEdit.fcMacroStopRecording;
+procedure TUcSynEdit.fcMacroStopRecording;
 begin
   vupVar.vSynMacroRecorder.Stop;
 end;
 
-procedure tucSynEdit.fcMacroPlayback;
+procedure TUcSynEdit.fcMacroPlayback;
 begin
   vupVar.vSynMacroRecorder.PlaybackMacro(Self);
 end;
